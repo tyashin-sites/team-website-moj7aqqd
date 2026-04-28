@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Build with OpenNext
-        run: npx @opennextjs/cloudflare build
+        run: npx @opennextjs/cloudflare
 
       - name: Deploy to Workers
         id: deploy
