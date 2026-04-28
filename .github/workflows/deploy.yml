@@ -19,7 +19,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build & Deploy
+      - name: Build with OpenNext
+        run: npx @opennextjs/cloudflare build
+
+      - name: Deploy to Workers
         id: deploy
         run: npx wrangler deploy
         env:
@@ -32,11 +35,8 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         run: |
-          # Fetch project env secrets from Tyashin API
-          SECRETS_JSON=$(curl -sS "${{ secrets.TYASHIN_API_URL }}/builds/secrets/${{ github.repository }}" \
+          SECRETS_JSON=$(curl -sS "${{ secrets.TYASHIN_API_URL }}/api/v1/builds/secrets/${{ github.repository }}" \
             -H "X-Build-Secret: ${{ secrets.TYASHIN_BUILD_SECRET }}")
-
-          # Set each secret via wrangler (secrets take effect immediately, no redeploy needed)
           echo "$SECRETS_JSON" | node -e "
             const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
             if (data.success && data.data) {
@@ -51,7 +51,7 @@ jobs:
       - name: Notify Tyashin (success)
         if: success()
         run: |
-          curl -sS -X POST "${{ secrets.TYASHIN_API_URL }}/builds/webhook" \
+          curl -sS -X POST "${{ secrets.TYASHIN_API_URL }}/api/v1/builds/webhook" \
             -H "Content-Type: application/json" \
             -H "X-Build-Secret: ${{ secrets.TYASHIN_BUILD_SECRET }}" \
             -d '{
@@ -64,7 +64,7 @@ jobs:
       - name: Notify Tyashin (failure)
         if: failure()
         run: |
-          curl -sS -X POST "${{ secrets.TYASHIN_API_URL }}/builds/webhook" \
+          curl -sS -X POST "${{ secrets.TYASHIN_API_URL }}/api/v1/builds/webhook" \
             -H "Content-Type: application/json" \
             -H "X-Build-Secret: ${{ secrets.TYASHIN_BUILD_SECRET }}" \
             -d '{
