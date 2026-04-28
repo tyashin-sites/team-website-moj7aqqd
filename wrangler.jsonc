@@ -1,10 +1,15 @@
 {
-  "name": "thridify-storefront",
-  "compatibility_date": "2024-09-23",
-  "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": ".vercel/output/static",
+  "name": "site-team-website-moj7aqqd",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
   "vars": {
-      "TYASHIN_API_URL": "https://website-api.tyashin.com",
-      "TYASHIN_STOREFRONT_URL": "https://website-api.tyashin.com/api/v1/public/ecommerce"
+    "TYASHIN_API_URL": "https://website-api.tyashin.com"
   }
 }
