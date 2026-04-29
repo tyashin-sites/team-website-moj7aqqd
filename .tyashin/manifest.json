@@ -1,7 +1,7 @@
 {
   "version": 1,
   "framework": "nextjs",
-  "generatedAt": "2026-04-28T22:57:37.408Z",
+  "generatedAt": "2026-04-29T00:08:53.579Z",
   "pages": {
     "/": {
       "file": "src/app/page.tsx",
@@ -9,9 +9,10 @@
         "Hero",
         "Features",
         "Stats",
+        "Industries",
         "Testimonials",
-        "Services",
         "Clients",
+        "GlobalOffices",
         "CTA"
       ],
       "isServerComponent": true,
@@ -21,174 +22,34 @@
     "/about": {
       "file": "src/app/about/page.tsx",
       "sections": [
-        "HeroMinimal",
+        "Hero",
         "About",
-        "Team",
-        "Values"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/3d-product-configurator": {
-      "file": "src/app/3d-product-configurator/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
+        "Mission",
+        "GlobalOffices",
+        "Values",
         "CTA"
       ],
       "isServerComponent": true,
       "hasDynamicRoute": false,
       "dataFetching": []
     },
-    "/ar-viewer": {
-      "file": "src/app/ar-viewer/page.tsx",
+    "/platform": {
+      "file": "src/app/platform/page.tsx",
       "sections": [
-        "HeroSplit",
-        "FeaturesList",
+        "Hero",
+        "Features",
+        "Process",
         "CTA"
       ],
       "isServerComponent": true,
       "hasDynamicRoute": false,
       "dataFetching": []
     },
-    "/integrations/shopify": {
-      "file": "src/app/integrations/shopify/page.tsx",
+    "/industries": {
+      "file": "src/app/industries/page.tsx",
       "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/integrations/woocommerce": {
-      "file": "src/app/integrations/woocommerce/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/integrations/bigcommerce": {
-      "file": "src/app/integrations/bigcommerce/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/integrations/magento": {
-      "file": "src/app/integrations/magento/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/integrations/commercetools": {
-      "file": "src/app/integrations/commercetools/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/integrations/wix": {
-      "file": "src/app/integrations/wix/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/integrations/canva": {
-      "file": "src/app/integrations/canva/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/integrations/custom": {
-      "file": "src/app/integrations/custom/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/industries/furniture": {
-      "file": "src/app/industries/furniture/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/industries/doors-and-windows": {
-      "file": "src/app/industries/doors-and-windows/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/industries/modular-kitchens-laminates": {
-      "file": "src/app/industries/modular-kitchens-laminates/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/industries/education": {
-      "file": "src/app/industries/education/page.tsx",
-      "sections": [
-        "HeroSplit",
-        "FeaturesList",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/pricing": {
-      "file": "src/app/pricing/page.tsx",
-      "sections": [
-        "HeroMinimal",
-        "PricingPlans",
+        "Hero",
+        "Industries",
         "CTA"
       ],
       "isServerComponent": true,
@@ -198,47 +59,85 @@
     "/contact": {
       "file": "src/app/contact/page.tsx",
       "sections": [
-        "HeroMinimal",
-        "ContactForm",
-        "ContactInfo"
+        "Hero",
+        "Contact"
       ],
       "isServerComponent": true,
       "hasDynamicRoute": false,
       "dataFetching": []
     },
-    "/faq": {
-      "file": "src/app/faq/page.tsx",
+    "/blog": {
+      "file": "src/app/blog/page.tsx",
       "sections": [
-        "HeroMinimal",
-        "FAQ"
+        "Hero",
+        "BlogGrid"
       ],
       "isServerComponent": true,
+      "hasDynamicRoute": false,
+      "dataFetching": []
+    },
+    "/blog/[slug]": {
+      "file": "src/app/blog/[slug]/page.tsx",
+      "sections": [
+        "ArrowLeft",
+        "Tag",
+        "Calendar",
+        "User",
+        "ShareButtons"
+      ],
+      "isServerComponent": true,
+      "hasDynamicRoute": true,
+      "dataFetching": [
+        "generateStaticParams",
+        "generateMetadata"
+      ]
+    },
+    "/products": {
+      "file": "src/app/products/page.tsx",
+      "sections": [
+        "SearchForm",
+        "CategoryFilter",
+        "ProductGridSkeleton",
+        "ProductGrid"
+      ],
+      "isServerComponent": true,
+      "hasDynamicRoute": false,
+      "dataFetching": []
+    },
+    "/products/[slug]": {
+      "file": "src/app/products/[slug]/page.tsx",
+      "sections": [
+        "ProductDetails"
+      ],
+      "isServerComponent": true,
+      "hasDynamicRoute": true,
+      "dataFetching": [
+        "generateStaticParams",
+        "generateMetadata"
+      ]
+    },
+    "/cart": {
+      "file": "src/app/cart/page.tsx",
+      "sections": [
+        "ShoppingBag",
+        "Button",
+        "Minus",
+        "Plus",
+        "Trash2"
+      ],
+      "isServerComponent": false,
       "hasDynamicRoute": false,
       "dataFetching": []
     }
   },
   "components": {
-    "fonts": {
-      "file": "src/lib/fonts.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "layout"
-      ],
-      "props": [
-        "children",
-        "className"
-      ]
-    },
     "Header": {
       "file": "src/components/Header.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
         "layout"
       ],
-      "props": [
-        "children",
-        "className"
-      ]
+      "props": []
     },
     "Footer": {
       "file": "src/components/Footer.tsx",
@@ -246,268 +145,292 @@
       "usedBy": [
         "layout"
       ],
-      "props": [
-        "children",
-        "className"
-      ]
+      "props": []
     },
     "CartProvider": {
       "file": "src/components/CartProvider.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
-        "layout"
+        "layout",
+        "/cart",
+        "Header",
+        "AddToCartButton"
       ],
       "props": [
-        "children",
-        "className"
+        "children"
       ]
+    },
+    "Button": {
+      "file": "src/components/ui/Button.tsx",
+      "isClientComponent": false,
+      "usedBy": [
+        "/cart",
+        "Header",
+        "Hero",
+        "Industries",
+        "CTA",
+        "ContactForm",
+        "BlogGrid",
+        "ProductGrid",
+        "ProductDetails",
+        "AddToCartButton",
+        "SearchForm"
+      ],
+      "props": []
+    },
+    "Card": {
+      "file": "src/components/ui/Card.tsx",
+      "isClientComponent": false,
+      "usedBy": [
+        "Features",
+        "Industries",
+        "Testimonials",
+        "GlobalOffices",
+        "Mission",
+        "Values",
+        "Contact",
+        "BlogGrid",
+        "ProductGrid"
+      ],
+      "props": []
     },
     "Hero": {
       "file": "src/components/sections/Hero.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
-        "/"
+        "/",
+        "/about",
+        "/platform",
+        "/industries",
+        "/contact",
+        "/blog"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
     "Features": {
       "file": "src/components/sections/Features.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
-        "/"
+        "/",
+        "/platform"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
     "Stats": {
       "file": "src/components/sections/Stats.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
         "/"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
+      ]
+    },
+    "Industries": {
+      "file": "src/components/sections/Industries.tsx",
+      "isClientComponent": true,
+      "usedBy": [
+        "/",
+        "/industries"
+      ],
+      "props": [
+        "data"
       ]
     },
     "Testimonials": {
       "file": "src/components/sections/Testimonials.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
         "/"
       ],
       "props": [
-        "children",
-        "className"
-      ]
-    },
-    "Services": {
-      "file": "src/components/sections/Services.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "/"
-      ],
-      "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
     "Clients": {
       "file": "src/components/sections/Clients.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
         "/"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
+      ]
+    },
+    "GlobalOffices": {
+      "file": "src/components/sections/GlobalOffices.tsx",
+      "isClientComponent": true,
+      "usedBy": [
+        "/",
+        "/about"
+      ],
+      "props": [
+        "data"
       ]
     },
     "CTA": {
       "file": "src/components/sections/CTA.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
         "/",
-        "/3d-product-configurator",
-        "/ar-viewer",
-        "/integrations/shopify",
-        "/integrations/woocommerce",
-        "/integrations/bigcommerce",
-        "/integrations/magento",
-        "/integrations/commercetools",
-        "/integrations/wix",
-        "/integrations/canva",
-        "/integrations/custom",
-        "/industries/furniture",
-        "/industries/doors-and-windows",
-        "/industries/modular-kitchens-laminates",
-        "/industries/education",
-        "/pricing"
-      ],
-      "props": [
-        "children",
-        "className"
-      ]
-    },
-    "tyashin": {
-      "file": "src/lib/tyashin.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "/"
-      ],
-      "props": [
-        "children",
-        "className"
-      ]
-    },
-    "HeroMinimal": {
-      "file": "src/components/sections/HeroMinimal.tsx",
-      "isClientComponent": false,
-      "usedBy": [
         "/about",
-        "/pricing",
-        "/contact",
-        "/faq"
+        "/platform",
+        "/industries"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
     "About": {
       "file": "src/components/sections/About.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
         "/about"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
-    "Team": {
-      "file": "src/components/sections/Team.tsx",
-      "isClientComponent": false,
+    "Mission": {
+      "file": "src/components/sections/Mission.tsx",
+      "isClientComponent": true,
       "usedBy": [
         "/about"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
     "Values": {
       "file": "src/components/sections/Values.tsx",
-      "isClientComponent": false,
+      "isClientComponent": true,
       "usedBy": [
         "/about"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
-    "HeroSplit": {
-      "file": "src/components/sections/HeroSplit.tsx",
-      "isClientComponent": false,
+    "Process": {
+      "file": "src/components/sections/Process.tsx",
+      "isClientComponent": true,
       "usedBy": [
-        "/3d-product-configurator",
-        "/ar-viewer",
-        "/integrations/shopify",
-        "/integrations/woocommerce",
-        "/integrations/bigcommerce",
-        "/integrations/magento",
-        "/integrations/commercetools",
-        "/integrations/wix",
-        "/integrations/canva",
-        "/integrations/custom",
-        "/industries/furniture",
-        "/industries/doors-and-windows",
-        "/industries/modular-kitchens-laminates",
-        "/industries/education"
+        "/platform"
       ],
       "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
-    "FeaturesList": {
-      "file": "src/components/sections/FeaturesList.tsx",
-      "isClientComponent": false,
+    "Contact": {
+      "file": "src/components/sections/Contact.tsx",
+      "isClientComponent": true,
       "usedBy": [
-        "/3d-product-configurator",
-        "/ar-viewer",
-        "/integrations/shopify",
-        "/integrations/woocommerce",
-        "/integrations/bigcommerce",
-        "/integrations/magento",
-        "/integrations/commercetools",
-        "/integrations/wix",
-        "/integrations/canva",
-        "/integrations/custom",
-        "/industries/furniture",
-        "/industries/doors-and-windows",
-        "/industries/modular-kitchens-laminates",
-        "/industries/education"
+        "/contact"
       ],
       "props": [
-        "children",
-        "className"
-      ]
-    },
-    "PricingPlans": {
-      "file": "src/components/sections/PricingPlans.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "/pricing"
-      ],
-      "props": [
-        "children",
-        "className"
+        "data"
       ]
     },
     "ContactForm": {
-      "file": "src/components/sections/ContactForm.tsx",
-      "isClientComponent": false,
+      "file": "src/components/forms/ContactForm.tsx",
+      "isClientComponent": true,
       "usedBy": [
-        "/contact"
+        "Contact"
       ],
       "props": [
-        "children",
+        "fields",
+        "submitText"
+      ]
+    },
+    "BlogGrid": {
+      "file": "src/components/blog/BlogGrid.tsx",
+      "isClientComponent": false,
+      "usedBy": [
+        "/blog"
+      ],
+      "props": [
+        "posts",
+        "meta"
+      ]
+    },
+    "ShareButtons": {
+      "file": "src/components/blog/ShareButtons.tsx",
+      "isClientComponent": true,
+      "usedBy": [
+        "/blog/[slug]"
+      ],
+      "props": [
+        "title",
+        "url"
+      ]
+    },
+    "ProductGrid": {
+      "file": "src/components/products/ProductGrid.tsx",
+      "isClientComponent": false,
+      "usedBy": [
+        "/products"
+      ],
+      "props": [
+        "products",
+        "meta"
+      ]
+    },
+    "ProductDetails": {
+      "file": "src/components/products/ProductDetails.tsx",
+      "isClientComponent": true,
+      "usedBy": [
+        "/products/[slug]"
+      ],
+      "props": [
+        "product"
+      ]
+    },
+    "AddToCartButton": {
+      "file": "src/components/products/AddToCartButton.tsx",
+      "isClientComponent": true,
+      "usedBy": [
+        "ProductGrid",
+        "ProductDetails"
+      ],
+      "props": [
+        "product",
+        "variantId",
+        "quantity",
+        "disabled",
+        "size",
         "className"
       ]
     },
-    "ContactInfo": {
-      "file": "src/components/sections/ContactInfo.tsx",
-      "isClientComponent": false,
+    "CategoryFilter": {
+      "file": "src/components/products/CategoryFilter.tsx",
+      "isClientComponent": true,
       "usedBy": [
-        "/contact"
+        "/products"
       ],
       "props": [
-        "children",
-        "className"
+        "categories",
+        "selectedCategory"
       ]
     },
-    "FAQ": {
-      "file": "src/components/sections/FAQ.tsx",
-      "isClientComponent": false,
+    "SearchForm": {
+      "file": "src/components/products/SearchForm.tsx",
+      "isClientComponent": true,
       "usedBy": [
-        "/faq"
+        "/products"
       ],
       "props": []
     }
   },
   "config": {
     "layout": "src/app/layout.tsx",
-    "globals": null,
+    "globals": "src/app/globals.css",
     "tailwind": "tailwind.config.ts",
-    "fonts": null,
-    "content": null,
+    "fonts": "src/lib/fonts.ts",
+    "content": "content/site.json",
     "nextConfig": "next.config.ts",
     "packageJson": "package.json"
   },
@@ -520,8 +443,8 @@
   },
   "ecommerce": {
     "enabled": true,
-    "serverClient": null,
-    "clientSdk": null,
+    "serverClient": "src/lib/tyashin.ts",
+    "clientSdk": "src/lib/tyashin-client.ts",
     "cartProvider": "src/components/CartProvider.tsx"
   }
 }

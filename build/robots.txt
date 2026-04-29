@@ -2,6 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Disallow: /dashboard/
-
 Sitemap: https://thridify.com/sitemap.xml

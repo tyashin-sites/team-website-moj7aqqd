@@ -1,15 +1,14 @@
 {
-  "name": "site-team-website-moj7aqqd",
+  "name": "site-thridify",
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-04-01",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
   "vars": {
-    "TYASHIN_API_URL": "https://website-api.tyashin.com"
+      "TYASHIN_API_URL": "https://website-api.tyashin.com",
+      "TYASHIN_STOREFRONT_URL": "https://website-api.tyashin.com/api/v1/public/ecommerce"
   }
 }

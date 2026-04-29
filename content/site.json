@@ -1,0 +1,408 @@
+{
+  "header": {
+    "siteName": "Thridify",
+    "navigation": [
+      { "name": "Platform", "href": "/platform" },
+      { "name": "Industries", "href": "/industries" },
+      { "name": "About", "href": "/about" },
+      { "name": "Blog", "href": "/blog" },
+      { "name": "Contact", "href": "/contact" }
+    ],
+    "ctaButton": {
+      "text": "Book a Demo",
+      "href": "#contact"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "title": "Reimagine how the world experiences your products",
+        "subtitle": "Transform e-commerce with immersive 3D viewers and AR technology. Boost conversions, reduce returns, and cut photography costs with our no-code platform.",
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "#contact"
+        },
+        "secondaryCta": {
+          "text": "View Demo",
+          "href": "/platform"
+        }
+      },
+      "features": {
+        "title": "Complete 3D & AR Commerce Platform",
+        "features": [
+          {
+            "title": "3D 360° Product Viewer",
+            "description": "Interactive product visualization that customers can rotate and explore"
+          },
+          {
+            "title": "Real-Time 3D Configurator",
+            "description": "Let customers customize products in real-time with instant visual feedback"
+          },
+          {
+            "title": "App-Free AR Viewer",
+            "description": "View in Your Room technology works on all smartphones without downloads"
+          },
+          {
+            "title": "AI Visuals & Content Creation",
+            "description": "Generate stunning product visuals and marketing content with AI"
+          },
+          {
+            "title": "Digital Asset Management",
+            "description": "Organize and manage 3D assets with built-in analytics and ROI tracking"
+          },
+          {
+            "title": "No-Code Integration",
+            "description": "Seamlessly integrate with 8+ e-commerce platforms without technical expertise"
+          }
+        ]
+      },
+      "stats": {
+        "title": "Measurable Business Impact",
+        "stats": [
+          { "value": "40%", "label": "Increase in Conversions" },
+          { "value": "60%", "label": "Reduction in Returns" },
+          { "value": "80%", "label": "Lower Photography Costs" },
+          { "value": "8+", "label": "Platform Integrations" }
+        ]
+      },
+      "industries": {
+        "title": "Trusted Across Industries",
+        "industries": [
+          "Furniture",
+          "Modular Kitchens",
+          "Automotive",
+          "Doors & Windows",
+          "Pre-schools",
+          "Personalized Retail",
+          "Industrial Machinery"
+        ]
+      },
+      "testimonials": {
+        "title": "What Our Clients Say"
+      },
+      "clients": {
+        "title": "Integrations & Partners",
+        "subtitle": "Works seamlessly with your existing e-commerce platform"
+      },
+      "globalOffices": {
+        "title": "Global Presence",
+        "offices": [
+          {
+            "location": "Delhi, India",
+            "phone": "+91-966-774-7082",
+            "whatsapp": "+91-966-774-7082"
+          },
+          {
+            "location": "Toronto, Ontario",
+            "phone": "+1-437-800-0190",
+            "whatsapp": "+1-437-800-0190"
+          },
+          {
+            "location": "Estonia, Europe"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Transform Your Product Experience?",
+        "subtitle": "Join leading e-commerce brands using Thridify to boost conversions and reduce returns",
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "#contact"
+        },
+        "secondaryCta": {
+          "text": "Start Free Trial",
+          "href": "/platform"
+        }
+      }
+    },
+    "about": {
+      "hero": {
+        "title": "Reimagining Commerce with 3D & AR",
+        "subtitle": "We're Aapastech Private Limited, creators of Thridify — the platform that's transforming how the world experiences products online",
+        "variant": "split"
+      },
+      "story": {
+        "title": "Our Story",
+        "content": "Founded with a vision to bridge the gap between online and offline shopping experiences, Thridify empowers e-commerce brands to create immersive product experiences without coding expertise."
+      },
+      "mission": {
+        "title": "Our Mission",
+        "mission": "To democratize 3D and AR technology for e-commerce, making immersive product experiences accessible to businesses of all sizes.",
+        "vision": "A world where every online shopper can touch, feel, and experience products before they buy."
+      },
+      "globalOffices": {
+        "title": "Global Presence",
+        "subtitle": "Serving clients worldwide from our strategic locations",
+        "offices": [
+          {
+            "location": "Delhi, India",
+            "phone": "+91-966-774-7082",
+            "whatsapp": "+91-966-774-7082",
+            "description": "Our headquarters and main development center"
+          },
+          {
+            "location": "Toronto, Ontario",
+            "phone": "+1-437-800-0190",
+            "whatsapp": "+1-437-800-0190",
+            "description": "North American operations and client success"
+          },
+          {
+            "location": "Estonia, Europe",
+            "description": "European market expansion and partnerships"
+          }
+        ]
+      },
+      "values": {
+        "title": "Our Values",
+        "values": [
+          {
+            "title": "Innovation",
+            "description": "Pushing the boundaries of what's possible in 3D and AR commerce"
+          },
+          {
+            "title": "Accessibility",
+            "description": "Making advanced technology accessible to businesses of all sizes"
+          },
+          {
+            "title": "Results",
+            "description": "Focused on measurable business outcomes and ROI for our clients"
+          },
+          {
+            "title": "Global Impact",
+            "description": "Transforming commerce experiences worldwide"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Transform Your Business?",
+        "primaryCta": {
+          "text": "Get Started Today",
+          "href": "#contact"
+        }
+      }
+    },
+    "platform": {
+      "hero": {
+        "title": "Complete 3D & AR Commerce Platform",
+        "subtitle": "Everything you need to create immersive product experiences that drive conversions and reduce returns",
+        "variant": "split"
+      },
+      "features": {
+        "title": "Core Products",
+        "variant": "detailed",
+        "features": [
+          {
+            "title": "3D 360° Product Viewer",
+            "description": "Let customers explore products from every angle with smooth, interactive 360° rotation",
+            "benefits": [
+              "Increased engagement",
+              "Better product understanding",
+              "Reduced returns"
+            ]
+          },
+          {
+            "title": "Real-Time 3D Product Configurator",
+            "description": "Enable customers to customize products in real-time with instant visual feedback",
+            "benefits": [
+              "Higher conversion rates",
+              "Personalized shopping",
+              "Premium pricing"
+            ]
+          },
+          {
+            "title": "App-Free AR Viewer",
+            "description": "View in Your Room technology that works on all smartphones without app downloads",
+            "benefits": [
+              "Universal compatibility",
+              "Instant access",
+              "Spatial understanding"
+            ]
+          },
+          {
+            "title": "AI Visuals & Content Creation",
+            "description": "Generate stunning product visuals and marketing content using advanced AI",
+            "benefits": [
+              "Reduced photography costs",
+              "Faster time-to-market",
+              "Consistent quality"
+            ]
+          },
+          {
+            "title": "3D Digital Asset Management",
+            "description": "Organize, manage, and optimize 3D assets with built-in analytics and ROI tracking",
+            "benefits": [
+              "Centralized management",
+              "Performance insights",
+              "ROI measurement"
+            ]
+          }
+        ]
+      },
+      "process": {
+        "title": "How It Works",
+        "steps": [
+          "Upload your product images or 3D models",
+          "Configure viewer settings and customizations",
+          "Integrate with your e-commerce platform",
+          "Launch immersive product experiences",
+          "Track performance and optimize"
+        ]
+      },
+      "cta": {
+        "title": "Ready to Get Started?",
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "#contact"
+        },
+        "secondaryCta": {
+          "text": "View Pricing",
+          "href": "/contact"
+        }
+      }
+    },
+    "industries": {
+      "hero": {
+        "title": "Transforming Commerce Across Industries",
+        "subtitle": "Discover how Thridify's 3D and AR solutions drive results in your specific industry"
+      },
+      "industries": {
+        "variant": "grid",
+        "industries": [
+          {
+            "name": "Furniture",
+            "description": "Help customers visualize furniture in their space before purchase",
+            "useCases": [
+              "Room visualization",
+              "Size validation",
+              "Style matching"
+            ]
+          },
+          {
+            "name": "Modular Kitchens",
+            "description": "Configure and customize kitchen designs in real-time",
+            "useCases": [
+              "Layout planning",
+              "Material selection",
+              "Appliance integration"
+            ]
+          },
+          {
+            "name": "Automotive",
+            "description": "Showcase vehicle features and customization options",
+            "useCases": [
+              "Color configurator",
+              "Feature exploration",
+              "Interior views"
+            ]
+          },
+          {
+            "name": "Doors & Windows",
+            "description": "Visualize architectural elements in context",
+            "useCases": [
+              "Style selection",
+              "Material options",
+              "Installation preview"
+            ]
+          },
+          {
+            "name": "Pre-schools",
+            "description": "Interactive learning tools and equipment visualization",
+            "useCases": [
+              "Educational toys",
+              "Playground equipment",
+              "Learning materials"
+            ]
+          },
+          {
+            "name": "Personalized Retail",
+            "description": "Customizable products with real-time visualization",
+            "useCases": [
+              "Product personalization",
+              "Engraving preview",
+              "Color variations"
+            ]
+          },
+          {
+            "name": "Industrial Machinery",
+            "description": "Complex equipment visualization and configuration",
+            "useCases": [
+              "Technical specifications",
+              "Component details",
+              "Operation demos"
+            ]
+          }
+        ]
+      },
+      "cta": {
+        "title": "See Thridify in Action for Your Industry",
+        "primaryCta": {
+          "text": "Book Industry Demo",
+          "href": "#contact"
+        }
+      }
+    },
+    "contact": {
+      "hero": {
+        "title": "Get in Touch",
+        "subtitle": "Ready to transform your product experience? Contact our team for a personalized demo."
+      },
+      "contact": {
+        "offices": [
+          {
+            "location": "Delhi, India",
+            "phone": "+91-966-774-7082",
+            "whatsapp": "+91-966-774-7082",
+            "email": "hello@thridify.com"
+          },
+          {
+            "location": "Toronto, Ontario",
+            "phone": "+1-437-800-0190",
+            "whatsapp": "+1-437-800-0190",
+            "email": "hello@thridify.com"
+          },
+          {
+            "location": "Estonia, Europe",
+            "email": "hello@thridify.com"
+          }
+        ],
+        "form": {
+          "fields": ["name", "email", "company", "phone", "industry", "message"],
+          "submitText": "Send Message"
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "Thridify empowers e-commerce brands to create immersive product experiences without coding. Transform your online store with 3D and AR technology.",
+    "sections": {
+      "Platform": [
+        { "name": "3D Product Viewer", "href": "/platform" },
+        { "name": "AR Viewer", "href": "/platform" },
+        { "name": "3D Configurator", "href": "/platform" },
+        { "name": "AI Visuals", "href": "/platform" },
+        { "name": "Asset Management", "href": "/platform" }
+      ],
+      "Industries": [
+        { "name": "Furniture", "href": "/industries" },
+        { "name": "Automotive", "href": "/industries" },
+        { "name": "Kitchens", "href": "/industries" },
+        { "name": "Retail", "href": "/industries" },
+        { "name": "Machinery", "href": "/industries" }
+      ],
+      "Company": [
+        { "name": "About Us", "href": "/about" },
+        { "name": "Blog", "href": "/blog" },
+        { "name": "Contact", "href": "/contact" },
+        { "name": "Careers", "href": "/contact" }
+      ]
+    },
+    "socialLinks": [
+      { "name": "LinkedIn", "url": "https://linkedin.com/company/thridify" },
+      { "name": "Facebook", "url": "https://facebook.com/thridify" },
+      { "name": "Instagram", "url": "https://instagram.com/thridify" },
+      { "name": "WhatsApp", "url": "https://wa.me/919667747082" }
+    ],
+    "contact": "hello@thridify.com",
+    "copyright": "© 2024 Aapastech Private Limited. All rights reserved."
+  }
+}
