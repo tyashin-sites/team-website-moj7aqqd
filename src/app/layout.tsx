@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { bodyFont, headingFont } from '@/lib/fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { CartProvider } from '@/components/CartProvider';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -25,23 +25,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  await headers();
+
   return (
     <html lang="en" className={`${bodyFont.variable} ${headingFont.variable}`}>
-      <head>
-        <link rel="stylesheet" href="/brand-kit.css" />
-      </head>
       <body className="font-body bg-background text-foreground antialiased">
-        <script src="/tyashin-runtime.js" defer></script>
-        <CartProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </CartProvider>
+        <Header />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );
