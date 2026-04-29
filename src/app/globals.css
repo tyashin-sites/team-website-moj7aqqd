@@ -1,17 +1,25 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+/* ── Brand Kit fallback values (overridden at runtime by /brand-kit.css) ── */
 :root {
-  --color-primary: #3B82F6;
-  --color-secondary: #1E40AF;
-  --color-accent: #F59E0B;
-  --color-background: #FFFFFF;
-  --color-foreground: #1E293B;
-  --color-muted: #94A3B8;
-  --color-surface: #F8FAFC;
-  --color-border: #E2E8F0;
-  --color-primary-foreground: #FFFFFF;
-  --color-secondary-foreground: #FFFFFF;
+  --brand-primary: #3B82F6;
+  --brand-primary-contrast: #FFFFFF;
+  --brand-accent: #F59E0B;
+  --brand-bg: #FFFFFF;
+  --brand-surface: #F8FAFC;
+  --brand-text: #1E293B;
+  --brand-text-muted: #94A3B8;
+  --brand-border: #E2E8F0;
+  --brand-success: #059669;
+  --brand-warning: #d97706;
+  --brand-danger: #dc2626;
+  --brand-radius-sm: 6px;
+  --brand-radius-md: 8px;
+  --brand-radius-lg: 12px;
+  --brand-radius-full: 9999px;
+  --brand-heading-font: var(--font-heading), sans-serif;
+  --brand-body-font: var(--font-body), sans-serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -43,6 +51,6 @@ body { font-feature-settings: "rlig" 1, "calt" 1; }
 }
 
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-surface); }
-::-webkit-scrollbar-thumb { background: var(--color-muted); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+::-webkit-scrollbar-track { background: var(--brand-surface); }
+::-webkit-scrollbar-thumb { background: var(--brand-text-muted); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-primary); }
