@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { headers } from 'next/headers';
 import { bodyFont, headingFont } from '@/lib/fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -25,13 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  await headers();
-
   return (
     <html lang="en" className={`${bodyFont.variable} ${headingFont.variable}`}>
       <body className="font-body bg-background text-foreground antialiased">

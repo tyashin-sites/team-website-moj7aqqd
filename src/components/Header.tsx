@@ -2,14 +2,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ShoppingBag } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './ui/Button';
-import { useCart } from './CartProvider';
 import siteData from '../../content/site.json';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { count } = useCart();
   const { header } = siteData;
 
   return (
@@ -42,14 +40,6 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/cart" className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <ShoppingBag className="w-5 h-5" />
-              {count > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {count}
-                </span>
-              )}
-            </Link>
             <Button href={header.ctaButton.href}>{header.ctaButton.text}</Button>
           </div>
 
@@ -76,15 +66,7 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <div className="flex items-center justify-between pt-4 border-t border-border">
-                <Link
-                  href="/cart"
-                  className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <ShoppingBag className="w-5 h-5" />
-                  Cart ({count})
-                </Link>
+              <div className="pt-4 border-t border-border">
                 <Button href={header.ctaButton.href} onClick={() => setIsMenuOpen(false)}>
                   {header.ctaButton.text}
                 </Button>
