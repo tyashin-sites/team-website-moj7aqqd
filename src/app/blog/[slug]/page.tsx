@@ -7,9 +7,9 @@ import { getBlogPost, getBlogPosts } from '@/lib/tyashin';
 import { formatDate } from '@/lib/format';
 import { ShareButtons } from '@/components/blog/ShareButtons';
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+interface BlogPostPageProps {
+  params: { slug: string };
+}
 
 export async function generateStaticParams() {
   try {
@@ -22,10 +22,9 @@ export async function generateStaticParams() {
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   try {
-    const post = await getBlogPost(slug);
+    const post = await getBlogPost(params.slug);
     return {
       title: post.title,
       description: post.excerpt || post.title,
@@ -51,14 +50,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
   try {
-    const post = await getBlogPost(slug);
+    const post = await getBlogPost(params.slug);
 
     return (
       <article className="py-20">
         <div className="container mx-auto px-4 max-w-4xl">
+          {/* Back link */}
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
@@ -67,6 +66,7 @@ export default async function BlogPostPage({ params }: Props) {
             Back to Blog
           </Link>
 
+          {/* Header */}
           <header className="mb-12">
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted mb-6">
               {post.category && (
@@ -100,6 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
             )}
           </header>
 
+          {/* Featured image */}
           {post.featuredImage && (
             <div className="mb-12">
               <Image
@@ -113,14 +114,16 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           )}
 
+          {/* Content */}
           <div
             className="prose prose-lg max-w-none mb-12"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
+          {/* Share buttons */}
           <div className="border-t pt-8">
             <h3 className="text-lg font-semibold mb-4">Share this post</h3>
-            <ShareButtons title={post.title} url={`/blog/${slug}`} />
+            <ShareButtons title={post.title} url={`/blog/${post.slug}`} />
           </div>
         </div>
       </article>

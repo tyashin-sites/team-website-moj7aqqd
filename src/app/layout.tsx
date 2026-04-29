@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { headers } from 'next/headers';
 import { bodyFont, headingFont } from '@/lib/fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -26,16 +25,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Force dynamic rendering for all routes — on Cloudflare Workers,
-  // all pages are server-rendered at the edge anyway. This prevents
-  // build-time prerender errors from stub components.
-  await headers();
-
   return (
     <html lang="en" className={`${bodyFont.variable} ${headingFont.variable}`}>
       <head>

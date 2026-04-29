@@ -8,13 +8,12 @@ export const metadata: Metadata = {
   description: 'Stay updated with the latest trends in 3D commerce, AR technology, and e-commerce innovation.',
 };
 
-type Props = {
-  searchParams: Promise<{ page?: string }>;
-};
+interface BlogPageProps {
+  searchParams: { page?: string };
+}
 
-export default async function BlogPage({ searchParams }: Props) {
-  const { page: pageStr } = await searchParams;
-  const page = parseInt(pageStr || '1', 10);
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const page = parseInt(searchParams.page || '1', 10);
   const { posts, meta } = await getBlogPosts({ page, limit: 12 });
 
   const heroData = {

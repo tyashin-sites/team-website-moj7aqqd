@@ -10,20 +10,19 @@ export const metadata: Metadata = {
   description: 'Explore our complete product collection with immersive 3D and AR experiences.',
 };
 
-type Props = {
-  searchParams: Promise<{
+interface ProductsPageProps {
+  searchParams: {
     category?: string;
     search?: string;
     page?: string;
-  }>;
-};
+  };
+}
 
-export default async function ProductsPage({ searchParams }: Props) {
-  const sp = await searchParams;
-  const page = parseInt(sp.page || '1', 10);
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const page = parseInt(searchParams.page || '1', 10);
   const { products, meta } = await getProducts({
-    category: sp.category,
-    search: sp.search,
+    category: searchParams.category,
+    search: searchParams.search,
     page,
     limit: 12,
   });
@@ -42,13 +41,15 @@ export default async function ProductsPage({ searchParams }: Props) {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar */}
           <aside className="lg:w-64 flex-shrink-0">
             <div className="space-y-6">
               <SearchForm />
-              <CategoryFilter categories={categories} selectedCategory={sp.category} />
+              <CategoryFilter categories={categories} selectedCategory={searchParams.category} />
             </div>
           </aside>
 
+          {/* Main content */}
           <main className="flex-1">
             <Suspense fallback={<ProductGridSkeleton />}>
               <ProductGrid products={products} meta={meta} />

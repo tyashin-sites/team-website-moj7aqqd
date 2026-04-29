@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { ProductDetails } from '@/components/products/ProductDetails';
 import { getProduct, getProducts } from '@/lib/tyashin';
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+interface ProductPageProps {
+  params: { slug: string };
+}
 
 export async function generateStaticParams() {
   try {
@@ -19,10 +19,9 @@ export async function generateStaticParams() {
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   try {
-    const { product } = await getProduct(slug);
+    const { product } = await getProduct(params.slug);
     return {
       title: product.name,
       description: product.description || product.shortDescription || product.name,
@@ -47,15 +46,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function ProductPage({ params }: Props) {
-  const { slug } = await params;
+export default async function ProductPage({ params }: ProductPageProps) {
   try {
-    const { product } = await getProduct(slug);
+    const { product } = await getProduct(params.slug);
 
     return (
       <div className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Product Images */}
             <div className="space-y-4">
               {product.images && product.images.length > 0 ? (
                 <div className="aspect-square relative bg-gray-100 rounded-lg overflow-hidden">
@@ -72,7 +71,7 @@ export default async function ProductPage({ params }: Props) {
                   <span className="text-gray-500">No image available</span>
                 </div>
               )}
-
+              
               {product.images && product.images.length > 1 && (
                 <div className="grid grid-cols-4 gap-2">
                   {product.images.slice(1, 5).map((image, index) => (
@@ -89,6 +88,7 @@ export default async function ProductPage({ params }: Props) {
               )}
             </div>
 
+            {/* Product Details */}
             <ProductDetails product={product} />
           </div>
         </div>
