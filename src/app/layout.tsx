@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bodyFont.variable} ${headingFont.variable}`}>
       <head>
-          <link rel="stylesheet" href="/brand-kit.css" />
+          <link rel="stylesheet" href="https://website-api.tyashin.com/api/v1/public/brand-kit.css?projectId=69f1354e7766b41fbc101ded" />
         </head>
         <body className="font-body bg-background text-foreground antialiased">
         <Header />
