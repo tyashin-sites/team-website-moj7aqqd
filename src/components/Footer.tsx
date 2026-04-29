@@ -1,9 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { getBrandKit } from '@/lib/brand-kit';
 import siteData from '../../content/site.json';
 
-export function Footer() {
+export async function Footer() {
+  const brandKit = await getBrandKit();
+  const logoUrl = brandKit.logo?.light;
+  const siteName = brandKit.siteName || 'Thridify';
   const { footer } = siteData;
 
   return (
@@ -13,26 +17,30 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
-              <Image
-                src="https://website-api.tyashin.com/api/v1/public/media/generator/uploads/69f1354e7766b41fbc101ded/1777420755668-Logo_with_company_name__1_.png.png"
-                alt="Thridify"
-                width={120}
-                height={40}
-                className="h-8 w-auto"
-              />
+              {logoUrl ? (
+                <Image
+                  src={logoUrl}
+                  alt={siteName}
+                  width={120}
+                  height={40}
+                  className="h-8 w-auto"
+                />
+              ) : (
+                <span className="text-xl font-heading font-bold text-primary">{siteName}</span>
+              )}
             </Link>
             <p className="text-muted mb-6 max-w-sm">
               {footer.description}
             </p>
             <div className="flex space-x-4">
-              {footer.socialLinks.map((social) => {
+              {footer.socialLinks.map((social: { name: string; url: string }) => {
                 const Icon = {
                   LinkedIn: Linkedin,
                   Facebook: Facebook,
                   Instagram: Instagram,
                   WhatsApp: MessageCircle,
-                }[social.name];
-                
+                }[social.name] || MessageCircle;
+
                 return (
                   <a
                     key={social.name}
@@ -53,7 +61,7 @@ export function Footer() {
             <div key={title}>
               <h3 className="font-semibold text-foreground mb-4">{title}</h3>
               <ul className="space-y-2">
-                {links.map((link) => (
+                {(links as { name: string; href: string }[]).map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
