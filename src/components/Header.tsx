@@ -17,7 +17,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="https://website-api.tyashin.com/api/v1/generator/69f1354e7766b41fbc101ded/assets/generator%2Fuploads%2F69f1354e7766b41fbc101ded%2F1777420755668-Logo_with_company_name__1_.png.png"
+              src="https://website-api.tyashin.com/api/v1/public/media/generator/uploads/69f1354e7766b41fbc101ded/1777420755668-Logo_with_company_name__1_.png.png"
               alt="Thridify"
               width={120}
               height={40}

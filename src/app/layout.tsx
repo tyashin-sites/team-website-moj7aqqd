@@ -31,7 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${bodyFont.variable} ${headingFont.variable}`}>
-      <body className="font-body bg-background text-foreground antialiased">
+      <head>
+          <link rel="stylesheet" href="/brand-kit.css" />
+        </head>
+        <body className="font-body bg-background text-foreground antialiased">
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

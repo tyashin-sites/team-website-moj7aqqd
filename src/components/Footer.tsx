@@ -14,7 +14,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
               <Image
-                src="https://website-api.tyashin.com/api/v1/generator/69f1354e7766b41fbc101ded/assets/generator%2Fuploads%2F69f1354e7766b41fbc101ded%2F1777420755668-Logo_with_company_name__1_.png.png"
+                src="https://website-api.tyashin.com/api/v1/public/media/generator/uploads/69f1354e7766b41fbc101ded/1777420755668-Logo_with_company_name__1_.png.png"
                 alt="Thridify"
                 width={120}
                 height={40}
