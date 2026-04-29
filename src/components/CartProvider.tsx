@@ -18,7 +18,22 @@ interface CartContextType {
   refresh: () => Promise<void>;
 }
 
-const CartContext = createContext<CartContextType | null>(null);
+const defaultCart: CartContextType = {
+  items: [],
+  count: 0,
+  subtotal: 0,
+  total: 0,
+  taxAmount: 0,
+  taxName: 'Tax',
+  currency: 'USD',
+  loading: false,
+  add: async () => {},
+  update: async () => {},
+  remove: async () => {},
+  refresh: async () => {},
+};
+
+const CartContext = createContext<CartContextType>(defaultCart);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartData | null>(null);
@@ -30,7 +45,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setCart(data);
     } catch (err) {
       console.error('Cart load failed:', err);
-      // Set empty cart on error
       setCart({
         items: [],
         subtotal: 0,
@@ -103,9 +117,5 @@ export function CartProvider({ children }: { children: ReactNode }) {
 }
 
 export function useCart() {
-  const ctx = useContext(CartContext);
-  if (!ctx) {
-    throw new Error('useCart must be used within CartProvider');
-  }
-  return ctx;
+  return useContext(CartContext);
 }
