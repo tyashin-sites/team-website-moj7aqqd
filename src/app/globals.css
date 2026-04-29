@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@config "../tailwind.config.ts";
+@config "../../tailwind.config.ts";
 
 :root {
   --color-primary: #3B82F6;
@@ -14,13 +14,8 @@
   --color-secondary-foreground: #FFFFFF;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-feature-settings: "rlig" 1, "calt" 1;
-}
+html { scroll-behavior: smooth; }
+body { font-feature-settings: "rlig" 1, "calt" 1; }
 
 .gradient-mesh {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -45,10 +40,6 @@ body {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
 }
 
 ::-webkit-scrollbar { width: 8px; }
