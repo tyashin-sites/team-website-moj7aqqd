@@ -1,7 +1,7 @@
 {
   "version": 1,
   "framework": "nextjs",
-  "generatedAt": "2026-05-01T09:44:58.972Z",
+  "generatedAt": "2026-05-01T20:40:22.326Z",
   "pages": {
     "/": {
       "file": "src/app/page.tsx",
