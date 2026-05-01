@@ -1,99 +1,70 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 import { getBrandKit } from '@/lib/brand-kit';
 import siteData from '../../content/site.json';
 
 export async function Footer() {
   const brandKit = await getBrandKit();
-  const logoUrl = brandKit.logo?.light;
-  const siteName = brandKit.siteName || 'Thridify';
-  const { footer } = siteData;
+  const logoUrl = brandKit.logo?.dark || brandKit.logo?.light;
+  const siteName = brandKit.siteName || siteData.header.siteName;
+  const f = siteData.footer;
 
   return (
-    <footer className="bg-surface border-t border-border">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-4">
+    <footer className="relative bg-foreground text-background overflow-hidden">
+      <div className="absolute inset-0 opacity-30 aurora pointer-events-none" aria-hidden />
+      <div className="container-x relative py-20 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
+          <div className="lg:col-span-5">
+            <Link href="/" className="inline-flex items-center gap-2 mb-7">
               {logoUrl ? (
-                <Image
-                  src={logoUrl}
-                  alt={siteName}
-                  width={120}
-                  height={40}
-                  className="h-8 w-auto"
-                />
+                <Image src={logoUrl} alt={siteName} width={160} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
               ) : (
-                <span className="text-xl font-heading font-bold text-primary">{siteName}</span>
+                <span className="text-2xl font-heading font-bold">{siteName}</span>
               )}
             </Link>
-            <p className="text-muted mb-6 max-w-sm">
-              {footer.description}
+            <p className="text-lg max-w-md text-background/70 leading-relaxed">
+              {f.tagline}
             </p>
-            <div className="flex space-x-4">
-              {footer.socialLinks.map((social: { name: string; url: string }) => {
-                const Icon = {
-                  LinkedIn: Linkedin,
-                  Facebook: Facebook,
-                  Instagram: Instagram,
-                  WhatsApp: MessageCircle,
-                }[social.name] || MessageCircle;
-
-                return (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-white rounded-lg hover:bg-primary hover:text-white transition-colors"
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                );
-              })}
+            <div className="mt-8 flex gap-3">
+              {f.socials.map(s => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-11 h-11 rounded-full border border-background/20 flex items-center justify-center text-sm font-semibold hover:bg-background hover:text-foreground transition-colors"
+                >
+                  {s.label.charAt(0)}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Navigation Sections */}
-          {Object.entries(footer.sections).map(([title, links]) => (
-            <div key={title}>
-              <h3 className="font-semibold text-foreground mb-4">{title}</h3>
-              <ul className="space-y-2">
-                {(links as { name: string; href: string }[]).map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-muted hover:text-primary transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-10">
+            {f.columns.map(col => (
+              <div key={col.title}>
+                <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-background/50 mb-5">{col.title}</h4>
+                <ul className="space-y-3">
+                  {col.links.map(link => (
+                    <li key={link.label}>
+                      <Link href={link.href} className="text-background/80 hover:text-background transition-colors">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-muted text-sm">
-            {footer.copyright}
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-muted hover:text-primary text-sm transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-muted hover:text-primary text-sm transition-colors">
-              Terms of Service
-            </Link>
-            <a
-              href={`mailto:${footer.contact}`}
-              className="text-muted hover:text-primary text-sm transition-colors"
-            >
-              {footer.contact}
-            </a>
+        <div className="mt-16 pt-8 border-t border-background/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-sm text-background/60">
+          <p>{f.copyright}</p>
+          <div className="flex gap-6">
+            {f.legal.map(l => (
+              <Link key={l.href} href={l.href} className="hover:text-background transition-colors">{l.label}</Link>
+            ))}
           </div>
         </div>
       </div>

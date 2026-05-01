@@ -6,6 +6,12 @@
  *
  * When the admin changes the brand kit in Tyashin, the website automatically
  * picks up the new values within 5 minutes — no rebuild or regeneration needed.
+ *
+ * Usage in Server Components:
+ *   import { getBrandKit } from '@/lib/brand-kit';
+ *   const brandKit = await getBrandKit();
+ *   // brandKit.logo?.light — logo URL for light backgrounds
+ *   // brandKit.siteName — project name
  */
 
 export interface BrandKitData {
@@ -27,6 +33,9 @@ export interface BrandKitData {
     text: string;
     textMuted: string;
     border: string;
+    success?: string;
+    warning?: string;
+    danger?: string;
   };
   typography?: {
     headingFont?: string;
@@ -40,26 +49,34 @@ export interface BrandKitData {
   };
 }
 
-const BRAND_KIT_URL = 'https://website-api.tyashin.com/api/v1/public/brand-kit.json?projectId=69f1354e7766b41fbc101ded';
+const BRAND_KIT_URL = 'https://website-api.tyashin.com/api/v1/public/brand-kit.json?apiKey=ak_MHWfta1xNEEMAmI1UbSE99HEwTuAEWix';
+
+let cachedBrandKit: BrandKitData | null = null;
 
 /**
  * Fetch brand kit data from the Tyashin backend.
  * Uses Next.js ISR with 5-minute revalidation for optimal performance.
+ *
+ * Returns a default fallback if the fetch fails (site still renders).
  */
 export async function getBrandKit(): Promise<BrandKitData> {
+  if (cachedBrandKit) return cachedBrandKit;
+
   try {
     const res = await fetch(BRAND_KIT_URL, {
-      next: { revalidate: 300 },
+      next: { revalidate: 300 }, // Re-fetch every 5 minutes
     });
     if (res.ok) {
-      return (await res.json()) as BrandKitData;
+      const data = await res.json();
+      cachedBrandKit = data as BrandKitData;
+      return cachedBrandKit;
     }
   } catch {
-    // Fetch failed — return fallback
+    // Fetch failed — return fallback (site still works with CSS variable defaults)
   }
 
   return {
     version: 0,
-    siteName: 'Thridify',
+    siteName: '',
   };
 }

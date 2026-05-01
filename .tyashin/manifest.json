@@ -1,139 +1,103 @@
 {
   "version": 1,
   "framework": "nextjs",
-  "generatedAt": "2026-04-29T08:21:28.765Z",
+  "generatedAt": "2026-05-01T09:39:44.818Z",
   "pages": {
     "/": {
       "file": "src/app/page.tsx",
-      "sections": [
-        "Hero",
-        "Features",
-        "Stats",
-        "Industries",
-        "Testimonials",
-        "Clients",
-        "GlobalOffices",
-        "CTA"
-      ],
+      "sections": [],
       "isServerComponent": true,
       "hasDynamicRoute": false,
       "dataFetching": []
     },
     "/about": {
       "file": "src/app/about/page.tsx",
-      "sections": [
-        "Hero",
-        "About",
-        "Mission",
-        "GlobalOffices",
-        "Values",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/platform": {
-      "file": "src/app/platform/page.tsx",
-      "sections": [
-        "Hero",
-        "Features",
-        "Process",
-        "CTA"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/industries": {
-      "file": "src/app/industries/page.tsx",
-      "sections": [
-        "Hero",
-        "Industries",
-        "CTA"
-      ],
+      "sections": [],
       "isServerComponent": true,
       "hasDynamicRoute": false,
       "dataFetching": []
     },
     "/contact": {
       "file": "src/app/contact/page.tsx",
-      "sections": [
-        "Hero",
-        "Contact"
-      ],
+      "sections": [],
       "isServerComponent": true,
       "hasDynamicRoute": false,
       "dataFetching": []
     },
     "/blog": {
       "file": "src/app/blog/page.tsx",
-      "sections": [
-        "Hero",
-        "BlogGrid"
-      ],
+      "sections": [],
+      "isServerComponent": true,
+      "hasDynamicRoute": false,
+      "dataFetching": [
+        "getPosts",
+        "res"
+      ]
+    },
+    "/platform": {
+      "file": "src/app/platform/page.tsx",
+      "sections": [],
       "isServerComponent": true,
       "hasDynamicRoute": false,
       "dataFetching": []
     },
-    "/blog/[slug]": {
-      "file": "src/app/blog/[slug]/page.tsx",
-      "sections": [
-        "ArrowLeft",
-        "Tag",
-        "Calendar",
-        "User",
-        "ShareButtons"
-      ],
+    "/industries": {
+      "file": "src/app/industries/page.tsx",
+      "sections": [],
       "isServerComponent": true,
-      "hasDynamicRoute": true,
-      "dataFetching": [
-        "generateStaticParams",
-        "generateMetadata"
-      ]
-    },
-    "/products": {
-      "file": "src/app/products/page.tsx",
-      "sections": [
-        "SearchForm",
-        "CategoryFilter",
-        "ProductGridSkeleton",
-        "ProductGrid"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": false,
-      "dataFetching": []
-    },
-    "/products/[slug]": {
-      "file": "src/app/products/[slug]/page.tsx",
-      "sections": [
-        "ProductDetails"
-      ],
-      "isServerComponent": true,
-      "hasDynamicRoute": true,
-      "dataFetching": [
-        "generateStaticParams",
-        "generateMetadata"
-      ]
-    },
-    "/cart": {
-      "file": "src/app/cart/page.tsx",
-      "sections": [
-        "ShoppingBag",
-        "Button",
-        "Minus",
-        "Plus",
-        "Trash2"
-      ],
-      "isServerComponent": false,
       "hasDynamicRoute": false,
       "dataFetching": []
     }
   },
   "components": {
+    "Button": {
+      "file": "src/components/ui/Button.tsx",
+      "isClientComponent": false,
+      "usedBy": [],
+      "props": [
+        "href",
+        "variant",
+        "children",
+        "className",
+        "type"
+      ]
+    },
+    "Card": {
+      "file": "src/components/ui/Card.tsx",
+      "isClientComponent": false,
+      "usedBy": [],
+      "props": [
+        "children",
+        "className"
+      ]
+    },
+    "SectionHeading": {
+      "file": "src/components/ui/SectionHeading.tsx",
+      "isClientComponent": false,
+      "usedBy": [],
+      "props": [
+        "eyebrow",
+        "title",
+        "subtitle",
+        "align",
+        "children"
+      ]
+    },
+    "MobileNav": {
+      "file": "src/components/MobileNav.tsx",
+      "isClientComponent": true,
+      "usedBy": [
+        "Header"
+      ],
+      "props": [
+        "nav",
+        "ctaText",
+        "ctaHref"
+      ]
+    },
     "Header": {
       "file": "src/components/Header.tsx",
-      "isClientComponent": true,
+      "isClientComponent": false,
       "usedBy": [
         "layout"
       ],
@@ -144,283 +108,6 @@
       "isClientComponent": false,
       "usedBy": [
         "layout"
-      ],
-      "props": []
-    },
-    "CartProvider": {
-      "file": "src/components/CartProvider.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "layout",
-        "/cart",
-        "Header",
-        "AddToCartButton"
-      ],
-      "props": [
-        "children"
-      ]
-    },
-    "Button": {
-      "file": "src/components/ui/Button.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "/cart",
-        "Header",
-        "Hero",
-        "Industries",
-        "CTA",
-        "ContactForm",
-        "BlogGrid",
-        "ProductGrid",
-        "ProductDetails",
-        "AddToCartButton",
-        "SearchForm"
-      ],
-      "props": []
-    },
-    "Card": {
-      "file": "src/components/ui/Card.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "Features",
-        "Industries",
-        "Testimonials",
-        "GlobalOffices",
-        "Mission",
-        "Values",
-        "Contact",
-        "BlogGrid",
-        "ProductGrid"
-      ],
-      "props": []
-    },
-    "Hero": {
-      "file": "src/components/sections/Hero.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/",
-        "/about",
-        "/platform",
-        "/industries",
-        "/contact",
-        "/blog"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Features": {
-      "file": "src/components/sections/Features.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/",
-        "/platform"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Stats": {
-      "file": "src/components/sections/Stats.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Industries": {
-      "file": "src/components/sections/Industries.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/",
-        "/industries"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Testimonials": {
-      "file": "src/components/sections/Testimonials.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Clients": {
-      "file": "src/components/sections/Clients.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "GlobalOffices": {
-      "file": "src/components/sections/GlobalOffices.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/",
-        "/about"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "CTA": {
-      "file": "src/components/sections/CTA.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/",
-        "/about",
-        "/platform",
-        "/industries"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "About": {
-      "file": "src/components/sections/About.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/about"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Mission": {
-      "file": "src/components/sections/Mission.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/about"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Values": {
-      "file": "src/components/sections/Values.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/about"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Process": {
-      "file": "src/components/sections/Process.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/platform"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "Contact": {
-      "file": "src/components/sections/Contact.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/contact"
-      ],
-      "props": [
-        "data"
-      ]
-    },
-    "ContactForm": {
-      "file": "src/components/forms/ContactForm.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "Contact"
-      ],
-      "props": [
-        "fields",
-        "submitText"
-      ]
-    },
-    "BlogGrid": {
-      "file": "src/components/blog/BlogGrid.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "/blog"
-      ],
-      "props": [
-        "posts",
-        "meta"
-      ]
-    },
-    "ShareButtons": {
-      "file": "src/components/blog/ShareButtons.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/blog/[slug]"
-      ],
-      "props": [
-        "title",
-        "url"
-      ]
-    },
-    "ProductGrid": {
-      "file": "src/components/products/ProductGrid.tsx",
-      "isClientComponent": false,
-      "usedBy": [
-        "/products"
-      ],
-      "props": [
-        "products",
-        "meta"
-      ]
-    },
-    "ProductDetails": {
-      "file": "src/components/products/ProductDetails.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/products/[slug]"
-      ],
-      "props": [
-        "product"
-      ]
-    },
-    "AddToCartButton": {
-      "file": "src/components/products/AddToCartButton.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "ProductGrid",
-        "ProductDetails"
-      ],
-      "props": [
-        "product",
-        "variantId",
-        "quantity",
-        "disabled",
-        "size",
-        "className"
-      ]
-    },
-    "CategoryFilter": {
-      "file": "src/components/products/CategoryFilter.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/products"
-      ],
-      "props": [
-        "categories",
-        "selectedCategory"
-      ]
-    },
-    "SearchForm": {
-      "file": "src/components/products/SearchForm.tsx",
-      "isClientComponent": true,
-      "usedBy": [
-        "/products"
       ],
       "props": []
     }
@@ -435,16 +122,16 @@
     "packageJson": "package.json"
   },
   "designSystem": {
-    "primaryColor": "#3B82F6",
-    "secondaryColor": "#1E40AF",
-    "accentColor": "#F59E0B",
+    "primaryColor": "#238064",
+    "secondaryColor": "#7daa98",
+    "accentColor": "#7daa98",
     "headingFont": "Inter",
     "bodyFont": "Inter"
   },
   "ecommerce": {
-    "enabled": true,
-    "serverClient": "src/lib/tyashin.ts",
-    "clientSdk": "src/lib/tyashin-client.ts",
-    "cartProvider": "src/components/CartProvider.tsx"
+    "enabled": false,
+    "serverClient": null,
+    "clientSdk": null,
+    "cartProvider": null
   }
 }

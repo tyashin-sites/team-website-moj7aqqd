@@ -8,7 +8,7 @@ export const bodyFont = Inter({
 
 export const headingFont = Inter({
   subsets: ['latin'],
-  variable: '--font-heading',
   weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-heading',
   display: 'swap',
 });

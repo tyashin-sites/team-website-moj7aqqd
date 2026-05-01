@@ -1,44 +1,51 @@
 'use client';
-import { useState } from 'react';
+
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { Button } from './ui/Button';
+import { useState, useEffect } from 'react';
 
-interface MobileNavProps {
-  navigation: { name: string; href: string }[];
-  ctaButton: { text: string; href: string };
-}
+interface NavItem { label: string; href: string }
 
-export function MobileNav({ navigation, ctaButton }: MobileNavProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export function MobileNav({ nav, ctaText, ctaHref }: { nav: NavItem[]; ctaText: string; ctaHref: string }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
 
   return (
     <>
       <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        aria-label="Toggle menu"
+        onClick={() => setOpen(o => !o)}
+        className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-border"
       >
-        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <span className="relative block w-5 h-3">
+          <span className={`absolute left-0 top-0 w-full h-px bg-foreground transition-transform ${open ? 'translate-y-1.5 rotate-45' : ''}`} />
+          <span className={`absolute left-0 bottom-0 w-full h-px bg-foreground transition-transform ${open ? '-translate-y-1.5 -rotate-45' : ''}`} />
+        </span>
       </button>
 
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border py-4 px-4">
-          <nav className="flex flex-col space-y-4">
-            {navigation.map((item) => (
+      {open && (
+        <div className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-xl pt-24 px-6">
+          <nav className="flex flex-col gap-1">
+            {nav.map(item => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
-                className="text-foreground hover:text-primary transition-colors font-medium"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => setOpen(false)}
+                className="py-4 text-3xl font-heading font-semibold tracking-tight border-b border-border/40"
               >
-                {item.name}
+                {item.label}
               </Link>
             ))}
-            <div className="pt-4 border-t border-border">
-              <Button href={ctaButton.href} onClick={() => setIsMenuOpen(false)}>
-                {ctaButton.text}
-              </Button>
-            </div>
+            <Link
+              href={ctaHref}
+              onClick={() => setOpen(false)}
+              className="btn btn-primary mt-8 self-start"
+            >
+              {ctaText}
+            </Link>
           </nav>
         </div>
       )}

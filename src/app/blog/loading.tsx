@@ -1,32 +1,30 @@
-export default function BlogLoading() {
+export default function Loading() {
   return (
-    <div className="animate-pulse">
-      {/* Hero skeleton */}
-      <div className="bg-gradient-to-br from-primary/10 to-secondary/10 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <div className="h-12 bg-gray-200 rounded w-2/3 mx-auto mb-6" />
-          <div className="h-6 bg-gray-200 rounded w-1/2 mx-auto" />
+    <>
+      <section className="section">
+        <div className="container-x animate-pulse">
+          <div className="h-3 w-40 bg-foreground/10 rounded mb-6" />
+          <div className="h-16 w-3/4 bg-foreground/10 rounded mb-5" />
+          <div className="h-5 w-1/2 bg-foreground/10 rounded" />
         </div>
-      </div>
-      
-      {/* Blog grid skeleton */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      </section>
+      <section className="section pt-0">
+        <div className="container-x">
+          <div className="h-96 rounded-lg bg-foreground/10 animate-pulse mb-16" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(9)].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <div className="h-48 bg-gray-200" />
-                <div className="p-6">
-                  <div className="h-4 bg-gray-200 rounded w-1/3 mb-3" />
-                  <div className="h-6 bg-gray-200 rounded w-full mb-3" />
-                  <div className="h-4 bg-gray-200 rounded w-2/3 mb-4" />
-                  <div className="h-4 bg-gray-200 rounded w-1/4" />
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="card overflow-hidden animate-pulse">
+                <div className="aspect-[16/10] bg-foreground/10" />
+                <div className="p-7 space-y-3">
+                  <div className="h-5 bg-foreground/10 rounded w-3/4" />
+                  <div className="h-4 bg-foreground/10 rounded" />
+                  <div className="h-4 bg-foreground/10 rounded w-5/6" />
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

@@ -6,33 +6,27 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Thridify - 3D & AR Commerce Platform',
+    default: 'Thridify — Reimagine how the world experiences your products',
     template: '%s | Thridify',
   },
-  description: 'Transform e-commerce with immersive 3D viewers and AR technology. Boost conversions, reduce returns, and cut photography costs with our no-code platform.',
-  keywords: ['3D commerce', 'AR viewer', 'e-commerce', '3D product viewer', 'augmented reality'],
+  description:
+    'Thridify is a no-code 3D and Augmented Reality commerce platform that helps e-commerce brands boost conversions, reduce returns, and cut photography costs.',
+  keywords: ['3D commerce', 'AR commerce', 'product configurator', '3D viewer', 'augmented reality e-commerce', 'Thridify', 'Aapastech'],
   openGraph: {
-    title: 'Thridify - 3D & AR Commerce Platform',
-    description: 'Transform e-commerce with immersive 3D viewers and AR technology.',
+    title: 'Thridify — 3D & AR Commerce Platform',
+    description: 'No-code 3D and AR product experiences that boost e-commerce conversions.',
     type: 'website',
-    siteName: 'Thridify',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Thridify - 3D & AR Commerce Platform',
-    description: 'Transform e-commerce with immersive 3D viewers and AR technology.',
+  icons: {
+    icon: '/brand/logo-favicon.png',
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${bodyFont.variable} ${headingFont.variable}`}>
       <head>
-          <link rel="stylesheet" href="https://website-api.tyashin.com/api/v1/public/brand-kit.css?projectId=69f1354e7766b41fbc101ded" />
+          <link rel="stylesheet" href="https://website-api.tyashin.com/api/v1/public/brand-kit.css?apiKey=ak_MHWfta1xNEEMAmI1UbSE99HEwTuAEWix" />
         </head>
         <body className="font-body bg-background text-foreground antialiased">
         <Header />

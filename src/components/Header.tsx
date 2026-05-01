@@ -1,59 +1,51 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from './ui/Button';
 import { getBrandKit } from '@/lib/brand-kit';
-import { MobileNav } from './MobileNav';
 import siteData from '../../content/site.json';
+import { MobileNav } from './MobileNav';
 
 export async function Header() {
   const brandKit = await getBrandKit();
   const logoUrl = brandKit.logo?.light;
-  const siteName = brandKit.siteName || 'Thridify';
-  const { header } = siteData;
+  const siteName = brandKit.siteName || siteData.header.siteName;
+  const nav = siteData.header.nav;
+  const cta = siteData.header.cta;
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo — fetched at runtime from brand kit */}
-          <Link href="/" className="flex items-center space-x-2">
-            {logoUrl ? (
-              <Image
-                src={logoUrl}
-                alt={siteName}
-                width={120}
-                height={40}
-                className="h-8 w-auto"
-                priority
-              />
-            ) : (
-              <span className="text-xl font-heading font-bold text-primary">{siteName}</span>
-            )}
+    <header className="sticky top-0 z-50 bg-background/75 backdrop-blur-xl border-b border-foreground/5">
+      <div className="container-x flex items-center justify-between h-20">
+        <Link href="/" className="flex items-center gap-2.5" aria-label={siteName}>
+          {logoUrl ? (
+            <Image
+              src={logoUrl}
+              alt={siteName}
+              width={150}
+              height={40}
+              className="h-9 w-auto object-contain"
+              priority
+            />
+          ) : (
+            <span className="text-xl font-heading font-bold tracking-tight">{siteName}</span>
+          )}
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-9">
+          {nav.map(item => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <Link href={cta.href} className="hidden md:inline-flex btn btn-primary">
+            {cta.label}
           </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {header.navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-foreground hover:text-primary transition-colors font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button href={header.ctaButton.href}>{header.ctaButton.text}</Button>
-          </div>
-
-          {/* Mobile Menu — client component for interactivity */}
-          <MobileNav
-            navigation={header.navigation}
-            ctaButton={header.ctaButton}
-          />
+          <MobileNav nav={nav} ctaText={cta.label} ctaHref={cta.href} />
         </div>
       </div>
     </header>
