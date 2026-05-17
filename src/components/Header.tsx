@@ -7,9 +7,9 @@ import { MobileNav } from './MobileNav';
 export async function Header() {
   const brandKit = await getBrandKit();
   const logoUrl = brandKit.logo?.light;
-  const siteName = brandKit.siteName || siteData.header.siteName;
-  const nav = siteData.header.nav;
-  const cta = siteData.header.cta;
+  const siteName = brandKit.siteName || (siteData as any)?.header?.siteName || 'Thridify';
+  const nav = (siteData as any)?.header?.nav ?? [];
+  const cta = (siteData as any)?.header?.cta ?? { label: 'Contact', href: '/contact' };
 
   return (
     <header className="sticky top-0 z-50 bg-background/75 backdrop-blur-xl border-b border-foreground/5">
@@ -30,7 +30,7 @@ export async function Header() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">
-          {nav.map(item => (
+          {(nav ?? []).map((item: any) => (
             <Link
               key={item.href}
               href={item.href}
@@ -45,7 +45,7 @@ export async function Header() {
           <Link href={cta.href} className="hidden md:inline-flex btn btn-primary">
             {cta.label}
           </Link>
-          <MobileNav nav={nav} ctaText={cta.label} ctaHref={cta.href} />
+          <MobileNav nav={nav ?? []} ctaText={cta.label} ctaHref={cta.href} />
         </div>
       </div>
     </header>

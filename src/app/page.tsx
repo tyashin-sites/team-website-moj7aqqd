@@ -13,10 +13,45 @@ type HomeData = {
   cta: { title: string; subtitle?: string; primaryCta: { label: string; href: string }; secondaryCta?: { label: string; href: string } };
 };
 
-const home = (siteData as unknown as { pages: { home: HomeData } }).pages.home;
+const FALLBACK_HOME: HomeData = {
+  hero: {
+    eyebrow: '3D & AR Commerce',
+    title: 'Reimagine how the world experiences your products.',
+    subtitle: 'Thridify turns flat product pages into immersive 3D and AR moments.',
+    primaryCta: { label: 'Book a Demo', href: '/contact' },
+    secondaryCta: { label: 'Explore the Platform', href: '/platform' },
+    metrics: [],
+  },
+  clients: { title: 'Trusted by ambitious commerce teams', logos: [] },
+  features: { eyebrow: 'The Platform', title: 'Everything you need to ship a 3D-native storefront.', subtitle: '', items: [] },
+  stats: { items: [] },
+  categories: { eyebrow: 'Industries', title: 'Built for catalogs that deserve more than flat photos.', subtitle: '', items: [] },
+  process: { eyebrow: 'How it works', title: 'From SKU to immersive in days, not quarters.', steps: [] },
+  testimonials: { title: 'Brands stop talking about features. They talk about lift.', items: [] },
+  team: { eyebrow: 'Global Offices', title: 'Three continents. One immersive commerce platform.', subtitle: '', offices: [] },
+  cta: { title: 'Ready to retire flat product pages?', subtitle: '', primaryCta: { label: 'Book a Demo', href: '/contact' }, secondaryCta: { label: 'Explore Platform', href: '/platform' } },
+};
+
+function getHome(): HomeData {
+  const raw = (siteData as any)?.pages?.home;
+  if (!raw || typeof raw !== 'object') return FALLBACK_HOME;
+  return {
+    hero: raw.hero ?? FALLBACK_HOME.hero,
+    clients: raw.clients ?? FALLBACK_HOME.clients,
+    features: raw.features ?? FALLBACK_HOME.features,
+    stats: raw.stats ?? FALLBACK_HOME.stats,
+    categories: raw.categories ?? FALLBACK_HOME.categories,
+    process: raw.process ?? FALLBACK_HOME.process,
+    testimonials: raw.testimonials ?? FALLBACK_HOME.testimonials,
+    team: raw.team ?? FALLBACK_HOME.team,
+    cta: raw.cta ?? FALLBACK_HOME.cta,
+  };
+}
+
+const home = getHome();
 
 export const metadata = {
-  title: 'Thridify — Reimagine how the world experiences your products',
+  title: 'Thridify – Reimagine how the world experiences your products',
   description: 'No-code 3D and AR commerce experiences that boost conversions, reduce returns, and cut photography costs.',
 };
 
@@ -45,9 +80,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {home.hero.metrics && (
+          {(home.hero.metrics ?? []).length > 0 && (
             <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/10 rounded-lg overflow-hidden border border-foreground/10">
-              {home.hero.metrics.map((m) => (
+              {(home.hero.metrics ?? []).map((m) => (
                 <div key={m.label} className="bg-background/80 backdrop-blur p-6 md:p-8">
                   <div className="font-heading text-3xl md:text-4xl font-bold tracking-tight">{m.value}</div>
                   <div className="mt-2 text-sm text-foreground/60">{m.label}</div>
@@ -63,7 +98,7 @@ export default function HomePage() {
         <div className="container-x py-12">
           <p className="eyebrow text-center mb-8">{home.clients.title}</p>
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {home.clients.logos.map((logo) => (
+            {(home.clients.logos ?? []).map((logo) => (
               <span key={logo} className="text-foreground/50 font-heading font-semibold text-lg tracking-tight">{logo}</span>
             ))}
           </div>
@@ -79,11 +114,11 @@ export default function HomePage() {
             {home.features.subtitle && <p className="mt-6 text-lg text-foreground/70 max-w-2xl">{home.features.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {home.features.items.map((f, i) => (
+            {(home.features.items ?? []).map((f, i) => (
               <div key={f.title} className="card p-8 group">
                 <div className="flex items-center justify-between mb-6">
                   <div className="w-12 h-12 rounded-lg bg-foreground text-background flex items-center justify-center text-xl">
-                    {f.icon || '◆'}
+                    {f.icon || '✨'}
                   </div>
                   <span className="text-foreground/30 font-heading font-bold text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
                 </div>
@@ -100,7 +135,7 @@ export default function HomePage() {
         <div className="absolute inset-0 opacity-40 aurora pointer-events-none" aria-hidden />
         <div className="container-x py-20 md:py-24 relative">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
-            {home.stats.items.map((s) => (
+            {(home.stats.items ?? []).map((s) => (
               <div key={s.label}>
                 <div className="font-heading text-5xl md:text-6xl font-bold tracking-tight">{s.value}</div>
                 <div className="mt-3 text-sm uppercase tracking-[0.18em] text-background/60">{s.label}</div>
@@ -122,7 +157,7 @@ export default function HomePage() {
             <Link href="/industries" className="btn btn-ghost">All industries →</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 rounded-lg overflow-hidden border border-foreground/10">
-            {home.categories.items.map((c) => (
+            {(home.categories.items ?? []).map((c) => (
               <div key={c.name} className="bg-background p-8 hover:bg-surface transition-colors">
                 <h3 className="font-heading text-lg font-semibold tracking-tight">{c.name}</h3>
                 <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{c.description}</p>
@@ -141,7 +176,7 @@ export default function HomePage() {
             {home.process.subtitle && <p className="mt-5 text-lg text-foreground/70">{home.process.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {home.process.steps.map((s) => (
+            {(home.process.steps ?? []).map((s) => (
               <div key={s.number} className="relative">
                 <div className="font-heading text-7xl font-bold text-foreground/10 tracking-tighter leading-none">{s.number}</div>
                 <h3 className="mt-4 font-heading text-lg font-semibold tracking-tight">{s.title}</h3>
@@ -157,7 +192,7 @@ export default function HomePage() {
         <div className="container-x">
           <h2 className="h-1 text-center max-w-3xl mx-auto mb-16">{home.testimonials.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {home.testimonials.items.map((t) => (
+            {(home.testimonials.items ?? []).map((t) => (
               <figure key={t.author} className="card p-8 flex flex-col">
                 <div aria-hidden className="font-heading text-5xl text-foreground/20 leading-none mb-4">&ldquo;</div>
                 <blockquote className="text-lg leading-relaxed text-foreground/85 flex-1">{t.quote}</blockquote>
@@ -180,7 +215,7 @@ export default function HomePage() {
             {home.team.subtitle && <p className="mt-5 text-lg text-background/70">{home.team.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-background/10 rounded-lg overflow-hidden">
-            {home.team.offices.map((o) => (
+            {(home.team.offices ?? []).map((o) => (
               <div key={o.region} className="bg-foreground p-8">
                 <p className="eyebrow text-background/50 mb-3">{o.region}</p>
                 <h3 className="font-heading text-2xl font-semibold tracking-tight">{o.city}</h3>

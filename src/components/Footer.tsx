@@ -3,11 +3,41 @@ import Image from 'next/image';
 import { getBrandKit } from '@/lib/brand-kit';
 import siteData from '../../content/site.json';
 
+const FALLBACK_FOOTER = {
+  tagline: 'Building the immersive commerce layer for the next decade of online retail.',
+  socials: [
+    { label: 'Twitter', href: 'https://twitter.com' },
+    { label: 'LinkedIn', href: 'https://linkedin.com' },
+  ],
+  columns: [
+    {
+      title: 'Product',
+      links: [
+        { label: 'Platform', href: '/platform' },
+        { label: 'Industries', href: '/industries' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'About', href: '/about' },
+        { label: 'Blog', href: '/blog' },
+        { label: 'Contact', href: '/contact' },
+      ],
+    },
+  ],
+  copyright: '© 2024 Thridify by Aapastech. All rights reserved.',
+  legal: [
+    { label: 'Privacy', href: '/privacy' },
+    { label: 'Terms', href: '/terms' },
+  ],
+};
+
 export async function Footer() {
   const brandKit = await getBrandKit();
   const logoUrl = brandKit.logo?.dark || brandKit.logo?.light;
-  const siteName = brandKit.siteName || siteData.header.siteName;
-  const f = siteData.footer;
+  const siteName = brandKit.siteName || (siteData as any)?.header?.siteName || 'Thridify';
+  const f = (siteData as any)?.footer ?? FALLBACK_FOOTER;
 
   return (
     <footer className="relative bg-foreground text-background overflow-hidden">
@@ -23,10 +53,10 @@ export async function Footer() {
               )}
             </Link>
             <p className="text-lg max-w-md text-background/70 leading-relaxed">
-              {f.tagline}
+              {f.tagline ?? FALLBACK_FOOTER.tagline}
             </p>
             <div className="mt-8 flex gap-3">
-              {f.socials.map(s => (
+              {(f.socials ?? []).map((s: any) => (
                 <a
                   key={s.label}
                   href={s.href}
@@ -42,11 +72,11 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-10">
-            {f.columns.map(col => (
+            {(f.columns ?? []).map((col: any) => (
               <div key={col.title}>
                 <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-background/50 mb-5">{col.title}</h4>
                 <ul className="space-y-3">
-                  {col.links.map(link => (
+                  {(col.links ?? []).map((link: any) => (
                     <li key={link.label}>
                       <Link href={link.href} className="text-background/80 hover:text-background transition-colors">
                         {link.label}
@@ -60,9 +90,9 @@ export async function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-background/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-sm text-background/60">
-          <p>{f.copyright}</p>
+          <p>{f.copyright ?? FALLBACK_FOOTER.copyright}</p>
           <div className="flex gap-6">
-            {f.legal.map(l => (
+            {(f.legal ?? []).map((l: any) => (
               <Link key={l.href} href={l.href} className="hover:text-background transition-colors">{l.label}</Link>
             ))}
           </div>
