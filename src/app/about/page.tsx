@@ -19,14 +19,27 @@ type AboutData = {
   offices?: { city: string; country: string; phone?: string; whatsapp?: string }[];
 };
 
+// Hero image — modern team / office collaboration scene.
+// Swap this Unsplash URL freely if it doesn't fit. Format:
+//   https://images.unsplash.com/<photo-id>?w=1600&q=80&auto=format&fit=crop
 const HERO_IMG =
-  'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201600%20900%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22g1%22%20cx%3D%2235%25%22%20cy%3D%2256%25%22%20r%3D%2260%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23238064%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23238064%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22g2%22%20cx%3D%2286%25%22%20cy%3D%2266%25%22%20r%3D%2260%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%237daa98%22%20stop-opacity%3D%22.5%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%237daa98%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22%23fbbecb%22%2F%3E%3Crect%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22url(%23g1)%22%2F%3E%3Crect%20width%3D%221600%22%20height%3D%22900%22%20fill%3D%22url(%23g2)%22%2F%3E%3C%2Fsvg%3E';
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop';
 
+// Mission image — designer workspace / creative process (portrait crop).
 const MISSION_IMG =
-  'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201280%201600%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22g1%22%20cx%3D%2232%25%22%20cy%3D%2231%25%22%20r%3D%2260%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23238064%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23238064%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22g2%22%20cx%3D%2280%25%22%20cy%3D%2272%25%22%20r%3D%2260%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%237daa98%22%20stop-opacity%3D%22.5%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%237daa98%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221280%22%20height%3D%221600%22%20fill%3D%22%23fbbecb%22%2F%3E%3Crect%20width%3D%221280%22%20height%3D%221600%22%20fill%3D%22url(%23g1)%22%2F%3E%3Crect%20width%3D%221280%22%20height%3D%221600%22%20fill%3D%22url(%23g2)%22%2F%3E%3C%2Fsvg%3E';
+  'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1280&q=80&auto=format&fit=crop&h=1600';
 
-const TEAM_IMG = (i: number) =>
-  `data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201600%201600%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22g1${i}%22%20cx%3D%22${50 + i}%25%22%20cy%3D%2238%25%22%20r%3D%2260%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23238064%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23238064%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3CradialGradient%20id%3D%22g2${i}%22%20cx%3D%2282%25%22%20cy%3D%2280%25%22%20r%3D%2260%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%237daa98%22%20stop-opacity%3D%22.5%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%237daa98%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%221600%22%20height%3D%221600%22%20fill%3D%22%23fbbecb%22%2F%3E%3Crect%20width%3D%221600%22%20height%3D%221600%22%20fill%3D%22url(%23g1${i})%22%2F%3E%3Crect%20width%3D%221600%22%20height%3D%221600%22%20fill%3D%22url(%23g2${i})%22%2F%3E%3C%2Fsvg%3E`;
+// Team / region cards — 4 different conceptual workspaces. Cycle so each
+// card gets a distinct image. NOTE: these represent teams/regions, NOT
+// individual people, so abstract workspace shots are intentionally
+// chosen over headshots.
+const TEAM_PHOTOS = [
+  'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=800&q=80&auto=format&fit=crop',
+];
+const TEAM_IMG = (i: number) => TEAM_PHOTOS[i % TEAM_PHOTOS.length];
 
 const FALLBACK: AboutData = {
   hero: {
