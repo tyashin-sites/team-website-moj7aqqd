@@ -6,10 +6,10 @@ type HomeData = {
   clients: { title: string; logos: string[] };
   features: { eyebrow?: string; title: string; subtitle?: string; items: { title: string; description: string; icon?: string }[] };
   stats: { items: { value: string; label: string }[] };
-  categories: { eyebrow?: string; title: string; subtitle?: string; items: { name: string; description?: string; blurb?: string }[] };
-  process: { eyebrow?: string; title: string; subtitle?: string; steps: { number?: string; step?: string; title: string; description: string }[] };
-  testimonials: { title: string; items: { quote: string; author?: string; name?: string; role?: string }[] };
-  team: { eyebrow?: string; title: string; subtitle?: string; offices?: { region: string; city: string; phone?: string; whatsapp?: string; email?: string }[]; items?: { name: string; role: string; avatar?: string }[] };
+  categories: { eyebrow?: string; title: string; subtitle?: string; items: { name: string; description: string }[] };
+  process: { eyebrow?: string; title: string; subtitle?: string; steps: { number: string; title: string; description: string }[] };
+  testimonials: { title: string; items: { quote: string; author: string; role?: string }[] };
+  team: { eyebrow?: string; title: string; subtitle?: string; offices: { region: string; city: string; phone?: string; whatsapp?: string; email?: string }[] };
   cta: { title: string; subtitle?: string; primaryCta: { label: string; href: string }; secondaryCta?: { label: string; href: string } };
 };
 
@@ -35,62 +35,15 @@ const FALLBACK_HOME: HomeData = {
 function getHome(): HomeData {
   const raw = (siteData as any)?.pages?.home;
   if (!raw || typeof raw !== 'object') return FALLBACK_HOME;
-
-  // Normalize features.items: site.json uses {name, description, icon} but type expects {title, description, icon}
-  const rawFeatures = raw.features ?? FALLBACK_HOME.features;
-  const featuresItems = Array.isArray(rawFeatures.items)
-    ? rawFeatures.items.map((it: any) => ({
-        title: it.title ?? it.name ?? '',
-        description: it.description ?? '',
-        icon: it.icon,
-      }))
-    : FALLBACK_HOME.features.items;
-
-  // Normalize process.steps: site.json uses {step, title, description} but type expects {number, title, description}
-  const rawProcess = raw.process ?? FALLBACK_HOME.process;
-  const processSteps = Array.isArray(rawProcess.steps)
-    ? rawProcess.steps.map((s: any) => ({
-        number: s.number ?? s.step ?? '',
-        title: s.title ?? '',
-        description: s.description ?? '',
-      }))
-    : FALLBACK_HOME.process.steps;
-
-  // Normalize testimonials.items: site.json uses {quote, name, role} but type expects {quote, author, role}
-  const rawTestimonials = raw.testimonials ?? FALLBACK_HOME.testimonials;
-  const testimonialItems = Array.isArray(rawTestimonials.items)
-    ? rawTestimonials.items.map((t: any) => ({
-        quote: t.quote ?? '',
-        author: t.author ?? t.name ?? '',
-        role: t.role,
-      }))
-    : FALLBACK_HOME.testimonials.items;
-
-  // Normalize team: site.json uses items[] with {name, role, avatar}, page expects offices[]
-  const rawTeam = raw.team ?? FALLBACK_HOME.team;
-  const teamOffices = Array.isArray(rawTeam.offices)
-    ? rawTeam.offices
-    : Array.isArray(rawTeam.items)
-    ? rawTeam.items.map((it: any) => ({
-        region: it.name ?? '',
-        city: it.role ?? '',
-        phone: undefined,
-        whatsapp: undefined,
-        email: undefined,
-      }))
-    : FALLBACK_HOME.team.offices ?? [];
-
   return {
     hero: raw.hero ?? FALLBACK_HOME.hero,
-    clients: raw.clients
-      ? { ...raw.clients, logos: Array.isArray(raw.clients.logos) ? raw.clients.logos : FALLBACK_HOME.clients.logos, title: raw.clients.eyebrow ?? raw.clients.title ?? FALLBACK_HOME.clients.title }
-      : FALLBACK_HOME.clients,
-    features: { ...rawFeatures, items: featuresItems },
+    clients: raw.clients ?? FALLBACK_HOME.clients,
+    features: raw.features ?? FALLBACK_HOME.features,
     stats: raw.stats ?? FALLBACK_HOME.stats,
     categories: raw.categories ?? FALLBACK_HOME.categories,
-    process: { ...rawProcess, steps: processSteps },
-    testimonials: { ...rawTestimonials, items: testimonialItems },
-    team: { ...rawTeam, offices: teamOffices },
+    process: raw.process ?? FALLBACK_HOME.process,
+    testimonials: raw.testimonials ?? FALLBACK_HOME.testimonials,
+    team: raw.team ?? FALLBACK_HOME.team,
     cta: raw.cta ?? FALLBACK_HOME.cta,
   };
 }
@@ -98,7 +51,7 @@ function getHome(): HomeData {
 const home = getHome();
 
 export const metadata = {
-  title: 'Thridify â Reimagine how the world experiences your products',
+  title: 'Thridify – Reimagine how the world experiences your products',
   description: 'No-code 3D and AR commerce experiences that boost conversions, reduce returns, and cut photography costs.',
 };
 
@@ -117,7 +70,7 @@ export default function HomePage() {
             <div className="mt-12 flex flex-col sm:flex-row gap-4">
               <Link href={home.hero.primaryCta.href} className="btn btn-primary text-base px-7 py-4">
                 {home.hero.primaryCta.label}
-                <span aria-hidden>â</span>
+                <span aria-hidden>→</span>
               </Link>
               {home.hero.secondaryCta && (
                 <Link href={home.hero.secondaryCta.href} className="btn btn-ghost text-base px-7 py-4">
@@ -165,7 +118,7 @@ export default function HomePage() {
               <div key={f.title} className="card p-8 group">
                 <div className="flex items-center justify-between mb-6">
                   <div className="w-12 h-12 rounded-lg bg-foreground text-background flex items-center justify-center text-xl">
-                    {f.icon || 'â¨'}
+                    {f.icon || '✨'}
                   </div>
                   <span className="text-foreground/30 font-heading font-bold text-sm tabular-nums">{String(i + 1).padStart(2, '0')}</span>
                 </div>
@@ -201,13 +154,13 @@ export default function HomePage() {
               <h2 className="h-1">{home.categories.title}</h2>
               {home.categories.subtitle && <p className="mt-5 text-lg text-foreground/70">{home.categories.subtitle}</p>}
             </div>
-            <Link href="/industries" className="btn btn-ghost">All industries â</Link>
+            <Link href="/industries" className="btn btn-ghost">All industries →</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 rounded-lg overflow-hidden border border-foreground/10">
             {(home.categories.items ?? []).map((c) => (
               <div key={c.name} className="bg-background p-8 hover:bg-surface transition-colors">
                 <h3 className="font-heading text-lg font-semibold tracking-tight">{c.name}</h3>
-                <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{c.description ?? c.blurb}</p>
+                <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{c.description}</p>
               </div>
             ))}
           </div>
@@ -224,8 +177,8 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {(home.process.steps ?? []).map((s) => (
-              <div key={s.number ?? s.step} className="relative">
-                <div className="font-heading text-7xl font-bold text-foreground/10 tracking-tighter leading-none">{s.number ?? s.step}</div>
+              <div key={s.number} className="relative">
+                <div className="font-heading text-7xl font-bold text-foreground/10 tracking-tighter leading-none">{s.number}</div>
                 <h3 className="mt-4 font-heading text-lg font-semibold tracking-tight">{s.title}</h3>
                 <p className="mt-2 text-foreground/70 leading-relaxed">{s.description}</p>
               </div>
@@ -239,12 +192,12 @@ export default function HomePage() {
         <div className="container-x">
           <h2 className="h-1 text-center max-w-3xl mx-auto mb-16">{home.testimonials.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(home.testimonials.items ?? []).map((t, i) => (
-              <figure key={t.author ?? t.name ?? i} className="card p-8 flex flex-col">
+            {(home.testimonials.items ?? []).map((t) => (
+              <figure key={t.author} className="card p-8 flex flex-col">
                 <div aria-hidden className="font-heading text-5xl text-foreground/20 leading-none mb-4">&ldquo;</div>
                 <blockquote className="text-lg leading-relaxed text-foreground/85 flex-1">{t.quote}</blockquote>
                 <figcaption className="mt-6 pt-6 border-t border-foreground/10">
-                  <div className="font-semibold">{t.author ?? t.name}</div>
+                  <div className="font-semibold">{t.author}</div>
                   {t.role && <div className="text-sm text-foreground/60 mt-0.5">{t.role}</div>}
                 </figcaption>
               </figure>
@@ -292,7 +245,7 @@ export default function HomePage() {
           {home.cta.subtitle && <p className="mt-8 text-xl text-foreground/70 max-w-2xl mx-auto">{home.cta.subtitle}</p>}
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={home.cta.primaryCta.href} className="btn btn-primary px-8 py-4 text-base">
-              {home.cta.primaryCta.label} â
+              {home.cta.primaryCta.label} →
             </Link>
             {home.cta.secondaryCta && (
               <Link href={home.cta.secondaryCta.href} className="btn btn-ghost px-8 py-4 text-base">

@@ -6,7 +6,7 @@ import siteData from '@/../content/site.json';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Thridify by Aapastech Private Limited â building no-code 3D and AR commerce experiences for the next decade of online retail.',
+    'Thridify by Aapastech Private Limited — building no-code 3D and AR commerce experiences for the next decade of online retail.',
 };
 
 type AboutData = {
@@ -33,12 +33,12 @@ const FALLBACK: AboutData = {
     eyebrow: 'About Thridify',
     title: 'We help brands turn flat catalogs into living, breathing experiences.',
     subtitle:
-      'Thridify is a 3D and Augmented Reality commerce platform by Aapastech Private Limited â built for a generation of shoppers who want to explore, configure, and visualise products before they buy.',
+      'Thridify is a 3D and Augmented Reality commerce platform by Aapastech Private Limited — built for a generation of shoppers who want to explore, configure, and visualise products before they buy.',
   },
   mission: {
     title: 'Our mission',
     body: [
-      'E-commerce was built on flat photographs. We believe the next decade belongs to spatial commerce â interactive 3D, real-time configuration, and AR experiences that meet customers in their living rooms.',
+      'E-commerce was built on flat photographs. We believe the next decade belongs to spatial commerce — interactive 3D, real-time configuration, and AR experiences that meet customers in their living rooms.',
       'Thridify exists to make that future accessible to every brand. No code. No 3D team required. Just measurable lifts in conversion, fewer returns, and a product story that travels everywhere your customer is.',
     ],
     image: MISSION_IMG,
@@ -65,9 +65,9 @@ const FALLBACK: AboutData = {
     title: 'How we build',
     subtitle: 'Four principles that guide every product decision.',
     items: [
-      { title: 'Outcomes over features', body: 'We measure ourselves on conversion, return rate, and content cost â not on shipping logos.' },
+      { title: 'Outcomes over features', body: 'We measure ourselves on conversion, return rate, and content cost — not on shipping logos.' },
       { title: 'Zero-code by default', body: 'If it requires a developer, it isn\u2019t done. Marketers should ship 3D experiences themselves.' },
-      { title: 'Photoreal, always', body: 'Our pipeline produces assets that look like product photography â because that\u2019s the bar shoppers expect.' },
+      { title: 'Photoreal, always', body: 'Our pipeline produces assets that look like product photography — because that\u2019s the bar shoppers expect.' },
       { title: 'Every device, every shopper', body: 'App-free AR on any modern smartphone. No friction between curiosity and conversion.' },
     ],
   },
@@ -88,51 +88,7 @@ function read(): AboutData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const raw = (siteData as any).pages?.about;
   if (!raw || raw.ref) return FALLBACK;
-  return {
-    ...FALLBACK,
-    ...raw,
-    mission: raw.mission
-      ? {
-          ...FALLBACK.mission,
-          ...raw.mission,
-          body: Array.isArray(raw.mission.body)
-            ? raw.mission.body
-            : typeof raw.mission.body === 'string'
-            ? [raw.mission.body]
-            : FALLBACK.mission.body,
-        }
-      : FALLBACK.mission,
-    stats: raw.stats
-      ? { items: Array.isArray(raw.stats.items) ? raw.stats.items : FALLBACK.stats.items }
-      : FALLBACK.stats,
-    team: raw.team
-      ? {
-          ...FALLBACK.team,
-          ...raw.team,
-          members: Array.isArray(raw.team.members)
-            ? raw.team.members
-            : Array.isArray(raw.team.items)
-            ? raw.team.items.map((it: any) => ({
-                name: it.name ?? '',
-                role: it.role ?? '',
-                image: it.avatar,
-              }))
-            : FALLBACK.team.members,
-        }
-      : FALLBACK.team,
-    values: raw.values
-      ? {
-          ...FALLBACK.values,
-          ...raw.values,
-          items: Array.isArray(raw.values.items)
-            ? raw.values.items.map((it: any) => ({
-                title: it.title ?? '',
-                body: it.body ?? it.description ?? '',
-              }))
-            : FALLBACK.values.items,
-        }
-      : FALLBACK.values,
-  };
+  return { ...FALLBACK, ...raw };
 }
 
 export default function AboutPage() {
@@ -166,7 +122,7 @@ export default function AboutPage() {
           <div className="mt-16 relative overflow-hidden rounded-lg border border-foreground/10">
             <Image
               src={HERO_IMG}
-              alt="Thridify â global team building 3D and AR commerce"
+              alt="Thridify — global team building 3D and AR commerce"
               width={1600}
               height={900}
               className="w-full h-auto object-cover"
@@ -233,4 +189,73 @@ export default function AboutPage() {
       {/* VALUES */}
       <section className="section bg-surface/40 border-y border-foreground/10">
         <div className="container-x">
- 
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-5">
+              <div className="eyebrow mb-5">Principles</div>
+              <h2 className="h-1 text-foreground">{d.values.title}</h2>
+              {d.values.subtitle && <p className="mt-6 text-lg text-foreground/70 max-w-md">{d.values.subtitle}</p>}
+            </div>
+            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+              {d.values.items.map((v, i) => (
+                <div key={i} className="rounded-lg border border-foreground/10 bg-background/60 p-7">
+                  <div className="font-heading font-bold text-lg flex items-center gap-3">
+                    <span className="text-primary font-mono text-sm">0{i + 1}</span>
+                    {v.title}
+                  </div>
+                  <p className="mt-3 text-foreground/70 leading-relaxed">{v.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {d.offices && d.offices.length > 0 && (
+            <div className="mt-20">
+              <div className="eyebrow mb-6">Global presence</div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {d.offices.map((o, i) => (
+                  <div key={i} className="rounded-lg border border-foreground/10 bg-background/60 p-6">
+                    <div className="text-xs uppercase tracking-[0.18em] text-foreground/50">{o.country}</div>
+                    <div className="mt-2 font-heading font-bold text-2xl">{o.city}</div>
+                    {o.phone && (
+                      <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                        <a href={`tel:${o.phone.replace(/[^+\d]/g, '')}`} className="underline underline-offset-4 hover:text-primary">
+                          {o.phone}
+                        </a>
+                        {o.whatsapp && (
+                          <a href={o.whatsapp} target="_blank" rel="noopener noreferrer" className="text-primary hover:opacity-80">
+                            WhatsApp \u2192
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 aurora opacity-80" aria-hidden />
+        <div className="container-x relative section text-center">
+          <h2 className="h-1 text-foreground max-w-3xl mx-auto">{d.cta.title}</h2>
+          {d.cta.subtitle && <p className="mt-6 text-lg text-foreground/70 max-w-xl mx-auto">{d.cta.subtitle}</p>}
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+            {d.cta.primaryCta && (
+              <Link href={d.cta.primaryCta.href} className="btn btn-primary">
+                {d.cta.primaryCta.text}
+              </Link>
+            )}
+            {d.cta.secondaryCta && (
+              <Link href={d.cta.secondaryCta.href} className="btn btn-ghost">
+                {d.cta.secondaryCta.text}
+              </Link>
+            )}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
