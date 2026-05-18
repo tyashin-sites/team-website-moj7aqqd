@@ -47,7 +47,7 @@ export async function Footer() {
           <div className="lg:col-span-5">
             <Link href="/" className="inline-flex items-center gap-2 mb-7">
               {logoUrl ? (
-                <Image src={logoUrl} alt={siteName} width={160} height={42} className="h-10 w-auto object-contain brightness-0 invert" />
+                <Image src={logoUrl} alt={siteName} width={220} height={56} className="h-14 w-auto object-contain brightness-0 invert" />
               ) : (
                 <span className="text-2xl font-heading font-bold">{siteName}</span>
               )}

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import siteData from '../../content/site.json';
+import { Reveal } from '@/components/Reveal';
 
 type HomeData = {
   hero: { eyebrow?: string; title: string; subtitle: string; primaryCta: { label: string; href: string }; secondaryCta?: { label: string; href: string }; metrics?: { value: string; label: string }[] };
@@ -64,7 +65,7 @@ export default function HomePage() {
           <div className="max-w-4xl reveal">
             {home.hero.eyebrow && <p className="eyebrow mb-6">{home.hero.eyebrow}</p>}
             <h1 className="h-display text-foreground">{home.hero.title}</h1>
-            <p className="mt-8 text-xl md:text-2xl text-foreground/70 leading-relaxed max-w-2xl">
+            <p className="mt-8 lead max-w-2xl">
               {home.hero.subtitle}
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-4">
@@ -115,7 +116,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(home.features.items ?? []).map((f, i) => (
-              <div key={f.title} className="card p-8 group">
+              <Reveal key={f.title} delay={i * 0.08} className="card p-8 group">
                 <div className="flex items-center justify-between mb-6">
                   <div className="w-12 h-12 rounded-lg bg-foreground text-background flex items-center justify-center text-xl">
                     {f.icon || '✨'}
@@ -124,7 +125,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="font-heading text-xl font-semibold mb-3 tracking-tight">{f.title}</h3>
                 <p className="text-foreground/70 leading-relaxed">{f.description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -157,11 +158,11 @@ export default function HomePage() {
             <Link href="/industries" className="btn btn-ghost">All industries →</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 rounded-lg overflow-hidden border border-foreground/10">
-            {(home.categories.items ?? []).map((c) => (
-              <div key={c.name} className="bg-background p-8 hover:bg-surface transition-colors">
+            {(home.categories.items ?? []).map((c, i) => (
+              <Reveal key={c.name} delay={i * 0.05} className="bg-background p-8 hover:bg-surface transition-colors">
                 <h3 className="font-heading text-lg font-semibold tracking-tight">{c.name}</h3>
                 <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{c.description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -176,12 +177,12 @@ export default function HomePage() {
             {home.process.subtitle && <p className="mt-5 text-lg text-foreground/70">{home.process.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {(home.process.steps ?? []).map((s) => (
-              <div key={s.number} className="relative">
-                <div className="font-heading text-7xl font-bold text-foreground/10 tracking-tighter leading-none">{s.number}</div>
+            {(home.process.steps ?? []).map((s, i) => (
+              <Reveal key={s.number} delay={i * 0.1} className="relative">
+                <div className="font-heading text-7xl font-bold text-primary/30 tracking-tighter leading-none">{s.number}</div>
                 <h3 className="mt-4 font-heading text-lg font-semibold tracking-tight">{s.title}</h3>
                 <p className="mt-2 text-foreground/70 leading-relaxed">{s.description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -192,15 +193,15 @@ export default function HomePage() {
         <div className="container-x">
           <h2 className="h-1 text-center max-w-3xl mx-auto mb-16">{home.testimonials.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(home.testimonials.items ?? []).map((t) => (
-              <figure key={t.author} className="card p-8 flex flex-col">
-                <div aria-hidden className="font-heading text-5xl text-foreground/20 leading-none mb-4">&ldquo;</div>
+            {(home.testimonials.items ?? []).map((t, i) => (
+              <Reveal key={t.author} delay={i * 0.08} as="article" className="card p-8 flex flex-col">
+                <div aria-hidden className="font-heading text-5xl text-primary/40 leading-none mb-4">&ldquo;</div>
                 <blockquote className="text-lg leading-relaxed text-foreground/85 flex-1">{t.quote}</blockquote>
-                <figcaption className="mt-6 pt-6 border-t border-foreground/10">
+                <div className="mt-6 pt-6 border-t border-foreground/10">
                   <div className="font-semibold">{t.author}</div>
                   {t.role && <div className="text-sm text-foreground/60 mt-0.5">{t.role}</div>}
-                </figcaption>
-              </figure>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -215,8 +216,8 @@ export default function HomePage() {
             {home.team.subtitle && <p className="mt-5 text-lg text-background/70">{home.team.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-background/10 rounded-lg overflow-hidden">
-            {(home.team.offices ?? []).map((o) => (
-              <div key={o.region} className="bg-foreground p-8">
+            {(home.team.offices ?? []).map((o, i) => (
+              <Reveal key={o.region} delay={i * 0.08} className="bg-foreground p-8">
                 <p className="eyebrow text-background/50 mb-3">{o.region}</p>
                 <h3 className="font-heading text-2xl font-semibold tracking-tight">{o.city}</h3>
                 <div className="mt-6 space-y-2 text-background/80">
@@ -232,7 +233,7 @@ export default function HomePage() {
                     <a href={`mailto:${o.email}`} className="block hover:text-background transition-colors">{o.email}</a>
                   )}
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
