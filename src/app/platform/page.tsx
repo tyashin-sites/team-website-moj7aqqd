@@ -81,9 +81,39 @@ const FALLBACK: PlatformContent = {
 };
 
 function getContent(): PlatformContent {
-  const raw = (siteData as any).pages?.platform;
-  if (!raw || raw.ref) return FALLBACK;
-  return { ...FALLBACK, ...raw };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const raw = ((siteData as any).pages?.platform ?? {}) as any;
+  if (raw.ref) return FALLBACK;
+  // The editor may emit `features`/`integrations` (legacy) instead of the
+  // canonical `products`/`capabilities`. Accept both.
+  const rawProducts = raw.products ?? raw.features;
+  const rawCaps = raw.capabilities ?? raw.integrations;
+  return {
+    hero: { ...FALLBACK.hero, ...(raw.hero ?? {}) },
+    products: {
+      ...FALLBACK.products,
+      ...(rawProducts ?? {}),
+      items: Array.isArray(rawProducts?.items)
+        ? rawProducts.items.map((it: any) => ({
+            name: String(it?.name ?? ''),
+            tagline: typeof it?.tagline === 'string' ? it.tagline : undefined,
+            description: String(it?.description ?? ''),
+            features: Array.isArray(it?.features) ? it.features : undefined,
+          }))
+        : FALLBACK.products.items,
+    },
+    capabilities: {
+      ...FALLBACK.capabilities,
+      ...(rawCaps ?? {}),
+      items: Array.isArray(rawCaps?.items)
+        ? rawCaps.items.map((it: any) => ({
+            title: String(it?.title ?? it?.name ?? ''),
+            description: String(it?.description ?? ''),
+          }))
+        : FALLBACK.capabilities.items,
+    },
+    cta: { ...FALLBACK.cta, ...(raw.cta ?? {}) },
+  };
 }
 
 export default function PlatformPage() {

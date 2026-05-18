@@ -84,11 +84,53 @@ const FALLBACK: AboutData = {
   },
 };
 
+function toArray<T>(v: unknown): T[] | undefined {
+  if (Array.isArray(v)) return v as T[];
+  if (typeof v === 'string' && v.trim()) return [v as T];
+  return undefined;
+}
+
 function read(): AboutData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const raw = (siteData as any).pages?.about;
-  if (!raw || raw.ref) return FALLBACK;
-  return { ...FALLBACK, ...raw };
+  const raw = ((siteData as any).pages?.about ?? {}) as any;
+  if (raw.ref) return FALLBACK;
+  // The editor stores team members under either `members` (canonical) or
+  // `items` (legacy / alternate). Accept both. Each member field may use
+  // `image` (canonical) or `avatar` (legacy) for the photo.
+  const rawTeamItems: any[] | null = Array.isArray(raw?.team?.members)
+    ? raw.team.members
+    : Array.isArray(raw?.team?.items)
+    ? raw.team.items
+    : null;
+  return {
+    hero: { ...FALLBACK.hero, ...(raw.hero ?? {}) },
+    mission: {
+      ...FALLBACK.mission,
+      ...(raw.mission ?? {}),
+      body: toArray<string>(raw?.mission?.body) ?? FALLBACK.mission.body,
+    },
+    stats: {
+      items: Array.isArray(raw?.stats?.items) ? raw.stats.items : FALLBACK.stats.items,
+    },
+    team: {
+      ...FALLBACK.team,
+      ...(raw.team ?? {}),
+      members: rawTeamItems
+        ? rawTeamItems.map((m: any) => ({
+            name: String(m?.name ?? ''),
+            role: String(m?.role ?? ''),
+            image: typeof m?.image === 'string' ? m.image : typeof m?.avatar === 'string' ? m.avatar : undefined,
+          }))
+        : FALLBACK.team.members,
+    },
+    values: {
+      ...FALLBACK.values,
+      ...(raw.values ?? {}),
+      items: Array.isArray(raw?.values?.items) ? raw.values.items : FALLBACK.values.items,
+    },
+    cta: { ...FALLBACK.cta, ...(raw.cta ?? {}) },
+    offices: Array.isArray(raw?.offices) ? raw.offices : FALLBACK.offices,
+  };
 }
 
 export default function AboutPage() {

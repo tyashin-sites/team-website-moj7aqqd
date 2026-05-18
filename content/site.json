@@ -109,7 +109,7 @@
       "mission": {
         "eyebrow": "Our Mission",
         "title": "Make every product touchable, configurable, and real — before purchase.",
-        "body": "We believe the next decade of commerce belongs to brands that let customers experience products with the same depth they'd get in a flagship store. Thridify gives that capability to anyone — without code, without specialized teams, without long timelines. Our platform combines real-time 3D, web-based AR, AI-generated visuals, and a unified DAM so that production, merchandising, and analytics finally live in one place.",
+        "body": ["We believe the next decade of commerce belongs to brands that let customers experience products with the same depth they'd get in a flagship store. Thridify gives that capability to anyone — without code, without specialized teams, without long timelines. Our platform combines real-time 3D, web-based AR, AI-generated visuals, and a unified DAM so that production, merchandising, and analytics finally live in one place."],
         "image": "_about::mission::2"
       },
       "stats": {
