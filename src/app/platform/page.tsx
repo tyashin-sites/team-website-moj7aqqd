@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import siteData from '@/../content/site.json';
+import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
   title: 'Platform — 3D & AR Commerce Suite',
@@ -161,8 +162,10 @@ export default function PlatformPage() {
 
           <div className="space-y-24 md:space-y-32">
             {c.products.items.map((p, i) => (
-              <div
+              <Reveal
                 key={p.name}
+                direction={i % 2 === 0 ? 'right' : 'left'}
+                distance={40}
                 className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center"
               >
                 <div className={`lg:col-span-5 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
@@ -219,7 +222,7 @@ export default function PlatformPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -238,8 +241,9 @@ export default function PlatformPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-background/10 rounded-lg overflow-hidden">
             {c.capabilities.items.map((item, i) => (
-              <div
+              <Reveal
                 key={item.title}
+                delay={i * 0.06}
                 className="bg-foreground p-8 md:p-10 hover:bg-background/5 transition-colors"
               >
                 <div className="text-xs font-semibold tracking-[0.18em] text-background/40 mb-5">
@@ -249,7 +253,7 @@ export default function PlatformPage() {
                   {item.title}
                 </h3>
                 <p className="text-background/65 leading-relaxed">{item.description}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

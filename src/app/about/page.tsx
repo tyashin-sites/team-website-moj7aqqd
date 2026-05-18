@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import siteData from '@/../content/site.json';
+import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -211,10 +212,10 @@ export default function AboutPage() {
       <section className="py-16 md:py-20 border-y border-foreground/10 bg-surface/50">
         <div className="container-x grid grid-cols-2 md:grid-cols-4 gap-10">
           {d.stats.items.map((s, i) => (
-            <div key={i} className="text-left">
+            <Reveal key={i} delay={i * 0.08} className="text-left">
               <div className="font-heading font-bold text-5xl md:text-6xl tracking-tight text-foreground">{s.value}</div>
               <div className="mt-3 text-xs uppercase tracking-[0.18em] text-foreground/55">{s.label}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -229,13 +230,13 @@ export default function AboutPage() {
           </div>
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {d.team.members.map((m, i) => (
-              <div key={i} className="card p-5">
+              <Reveal key={i} delay={i * 0.08} className="card p-5">
                 <div className="relative aspect-square rounded-md overflow-hidden mb-5">
                   <Image src={m.image || TEAM_IMG(i)} alt={m.name} fill className="object-cover" />
                 </div>
                 <div className="font-heading font-semibold text-lg text-foreground">{m.name}</div>
                 <div className="text-sm text-foreground/60 mt-1">{m.role}</div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -252,13 +253,13 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-5">
               {d.values.items.map((v, i) => (
-                <div key={i} className="rounded-lg border border-foreground/10 bg-background/60 p-7">
+                <Reveal key={i} delay={i * 0.08} className="rounded-lg border border-foreground/10 bg-background/60 p-7">
                   <div className="font-heading font-bold text-lg flex items-center gap-3">
                     <span className="text-primary font-mono text-sm">0{i + 1}</span>
                     {v.title}
                   </div>
                   <p className="mt-3 text-foreground/70 leading-relaxed">{v.body}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
