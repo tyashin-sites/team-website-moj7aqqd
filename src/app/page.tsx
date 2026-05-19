@@ -1,6 +1,48 @@
 import Link from 'next/link';
 import siteData from '../../content/site.json';
 import { Reveal } from '@/components/Reveal';
+import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
+import { ImpactBlock, type ImpactStat, type ClientLogo } from '@/components/ImpactBlock';
+
+// Hero slides — content from thridify.com homepage (verbatim).
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    number: '01',
+    title: 'Reimagine how the world experiences your products.',
+    subtitle:
+      'Empower customers to decide faster, engage deeper, buy with confidence — and see your brand stand apart.',
+  },
+  {
+    number: '02',
+    title: "Don't settle for Immersive.",
+    subtitle:
+      'Immersive experiences blended with interactivity stop scrolls. Turn static product pages into sales-driving journeys.',
+  },
+  {
+    number: '03',
+    title: 'Experience is best experienced, not told.',
+    subtitle:
+      "Instead of selling products' photoshoot, empower customers with 3D and AR experiences that build trust and drive action.",
+  },
+];
+
+// Impact stats — verbatim from thridify.com "The Thridify Impact" section.
+const IMPACT_STATS: ImpactStat[] = [
+  { value: 40, suffix: '%', label: 'Lower Product Returns' },
+  { value: 3, suffix: 'X', label: 'Higher Conversion Rates' },
+  { value: 94, suffix: '%', label: 'More Engagement' },
+  { value: 70, suffix: '%', label: 'Lower Photography Cost' },
+  { value: 200, suffix: '%', label: 'Higher Click-through Rate' },
+  { value: 25, suffix: '%', label: 'Lower Inventory Cost' },
+];
+
+// Real client logos (from thridify.com).
+const CLIENT_LOGOS: ClientLogo[] = [
+  { name: 'Nasher Miles', initials: 'NM' },
+  { name: 'Guntier', initials: 'GT' },
+  { name: 'Sunbaby', initials: 'SB' },
+  { name: 'Vortex Splash', initials: 'VS' },
+];
 
 type HomeData = {
   hero: { eyebrow?: string; title: string; subtitle: string; primaryCta: { label: string; href: string }; secondaryCta?: { label: string; href: string }; metrics?: { value: string; label: string }[] };
@@ -59,52 +101,12 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden aurora grain">
-        <div className="container-x section relative">
-          <div className="max-w-4xl reveal">
-            {home.hero.eyebrow && <p className="eyebrow mb-6">{home.hero.eyebrow}</p>}
-            <h1 className="h-display text-foreground">{home.hero.title}</h1>
-            <p className="mt-8 lead max-w-2xl">
-              {home.hero.subtitle}
-            </p>
-            <div className="mt-12 flex flex-col sm:flex-row gap-4">
-              <Link href={home.hero.primaryCta.href} className="btn btn-primary text-base px-7 py-4">
-                {home.hero.primaryCta.label}
-                <span aria-hidden>→</span>
-              </Link>
-              {home.hero.secondaryCta && (
-                <Link href={home.hero.secondaryCta.href} className="btn btn-ghost text-base px-7 py-4">
-                  {home.hero.secondaryCta.label}
-                </Link>
-              )}
-            </div>
-          </div>
-
-          {(home.hero.metrics ?? []).length > 0 && (
-            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/10 rounded-lg overflow-hidden border border-foreground/10">
-              {(home.hero.metrics ?? []).map((m) => (
-                <div key={m.label} className="bg-background/80 backdrop-blur p-6 md:p-8">
-                  <div className="font-heading text-3xl md:text-4xl font-bold tracking-tight">{m.value}</div>
-                  <div className="mt-2 text-sm text-foreground/60">{m.label}</div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* CLIENTS / INTEGRATIONS */}
-      <section className="border-y border-foreground/5 bg-surface/40">
-        <div className="container-x py-12">
-          <p className="eyebrow text-center mb-8">{home.clients.title}</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {(home.clients.logos ?? []).map((logo) => (
-              <span key={logo} className="text-foreground/50 font-heading font-semibold text-lg tracking-tight">{logo}</span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* HERO — rotating slides with phone mockup */}
+      <HeroSlideshow
+        slides={HERO_SLIDES}
+        primaryCta={{ label: 'Book A Demo', href: 'https://calendly.com/hello-thridify/30min' }}
+        secondaryCta={{ label: 'Talk to Us', href: '/contact' }}
+      />
 
       {/* FEATURES */}
       <section className="section">
@@ -131,20 +133,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="bg-foreground text-background relative overflow-hidden">
-        <div className="absolute inset-0 opacity-40 aurora pointer-events-none" aria-hidden />
-        <div className="container-x py-20 md:py-24 relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
-            {(home.stats.items ?? []).map((s) => (
-              <div key={s.label}>
-                <div className="font-heading text-5xl md:text-6xl font-bold tracking-tight">{s.value}</div>
-                <div className="mt-3 text-sm uppercase tracking-[0.18em] text-background/60">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* IMPACT — animated counters + client logo marquee */}
+      <ImpactBlock
+        title="We don't just create experiences; we drive measurable results"
+        highlight="measurable results"
+        subtitle="See the tangible impact Thridify brings to businesses like yours."
+        stats={IMPACT_STATS}
+        logos={CLIENT_LOGOS}
+      />
 
       {/* CATEGORIES / INDUSTRIES */}
       <section className="section">
