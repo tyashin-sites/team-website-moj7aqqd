@@ -97,7 +97,7 @@ export function ImpactBlock({
           <span className="inline-block px-4 py-1.5 bg-primary text-primary-contrast rounded-full text-sm font-medium mb-5">
             {eyebrow}
           </span>
-          <h2 className="h-1 text-foreground">{renderTitle()}</h2>
+          <h2 className="tt-1 text-foreground">{renderTitle()}</h2>
           {subtitle && <p className="lead">{subtitle}</p>}
         </motion.div>
 

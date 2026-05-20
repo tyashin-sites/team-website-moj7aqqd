@@ -62,7 +62,7 @@ export default function ContactPage() {
       <section className="relative overflow-hidden aurora">
         <div className="container-x section text-center">
           <p className="eyebrow reveal">Contact</p>
-          <h1 className="h-display mt-5 reveal" style={{ animationDelay: '80ms' }}>
+          <h1 className="tt-display mt-5 reveal" style={{ animationDelay: '80ms' }}>
             {heroTitle}
           </h1>
           <p
@@ -90,7 +90,7 @@ export default function ContactPage() {
         <div className="container-x grid lg:grid-cols-12 gap-14">
           <div className="lg:col-span-7">
             <p className="eyebrow">Book a demo</p>
-            <h2 className="h-1 mt-4">Tell us about your products.</h2>
+            <h2 className="tt-1 mt-4">Tell us about your products.</h2>
             <p className="mt-5 text-foreground/70 text-lg leading-relaxed max-w-xl">
               Share a few details and we&rsquo;ll show you how Thridify turns your catalog
               into immersive 3D and AR experiences &mdash; with zero engineering effort.
@@ -187,7 +187,7 @@ export default function ContactPage() {
           <aside className="lg:col-span-5">
             <div className="card p-8 md:p-10 sticky top-28">
               <p className="eyebrow">Direct lines</p>
-              <h3 className="h-2 mt-4">Talk to a human.</h3>
+              <h3 className="tt-2 mt-4">Talk to a human.</h3>
               <p className="mt-4 text-foreground/70 leading-relaxed">
                 Prefer a quick chat? Reach our regional teams on phone or WhatsApp.
               </p>
@@ -231,7 +231,7 @@ export default function ContactPage() {
         <div className="container-x">
           <div className="max-w-2xl">
             <p className="eyebrow">Global presence</p>
-            <h2 className="h-1 mt-4">Three regions. One platform.</h2>
+            <h2 className="tt-1 mt-4">Three regions. One platform.</h2>
             <p className="mt-5 text-foreground/70 text-lg leading-relaxed">
               Wherever your customers are, our team is close by &mdash; ready to help you ship
               immersive product experiences fast.
@@ -247,7 +247,7 @@ export default function ContactPage() {
                   </span>
                   <span className="text-xs text-foreground/50">{o.city}</span>
                 </div>
-                <h3 className="h-2 mt-4">{o.region}</h3>
+                <h3 className="tt-2 mt-4">{o.region}</h3>
                 {o.address && (
                   <p className="mt-3 text-foreground/70 leading-relaxed">{o.address}</p>
                 )}
@@ -291,7 +291,7 @@ export default function ContactPage() {
           <div className="relative rounded-lg overflow-hidden aurora p-12 md:p-20 text-center">
             <div className="relative">
               <p className="eyebrow">Ready when you are</p>
-              <h2 className="h-1 mt-4 max-w-3xl mx-auto">
+              <h2 className="tt-1 mt-4 max-w-3xl mx-auto">
                 Reimagine how the world experiences your products.
               </h2>
               <p className="mt-6 text-lg text-foreground/70 max-w-xl mx-auto">

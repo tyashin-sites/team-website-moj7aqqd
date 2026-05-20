@@ -126,7 +126,7 @@ export default function PlatformPage() {
       <section className="relative aurora overflow-hidden">
         <div className="container-x relative section text-center">
           {c.hero.eyebrow && <p className="eyebrow reveal">{c.hero.eyebrow}</p>}
-          <h1 className="h-display mt-6 max-w-5xl mx-auto reveal">
+          <h1 className="tt-display mt-6 max-w-5xl mx-auto reveal">
             {c.hero.title}
           </h1>
           {c.hero.subtitle && (
@@ -154,7 +154,7 @@ export default function PlatformPage() {
         <div className="container-x">
           <div className="max-w-3xl mb-20">
             <p className="eyebrow">Products</p>
-            <h2 className="h-1 mt-4">{c.products.title}</h2>
+            <h2 className="tt-1 mt-4">{c.products.title}</h2>
             {c.products.subtitle && (
               <p className="mt-6 text-lg text-foreground/70 leading-relaxed">{c.products.subtitle}</p>
             )}
@@ -177,14 +177,14 @@ export default function PlatformPage() {
                       <span className="text-sm font-medium text-foreground/60">{p.tagline}</span>
                     )}
                   </div>
-                  <h3 className="h-2">{p.name}</h3>
+                  <h3 className="tt-2">{p.name}</h3>
                   <p className="mt-5 text-lg text-foreground/75 leading-relaxed">{p.description}</p>
                   {p.features && (
                     <ul className="mt-8 space-y-3">
                       {p.features.map(f => (
                         <li key={f} className="flex items-start gap-3 text-foreground/85">
                           <span
-                            className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0"
+                            className="mt-2 w-1.5 tt-1.5 rounded-full bg-primary shrink-0"
                             aria-hidden
                           />
                           <span>{f}</span>
@@ -234,7 +234,7 @@ export default function PlatformPage() {
         <div className="container-x relative">
           <div className="max-w-3xl mb-16">
             <p className="eyebrow text-background/50">Capabilities</p>
-            <h2 className="h-1 mt-4">{c.capabilities.title}</h2>
+            <h2 className="tt-1 mt-4">{c.capabilities.title}</h2>
             {c.capabilities.subtitle && (
               <p className="mt-6 text-lg text-background/70 leading-relaxed">{c.capabilities.subtitle}</p>
             )}
@@ -263,7 +263,7 @@ export default function PlatformPage() {
       <section className="section">
         <div className="container-x">
           <div className="relative overflow-hidden rounded-lg aurora p-10 md:p-20 text-center">
-            <h2 className="h-1 max-w-3xl mx-auto">{c.cta.title}</h2>
+            <h2 className="tt-1 max-w-3xl mx-auto">{c.cta.title}</h2>
             {c.cta.subtitle && (
               <p className="mt-6 text-lg text-foreground/75 max-w-2xl mx-auto leading-relaxed">
                 {c.cta.subtitle}

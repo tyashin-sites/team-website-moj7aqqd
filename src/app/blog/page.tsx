@@ -91,7 +91,7 @@ export default async function BlogPage({
       <section className="relative overflow-hidden aurora grain section">
         <div className="container-x relative z-10">
           <p className="eyebrow reveal">The Thridify Journal</p>
-          <h1 className="h-display mt-5 max-w-4xl reveal" style={{ animationDelay: '80ms' }}>
+          <h1 className="tt-display mt-5 max-w-4xl reveal" style={{ animationDelay: '80ms' }}>
             {heroTitle}
           </h1>
           <p
@@ -108,7 +108,7 @@ export default async function BlogPage({
         <div className="container-x">
           {posts.length === 0 ? (
             <div className="card p-16 text-center">
-              <h2 className="h-2">New stories landing soon</h2>
+              <h2 className="tt-2">New stories landing soon</h2>
               <p className="mt-4 text-foreground/70 max-w-md mx-auto">
                 We&apos;re polishing our first batch of essays on 3D commerce, AR strategy, and conversion design. Check back shortly.
               </p>
@@ -146,7 +146,7 @@ export default async function BlogPage({
                           <span className="text-foreground/60">· {featured.category}</span>
                         )}
                       </div>
-                      <h2 className="h-1 mt-5 group-hover:text-primary transition-colors">
+                      <h2 className="tt-1 mt-5 group-hover:text-primary transition-colors">
                         {featured.title}
                       </h2>
                       {featured.excerpt && (
@@ -264,7 +264,7 @@ export default async function BlogPage({
           <div className="relative overflow-hidden rounded-lg bg-foreground text-background p-10 md:p-16 aurora grain">
             <div className="relative z-10 max-w-2xl">
               <p className="eyebrow !text-background/60">The Dispatch</p>
-              <h2 className="h-2 mt-4">
+              <h2 className="tt-2 mt-4">
                 One sharp read on 3D & AR commerce, every other Thursday.
               </h2>
               <p className="mt-5 text-background/70 text-lg leading-relaxed">

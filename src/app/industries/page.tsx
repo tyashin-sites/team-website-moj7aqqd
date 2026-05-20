@@ -132,7 +132,7 @@ export default function IndustriesPage() {
         <div className="container-x relative section pb-16 md:pb-24">
           <div className="max-w-4xl reveal">
             <p className="eyebrow mb-6">{hero.eyebrow ?? 'Industries'}</p>
-            <h1 className="h-display">{hero.title}</h1>
+            <h1 className="tt-display">{hero.title}</h1>
             {hero.subtitle && (
               <p className="mt-7 text-lg md:text-xl text-foreground/70 max-w-2xl leading-relaxed">
                 {hero.subtitle}
@@ -164,7 +164,7 @@ export default function IndustriesPage() {
         <div className="container-x">
           <div className="max-w-3xl mb-14">
             <p className="eyebrow mb-4">Sectors we serve</p>
-            <h2 className="h-1">Every category. One immersive commerce layer.</h2>
+            <h2 className="tt-1">Every category. One immersive commerce layer.</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -186,7 +186,7 @@ export default function IndustriesPage() {
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                 </div>
-                <h3 className="h-2 text-2xl mb-2">{ind.name}</h3>
+                <h3 className="tt-2 text-2xl mb-2">{ind.name}</h3>
                 {ind.tagline && (
                   <p className="text-primary font-medium mb-3">{ind.tagline}</p>
                 )}
@@ -197,7 +197,7 @@ export default function IndustriesPage() {
                   <ul className="mt-auto space-y-2 pt-4 border-t border-foreground/10">
                     {ind.useCases.map((uc) => (
                       <li key={uc} className="flex items-start gap-3 text-sm text-foreground/80">
-                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" aria-hidden />
+                        <span className="mt-2 w-1.5 tt-1.5 rounded-full bg-primary flex-shrink-0" aria-hidden />
                         <span>{uc}</span>
                       </li>
                     ))}
@@ -214,7 +214,7 @@ export default function IndustriesPage() {
         <div className="container-x">
           <div className="max-w-3xl mb-14">
             <p className="eyebrow mb-4">Proof, across industries</p>
-            <h2 className="h-1">Operators measure it in conversion, returns and ROI.</h2>
+            <h2 className="tt-1">Operators measure it in conversion, returns and ROI.</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
@@ -239,7 +239,7 @@ export default function IndustriesPage() {
           <div className="relative overflow-hidden rounded-lg bg-foreground text-background p-10 md:p-16">
             <div className="absolute inset-0 aurora opacity-40 pointer-events-none" aria-hidden />
             <div className="relative max-w-3xl">
-              <h2 className="h-1">{cta.title}</h2>
+              <h2 className="tt-1">{cta.title}</h2>
               {cta.subtitle && (
                 <p className="mt-5 text-lg text-background/75 leading-relaxed">{cta.subtitle}</p>
               )}

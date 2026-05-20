@@ -159,7 +159,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8 reveal">
               {d.hero.eyebrow && <div className="eyebrow mb-6">{d.hero.eyebrow}</div>}
-              <h1 className="h-display text-foreground max-w-5xl">{d.hero.title}</h1>
+              <h1 className="tt-display text-foreground max-w-5xl">{d.hero.title}</h1>
               {d.hero.subtitle && (
                 <p className="mt-8 text-lg md:text-xl text-foreground/70 leading-relaxed max-w-2xl">
                   {d.hero.subtitle}
@@ -168,9 +168,9 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-4 hidden lg:block">
               <div className="flex flex-col gap-3 text-sm font-medium text-foreground/60">
-                <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Aapastech Private Limited</span>
-                <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Founded for spatial commerce</span>
-                <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Offices in IN \u00B7 CA \u00B7 EE</span>
+                <span className="inline-flex items-center gap-2"><span className="w-1.5 tt-1.5 rounded-full bg-primary" /> Aapastech Private Limited</span>
+                <span className="inline-flex items-center gap-2"><span className="w-1.5 tt-1.5 rounded-full bg-primary" /> Founded for spatial commerce</span>
+                <span className="inline-flex items-center gap-2"><span className="w-1.5 tt-1.5 rounded-full bg-primary" /> Offices in IN \u00B7 CA \u00B7 EE</span>
               </div>
             </div>
           </div>
@@ -198,7 +198,7 @@ export default function AboutPage() {
           </div>
           <div className="lg:col-span-7 order-1 lg:order-2">
             <div className="eyebrow mb-5">Mission</div>
-            <h2 className="h-1 text-foreground">{d.mission.title}</h2>
+            <h2 className="tt-1 text-foreground">{d.mission.title}</h2>
             <div className="mt-8 space-y-6 text-lg text-foreground/75 leading-relaxed max-w-xl">
               {d.mission.body.map((p, i) => (
                 <p key={i}>{p}</p>
@@ -225,7 +225,7 @@ export default function AboutPage() {
         <div className="container-x">
           <div className="max-w-2xl">
             <div className="eyebrow mb-5">Team</div>
-            <h2 className="h-1 text-foreground">{d.team.title}</h2>
+            <h2 className="tt-1 text-foreground">{d.team.title}</h2>
             {d.team.subtitle && <p className="mt-6 text-lg text-foreground/70">{d.team.subtitle}</p>}
           </div>
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -248,7 +248,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-5">
               <div className="eyebrow mb-5">Principles</div>
-              <h2 className="h-1 text-foreground">{d.values.title}</h2>
+              <h2 className="tt-1 text-foreground">{d.values.title}</h2>
               {d.values.subtitle && <p className="mt-6 text-lg text-foreground/70 max-w-md">{d.values.subtitle}</p>}
             </div>
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-5">
@@ -296,7 +296,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 aurora opacity-80" aria-hidden />
         <div className="container-x relative section text-center">
-          <h2 className="h-1 text-foreground max-w-3xl mx-auto">{d.cta.title}</h2>
+          <h2 className="tt-1 text-foreground max-w-3xl mx-auto">{d.cta.title}</h2>
           {d.cta.subtitle && <p className="mt-6 text-lg text-foreground/70 max-w-xl mx-auto">{d.cta.subtitle}</p>}
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             {d.cta.primaryCta && (

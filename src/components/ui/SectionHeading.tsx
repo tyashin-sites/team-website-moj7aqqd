@@ -13,7 +13,7 @@ export function SectionHeading({ eyebrow, title, subtitle, align = 'left', child
   return (
     <div className={`max-w-3xl ${isCenter ? 'mx-auto text-center' : ''}`}>
       {eyebrow && <div className="eyebrow mb-5">{eyebrow}</div>}
-      <h2 className="h-1 mb-6">{title}</h2>
+      <h2 className="tt-1 mb-6">{title}</h2>
       {subtitle && <p className="text-lg md:text-xl text-muted leading-relaxed">{subtitle}</p>}
       {children}
     </div>

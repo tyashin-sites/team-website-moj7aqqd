@@ -141,7 +141,7 @@ export default function HomePage() {
         <div className="container-x">
           <div className="max-w-3xl mb-16">
             {home.features.eyebrow && <p className="eyebrow mb-4">{home.features.eyebrow}</p>}
-            <h2 className="h-1 text-foreground">{home.features.title}</h2>
+            <h2 className="tt-1 text-foreground">{home.features.title}</h2>
             {home.features.subtitle && <p className="mt-6 text-lg text-foreground/70 max-w-2xl">{home.features.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -176,7 +176,7 @@ export default function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-6 mb-14">
             <div className="max-w-2xl">
               {home.categories.eyebrow && <p className="eyebrow mb-4">{home.categories.eyebrow}</p>}
-              <h2 className="h-1">{home.categories.title}</h2>
+              <h2 className="tt-1">{home.categories.title}</h2>
               {home.categories.subtitle && <p className="mt-5 text-lg text-foreground/70">{home.categories.subtitle}</p>}
             </div>
             <Link href="/industries" className="btn btn-ghost">All industries →</Link>
@@ -219,7 +219,7 @@ export default function HomePage() {
         <div className="container-x">
           <div className="max-w-3xl mb-16">
             {home.process.eyebrow && <p className="eyebrow mb-4">{home.process.eyebrow}</p>}
-            <h2 className="h-1">{home.process.title}</h2>
+            <h2 className="tt-1">{home.process.title}</h2>
             {home.process.subtitle && <p className="mt-5 text-lg text-foreground/70">{home.process.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -239,7 +239,7 @@ export default function HomePage() {
         <div className="container-x">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <span className="eyebrow">Customer Stories</span>
-            <h2 className="h-1 mt-2">{home.testimonials.title}</h2>
+            <h2 className="tt-1 mt-2">{home.testimonials.title}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(home.testimonials.items ?? []).map((t, i) => {
@@ -294,7 +294,7 @@ export default function HomePage() {
         <div className="container-x">
           <div className="max-w-3xl mb-16">
             {home.team.eyebrow && <p className="eyebrow text-background/60 mb-4">{home.team.eyebrow}</p>}
-            <h2 className="h-1">{home.team.title}</h2>
+            <h2 className="tt-1">{home.team.title}</h2>
             {home.team.subtitle && <p className="mt-5 text-lg text-background/70">{home.team.subtitle}</p>}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-background/10 rounded-lg overflow-hidden">
@@ -324,7 +324,7 @@ export default function HomePage() {
       {/* CTA */}
       <section className="section relative overflow-hidden aurora grain">
         <div className="container-x relative text-center">
-          <h2 className="h-display max-w-4xl mx-auto">{home.cta.title}</h2>
+          <h2 className="tt-display max-w-4xl mx-auto">{home.cta.title}</h2>
           {home.cta.subtitle && <p className="mt-8 text-xl text-foreground/70 max-w-2xl mx-auto">{home.cta.subtitle}</p>}
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={home.cta.primaryCta.href} className="btn btn-primary px-8 py-4 text-base">
