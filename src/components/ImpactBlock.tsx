@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 export interface ImpactStat {
   value: number;
@@ -11,7 +12,8 @@ export interface ImpactStat {
 
 export interface ClientLogo {
   name: string;
-  initials: string;
+  /** Absolute URL to the client's logo image (PNG/SVG/WebP). */
+  logoUrl: string;
 }
 
 interface AnimatedCounterProps {
@@ -134,21 +136,21 @@ export function ImpactBlock({
             <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-            <div className="flex animate-marquee w-max">
+            <div className="flex animate-marquee w-max items-center">
               {/* Duplicate the array several times so the loop is seamless. */}
               {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 mx-6 px-7 py-4 bg-background rounded-xl border border-foreground/8 shadow-sm"
+                  className="flex-shrink-0 mx-8 px-8 py-5 bg-background rounded-xl border border-foreground/8 shadow-sm h-20 flex items-center"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
-                      {logo.initials}
-                    </div>
-                    <span className="font-semibold text-foreground whitespace-nowrap">
-                      {logo.name}
-                    </span>
-                  </div>
+                  <Image
+                    src={logo.logoUrl}
+                    alt={logo.name}
+                    width={140}
+                    height={40}
+                    className="h-9 w-auto object-contain max-w-[160px]"
+                    unoptimized
+                  />
                 </div>
               ))}
             </div>

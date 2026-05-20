@@ -1,8 +1,35 @@
 import Link from 'next/link';
 import siteData from '../../content/site.json';
+import {
+  Sofa,
+  ChefHat,
+  Car,
+  DoorOpen,
+  GraduationCap,
+  ShoppingBag,
+  Wrench,
+  Sparkles,
+  ArrowUpRight,
+} from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
 import { ImpactBlock, type ImpactStat, type ClientLogo } from '@/components/ImpactBlock';
+
+// Pick an icon for each category name. Falls back to ✨ Sparkles for
+// anything we don't recognize. Keys are matched case-insensitively
+// against the start of the category name, so "Modular Kitchens" matches
+// "kitchen", "Doors & Windows" matches "door", etc.
+function iconForCategory(name: string) {
+  const n = name.toLowerCase();
+  if (n.includes('kitchen')) return ChefHat;
+  if (n.includes('door') || n.includes('window')) return DoorOpen;
+  if (n.includes('school') || n.includes('education')) return GraduationCap;
+  if (n.includes('auto') || n.includes('car') || n.includes('vehicle')) return Car;
+  if (n.includes('machinery') || n.includes('industrial')) return Wrench;
+  if (n.includes('retail') || n.includes('store') || n.includes('shop')) return ShoppingBag;
+  if (n.includes('furniture') || n.includes('decor') || n.includes('sofa')) return Sofa;
+  return Sparkles;
+}
 
 // Hero slides — content from thridify.com homepage (verbatim).
 const HERO_SLIDES: HeroSlide[] = [
@@ -36,12 +63,13 @@ const IMPACT_STATS: ImpactStat[] = [
   { value: 25, suffix: '%', label: 'Lower Inventory Cost' },
 ];
 
-// Real client logos (from thridify.com).
+// Real client logos — pulled from thridify.com's WordPress media library.
+// next.config.ts allows any HTTPS host via `remotePatterns: [{ hostname: '**' }]`.
 const CLIENT_LOGOS: ClientLogo[] = [
-  { name: 'Nasher Miles', initials: 'NM' },
-  { name: 'Guntier', initials: 'GT' },
-  { name: 'Sunbaby', initials: 'SB' },
-  { name: 'Vortex Splash', initials: 'VS' },
+  { name: 'Nasher Miles', logoUrl: 'https://thridify.com/wp-content/uploads/2025/09/NM.png' },
+  { name: 'Guntier', logoUrl: 'https://thridify.com/wp-content/uploads/2025/09/Guntier-1.png' },
+  { name: 'Sunbaby', logoUrl: 'https://thridify.com/wp-content/uploads/2025/09/SUN_BABY.png' },
+  { name: 'Vortex Splash', logoUrl: 'https://thridify.com/wp-content/uploads/2025/09/Vortex-1.png' },
 ];
 
 type HomeData = {
@@ -51,7 +79,7 @@ type HomeData = {
   stats: { items: { value: string; label: string }[] };
   categories: { eyebrow?: string; title: string; subtitle?: string; items: { name: string; description: string }[] };
   process: { eyebrow?: string; title: string; subtitle?: string; steps: { number: string; title: string; description: string }[] };
-  testimonials: { title: string; items: { quote: string; author: string; role?: string }[] };
+  testimonials: { title: string; items: { quote: string; author?: string; name?: string; role?: string }[] };
   team: { eyebrow?: string; title: string; subtitle?: string; offices: { region: string; city: string; phone?: string; whatsapp?: string; email?: string }[] };
   cta: { title: string; subtitle?: string; primaryCta: { label: string; href: string }; secondaryCta?: { label: string; href: string } };
 };
@@ -153,13 +181,35 @@ export default function HomePage() {
             </div>
             <Link href="/industries" className="btn btn-ghost">All industries →</Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 rounded-lg overflow-hidden border border-foreground/10">
-            {(home.categories.items ?? []).map((c, i) => (
-              <Reveal key={c.name} delay={i * 0.05} className="bg-background p-8 hover:bg-surface transition-colors">
-                <h3 className="font-heading text-lg font-semibold tracking-tight">{c.name}</h3>
-                <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{c.description}</p>
-              </Reveal>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {(home.categories.items ?? []).map((c, i) => {
+              const Icon = iconForCategory(c.name);
+              return (
+                <Reveal
+                  key={c.name}
+                  delay={i * 0.05}
+                  className="group relative rounded-2xl border border-foreground/10 bg-surface/40 p-7 transition-all duration-300 hover:bg-surface hover:-translate-y-1 hover:shadow-lg hover:border-primary/20 cursor-pointer overflow-hidden"
+                >
+                  {/* decorative blob */}
+                  <div
+                    className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"
+                    aria-hidden
+                  />
+                  <div className="relative">
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-primary-contrast transition-colors duration-300">
+                      <Icon className="w-7 h-7" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-heading text-lg font-semibold tracking-tight mb-2">
+                      {c.name}
+                    </h3>
+                    <p className="text-sm text-foreground/65 leading-relaxed">{c.description}</p>
+                    <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                      Explore <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -185,20 +235,56 @@ export default function HomePage() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="section">
+      <section className="section bg-surface/30">
         <div className="container-x">
-          <h2 className="h-1 text-center max-w-3xl mx-auto mb-16">{home.testimonials.title}</h2>
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <span className="eyebrow">Customer Stories</span>
+            <h2 className="h-1 mt-2">{home.testimonials.title}</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(home.testimonials.items ?? []).map((t, i) => (
-              <Reveal key={t.author} delay={i * 0.08} as="article" className="card p-8 flex flex-col">
-                <div aria-hidden className="font-heading text-5xl text-primary/40 leading-none mb-4">&ldquo;</div>
-                <blockquote className="text-lg leading-relaxed text-foreground/85 flex-1">{t.quote}</blockquote>
-                <div className="mt-6 pt-6 border-t border-foreground/10">
-                  <div className="font-semibold">{t.author}</div>
-                  {t.role && <div className="text-sm text-foreground/60 mt-0.5">{t.role}</div>}
-                </div>
-              </Reveal>
-            ))}
+            {(home.testimonials.items ?? []).map((t, i) => {
+              // Editor stores authors under either `name` (canonical) or
+              // `author` (legacy). Accept both.
+              const author = t.name || t.author || '';
+              const initials = author
+                .split(' ')
+                .map((w) => w[0])
+                .filter(Boolean)
+                .slice(0, 2)
+                .join('')
+                .toUpperCase();
+              return (
+                <Reveal
+                  key={i}
+                  delay={i * 0.08}
+                  as="article"
+                  className="relative rounded-2xl bg-background border border-foreground/10 p-8 flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div
+                    aria-hidden
+                    className="absolute -top-3 left-7 w-10 h-10 rounded-full bg-primary text-primary-contrast flex items-center justify-center font-heading text-2xl leading-none shadow-md"
+                  >
+                    &ldquo;
+                  </div>
+                  <blockquote className="text-base leading-relaxed text-foreground/85 flex-1 mt-2">
+                    {t.quote}
+                  </blockquote>
+                  {author && (
+                    <div className="mt-6 pt-6 border-t border-foreground/10 flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold text-sm">
+                        {initials || '★'}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-foreground">{author}</div>
+                        {t.role && (
+                          <div className="text-sm text-foreground/55 mt-0.5">{t.role}</div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
