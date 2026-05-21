@@ -22,7 +22,7 @@ const FALLBACK: PlatformContent = {
     title: 'One platform. Every immersive product experience.',
     subtitle:
       'A complete 3D and AR commerce suite — from interactive viewers and configurators to app-free AR, AI visuals, and digital asset management with built-in analytics.',
-    primaryCta: { label: 'Book a Demo', href: '/contact' },
+    primaryCta: { label: 'Book a Demo', href: 'https://calendly.com/hello-thridify/30min' },
     secondaryCta: { label: 'See Industries', href: '/industries' },
   },
   products: {
@@ -76,7 +76,7 @@ const FALLBACK: PlatformContent = {
   cta: {
     title: 'See your product reimagined in 3D.',
     subtitle: 'Get a personalized demo with a sample of your own product, rendered in 3D and AR within 48 hours.',
-    primaryCta: { label: 'Book a Demo', href: '/contact' },
+    primaryCta: { label: 'Book a Demo', href: 'https://calendly.com/hello-thridify/30min' },
     secondaryCta: { label: 'Talk to Sales', href: '/contact' },
   },
 };
@@ -184,7 +184,7 @@ export default function PlatformPage() {
                       {p.features.map(f => (
                         <li key={f} className="flex items-start gap-3 text-foreground/85">
                           <span
-                            className="mt-2 w-1.5 tt-1.5 rounded-full bg-primary shrink-0"
+                            className="mt-2 w-1.5 h-1.5 rounded-full bg-primary shrink-0"
                             aria-hidden
                           />
                           <span>{f}</span>

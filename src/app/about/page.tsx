@@ -87,13 +87,13 @@ const FALLBACK: AboutData = {
   },
   offices: [
     { city: 'Delhi', country: 'India', phone: '+91-966-774-7082', whatsapp: 'https://wa.me/919667747082' },
-    { city: 'Toronto', country: 'Canada', phone: '+1-437-800-0190', whatsapp: 'https://wa.me/14378000190' },
-    { city: 'Tallinn', country: 'Estonia' },
+    { city: 'Toronto', country: 'Americas', phone: '+1-437-800-0190', whatsapp: 'https://wa.me/14378000190' },
+    { city: 'Tallinn', country: 'Europe' },
   ],
   cta: {
     title: 'See your product in 3D in 14 days.',
     subtitle: 'Bring us a single SKU. We\u2019ll show you what spatial commerce can do for your conversion rate.',
-    primaryCta: { text: 'Book a Demo', href: '/contact' },
+    primaryCta: { text: 'Book a Demo', href: 'https://calendly.com/hello-thridify/30min' },
     secondaryCta: { text: 'Explore the platform', href: '/platform' },
   },
 };
@@ -130,11 +130,22 @@ function read(): AboutData {
       ...FALLBACK.team,
       ...(raw.team ?? {}),
       members: rawTeamItems
-        ? rawTeamItems.map((m: any) => ({
-            name: String(m?.name ?? ''),
-            role: String(m?.role ?? ''),
-            image: typeof m?.image === 'string' ? m.image : typeof m?.avatar === 'string' ? m.avatar : undefined,
-          }))
+        ? rawTeamItems.map((m: any, i: number) => {
+            // The editor stores asset references like "_about::team::4__0"
+            // before any real upload happens. Treat those placeholder
+            // tokens as "no image" and fall back to the stock team photos
+            // so we never feed a non-URL string into <Image src>.
+            const rawImg =
+              (typeof m?.image === 'string' && m.image) ||
+              (typeof m?.avatar === 'string' && m.avatar) ||
+              undefined;
+            const isPlaceholder = !rawImg || rawImg.startsWith('_');
+            return {
+              name: String(m?.name ?? ''),
+              role: String(m?.role ?? ''),
+              image: isPlaceholder ? TEAM_IMG(i) : rawImg,
+            };
+          })
         : FALLBACK.team.members,
     },
     values: {
@@ -168,9 +179,9 @@ export default function AboutPage() {
             </div>
             <div className="lg:col-span-4 hidden lg:block">
               <div className="flex flex-col gap-3 text-sm font-medium text-foreground/60">
-                <span className="inline-flex items-center gap-2"><span className="w-1.5 tt-1.5 rounded-full bg-primary" /> Aapastech Private Limited</span>
-                <span className="inline-flex items-center gap-2"><span className="w-1.5 tt-1.5 rounded-full bg-primary" /> Founded for spatial commerce</span>
-                <span className="inline-flex items-center gap-2"><span className="w-1.5 tt-1.5 rounded-full bg-primary" /> Offices in IN \u00B7 CA \u00B7 EE</span>
+                <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Aapastech Private Limited</span>
+                <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Founded for spatial commerce</span>
+                <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Offices in India · Americas · Europe</span>
               </div>
             </div>
           </div>
@@ -279,7 +290,7 @@ export default function AboutPage() {
                         </a>
                         {o.whatsapp && (
                           <a href={o.whatsapp} target="_blank" rel="noopener noreferrer" className="text-primary hover:opacity-80">
-                            WhatsApp \u2192
+                            WhatsApp →
                           </a>
                         )}
                       </div>

@@ -100,6 +100,7 @@ export default function ContactPage() {
               action={`mailto:${generalEmail}`}
               method="post"
               encType="text/plain"
+              autoComplete="on"
               className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5"
             >
               <div className="md:col-span-1">
@@ -110,6 +111,7 @@ export default function ContactPage() {
                   required
                   name="name"
                   type="text"
+                  autoComplete="name"
                   className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition"
                   placeholder="Jane Doe"
                 />
@@ -122,6 +124,7 @@ export default function ContactPage() {
                   required
                   name="email"
                   type="email"
+                  autoComplete="email"
                   className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition"
                   placeholder="jane@brand.com"
                 />
@@ -133,6 +136,7 @@ export default function ContactPage() {
                 <input
                   name="company"
                   type="text"
+                  autoComplete="organization"
                   className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition"
                   placeholder="Acme Furniture"
                 />
@@ -298,7 +302,12 @@ export default function ContactPage() {
                 Book a 20-minute demo and see your own product in 3D and AR &mdash; live.
               </p>
               <div className="mt-10 flex flex-wrap gap-4 justify-center">
-                <a href="#contact-form" className="btn btn-primary">
+                <a
+                  href="https://calendly.com/hello-thridify/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
                   Book a Demo
                 </a>
                 <a href={`mailto:${generalEmail}`} className="btn btn-ghost">

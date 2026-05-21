@@ -120,7 +120,7 @@ export function HeroSlideshow({
                     key={i}
                     onClick={() => setCurrent(i)}
                     aria-label={`Go to slide ${i + 1}`}
-                    className={`tt-1.5 rounded-full transition-all duration-300 ${
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
                       i === current ? 'w-12 bg-primary' : 'w-6 bg-foreground/20'
                     }`}
                   />

@@ -89,7 +89,7 @@ const FALLBACK_HOME: HomeData = {
     eyebrow: '3D & AR Commerce',
     title: 'Reimagine how the world experiences your products.',
     subtitle: 'Thridify turns flat product pages into immersive 3D and AR moments.',
-    primaryCta: { label: 'Book a Demo', href: '/contact' },
+    primaryCta: { label: 'Book a Demo', href: 'https://calendly.com/hello-thridify/30min' },
     secondaryCta: { label: 'Explore the Platform', href: '/platform' },
     metrics: [],
   },
@@ -100,7 +100,7 @@ const FALLBACK_HOME: HomeData = {
   process: { eyebrow: 'How it works', title: 'From SKU to immersive in days, not quarters.', steps: [] },
   testimonials: { title: 'Brands stop talking about features. They talk about lift.', items: [] },
   team: { eyebrow: 'Global Offices', title: 'Three continents. One immersive commerce platform.', subtitle: '', offices: [] },
-  cta: { title: 'Ready to retire flat product pages?', subtitle: '', primaryCta: { label: 'Book a Demo', href: '/contact' }, secondaryCta: { label: 'Explore Platform', href: '/platform' } },
+  cta: { title: 'Ready to retire flat product pages?', subtitle: '', primaryCta: { label: 'Book a Demo', href: 'https://calendly.com/hello-thridify/30min' }, secondaryCta: { label: 'Explore Platform', href: '/platform' } },
 };
 
 function getHome(): HomeData {

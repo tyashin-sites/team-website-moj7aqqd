@@ -2,13 +2,31 @@
   "header": {
     "siteName": "Thridify",
     "nav": [
-      { "label": "Platform", "href": "/platform" },
-      { "label": "Industries", "href": "/industries" },
-      { "label": "About", "href": "/about" },
-      { "label": "Blog", "href": "/blog" },
-      { "label": "Contact", "href": "/contact" }
+      {
+        "label": "Platform",
+        "href": "/platform"
+      },
+      {
+        "label": "Industries",
+        "href": "/industries"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
     ],
-    "cta": { "label": "Book a Demo", "href": "/contact" }
+    "cta": {
+      "label": "Book a Demo",
+      "href": "https://calendly.com/hello-thridify/30min"
+    }
   },
   "pages": {
     "home": {
@@ -16,36 +34,91 @@
         "eyebrow": "3D & AR Commerce — by Aapastech",
         "title": "Reimagine how the world experiences your products.",
         "subtitle": "Thridify turns flat product pages into immersive 3D and AR moments — boosting conversions, slashing returns, and ending the era of static photography. No code. No app. No friction.",
-        "primaryCta": { "text": "Book a Demo", "href": "/contact" },
-        "secondaryCta": { "text": "Explore the Platform", "href": "/platform" },
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
+        },
+        "secondaryCta": {
+          "text": "Explore the Platform",
+          "href": "/platform"
+        },
         "image": "_::hero::1",
-        "badges": ["No-code setup", "Works on every smartphone", "8+ platform integrations"]
+        "badges": [
+          "No-code setup",
+          "Works on every smartphone",
+          "8+ platform integrations"
+        ]
       },
       "clients": {
         "eyebrow": "Trusted by ambitious commerce teams",
-        "logos": ["Shopify", "WooCommerce", "Magento", "BigCommerce", "Wix", "Squarespace", "Salesforce", "Custom CMS"]
+        "logos": [
+          "Shopify",
+          "WooCommerce",
+          "Magento",
+          "BigCommerce",
+          "Wix",
+          "Squarespace",
+          "Salesforce",
+          "Custom CMS"
+        ]
       },
       "features": {
         "eyebrow": "The Platform",
         "title": "Everything you need to ship a 3D-native storefront.",
         "subtitle": "Five integrated modules. One immersive product experience layer.",
         "items": [
-          { "name": "3D 360° Product Viewer", "description": "Cinematic interactive views — every angle, every detail, zero compromise.", "icon": "01" },
-          { "name": "Real-Time 3D Configurator", "description": "Let shoppers customize materials, colors, and modules in real-time.", "icon": "02" },
-          { "name": "App-Free AR Viewer", "description": "View products in their room — straight from the browser, no download required.", "icon": "03" },
-          { "name": "AI Visuals & Content", "description": "Generate marketing-ready imagery and lifestyle scenes from a single 3D asset.", "icon": "04" },
-          { "name": "3D Digital Asset Management", "description": "Centralize, version and distribute every asset across channels.", "icon": "05" },
-          { "name": "Engagement Analytics & ROI", "description": "Measure interactions, conversion lift, and return rate impact in real-time.", "icon": "06" }
+          {
+            "name": "3D 360° Product Viewer",
+            "description": "Cinematic interactive views — every angle, every detail, zero compromise.",
+            "icon": "01"
+          },
+          {
+            "name": "Real-Time 3D Configurator",
+            "description": "Let shoppers customize materials, colors, and modules in real-time.",
+            "icon": "02"
+          },
+          {
+            "name": "App-Free AR Viewer",
+            "description": "View products in their room — straight from the browser, no download required.",
+            "icon": "03"
+          },
+          {
+            "name": "AI Visuals & Content",
+            "description": "Generate marketing-ready imagery and lifestyle scenes from a single 3D asset.",
+            "icon": "04"
+          },
+          {
+            "name": "3D Digital Asset Management",
+            "description": "Centralize, version and distribute every asset across channels.",
+            "icon": "05"
+          },
+          {
+            "name": "Engagement Analytics & ROI",
+            "description": "Measure interactions, conversion lift, and return rate impact in real-time.",
+            "icon": "06"
+          }
         ]
       },
       "stats": {
         "eyebrow": "Measurable Outcomes",
         "title": "Numbers brands send us after launch.",
         "items": [
-          { "value": "+94%", "label": "Conversion lift on configurable products" },
-          { "value": "−40%", "label": "Reduction in product return rates" },
-          { "value": "−65%", "label": "Cut in product photography spend" },
-          { "value": "3.2×", "label": "Average time-on-page increase" }
+          {
+            "value": "+94%",
+            "label": "Conversion lift on configurable products"
+          },
+          {
+            "value": "−40%",
+            "label": "Reduction in product return rates"
+          },
+          {
+            "value": "−65%",
+            "label": "Cut in product photography spend"
+          },
+          {
+            "value": "3.2×",
+            "label": "Average time-on-page increase"
+          }
         ]
       },
       "categories": {
@@ -53,50 +126,127 @@
         "title": "Built for catalogs that deserve more than flat photos.",
         "subtitle": "From modular kitchens to industrial machinery — Thridify adapts to how your customers actually decide.",
         "items": [
-          { "name": "Furniture", "blurb": "Place sofas, chairs and decor inside any room." },
-          { "name": "Modular Kitchens", "blurb": "Configure layouts, finishes and modules live." },
-          { "name": "Automotive", "blurb": "Trims, interiors and exteriors — fully interactive." },
-          { "name": "Doors & Windows", "blurb": "Visualize finishes against real architecture." },
-          { "name": "Pre-schools", "blurb": "Tour classrooms and play zones in 3D." },
-          { "name": "Personalized Retail", "blurb": "Engrave, monogram, and customize live." },
-          { "name": "Industrial Machinery", "blurb": "Show internals, motion, and scale at full fidelity." },
-          { "name": "And more", "blurb": "If it has a SKU, we can make it interactive." }
+          {
+            "name": "Furniture",
+            "blurb": "Place sofas, chairs and decor inside any room."
+          },
+          {
+            "name": "Modular Kitchens",
+            "blurb": "Configure layouts, finishes and modules live."
+          },
+          {
+            "name": "Automotive",
+            "blurb": "Trims, interiors and exteriors — fully interactive."
+          },
+          {
+            "name": "Doors & Windows",
+            "blurb": "Visualize finishes against real architecture."
+          },
+          {
+            "name": "Pre-schools",
+            "blurb": "Tour classrooms and play zones in 3D."
+          },
+          {
+            "name": "Personalized Retail",
+            "blurb": "Engrave, monogram, and customize live."
+          },
+          {
+            "name": "Industrial Machinery",
+            "blurb": "Show internals, motion, and scale at full fidelity."
+          },
+          {
+            "name": "And more",
+            "blurb": "If it has a SKU, we can make it interactive."
+          }
         ]
       },
       "process": {
         "eyebrow": "How it works",
         "title": "From SKU to immersive in days, not quarters.",
         "steps": [
-          { "step": "01", "title": "Asset Capture", "description": "Send photos, CAD or product samples — we handle the rest." },
-          { "step": "02", "title": "3D Production", "description": "Our studio builds photoreal 3D, AR and configurator-ready assets." },
-          { "step": "03", "title": "No-Code Embed", "description": "Drop a single snippet on Shopify, Woo, Magento or any custom stack." },
-          { "step": "04", "title": "Measure & Iterate", "description": "Track conversion lift, returns and engagement in your dashboard." }
+          {
+            "step": "01",
+            "title": "Asset Capture",
+            "description": "Send photos, CAD or product samples — we handle the rest."
+          },
+          {
+            "step": "02",
+            "title": "3D Production",
+            "description": "Our studio builds photoreal 3D, AR and configurator-ready assets."
+          },
+          {
+            "step": "03",
+            "title": "No-Code Embed",
+            "description": "Drop a single snippet on Shopify, Woo, Magento or any custom stack."
+          },
+          {
+            "step": "04",
+            "title": "Measure & Iterate",
+            "description": "Track conversion lift, returns and engagement in your dashboard."
+          }
         ]
       },
       "testimonials": {
         "eyebrow": "Customer Stories",
         "title": "Brands stop talking about features. They talk about lift.",
         "items": [
-          { "quote": "Our PDP conversion jumped 71% in the first month after rolling out the 3D configurator. The team didn't write a single line of code.", "name": "Ananya Mehra", "role": "Head of Digital, Modular Kitchens Brand", "avatar": "_::testimonials::7__avatar__0" },
-          { "quote": "AR previews changed how our customers buy furniture. Returns are down significantly and CSAT is up across the board.", "name": "Marcus Levant", "role": "VP E-commerce, Furniture Retailer", "avatar": "_::testimonials::7__avatar__1" },
-          { "quote": "We replaced an entire photography pipeline with Thridify. The visual consistency across SKUs is finally on-brand.", "name": "Priya Joshi", "role": "Brand Director, Personalized Retail", "avatar": "_::testimonials::7__avatar__2" }
+          {
+            "quote": "Our PDP conversion jumped 71% in the first month after rolling out the 3D configurator. The team didn't write a single line of code.",
+            "name": "Ananya Mehra",
+            "role": "Head of Digital, Modular Kitchens Brand",
+            "avatar": "_::testimonials::7__avatar__0"
+          },
+          {
+            "quote": "AR previews changed how our customers buy furniture. Returns are down significantly and CSAT is up across the board.",
+            "name": "Marcus Levant",
+            "role": "VP E-commerce, Furniture Retailer",
+            "avatar": "_::testimonials::7__avatar__1"
+          },
+          {
+            "quote": "We replaced an entire photography pipeline with Thridify. The visual consistency across SKUs is finally on-brand.",
+            "name": "Priya Joshi",
+            "role": "Brand Director, Personalized Retail",
+            "avatar": "_::testimonials::7__avatar__2"
+          }
         ]
       },
       "team": {
         "eyebrow": "Global Offices",
         "title": "Three continents. One immersive commerce platform.",
         "items": [
-          { "name": "Delhi", "role": "India HQ — +91-966-774-7082", "avatar": "_::team::8__0" },
-          { "name": "Toronto", "role": "Canada — +1-437-800-0190", "avatar": "_::team::8__1" },
-          { "name": "Estonia", "role": "Europe Operations", "avatar": "_::team::8__2" },
-          { "name": "Remote", "role": "hello@thridify.com", "avatar": "_::team::8__3" }
+          {
+            "name": "Delhi",
+            "role": "India HQ — +91-966-774-7082",
+            "avatar": "_::team::8__0"
+          },
+          {
+            "name": "Toronto",
+            "role": "Americas — +1-437-800-0190",
+            "avatar": "_::team::8__1"
+          },
+          {
+            "name": "Europe",
+            "role": "Europe Operations",
+            "avatar": "_::team::8__2"
+          },
+          {
+            "name": "Remote",
+            "role": "hello@thridify.com",
+            "avatar": "_::team::8__3"
+          }
         ]
       },
       "cta": {
         "title": "Ready to retire flat product pages?",
         "subtitle": "See your top SKU rebuilt in 3D and AR — live, on a 30-minute call.",
-        "primaryCta": { "text": "Book a Demo", "href": "/contact" },
-        "secondaryCta": { "text": "Explore Platform", "href": "/platform" }
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
+        },
+        "secondaryCta": {
+          "text": "Explore Platform",
+          "href": "/platform"
+        }
       }
     },
     "about": {
@@ -109,42 +259,90 @@
       "mission": {
         "eyebrow": "Our Mission",
         "title": "Make every product touchable, configurable, and real — before purchase.",
-        "body": ["We believe the next decade of commerce belongs to brands that let customers experience products with the same depth they'd get in a flagship store. Thridify gives that capability to anyone — without code, without specialized teams, without long timelines. Our platform combines real-time 3D, web-based AR, AI-generated visuals, and a unified DAM so that production, merchandising, and analytics finally live in one place."],
+        "body": [
+          "We believe the next decade of commerce belongs to brands that let customers experience products with the same depth they'd get in a flagship store. Thridify gives that capability to anyone — without code, without specialized teams, without long timelines. Our platform combines real-time 3D, web-based AR, AI-generated visuals, and a unified DAM so that production, merchandising, and analytics finally live in one place."
+        ],
         "image": "_about::mission::2"
       },
       "stats": {
         "items": [
-          { "value": "3", "label": "Continents — India, Canada, Europe" },
-          { "value": "8+", "label": "E-commerce platforms supported" },
-          { "value": "100%", "label": "Browser-based AR — no app required" },
-          { "value": "24/7", "label": "Engagement analytics & ROI tracking" }
+          {
+            "value": "3",
+            "label": "Continents — India, Americas, Europe"
+          },
+          {
+            "value": "8+",
+            "label": "E-commerce platforms supported"
+          },
+          {
+            "value": "100%",
+            "label": "Browser-based AR — no app required"
+          },
+          {
+            "value": "24/7",
+            "label": "Engagement analytics & ROI tracking"
+          }
         ]
       },
       "team": {
         "eyebrow": "Our Footprint",
         "title": "A studio-grade team with a global delivery model.",
         "items": [
-          { "name": "India HQ", "role": "Delhi — Engineering & 3D Studio", "avatar": "_about::team::4__0" },
-          { "name": "Canada", "role": "Toronto — North American Markets", "avatar": "_about::team::4__1" },
-          { "name": "Europe", "role": "Estonia — EU Operations", "avatar": "_about::team::4__2" },
-          { "name": "Remote", "role": "Distributed specialists", "avatar": "_about::team::4__3" }
+          {
+            "name": "India HQ",
+            "role": "Delhi — Engineering & 3D Studio",
+            "avatar": "_about::team::4__0"
+          },
+          {
+            "name": "Americas",
+            "role": "Toronto — North American Markets",
+            "avatar": "_about::team::4__1"
+          },
+          {
+            "name": "Europe",
+            "role": "Europe — EU Operations",
+            "avatar": "_about::team::4__2"
+          },
+          {
+            "name": "Remote",
+            "role": "Distributed specialists",
+            "avatar": "_about::team::4__3"
+          }
         ]
       },
       "values": {
         "eyebrow": "What we stand for",
         "title": "Principles that shape every release.",
         "items": [
-          { "title": "Outcome over output", "description": "Every feature ships with a measurable conversion or returns story." },
-          { "title": "No-code by default", "description": "If it requires a developer, we haven't finished designing it yet." },
-          { "title": "Photoreal, always", "description": "Visual fidelity is non-negotiable. Brand integrity is the product." },
-          { "title": "Browser-first AR", "description": "App downloads kill conversion. We build for where buyers already are." }
+          {
+            "title": "Outcome over output",
+            "description": "Every feature ships with a measurable conversion or returns story."
+          },
+          {
+            "title": "No-code by default",
+            "description": "If it requires a developer, we haven't finished designing it yet."
+          },
+          {
+            "title": "Photoreal, always",
+            "description": "Visual fidelity is non-negotiable. Brand integrity is the product."
+          },
+          {
+            "title": "Browser-first AR",
+            "description": "App downloads kill conversion. We build for where buyers already are."
+          }
         ]
       },
       "cta": {
         "title": "Want to meet the team behind your next launch?",
         "subtitle": "Tell us what you're shipping — we'll show you what's possible.",
-        "primaryCta": { "text": "Book a Demo", "href": "/contact" },
-        "secondaryCta": { "text": "Read the Blog", "href": "/blog" }
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
+        },
+        "secondaryCta": {
+          "text": "Read the Blog",
+          "href": "/blog"
+        }
       }
     },
     "contact": {
@@ -157,25 +355,63 @@
       "contact": {
         "email": "hello@thridify.com",
         "offices": [
-          { "region": "India", "city": "Delhi", "phone": "+91-966-774-7082", "phoneRaw": "+919667747082", "whatsapp": "https://wa.me/919667747082" },
-          { "region": "Canada", "city": "Toronto, Ontario", "phone": "+1-437-800-0190", "phoneRaw": "+14378000190", "whatsapp": "https://wa.me/14378000190" },
-          { "region": "Europe", "city": "Estonia", "phone": "hello@thridify.com", "phoneRaw": "", "whatsapp": "" }
+          {
+            "region": "India",
+            "city": "Delhi",
+            "phone": "+91-966-774-7082",
+            "phoneRaw": "+919667747082",
+            "whatsapp": "https://wa.me/919667747082"
+          },
+          {
+            "region": "Americas",
+            "city": "Toronto, Ontario",
+            "phone": "+1-437-800-0190",
+            "phoneRaw": "+14378000190",
+            "whatsapp": "https://wa.me/14378000190"
+          },
+          {
+            "region": "Europe",
+            "city": "Europe",
+            "phone": "hello@thridify.com",
+            "phoneRaw": "",
+            "whatsapp": ""
+          }
         ],
         "form": {
           "title": "Send a brief",
           "subtitle": "Drop us a note — we reply within one business day.",
           "fields": [
-            { "name": "name", "label": "Full name", "type": "text", "required": true },
-            { "name": "email", "label": "Work email", "type": "email", "required": true },
-            { "name": "company", "label": "Company", "type": "text", "required": false },
-            { "name": "message", "label": "What are you shipping?", "type": "textarea", "required": true }
+            {
+              "name": "name",
+              "label": "Full name",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "email",
+              "label": "Work email",
+              "type": "email",
+              "required": true
+            },
+            {
+              "name": "company",
+              "label": "Company",
+              "type": "text",
+              "required": false
+            },
+            {
+              "name": "message",
+              "label": "What are you shipping?",
+              "type": "textarea",
+              "required": true
+            }
           ],
           "submit": "Request a Demo"
         }
       },
       "map": {
         "title": "Where we operate",
-        "subtitle": "Engineering in Delhi. Markets in Toronto. Operations in Estonia."
+        "subtitle": "Engineering in Delhi. Markets across the Americas. Operations in Europe."
       }
     },
     "blog": {
@@ -198,39 +434,93 @@
         "eyebrow": "The Platform",
         "title": "Five modules. One immersive commerce stack.",
         "subtitle": "Thridify replaces fragmented 3D, AR, photography and DAM tooling with a single integrated layer that ships in days.",
-        "primaryCta": { "text": "Book a Demo", "href": "/contact" },
-        "secondaryCta": { "text": "See Industries", "href": "/industries" },
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
+        },
+        "secondaryCta": {
+          "text": "See Industries",
+          "href": "/industries"
+        },
         "image": "_platform::hero::1"
       },
       "features": {
         "eyebrow": "Core Products",
         "title": "Built for the way customers actually decide.",
         "items": [
-          { "name": "3D 360° Product Viewer", "description": "Spin, zoom, and inspect products with photoreal fidelity. Drop-in embed for any storefront.", "icon": "01" },
-          { "name": "Real-Time 3D Configurator", "description": "Live customization of color, material, modules and dimensions — backed by your live catalog.", "icon": "02" },
-          { "name": "App-Free AR Viewer", "description": "View in Your Room — pure web AR. No app downloads, no friction, full conversion preservation.", "icon": "03" },
-          { "name": "AI Visuals & Content Creation", "description": "Generate lifestyle imagery, social cuts and seasonal scenes from a single 3D asset.", "icon": "04" },
-          { "name": "3D Digital Asset Management", "description": "Versioning, permissions, distribution and channel-aware delivery — built for 3D-first orgs.", "icon": "05" },
-          { "name": "Engagement Analytics & ROI", "description": "Measure interaction depth, conversion lift, and return-rate impact down to the SKU.", "icon": "06" }
+          {
+            "name": "3D 360° Product Viewer",
+            "description": "Spin, zoom, and inspect products with photoreal fidelity. Drop-in embed for any storefront.",
+            "icon": "01"
+          },
+          {
+            "name": "Real-Time 3D Configurator",
+            "description": "Live customization of color, material, modules and dimensions — backed by your live catalog.",
+            "icon": "02"
+          },
+          {
+            "name": "App-Free AR Viewer",
+            "description": "View in Your Room — pure web AR. No app downloads, no friction, full conversion preservation.",
+            "icon": "03"
+          },
+          {
+            "name": "AI Visuals & Content Creation",
+            "description": "Generate lifestyle imagery, social cuts and seasonal scenes from a single 3D asset.",
+            "icon": "04"
+          },
+          {
+            "name": "3D Digital Asset Management",
+            "description": "Versioning, permissions, distribution and channel-aware delivery — built for 3D-first orgs.",
+            "icon": "05"
+          },
+          {
+            "name": "Engagement Analytics & ROI",
+            "description": "Measure interaction depth, conversion lift, and return-rate impact down to the SKU.",
+            "icon": "06"
+          }
         ]
       },
       "integrations": {
         "eyebrow": "Integrations",
         "title": "Lives where your stack already runs.",
         "items": [
-          { "name": "Shopify", "description": "Native theme app + Liquid embed." },
-          { "name": "WooCommerce", "description": "Plugin install in under 60 seconds." },
-          { "name": "Magento", "description": "Adobe Commerce module included." },
-          { "name": "BigCommerce", "description": "Stencil-ready snippet." },
-          { "name": "Wix & Squarespace", "description": "Code-block embed, fully responsive." },
-          { "name": "Custom CMS", "description": "Universal JS SDK + REST API." }
+          {
+            "name": "Shopify",
+            "description": "Native theme app + Liquid embed."
+          },
+          {
+            "name": "WooCommerce",
+            "description": "Plugin install in under 60 seconds."
+          },
+          {
+            "name": "Magento",
+            "description": "Adobe Commerce module included."
+          },
+          {
+            "name": "BigCommerce",
+            "description": "Stencil-ready snippet."
+          },
+          {
+            "name": "Wix & Squarespace",
+            "description": "Code-block embed, fully responsive."
+          },
+          {
+            "name": "Custom CMS",
+            "description": "Universal JS SDK + REST API."
+          }
         ]
       },
       "cta": {
         "title": "See your top SKU rebuilt — on a 30-min call.",
         "subtitle": "We'll bring a live 3D and AR build of your hero product to the demo.",
-        "primaryCta": { "text": "Book a Demo", "href": "/contact" },
-        "secondaryCta": { "text": "Explore Industries", "href": "/industries" }
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
+        },
+        "secondaryCta": {
+          "text": "Explore Industries",
+          "href": "/industries"
+        }
       }
     },
     "industries": {
@@ -244,30 +534,75 @@
         "eyebrow": "Sectors Served",
         "title": "Eight industries. One immersive engine.",
         "items": [
-          { "name": "Furniture", "description": "Web-AR placement, fabric configurators and lifestyle generation. Ideal for sofas, tables, beds and decor." },
-          { "name": "Modular Kitchens", "description": "Real-time layout configuration with finishes, hardware and appliance modules — instant quote integration." },
-          { "name": "Automotive", "description": "Photoreal 3D walkarounds, trim and color configurators, interior 360° experiences." },
-          { "name": "Doors & Windows", "description": "Visualize finishes against real architecture using web AR. Reduce site-visit dependency." },
-          { "name": "Pre-schools", "description": "Virtual classroom and play-zone tours that dramatically improve admission funnel conversion." },
-          { "name": "Personalized Retail", "description": "Live engraving, monogramming and material customization for premium retail SKUs." },
-          { "name": "Industrial Machinery", "description": "Show motion, internals and scale with interactive 3D — perfect for sales enablement and B2B portals." },
-          { "name": "And more", "description": "Eyewear, footwear, jewelry, electronics, sports gear — if it has a SKU, we can make it interactive." }
+          {
+            "name": "Furniture",
+            "description": "Web-AR placement, fabric configurators and lifestyle generation. Ideal for sofas, tables, beds and decor."
+          },
+          {
+            "name": "Modular Kitchens",
+            "description": "Real-time layout configuration with finishes, hardware and appliance modules — instant quote integration."
+          },
+          {
+            "name": "Automotive",
+            "description": "Photoreal 3D walkarounds, trim and color configurators, interior 360° experiences."
+          },
+          {
+            "name": "Doors & Windows",
+            "description": "Visualize finishes against real architecture using web AR. Reduce site-visit dependency."
+          },
+          {
+            "name": "Pre-schools",
+            "description": "Virtual classroom and play-zone tours that dramatically improve admission funnel conversion."
+          },
+          {
+            "name": "Personalized Retail",
+            "description": "Live engraving, monogramming and material customization for premium retail SKUs."
+          },
+          {
+            "name": "Industrial Machinery",
+            "description": "Show motion, internals and scale with interactive 3D — perfect for sales enablement and B2B portals."
+          },
+          {
+            "name": "And more",
+            "description": "Eyewear, footwear, jewelry, electronics, sports gear — if it has a SKU, we can make it interactive."
+          }
         ]
       },
       "testimonials": {
         "eyebrow": "What partners say",
         "title": "Lift, returns, photography spend — measured.",
         "items": [
-          { "quote": "The kitchen configurator paid for itself in 5 weeks. Our showrooms now use it as a live sales tool.", "name": "Rohan Saxena", "role": "Founder, Modular Kitchens", "avatar": "_industries::testimonials::3__avatar__0" },
-          { "quote": "AR placement made our return rate look like a different category entirely. The CFO finally smiled at e-commerce.", "name": "Daria Kask", "role": "Director of Growth, Home Brand", "avatar": "_industries::testimonials::3__avatar__1" },
-          { "quote": "For industrial machinery, this is the closest thing to having the equipment on the buyer's floor. Game-changing for B2B.", "name": "Vincent Park", "role": "VP Sales, Industrial OEM", "avatar": "_industries::testimonials::3__avatar__2" }
+          {
+            "quote": "The kitchen configurator paid for itself in 5 weeks. Our showrooms now use it as a live sales tool.",
+            "name": "Rohan Saxena",
+            "role": "Founder, Modular Kitchens",
+            "avatar": "_industries::testimonials::3__avatar__0"
+          },
+          {
+            "quote": "AR placement made our return rate look like a different category entirely. The CFO finally smiled at e-commerce.",
+            "name": "Daria Kask",
+            "role": "Director of Growth, Home Brand",
+            "avatar": "_industries::testimonials::3__avatar__1"
+          },
+          {
+            "quote": "For industrial machinery, this is the closest thing to having the equipment on the buyer's floor. Game-changing for B2B.",
+            "name": "Vincent Park",
+            "role": "VP Sales, Industrial OEM",
+            "avatar": "_industries::testimonials::3__avatar__2"
+          }
         ]
       },
       "cta": {
         "title": "Don't see your category?",
         "subtitle": "If it has a SKU, we can make it interactive. Tell us what you sell.",
-        "primaryCta": { "text": "Book a Demo", "href": "/contact" },
-        "secondaryCta": { "text": "Explore Platform", "href": "/platform" }
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
+        },
+        "secondaryCta": {
+          "text": "Explore Platform",
+          "href": "/platform"
+        }
       }
     }
   },
@@ -275,44 +610,97 @@
     "tagline": "Reimagine how the world experiences your products. Immersive 3D and AR commerce, no code required.",
     "copyright": "© 2026 Aapastech Private Limited. All rights reserved.",
     "socials": [
-      { "label": "LinkedIn", "href": "https://linkedin.com" },
-      { "label": "Facebook", "href": "https://facebook.com" },
-      { "label": "Instagram", "href": "https://instagram.com" },
-      { "label": "WhatsApp", "href": "https://wa.me/919667747082" }
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://facebook.com"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://instagram.com"
+      },
+      {
+        "label": "WhatsApp",
+        "href": "https://wa.me/919667747082"
+      }
     ],
     "columns": [
       {
         "title": "Platform",
         "links": [
-          { "label": "3D 360° Viewer", "href": "/platform" },
-          { "label": "3D Configurator", "href": "/platform" },
-          { "label": "AR Viewer", "href": "/platform" },
-          { "label": "AI Visuals & DAM", "href": "/platform" },
-          { "label": "Analytics", "href": "/platform" }
+          {
+            "label": "3D 360° Viewer",
+            "href": "/platform"
+          },
+          {
+            "label": "3D Configurator",
+            "href": "/platform"
+          },
+          {
+            "label": "AR Viewer",
+            "href": "/platform"
+          },
+          {
+            "label": "AI Visuals & DAM",
+            "href": "/platform"
+          },
+          {
+            "label": "Analytics",
+            "href": "/platform"
+          }
         ]
       },
       {
         "title": "Company",
         "links": [
-          { "label": "About", "href": "/about" },
-          { "label": "Industries", "href": "/industries" },
-          { "label": "Blog", "href": "/blog" },
-          { "label": "Contact", "href": "/contact" }
+          {
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "label": "Industries",
+            "href": "/industries"
+          },
+          {
+            "label": "Blog",
+            "href": "/blog"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact"
+          }
         ]
       },
       {
         "title": "Connect",
         "links": [
-          { "label": "hello@thridify.com", "href": "mailto:hello@thridify.com" },
-          { "label": "India: +91-966-774-7082", "href": "tel:+919667747082" },
-          { "label": "Canada: +1-437-800-0190", "href": "tel:+14378000190" },
-          { "label": "Europe: Estonia", "href": "/contact" }
+          {
+            "label": "hello@thridify.com",
+            "href": "mailto:hello@thridify.com"
+          },
+          {
+            "label": "India: +91-966-774-7082",
+            "href": "tel:+919667747082"
+          },
+          {
+            "label": "Americas: +1-437-800-0190",
+            "href": "tel:+14378000190"
+          }
         ]
       }
     ],
     "legal": [
-      { "label": "Privacy", "href": "/privacy" },
-      { "label": "Terms", "href": "/terms" }
+      {
+        "label": "Privacy",
+        "href": "/privacy"
+      },
+      {
+        "label": "Terms",
+        "href": "/terms"
+      }
     ]
   }
 }

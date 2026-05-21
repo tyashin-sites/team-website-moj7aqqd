@@ -120,7 +120,7 @@ export default function IndustriesPage() {
     title: 'Don\'t see your industry? We probably already render it.',
     subtitle:
       'Tell us what you sell. We\'ll show you the fastest path from your catalogue to a fully immersive 3D + AR storefront.',
-    primaryCta: { text: 'Book a Demo', href: '/contact' },
+    primaryCta: { text: 'Book a Demo', href: 'https://calendly.com/hello-thridify/30min' },
     secondaryCta: { text: 'Explore the Platform', href: '/platform' },
   };
 
@@ -139,7 +139,7 @@ export default function IndustriesPage() {
               </p>
             )}
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn btn-primary">Book a Demo</Link>
+              <Link href="https://calendly.com/hello-thridify/30min" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Book a Demo</Link>
               <Link href="/platform" className="btn btn-ghost">See the Platform</Link>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function IndustriesPage() {
                   <ul className="mt-auto space-y-2 pt-4 border-t border-foreground/10">
                     {ind.useCases.map((uc) => (
                       <li key={uc} className="flex items-start gap-3 text-sm text-foreground/80">
-                        <span className="mt-2 w-1.5 tt-1.5 rounded-full bg-primary flex-shrink-0" aria-hidden />
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" aria-hidden />
                         <span>{uc}</span>
                       </li>
                     ))}
