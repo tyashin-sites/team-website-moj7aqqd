@@ -125,6 +125,10 @@ Prepared in advance, executed only on instruction:
 - Tyashin custom-domain attach plan for thridify.com (www + apex per
   platform canonical-host rules), rollback = repoint DNS to WordPress.
 - Search Console + Bing Webmaster verification, sitemap submission.
+- Re-verify `/brand-kit.css` serves the canonical palette on the custom
+  domain at cutover (the platform brand kit was PATCHed to canonical on
+  2026-07-24 — ASSET-DEBT #13; the site itself keeps local tokens and no
+  render-blocking brand-kit.css link).
 - Post-launch watch: 48h error/uptime/CWV monitoring checklist.
 
 ## Results instrumentation (what "drives results" means, measurably)

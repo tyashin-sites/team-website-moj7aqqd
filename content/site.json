@@ -122,19 +122,45 @@
       },
       "proof": {
         "eyebrow": "Proof",
-        "title": "Outcomes the platform is built to deliver.",
+        "title": "Outcomes the platform delivers.",
         "metrics": [
           {
-            "value": "up to 3×",
-            "label": "conversion rate improvement"
+            "value": "75%",
+            "label": "lower product returns"
           },
           {
-            "value": "up to +100%",
-            "label": "customer engagement increase"
+            "value": "3×",
+            "label": "higher conversion rates"
           },
           {
-            "value": "+40%",
-            "label": "conversions for businesses using Thridify"
+            "value": "100%",
+            "label": "more engagement"
+          },
+          {
+            "value": "70%",
+            "label": "lower photography cost"
+          },
+          {
+            "value": "100%",
+            "label": "higher click-through rate"
+          },
+          {
+            "value": "40%",
+            "label": "lower inventory cost"
+          }
+        ],
+        "testimonials": [
+          {
+            "quote": "Our sales cycle has reduced from months to days and sometimes to hours with Thridify.",
+            "company": "Guntier"
+          },
+          {
+            "quote": "Thridify is just Wow.",
+            "company": "Sunbaby"
+          },
+          {
+            "quote": "Can’t imagine my customers placing orders if they weren’t trying my products in AR. Our sales rep do 50% of the job, and Thridify, the remaining 50%",
+            "company": "Vortex Splash"
           }
         ]
       },

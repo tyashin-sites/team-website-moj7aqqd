@@ -23,6 +23,9 @@ import type { Cta } from '@/lib/cta';
 export type NavLink = { label: string; href: string };
 export type ClientLogo = { name: string; logoUrl: string };
 export type ProofMetric = { value: string; label: string };
+/** REAL quotes only (No-Faking rule) — company-level attribution, exactly as
+ *  production thridify.com renders them. */
+export type Testimonial = { quote: string; company: string };
 export type VerticalItem = { name: string; pain: string };
 export type TrioItem = { id: string; name: string; description: string };
 export type PlatformProduct = {
@@ -65,7 +68,12 @@ export type HomeContent = {
   beforeAfter: { eyebrow: string; title: string; lead: string };
   verticals: { eyebrow: string; title: string; items: VerticalItem[] };
   productTrio: { eyebrow: string; title: string; items: TrioItem[] };
-  proof: { eyebrow: string; title: string; metrics: ProofMetric[] };
+  proof: {
+    eyebrow: string;
+    title: string;
+    metrics: ProofMetric[];
+    testimonials: Testimonial[];
+  };
   cta: CtaSection;
 };
 

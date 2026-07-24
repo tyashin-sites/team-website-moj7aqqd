@@ -129,8 +129,24 @@ Never name custom classes with Tailwind-utility-colliding names (`h-1`,
    the material; an IBM-Plex-Mono price that ticks when a swatch changes;
    an "AR" chip that reveals a QR code on desktop hover / becomes "View in
    your room" on mobile. This IS the pitch, delivered pre-copy.
-2. **MetricBar** — directly under hero: 30% fewer returns · 3× faster close ·
-   65% less rework · +23% recovery. Count-up numbers, mono font, one pink.
+2. **MetricBar** — directly under hero, the 4 strongest of the canonical
+   set: 75% lower product returns · 3× higher conversion · 100% more
+   engagement · 70% lower photography cost. Count-up numbers, mono font,
+   one pink.
+
+   **CANONICAL IMPACT METRICS (the ONLY permitted stat set sitewide —
+   source: thridify.com production homepage, user-confirmed 2026-07-24):**
+   - 75% Lower Product Returns
+   - 3× Higher Conversion Rates
+   - 100% More Engagement
+   - 70% Lower Photography Cost
+   - 100% Higher Click-through Rate
+   - 40% Lower Inventory Cost
+
+   MetricBar carries the first four; the home Proof section carries all
+   six as metric cards. No other quantitative claim may render anywhere
+   on the site. If this list changes, change it HERE and in the site in
+   the same commit — spec and site must never disagree.
 3. **BeforeAfter** — split panel: left = flat product photo annotated with
    pains (returns, quote delays); scrolling/toggling transforms to the 3D
    version annotated with gains in pink. The positioning made physical.
@@ -139,9 +155,11 @@ Never name custom classes with Tailwind-utility-colliding names (`h-1`,
    glass card with icon + ≤10 words.
 5. **VerticalCard** — icon chip, vertical name, 1-line pain in their
    vocabulary, one metric, "Explore →" slide-in on hover.
-6. **ProofCard** — REAL quotes with real names/companies only (No-Faking
-   rule). Until real quotes are collected, ship metric-based proof cards
-   (client logo + outcome number) instead of invented testimonials.
+6. **ProofCard** — REAL quotes only (No-Faking rule), company-level
+   attribution ("— Guntier") exactly as production thridify.com does; never
+   invented person names. Current real set (verbatim from production,
+   user-confirmed 2026-07-24): Guntier, Sunbaby, Vortex Splash. Metric
+   proof cards (outcome number + logos) accompany the quotes.
 7. **CTABand** — dark ink section, subtle teal→pink aurora at 20% opacity,
    headline ≤ 10 words, single Calendly CTA.
 

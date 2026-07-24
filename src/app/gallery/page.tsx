@@ -10,6 +10,7 @@ import { PipelineStrip } from '@/components/signature/PipelineStrip';
 import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { CTABand } from '@/components/signature/CTABand';
 import { VerticalCard } from '@/components/signature/VerticalCard';
+import { ProofCard } from '@/components/signature/ProofCard';
 
 /**
  * /gallery — internal component QA surface (BUILD-PLAN Phase 1 exit gate:
@@ -163,7 +164,7 @@ export default function GalleryPage() {
         <div className="container-x">
           <h2 className="tt-2">VerticalCard</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <VerticalCard icon={Sofa} name="Furniture" pain="Shoppers can’t judge scale or fabric from flat photos." metric="30% fewer returns" />
+            <VerticalCard icon={Sofa} name="Furniture" pain="Shoppers can’t judge scale or fabric from flat photos." metric="75% lower product returns" />
             <VerticalCard icon={ChefHat} name="Modular Kitchens" pain="Quotes stall while layouts bounce between sales and design." />
             <VerticalCard icon={Wrench} name="Industrial Machinery" pain="Internals and motion are invisible in a brochure PDF." />
           </div>
@@ -183,6 +184,20 @@ export default function GalleryPage() {
       </section>
 
       <MetricBar />
+
+      {/* ── ProofCard ─────────────────────────────────────────────────── */}
+      <section className="section">
+        <div className="container-x">
+          <h2 className="tt-2">ProofCard</h2>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+            <ProofCard
+              quote="Our sales cycle has reduced from months to days and sometimes to hours with Thridify."
+              company="Guntier"
+            />
+            <ProofCard quote="Thridify is just Wow." company="Sunbaby" />
+          </div>
+        </div>
+      </section>
 
       <section className="section">
         <div className="container-x">

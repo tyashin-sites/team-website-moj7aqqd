@@ -17,7 +17,7 @@ export type VerticalCardProps = {
   name: string;
   /** 1-line pain, in the vertical's vocabulary (DESIGN-SPEC §7.5). */
   pain: string;
-  /** One REAL metric, e.g. "30% fewer returns". Optional until sourced. */
+  /** One REAL metric, e.g. "75% lower product returns". Optional until sourced. */
   metric?: string;
   href?: string;
   className?: string;

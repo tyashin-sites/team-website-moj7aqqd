@@ -1,8 +1,10 @@
 'use client';
 
 /**
- * MetricBar — DESIGN-SPEC §7.2. Sits directly under the hero:
- * 30% fewer returns · 3× faster close · 65% less rework · +23% recovery.
+ * MetricBar — DESIGN-SPEC §7.2. Sits directly under the hero with the 4
+ * strongest canonical impact stats (source: thridify.com production,
+ * user-confirmed 2026-07-24): 75% lower product returns · 3× higher
+ * conversion · 100% more engagement · 70% lower photography cost.
  * Count-up over 1.4s ease-out when scrolled into view, once. Mono font,
  * exactly ONE pink stat. Reduced motion → final values, no animation.
  */
@@ -19,12 +21,12 @@ export type Metric = {
   pink?: boolean;
 };
 
-// Canonical metrics from DESIGN-SPEC §7.2.
+// Canonical metrics from DESIGN-SPEC §7.2 (thridify.com production set).
 const DEFAULT_METRICS: Metric[] = [
-  { value: 30, suffix: '%', label: 'fewer returns' },
-  { value: 3, suffix: '×', label: 'faster close' },
-  { value: 65, suffix: '%', label: 'less rework' },
-  { value: 23, prefix: '+', suffix: '%', label: 'recovery', pink: true },
+  { value: 75, suffix: '%', label: 'lower product returns' },
+  { value: 3, suffix: '×', label: 'higher conversion', pink: true },
+  { value: 100, suffix: '%', label: 'more engagement' },
+  { value: 70, suffix: '%', label: 'lower photography cost' },
 ];
 
 function CountUp({ metric, run }: { metric: Metric; run: boolean }) {

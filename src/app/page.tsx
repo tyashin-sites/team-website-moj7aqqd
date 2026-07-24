@@ -23,6 +23,7 @@ import { MetricBar } from '@/components/signature/MetricBar';
 import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { PipelineStrip } from '@/components/signature/PipelineStrip';
 import { VerticalCard } from '@/components/signature/VerticalCard';
+import { ProofCard } from '@/components/signature/ProofCard';
 import { CTABand } from '@/components/signature/CTABand';
 
 export const metadata: Metadata = {
@@ -92,8 +93,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. METRIC BAR — directly under hero (DESIGN-SPEC §7.2; the only
-          permitted platform metrics: −30% / 3× / −65% / +23%). */}
+      {/* 2. METRIC BAR — directly under hero (DESIGN-SPEC §7.2; the 4
+          strongest canonical impact stats from thridify.com production:
+          75% returns / 3× conversion / 100% engagement / 70% photo cost). */}
       <MetricBar />
 
       {/* 3. LOGO MARQUEE — real client logos only. */}
@@ -159,19 +161,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. PROOF — metric proof cards + real client logos ONLY (No-Faking:
-          real quotes land here once collected, ASSET-DEBT #2). */}
+      {/* 8. PROOF — the 6 canonical impact metrics + REAL customer quotes
+          (verbatim from production thridify.com, user-confirmed 2026-07-24)
+          + real client logos (§7.6, No-Faking). */}
       <section className="section">
         <div className="container-x">
           <div className="max-w-2xl mb-14">
             <SectionHeading eyebrow={home.proof.eyebrow} title={home.proof.title} />
           </div>
-          <dl className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <dl className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {home.proof.metrics.map((m, i) => (
               <Reveal key={m.label} delay={i * 0.08} className="card p-8">
                 <dd
                   className={`font-mono tabular-nums text-4xl md:text-5xl font-medium ${
-                    i === home.proof.metrics.length - 1 ? 'text-primary' : 'text-foreground'
+                    i === 1 ? 'text-primary' : 'text-foreground'
                   }`}
                 >
                   {m.value}
@@ -180,8 +183,15 @@ export default function HomePage() {
               </Reveal>
             ))}
           </dl>
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {home.proof.testimonials.map((t, i) => (
+              <Reveal key={t.company} delay={i * 0.08}>
+                <ProofCard quote={t.quote} company={t.company} />
+              </Reveal>
+            ))}
+          </div>
           <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6">
-            <span className="text-sm text-foreground/55">In production with</span>
+            <span className="text-sm text-foreground/55">Client work includes</span>
             {home.clients.logos.map((logo) => (
               <Image
                 key={logo.name}
