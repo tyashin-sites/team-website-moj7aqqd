@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import siteData from '@/../content/site.json';
+import { ArrowRight } from 'lucide-react';
+import { ctaLabel } from '@/lib/cta';
 
 export const metadata: Metadata = {
   title: 'Industries — 3D & AR Commerce for Every Sector',
@@ -249,7 +251,7 @@ export default function IndustriesPage() {
                     href={cta.primaryCta.href}
                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-background text-foreground font-semibold hover:bg-primary hover:text-primary-contrast transition-colors"
                   >
-                    {cta.primaryCta.text} <span aria-hidden>→</span>
+                    {ctaLabel(cta.primaryCta)} <ArrowRight className="w-4 h-4" aria-hidden />
                   </Link>
                 )}
                 {cta.secondaryCta && (
@@ -257,7 +259,7 @@ export default function IndustriesPage() {
                     href={cta.secondaryCta.href}
                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-background/30 text-background font-semibold hover:bg-background/10 transition-colors"
                   >
-                    {cta.secondaryCta.text}
+                    {ctaLabel(cta.secondaryCta)}
                   </Link>
                 )}
               </div>

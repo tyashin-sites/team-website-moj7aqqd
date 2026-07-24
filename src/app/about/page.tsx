@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import siteData from '@/../content/site.json';
+import { ArrowUpRight } from 'lucide-react';
+import { ctaLabel, type Cta } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
@@ -16,7 +18,7 @@ type AboutData = {
   stats: { items: { value: string; label: string }[] };
   team: { title: string; subtitle?: string; members: { name: string; role: string; image?: string }[] };
   values: { title: string; subtitle?: string; items: { title: string; body: string }[] };
-  cta: { title: string; subtitle?: string; primaryCta?: { text: string; href: string }; secondaryCta?: { text: string; href: string } };
+  cta: { title: string; subtitle?: string; primaryCta?: Cta; secondaryCta?: Cta };
   offices?: { city: string; country: string; phone?: string; whatsapp?: string }[];
 };
 
@@ -80,8 +82,8 @@ const FALLBACK: AboutData = {
     subtitle: 'Four principles that guide every product decision.',
     items: [
       { title: 'Outcomes over features', body: 'We measure ourselves on conversion, return rate, and content cost — not on shipping logos.' },
-      { title: 'Zero-code by default', body: 'If it requires a developer, it isn\u2019t done. Marketers should ship 3D experiences themselves.' },
-      { title: 'Photoreal, always', body: 'Our pipeline produces assets that look like product photography — because that\u2019s the bar shoppers expect.' },
+      { title: 'Zero-code by default', body: 'If it requires a developer, it isn’t done. Marketers should ship 3D experiences themselves.' },
+      { title: 'Photoreal, always', body: 'Our pipeline produces assets that look like product photography — because that’s the bar shoppers expect.' },
       { title: 'Every device, every shopper', body: 'App-free AR on any modern smartphone. No friction between curiosity and conversion.' },
     ],
   },
@@ -92,7 +94,7 @@ const FALLBACK: AboutData = {
   ],
   cta: {
     title: 'See your product in 3D in 14 days.',
-    subtitle: 'Bring us a single SKU. We\u2019ll show you what spatial commerce can do for your conversion rate.',
+    subtitle: 'Bring us a single SKU. We’ll show you what spatial commerce can do for your conversion rate.',
     primaryCta: { text: 'Book a Demo', href: 'https://calendly.com/hello-thridify/30min' },
     secondaryCta: { text: 'Explore the platform', href: '/platform' },
   },
@@ -290,7 +292,7 @@ export default function AboutPage() {
                         </a>
                         {o.whatsapp && (
                           <a href={o.whatsapp} target="_blank" rel="noopener noreferrer" className="text-primary hover:opacity-80">
-                            WhatsApp →
+                            WhatsApp <ArrowUpRight className="inline w-3.5 h-3.5 align-[-0.125em]" aria-hidden />
                           </a>
                         )}
                       </div>
@@ -312,12 +314,12 @@ export default function AboutPage() {
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             {d.cta.primaryCta && (
               <Link href={d.cta.primaryCta.href} className="btn btn-primary">
-                {d.cta.primaryCta.text}
+                {ctaLabel(d.cta.primaryCta)}
               </Link>
             )}
             {d.cta.secondaryCta && (
               <Link href={d.cta.secondaryCta.href} className="btn btn-ghost">
-                {d.cta.secondaryCta.text}
+                {ctaLabel(d.cta.secondaryCta)}
               </Link>
             )}
           </div>

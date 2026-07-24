@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import siteData from '@/../content/site.json';
+import { ArrowRight } from 'lucide-react';
+import { ctaLabel, type Cta } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
@@ -10,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 type PlatformContent = {
-  hero: { eyebrow?: string; title: string; subtitle?: string; primaryCta?: { label: string; href: string }; secondaryCta?: { label: string; href: string } };
+  hero: { eyebrow?: string; title: string; subtitle?: string; primaryCta?: Cta; secondaryCta?: Cta };
   products: { title: string; subtitle?: string; items: { name: string; tagline?: string; description: string; features?: string[] }[] };
   capabilities: { title: string; subtitle?: string; items: { title: string; description: string }[] };
-  cta: { title: string; subtitle?: string; primaryCta?: { label: string; href: string }; secondaryCta?: { label: string; href: string } };
+  cta: { title: string; subtitle?: string; primaryCta?: Cta; secondaryCta?: Cta };
 };
 
 const FALLBACK: PlatformContent = {
@@ -137,12 +139,12 @@ export default function PlatformPage() {
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center reveal">
             {c.hero.primaryCta && (
               <Link href={c.hero.primaryCta.href} className="btn btn-primary">
-                {c.hero.primaryCta.label}
+                {ctaLabel(c.hero.primaryCta)}
               </Link>
             )}
             {c.hero.secondaryCta && (
               <Link href={c.hero.secondaryCta.href} className="btn btn-ghost">
-                {c.hero.secondaryCta.label}
+                {ctaLabel(c.hero.secondaryCta)}
               </Link>
             )}
           </div>
@@ -216,8 +218,8 @@ export default function PlatformPage() {
                       <span className="text-xs uppercase tracking-[0.18em] text-foreground/50">
                         Module · {p.name.split(' ').slice(0, 2).join(' ')}
                       </span>
-                      <span className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center text-xs">
-                        →
+                      <span className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center">
+                        <ArrowRight className="w-4 h-4" aria-hidden />
                       </span>
                     </div>
                   </div>
@@ -272,12 +274,12 @@ export default function PlatformPage() {
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               {c.cta.primaryCta && (
                 <Link href={c.cta.primaryCta.href} className="btn btn-primary">
-                  {c.cta.primaryCta.label}
+                  {ctaLabel(c.cta.primaryCta)}
                 </Link>
               )}
               {c.cta.secondaryCta && (
                 <Link href={c.cta.secondaryCta.href} className="btn btn-ghost">
-                  {c.cta.secondaryCta.label}
+                  {ctaLabel(c.cta.secondaryCta)}
                 </Link>
               )}
             </div>

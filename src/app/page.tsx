@@ -9,12 +9,14 @@ import {
   ShoppingBag,
   Wrench,
   Sparkles,
-  ArrowUpRight,
+  ArrowRight,
 } from 'lucide-react';
+import { ctaLabel, type Cta } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
 import { ImpactBlock, type ImpactStat, type ClientLogo } from '@/components/ImpactBlock';
 import { HeroObject } from '@/components/signature/HeroObject';
 import { MetricBar } from '@/components/signature/MetricBar';
+import { VerticalCard } from '@/components/signature/VerticalCard';
 
 // Pick an icon for each category name. Falls back to ✨ Sparkles for
 // anything we don't recognize. Keys are matched case-insensitively
@@ -55,15 +57,16 @@ const CLIENT_LOGOS: ClientLogo[] = [
 ];
 
 type HomeData = {
-  hero: { eyebrow?: string; title: string; subtitle: string; primaryCta: { label: string; href: string }; secondaryCta?: { label: string; href: string }; metrics?: { value: string; label: string }[] };
+  hero: { eyebrow?: string; title: string; subtitle: string; primaryCta: Cta; secondaryCta?: Cta; metrics?: { value: string; label: string }[] };
   clients: { title: string; logos: string[] };
   features: { eyebrow?: string; title: string; subtitle?: string; items: { title: string; description: string; icon?: string }[] };
   stats: { items: { value: string; label: string }[] };
-  categories: { eyebrow?: string; title: string; subtitle?: string; items: { name: string; description: string }[] };
+  // site.json stores the card line under `blurb`; older shapes used `description`.
+  categories: { eyebrow?: string; title: string; subtitle?: string; items: { name: string; description?: string; blurb?: string }[] };
   process: { eyebrow?: string; title: string; subtitle?: string; steps: { number: string; title: string; description: string }[] };
   testimonials: { title: string; items: { quote: string; author?: string; name?: string; role?: string }[] };
   team: { eyebrow?: string; title: string; subtitle?: string; offices: { region: string; city: string; phone?: string; whatsapp?: string; email?: string }[] };
-  cta: { title: string; subtitle?: string; primaryCta: { label: string; href: string }; secondaryCta?: { label: string; href: string } };
+  cta: { title: string; subtitle?: string; primaryCta: Cta; secondaryCta?: Cta };
 };
 
 const FALLBACK_HOME: HomeData = {
@@ -114,7 +117,7 @@ export default function HomePage() {
       {/* HERO — showroom mode (DESIGN-SPEC §7.1/§8): dark ink, live 3D object.
           Headline 7 words (≤12); subline 17 words (≤24) — copy derived from
           the verbatim thridify.com hero. */}
-      <section className="bg-ink text-paper relative overflow-hidden">
+      <section className="on-dark bg-ink text-paper relative overflow-hidden">
         <div
           className="absolute -right-40 top-1/4 w-[36rem] h-[36rem] rounded-full bg-accent/10 blur-3xl pointer-events-none"
           aria-hidden
@@ -196,37 +199,20 @@ export default function HomePage() {
               <h2 className="tt-1">{home.categories.title}</h2>
               {home.categories.subtitle && <p className="mt-5 text-lg text-foreground/70">{home.categories.subtitle}</p>}
             </div>
-            <Link href="/industries" className="btn btn-ghost">All industries →</Link>
+            <Link href="/industries" className="btn btn-ghost">
+              All industries <ArrowRight className="w-4 h-4" aria-hidden />
+            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {(home.categories.items ?? []).map((c, i) => {
-              const Icon = iconForCategory(c.name);
-              return (
-                <Reveal
-                  key={c.name}
-                  delay={i * 0.05}
-                  className="group relative rounded-2xl border border-foreground/10 bg-surface/40 p-7 transition-all duration-300 hover:bg-surface hover:-translate-y-1 hover:shadow-lg hover:border-primary/20 cursor-pointer overflow-hidden"
-                >
-                  {/* decorative blob */}
-                  <div
-                    className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500"
-                    aria-hidden
-                  />
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-primary-contrast transition-colors duration-300">
-                      <Icon className="w-7 h-7" strokeWidth={1.5} />
-                    </div>
-                    <h3 className="font-heading text-lg font-semibold tracking-tight mb-2">
-                      {c.name}
-                    </h3>
-                    <p className="text-sm text-foreground/65 leading-relaxed">{c.description}</p>
-                    <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                      Explore <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                </Reveal>
-              );
-            })}
+            {(home.categories.items ?? []).map((c, i) => (
+              <Reveal key={c.name} delay={i * 0.05}>
+                <VerticalCard
+                  icon={iconForCategory(c.name)}
+                  name={c.name}
+                  pain={c.description ?? c.blurb ?? ''}
+                />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -345,11 +331,11 @@ export default function HomePage() {
           {home.cta.subtitle && <p className="mt-8 text-xl text-foreground/70 max-w-2xl mx-auto">{home.cta.subtitle}</p>}
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={home.cta.primaryCta.href} className="btn btn-primary px-8 py-4 text-base">
-              {home.cta.primaryCta.label} →
+              {ctaLabel(home.cta.primaryCta)} <ArrowRight className="w-4 h-4" aria-hidden />
             </Link>
             {home.cta.secondaryCta && (
               <Link href={home.cta.secondaryCta.href} className="btn btn-ghost px-8 py-4 text-base">
-                {home.cta.secondaryCta.label}
+                {ctaLabel(home.cta.secondaryCta)}
               </Link>
             )}
           </div>

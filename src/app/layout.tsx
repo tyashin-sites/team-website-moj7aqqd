@@ -42,6 +42,7 @@ const CANONICAL_BRAND_CSS = `
   --brand-text: #021F17;
   --brand-text-muted: #5B7A6E;
   --brand-muted-dark: #A3BFB5;
+  --brand-primary-soft: #6FCFAB;
   --brand-border: rgba(2, 31, 23, 0.08);
   --brand-radius-sm: 0.5rem;
   --brand-radius-md: 0.75rem;

@@ -8,6 +8,7 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
+import { useCountUp } from '@/lib/useCountUp';
 
 export type Metric = {
   value: number;
@@ -27,26 +28,9 @@ const DEFAULT_METRICS: Metric[] = [
 ];
 
 function CountUp({ metric, run }: { metric: Metric; run: boolean }) {
-  const [display, setDisplay] = useState(run ? metric.value : 0);
-
-  useEffect(() => {
-    if (!run) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setDisplay(metric.value);
-      return;
-    }
-    let raf = 0;
-    const t0 = performance.now();
-    const dur = 1400;
-    const step = (t: number) => {
-      const p = Math.min(1, (t - t0) / dur);
-      const eased = 1 - Math.pow(1 - p, 3); // ease-out
-      setDisplay(Math.round(metric.value * eased));
-      if (p < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [run, metric.value]);
+  // Shared 1.4s ease-out counter (src/lib/useCountUp.ts) — reduced motion
+  // shows the final value immediately.
+  const display = useCountUp(metric.value, run);
 
   return (
     <span className="font-mono tabular-nums">

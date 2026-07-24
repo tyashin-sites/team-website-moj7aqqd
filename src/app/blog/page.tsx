@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import siteData from '@/../content/site.json';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Blog — Insights on 3D & AR Commerce',
@@ -237,7 +238,7 @@ export default async function BlogPage({
                       href={`/blog?page=${currentPage - 1}`}
                       className="btn btn-ghost"
                     >
-                      ← Previous
+                      <ArrowLeft className="w-4 h-4" aria-hidden /> Previous
                     </Link>
                   )}
                   <span className="px-5 py-2 text-sm text-foreground/60">
@@ -248,7 +249,7 @@ export default async function BlogPage({
                       href={`/blog?page=${currentPage + 1}`}
                       className="btn btn-primary"
                     >
-                      Next →
+                      Next <ArrowRight className="w-4 h-4" aria-hidden />
                     </Link>
                   )}
                 </nav>

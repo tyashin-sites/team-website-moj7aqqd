@@ -41,7 +41,8 @@ export function Reveal({
           opacity: 1,
           x: 0,
           y: 0,
-          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+          // 600ms Reveal tier per DESIGN-SPEC §5 (mirrors --dur-reveal).
+          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
         },
       };
 

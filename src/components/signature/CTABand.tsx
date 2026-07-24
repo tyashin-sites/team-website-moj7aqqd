@@ -13,7 +13,7 @@ export function CTABand({
   ctaLabel?: string;
 }) {
   return (
-    <section className="relative bg-ink text-paper overflow-hidden">
+    <section className="on-dark relative bg-ink text-paper overflow-hidden">
       <div className="absolute inset-0 opacity-20 aurora pointer-events-none" aria-hidden />
       <div className="container-x section relative text-center">
         <h2 className="tt-1 text-paper max-w-3xl mx-auto">{headline}</h2>
