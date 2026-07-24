@@ -12,8 +12,9 @@ export async function Header() {
   const cta = (siteData as any)?.header?.cta ?? { label: 'Contact', href: '/contact' };
 
   return (
+    // 72px bar + blur per DESIGN-SPEC §7; logo 40px tall
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-xl border-b border-foreground/8">
-      <div className="container-x flex items-center justify-between h-24">
+      <div className="container-x flex items-center justify-between h-[72px]">
         <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label={siteName}>
           {logoUrl ? (
             <Image
@@ -21,7 +22,7 @@ export async function Header() {
               alt={siteName}
               width={220}
               height={56}
-              className="h-12 md:h-14 w-auto object-contain"
+              className="h-10 w-auto object-contain"
               priority
             />
           ) : (

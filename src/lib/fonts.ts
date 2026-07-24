@@ -1,19 +1,27 @@
-import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Space_Grotesk, Inter, IBM_Plex_Mono } from 'next/font/google';
 
-// Plus Jakarta Sans — friendly geometric sans, used for both body and headings
-// to match Thridify's design DNA (the warm-pink + forest-green direction from
-// thri-beauty-theme.lovable.app). One font family, different weights.
+// Canonical type stack per DESIGN-SPEC §2:
+//   Display/headings — Space Grotesk (500, 700)
+//   Body/UI          — Inter (400, 500, 600)
+//   Data/price/code  — IBM Plex Mono (400, 500) — price ticker, metrics, BOM
 
-export const bodyFont = Plus_Jakarta_Sans({
+export const headingFont = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-heading',
+  display: 'swap',
+});
+
+export const bodyFont = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
 });
 
-export const headingFont = Plus_Jakarta_Sans({
+export const monoFont = IBM_Plex_Mono({
   subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-heading',
+  weight: ['400', '500'],
+  variable: '--font-mono',
   display: 'swap',
 });

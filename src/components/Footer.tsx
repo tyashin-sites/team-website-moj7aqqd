@@ -38,7 +38,8 @@ export async function Footer() {
   const f = (siteData as any)?.footer ?? FALLBACK_FOOTER;
 
   return (
-    <footer className="relative bg-foreground text-background overflow-hidden">
+    // Dark ink footer — canonical #021F17 with muted #A3BFB5 text (DESIGN-SPEC §1)
+    <footer className="relative bg-ink text-paper overflow-hidden">
       <div className="absolute inset-0 opacity-30 aurora pointer-events-none" aria-hidden />
       <div className="container-x relative py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14">
@@ -57,7 +58,7 @@ export async function Footer() {
                 <span className="text-4xl font-heading font-bold tracking-tight">{siteName}</span>
               )}
             </Link>
-            <p className="text-base md:text-lg max-w-md text-background/70 leading-relaxed">
+            <p className="text-base md:text-lg max-w-md text-muted-dark leading-relaxed">
               {f.tagline ?? FALLBACK_FOOTER.tagline}
             </p>
             <div className="mt-8 flex gap-3">
@@ -70,7 +71,7 @@ export async function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="w-11 h-11 rounded-full border border-background/20 flex items-center justify-center hover:bg-background hover:text-foreground transition-colors"
+                    className="w-11 h-11 rounded-full border border-paper/20 flex items-center justify-center hover:bg-paper hover:text-ink transition-colors"
                   >
                     <Icon className="w-[18px] h-[18px]" strokeWidth={1.75} />
                   </a>
@@ -86,7 +87,7 @@ export async function Footer() {
               const isConnect = (col.title || '').toLowerCase() === 'connect';
               return (
                 <div key={col.title} className={isConnect ? 'sm:col-span-2 md:col-span-1' : ''}>
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-background/50 mb-5">
+                  <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-dark/80 mb-5">
                     {col.title}
                   </h4>
                   <ul className="space-y-3">
@@ -100,7 +101,7 @@ export async function Footer() {
                             href={link.href}
                             {...(external ? {} : {})}
                             className={
-                              'text-background/80 hover:text-background transition-colors ' +
+                              'text-muted-dark hover:text-paper transition-colors ' +
                               // Numbers (and the email) must never wrap mid-token —
                               // even on narrow phones. The `break-words` makes the
                               // whole token break to its own line gracefully if the
@@ -122,11 +123,11 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-background/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-sm text-background/60">
+        <div className="mt-16 pt-8 border-t border-paper/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-sm text-muted-dark">
           <p>{f.copyright ?? FALLBACK_FOOTER.copyright}</p>
           <div className="flex gap-6">
             {(f.legal ?? []).map((l: any) => (
-              <Link key={l.href} href={l.href} className="hover:text-background transition-colors">
+              <Link key={l.href} href={l.href} className="hover:text-paper transition-colors">
                 {l.label}
               </Link>
             ))}

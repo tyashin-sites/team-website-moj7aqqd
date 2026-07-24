@@ -12,8 +12,9 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
-import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
 import { ImpactBlock, type ImpactStat, type ClientLogo } from '@/components/ImpactBlock';
+import { HeroObject } from '@/components/signature/HeroObject';
+import { MetricBar } from '@/components/signature/MetricBar';
 
 // Pick an icon for each category name. Falls back to ✨ Sparkles for
 // anything we don't recognize. Keys are matched case-insensitively
@@ -31,27 +32,8 @@ function iconForCategory(name: string) {
   return Sparkles;
 }
 
-// Hero slides — content from thridify.com homepage (verbatim).
-const HERO_SLIDES: HeroSlide[] = [
-  {
-    number: '01',
-    title: 'Reimagine how the world experiences your products.',
-    subtitle:
-      'Empower customers to decide faster, engage deeper, buy with confidence — and see your brand stand apart.',
-  },
-  {
-    number: '02',
-    title: "Don't settle for Immersive.",
-    subtitle:
-      'Immersive experiences blended with interactivity stop scrolls. Turn static product pages into sales-driving journeys.',
-  },
-  {
-    number: '03',
-    title: 'Experience is best experienced, not told.',
-    subtitle:
-      "Instead of selling products' photoshoot, empower customers with 3D and AR experiences that build trust and drive action.",
-  },
-];
+// (HeroSlideshow retired in favor of the HeroObject showroom hero per
+// DESIGN-SPEC §7.1/§8 — the component file is kept but unused.)
 
 // Impact stats — verbatim from thridify.com "The Thridify Impact" section.
 const IMPACT_STATS: ImpactStat[] = [
@@ -129,12 +111,47 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* HERO — rotating slides with phone mockup */}
-      <HeroSlideshow
-        slides={HERO_SLIDES}
-        primaryCta={{ label: 'Book A Demo', href: 'https://calendly.com/hello-thridify/30min' }}
-        secondaryCta={{ label: 'Talk to Us', href: '/contact' }}
-      />
+      {/* HERO — showroom mode (DESIGN-SPEC §7.1/§8): dark ink, live 3D object.
+          Headline 7 words (≤12); subline 17 words (≤24) — copy derived from
+          the verbatim thridify.com hero. */}
+      <section className="bg-ink text-paper relative overflow-hidden">
+        <div
+          className="absolute -right-40 top-1/4 w-[36rem] h-[36rem] rounded-full bg-accent/10 blur-3xl pointer-events-none"
+          aria-hidden
+        />
+        <div className="container-x section grid lg:grid-cols-2 gap-14 items-center relative">
+          <div className="reveal-stagger">
+            <p className="eyebrow">3D &amp; AR Commerce</p>
+            <h1 className="tt-display text-paper">
+              Reimagine how the world experiences your products.
+            </h1>
+            <p className="lead max-w-xl" style={{ color: 'var(--brand-muted-dark)' }}>
+              Empower customers to decide faster, engage deeper, and buy with
+              confidence — in interactive 3D and AR, no code required.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href="https://calendly.com/hello-thridify/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary px-7 py-4 text-base"
+              >
+                Book a Demo
+              </a>
+              <Link
+                href="/platform"
+                className="btn btn-ghost px-7 py-4 text-base text-paper border-paper/25 hover:bg-paper/10"
+              >
+                Explore the Platform
+              </Link>
+            </div>
+          </div>
+          <HeroObject />
+        </div>
+      </section>
+
+      {/* METRIC BAR — directly under hero (DESIGN-SPEC §7.2) */}
+      <MetricBar />
 
       {/* FEATURES */}
       <section className="section">
