@@ -1,15 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getBrandKit } from '@/lib/brand-kit';
-import siteData from '../../content/site.json';
+import { headerContent } from '@/lib/content';
 import { MobileNav } from './MobileNav';
 
 export async function Header() {
   const brandKit = await getBrandKit();
   const logoUrl = brandKit.logo?.light;
-  const siteName = brandKit.siteName || (siteData as any)?.header?.siteName || 'Thridify';
-  const nav = (siteData as any)?.header?.nav ?? [];
-  const cta = (siteData as any)?.header?.cta ?? { label: 'Contact', href: '/contact' };
+  const siteName = brandKit.siteName || headerContent.siteName;
+  const { nav, cta } = headerContent;
 
   return (
     // 72px bar + blur per DESIGN-SPEC §7; logo 40px tall
@@ -31,7 +30,7 @@ export async function Header() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-10 mx-auto">
-          {(nav ?? []).map((item: any) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -43,10 +42,15 @@ export async function Header() {
         </nav>
 
         <div className="flex items-center gap-3 shrink-0">
-          <Link href={cta.href} className="hidden md:inline-flex btn btn-primary">
+          <a
+            href={cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex btn btn-primary"
+          >
             {cta.label}
-          </Link>
-          <MobileNav nav={nav ?? []} ctaText={cta.label} ctaHref={cta.href} />
+          </a>
+          <MobileNav nav={nav} ctaText={cta.label} ctaHref={cta.href} />
         </div>
       </div>
     </header>

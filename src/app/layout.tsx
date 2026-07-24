@@ -2,9 +2,18 @@ import type { Metadata } from 'next';
 import { bodyFont, headingFont, monoFont } from '@/lib/fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { MobileCtaBar } from '@/components/MobileCtaBar';
 import './globals.css';
 
+// Absolute base for OG/Twitter URLs. While previewed on workers.dev this
+// must point at the preview host so OG images actually resolve; on the
+// Phase 7 cutover set SITE_URL=https://thridify.com (or www per the
+// canonical-host decision) in the deploy environment.
+const SITE_URL =
+  process.env.SITE_URL ?? 'https://site-thridify.snowy-cherry-cd2c.workers.dev';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Thridify — Reimagine how the world experiences your products',
     template: '%s | Thridify',
@@ -16,6 +25,13 @@ export const metadata: Metadata = {
     title: 'Thridify — 3D & AR Commerce Platform',
     description: 'No-code 3D and AR product experiences that boost e-commerce conversions.',
     type: 'website',
+    siteName: 'Thridify',
+    // Brand-colored generated static (scripts/generate-og.mjs) — real
+    // product-render OG images are tracked in docs/ASSET-DEBT.md.
+    images: ['/og/default.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
   icons: {
     icon: '/brand/logo-favicon.png',
@@ -75,6 +91,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        {/* §9 law: sticky mobile Book-a-Demo bar after 50% scroll. */}
+        <MobileCtaBar />
       </body>
     </html>
   );

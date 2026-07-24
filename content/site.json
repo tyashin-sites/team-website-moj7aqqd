@@ -31,9 +31,9 @@
   "pages": {
     "home": {
       "hero": {
-        "eyebrow": "3D & AR Commerce — by Aapastech",
+        "eyebrow": "3D & AR Commerce",
         "title": "Reimagine how the world experiences your products.",
-        "subtitle": "Thridify turns flat product pages into immersive 3D and AR moments — boosting conversions, slashing returns, and ending the era of static photography. No code. No app. No friction.",
+        "subtitle": "Empower customers to decide faster, engage deeper, and buy with confidence — in interactive 3D and AR, no code required.",
         "primaryCta": {
           "text": "Book a Demo",
           "href": "https://calendly.com/hello-thridify/30min"
@@ -41,272 +41,234 @@
         "secondaryCta": {
           "text": "Explore the Platform",
           "href": "/platform"
-        },
-        "image": "_::hero::1",
-        "badges": [
-          "No-code setup",
-          "Works on every smartphone",
-          "8+ platform integrations"
-        ]
+        }
       },
       "clients": {
         "eyebrow": "Trusted by ambitious commerce teams",
         "logos": [
-          "Shopify",
-          "WooCommerce",
-          "Magento",
-          "BigCommerce",
-          "Wix",
-          "Squarespace",
-          "Salesforce",
-          "Custom CMS"
-        ]
-      },
-      "features": {
-        "eyebrow": "The Platform",
-        "title": "Everything you need to ship a 3D-native storefront.",
-        "subtitle": "Five integrated modules. One immersive product experience layer.",
-        "items": [
           {
-            "name": "3D 360° Product Viewer",
-            "description": "Cinematic interactive views — every angle, every detail, zero compromise.",
-            "icon": "01"
+            "name": "Nasher Miles",
+            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/NM.png"
           },
           {
-            "name": "Real-Time 3D Configurator",
-            "description": "Let shoppers customize materials, colors, and modules in real-time.",
-            "icon": "02"
+            "name": "Guntier",
+            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/Guntier-1.png"
           },
           {
-            "name": "App-Free AR Viewer",
-            "description": "View products in their room — straight from the browser, no download required.",
-            "icon": "03"
+            "name": "Sunbaby",
+            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/SUN_BABY.png"
           },
           {
-            "name": "AI Visuals & Content",
-            "description": "Generate marketing-ready imagery and lifestyle scenes from a single 3D asset.",
-            "icon": "04"
-          },
-          {
-            "name": "3D Digital Asset Management",
-            "description": "Centralize, version and distribute every asset across channels.",
-            "icon": "05"
-          },
-          {
-            "name": "Engagement Analytics & ROI",
-            "description": "Measure interactions, conversion lift, and return rate impact in real-time.",
-            "icon": "06"
+            "name": "Vortex Splash",
+            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/Vortex-1.png"
           }
         ]
       },
-      "stats": {
-        "eyebrow": "Measurable Outcomes",
-        "title": "Numbers brands send us after launch.",
-        "items": [
-          {
-            "value": "+94%",
-            "label": "Conversion lift on configurable products"
-          },
-          {
-            "value": "−40%",
-            "label": "Reduction in product return rates"
-          },
-          {
-            "value": "−65%",
-            "label": "Cut in product photography spend"
-          },
-          {
-            "value": "3.2×",
-            "label": "Average time-on-page increase"
-          }
-        ]
+      "beforeAfter": {
+        "eyebrow": "Why 3D",
+        "title": "Flat photos make buyers guess. 3D lets them know.",
+        "lead": "Toggle the same product between a static photo and a live 3D experience — and see what your buyers gain."
       },
-      "categories": {
+      "verticals": {
         "eyebrow": "Industries",
         "title": "Built for catalogs that deserve more than flat photos.",
-        "subtitle": "From modular kitchens to industrial machinery — Thridify adapts to how your customers actually decide.",
         "items": [
           {
             "name": "Furniture",
-            "blurb": "Place sofas, chairs and decor inside any room."
+            "pain": "Shoppers can't judge scale, fabric or finish from photos — so they hesitate, or return."
           },
           {
             "name": "Modular Kitchens",
-            "blurb": "Configure layouts, finishes and modules live."
-          },
-          {
-            "name": "Automotive",
-            "blurb": "Trims, interiors and exteriors — fully interactive."
+            "pain": "Hand-built quotes for layouts, finishes and hardware keep serious buyers waiting for days."
           },
           {
             "name": "Doors & Windows",
-            "blurb": "Visualize finishes against real architecture."
+            "pain": "Bespoke profiles and finishes are hard to picture against a real facade."
           },
           {
-            "name": "Pre-schools",
-            "blurb": "Tour classrooms and play zones in 3D."
-          },
-          {
-            "name": "Personalized Retail",
-            "blurb": "Engrave, monogram, and customize live."
+            "name": "Prefab Structures",
+            "pain": "High-ticket builds sold from brochures leave buyers guessing at space and specification."
           },
           {
             "name": "Industrial Machinery",
-            "blurb": "Show internals, motion, and scale at full fidelity."
+            "pain": "Static PDFs can't show internals, motion or true scale on a buyer's floor."
           },
           {
-            "name": "And more",
-            "blurb": "If it has a SKU, we can make it interactive."
+            "name": "Education & Publishing",
+            "pain": "Flat books and flashcards struggle to hold attention in a screen-first world."
           }
         ]
       },
-      "process": {
-        "eyebrow": "How it works",
-        "title": "From SKU to immersive in days, not quarters.",
-        "steps": [
-          {
-            "step": "01",
-            "title": "Asset Capture",
-            "description": "Send photos, CAD or product samples — we handle the rest."
-          },
-          {
-            "step": "02",
-            "title": "3D Production",
-            "description": "Our studio builds photoreal 3D, AR and configurator-ready assets."
-          },
-          {
-            "step": "03",
-            "title": "No-Code Embed",
-            "description": "Drop a single snippet on Shopify, Woo, Magento or any custom stack."
-          },
-          {
-            "step": "04",
-            "title": "Measure & Iterate",
-            "description": "Track conversion lift, returns and engagement in your dashboard."
-          }
-        ]
-      },
-      "testimonials": {
-        "eyebrow": "Customer Stories",
-        "title": "Brands stop talking about features. They talk about lift.",
+      "productTrio": {
+        "eyebrow": "The Platform",
+        "title": "Three ways buyers experience your products.",
         "items": [
           {
-            "quote": "Our PDP conversion jumped 71% in the first month after rolling out the 3D configurator. The team didn't write a single line of code.",
-            "name": "Ananya Mehra",
-            "role": "Head of Digital, Modular Kitchens Brand",
-            "avatar": "_::testimonials::7__avatar__0"
+            "id": "viewer",
+            "name": "3D 360° Viewer",
+            "description": "Cinematic, interactive product views — every angle, every detail, on any device."
           },
           {
-            "quote": "AR previews changed how our customers buy furniture. Returns are down significantly and CSAT is up across the board.",
-            "name": "Marcus Levant",
-            "role": "VP E-commerce, Furniture Retailer",
-            "avatar": "_::testimonials::7__avatar__1"
+            "id": "configurator",
+            "name": "3D Configurator",
+            "description": "Live colours, materials and modules with instant pricing as buyers build their product."
           },
           {
-            "quote": "We replaced an entire photography pipeline with Thridify. The visual consistency across SKUs is finally on-brand.",
-            "name": "Priya Joshi",
-            "role": "Brand Director, Personalized Retail",
-            "avatar": "_::testimonials::7__avatar__2"
+            "id": "ar",
+            "name": "AR Viewer",
+            "description": "App-free \"view in your room\" at true scale, from any modern smartphone."
           }
         ]
       },
-      "team": {
-        "eyebrow": "Global Offices",
-        "title": "Three continents. One immersive commerce platform.",
-        "items": [
+      "proof": {
+        "eyebrow": "Proof",
+        "title": "Outcomes the platform is built to deliver.",
+        "metrics": [
           {
-            "name": "Delhi",
-            "role": "India HQ — +91-966-774-7082",
-            "avatar": "_::team::8__0"
+            "value": "up to 3×",
+            "label": "conversion rate improvement"
           },
           {
-            "name": "Toronto",
-            "role": "Americas — +1-437-800-0190",
-            "avatar": "_::team::8__1"
+            "value": "up to +100%",
+            "label": "customer engagement increase"
           },
           {
-            "name": "Europe",
-            "role": "Europe Operations",
-            "avatar": "_::team::8__2"
-          },
-          {
-            "name": "Remote",
-            "role": "hello@thridify.com",
-            "avatar": "_::team::8__3"
+            "value": "+40%",
+            "label": "conversions for businesses using Thridify"
           }
         ]
       },
       "cta": {
         "title": "Ready to retire flat product pages?",
-        "subtitle": "See your top SKU rebuilt in 3D and AR — live, on a 30-minute call.",
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
+        }
+      }
+    },
+    "platform": {
+      "hero": {
+        "eyebrow": "The Platform",
+        "title": "Five modules. One immersive commerce stack.",
+        "subtitle": "Viewer, configurator, AR, content generation and analytics — one no-code layer that ships in days.",
         "primaryCta": {
           "text": "Book a Demo",
           "href": "https://calendly.com/hello-thridify/30min"
         },
         "secondaryCta": {
-          "text": "Explore Platform",
-          "href": "/platform"
+          "text": "Talk to us",
+          "href": "/contact"
+        }
+      },
+      "products": {
+        "items": [
+          {
+            "id": "viewer",
+            "name": "3D 360° Viewer",
+            "tagline": "Spin. Zoom. Explore.",
+            "description": "Spin, zoom and inspect every angle in photoreal 3D. Hotspots and annotations highlight what matters — on any device, straight from your product page."
+          },
+          {
+            "id": "configurator",
+            "name": "3D Configurator",
+            "tagline": "Customise before you buy.",
+            "description": "Buyers customise colours, materials and modules in real time. Every change reprices live, generates an instant quote, and exports a production-ready BOM straight to manufacturing."
+          },
+          {
+            "id": "ar",
+            "name": "AR Viewer",
+            "tagline": "View in your room.",
+            "description": "App-free WebAR places products at true scale in the buyer's real space — one tap from the product page, on any modern smartphone."
+          },
+          {
+            "id": "content",
+            "name": "3D Content Generation",
+            "tagline": "Studios, on demand.",
+            "description": "Generate unlimited product photos, lifestyle scenes and videos from a single 3D asset — no photoshoots, no studios, no reshoots for every variant."
+          },
+          {
+            "id": "analytics",
+            "name": "Analytics",
+            "tagline": "Measure what moves.",
+            "description": "Track views, engagement, configurations and abandonment signals — and see exactly how immersive experiences move conversion and ROI."
+          }
+        ]
+      },
+      "integrations": {
+        "eyebrow": "Integrations",
+        "title": "Lives where your store already runs.",
+        "items": [
+          {
+            "name": "Shopify",
+            "description": "Native app and theme embed."
+          },
+          {
+            "name": "WooCommerce",
+            "description": "Plugin install in minutes."
+          },
+          {
+            "name": "WordPress",
+            "description": "Lightweight plugin for any WordPress site."
+          },
+          {
+            "name": "Custom sites",
+            "description": "Universal JS snippet and REST API."
+          }
+        ]
+      },
+      "cta": {
+        "title": "See your top SKU rebuilt in 3D — live.",
+        "primaryCta": {
+          "text": "Book a Demo",
+          "href": "https://calendly.com/hello-thridify/30min"
         }
       }
     },
     "about": {
       "hero": {
         "eyebrow": "About Thridify",
-        "title": "We build the visual layer of post-flat commerce.",
-        "subtitle": "Thridify is the immersive product experience platform by Aapastech Private Limited — engineered for brands that refuse to let static images decide their conversion rate.",
-        "image": "_about::hero::1"
+        "title": "Founded in Delhi. Scaling from Toronto.",
+        "subtitle": "Thridify is the 3D and AR commerce platform by Aapastech Private Limited — built so static images never decide your conversion rate again."
+      },
+      "founders": {
+        "eyebrow": "The founders",
+        "title": "A Delhi-built product, led from North America.",
+        "story": [
+          "Shikha Gupta (Co-Founder & CEO) and Aditya Gupta (Co-Founder & CTO) founded Thridify in Delhi in 2022.",
+          "Today Shikha leads the company from the Greater Toronto Area, bringing 3D and AR commerce to North American retail.",
+          "Our Delhi team continues to power engineering, 3D production and operations."
+        ]
       },
       "mission": {
         "eyebrow": "Our Mission",
-        "title": "Make every product touchable, configurable, and real — before purchase.",
-        "body": [
-          "We believe the next decade of commerce belongs to brands that let customers experience products with the same depth they'd get in a flagship store. Thridify gives that capability to anyone — without code, without specialized teams, without long timelines. Our platform combines real-time 3D, web-based AR, AI-generated visuals, and a unified DAM so that production, merchandising, and analytics finally live in one place."
-        ],
-        "image": "_about::mission::2"
+        "title": "Make every product touchable, configurable and real — before purchase.",
+        "body": "We believe the next decade of commerce belongs to brands that let customers experience products with flagship-store depth. Thridify puts that within reach of any team — no code, no 3D specialists, no long timelines. Real-time 3D, app-free AR, AI-generated content and analytics, in one platform."
       },
-      "stats": {
+      "presence": {
+        "eyebrow": "Global presence",
+        "title": "Three regions. One platform.",
         "items": [
           {
-            "value": "3",
-            "label": "Continents — India, Americas, Europe"
+            "region": "India",
+            "city": "Delhi",
+            "detail": "Engineering & 3D studio",
+            "phone": "+91-966-774-7082",
+            "phoneRaw": "+919667747082",
+            "whatsapp": "https://wa.me/919667747082"
           },
           {
-            "value": "8+",
-            "label": "E-commerce platforms supported"
+            "region": "Americas",
+            "city": "Toronto",
+            "detail": "Founder base & North American growth",
+            "phone": "+1-437-800-0190",
+            "phoneRaw": "+14378000190",
+            "whatsapp": "https://wa.me/14378000190"
           },
           {
-            "value": "100%",
-            "label": "Browser-based AR — no app required"
-          },
-          {
-            "value": "24/7",
-            "label": "Engagement analytics & ROI tracking"
-          }
-        ]
-      },
-      "team": {
-        "eyebrow": "Our Footprint",
-        "title": "A studio-grade team with a global delivery model.",
-        "items": [
-          {
-            "name": "India HQ",
-            "role": "Delhi — Engineering & 3D Studio",
-            "avatar": "_about::team::4__0"
-          },
-          {
-            "name": "Americas",
-            "role": "Toronto — North American Markets",
-            "avatar": "_about::team::4__1"
-          },
-          {
-            "name": "Europe",
-            "role": "Europe — EU Operations",
-            "avatar": "_about::team::4__2"
-          },
-          {
-            "name": "Remote",
-            "role": "Distributed specialists",
-            "avatar": "_about::team::4__3"
+            "region": "Europe",
+            "city": "Europe",
+            "detail": "EU operations",
+            "email": "hello@thridify.com"
           }
         ]
       },
@@ -333,194 +295,47 @@
         ]
       },
       "cta": {
-        "title": "Want to meet the team behind your next launch?",
-        "subtitle": "Tell us what you're shipping — we'll show you what's possible.",
+        "title": "Meet the team behind your next launch.",
         "primaryCta": {
           "text": "Book a Demo",
           "href": "https://calendly.com/hello-thridify/30min"
-        },
-        "secondaryCta": {
-          "text": "Read the Blog",
-          "href": "/blog"
         }
       }
     },
     "contact": {
       "hero": {
         "eyebrow": "Talk to Thridify",
-        "title": "Three offices. One conversation away.",
-        "subtitle": "Tell us about your catalog. We'll show you the same product rebuilt in 3D and AR — live.",
-        "image": "_contact::hero::1"
+        "title": "Three regions. One conversation away.",
+        "subtitle": "Tell us about your catalog — we'll show your own product rebuilt in 3D and AR, live."
       },
-      "contact": {
-        "email": "hello@thridify.com",
-        "offices": [
-          {
-            "region": "India",
-            "city": "Delhi",
-            "phone": "+91-966-774-7082",
-            "phoneRaw": "+919667747082",
-            "whatsapp": "https://wa.me/919667747082"
-          },
-          {
-            "region": "Americas",
-            "city": "Toronto, Ontario",
-            "phone": "+1-437-800-0190",
-            "phoneRaw": "+14378000190",
-            "whatsapp": "https://wa.me/14378000190"
-          },
-          {
-            "region": "Europe",
-            "city": "Europe",
-            "phone": "hello@thridify.com",
-            "phoneRaw": "",
-            "whatsapp": ""
-          }
-        ],
-        "form": {
-          "title": "Send a brief",
-          "subtitle": "Drop us a note — we reply within one business day.",
-          "fields": [
-            {
-              "name": "name",
-              "label": "Full name",
-              "type": "text",
-              "required": true
-            },
-            {
-              "name": "email",
-              "label": "Work email",
-              "type": "email",
-              "required": true
-            },
-            {
-              "name": "company",
-              "label": "Company",
-              "type": "text",
-              "required": false
-            },
-            {
-              "name": "message",
-              "label": "What are you shipping?",
-              "type": "textarea",
-              "required": true
-            }
-          ],
-          "submit": "Request a Demo"
+      "email": "hello@thridify.com",
+      "offices": [
+        {
+          "region": "India",
+          "city": "Delhi",
+          "detail": "Engineering & 3D studio",
+          "phone": "+91-966-774-7082",
+          "phoneRaw": "+919667747082",
+          "whatsapp": "https://wa.me/919667747082"
+        },
+        {
+          "region": "Americas",
+          "city": "Toronto",
+          "detail": "North American markets",
+          "phone": "+1-437-800-0190",
+          "phoneRaw": "+14378000190",
+          "whatsapp": "https://wa.me/14378000190"
+        },
+        {
+          "region": "Europe",
+          "city": "Europe",
+          "detail": "EU operations",
+          "email": "hello@thridify.com"
         }
-      },
-      "map": {
-        "title": "Where we operate",
-        "subtitle": "Engineering in Delhi. Markets across the Americas. Operations in Europe."
-      }
-    },
-    "blog": {
-      "hero": {
-        "eyebrow": "Field Notes",
-        "title": "Insights from the frontier of immersive commerce.",
-        "subtitle": "Playbooks, benchmarks and engineering notes from the Thridify team.",
-        "image": "_blog::hero::1"
-      },
-      "newsletter": {
-        "eyebrow": "Stay close",
-        "title": "The 3D commerce dispatch.",
-        "subtitle": "One thoughtful email a month. No spam — ever.",
-        "placeholder": "you@brand.com",
-        "submit": "Subscribe"
-      }
-    },
-    "platform": {
-      "hero": {
-        "eyebrow": "The Platform",
-        "title": "Five modules. One immersive commerce stack.",
-        "subtitle": "Thridify replaces fragmented 3D, AR, photography and DAM tooling with a single integrated layer that ships in days.",
-        "primaryCta": {
-          "text": "Book a Demo",
-          "href": "https://calendly.com/hello-thridify/30min"
-        },
-        "secondaryCta": {
-          "text": "See Industries",
-          "href": "/industries"
-        },
-        "image": "_platform::hero::1"
-      },
-      "features": {
-        "eyebrow": "Core Products",
-        "title": "Built for the way customers actually decide.",
-        "items": [
-          {
-            "name": "3D 360° Product Viewer",
-            "description": "Spin, zoom, and inspect products with photoreal fidelity. Drop-in embed for any storefront.",
-            "icon": "01"
-          },
-          {
-            "name": "Real-Time 3D Configurator",
-            "description": "Live customization of color, material, modules and dimensions — backed by your live catalog.",
-            "icon": "02"
-          },
-          {
-            "name": "App-Free AR Viewer",
-            "description": "View in Your Room — pure web AR. No app downloads, no friction, full conversion preservation.",
-            "icon": "03"
-          },
-          {
-            "name": "AI Visuals & Content Creation",
-            "description": "Generate lifestyle imagery, social cuts and seasonal scenes from a single 3D asset.",
-            "icon": "04"
-          },
-          {
-            "name": "3D Digital Asset Management",
-            "description": "Versioning, permissions, distribution and channel-aware delivery — built for 3D-first orgs.",
-            "icon": "05"
-          },
-          {
-            "name": "Engagement Analytics & ROI",
-            "description": "Measure interaction depth, conversion lift, and return-rate impact down to the SKU.",
-            "icon": "06"
-          }
-        ]
-      },
-      "integrations": {
-        "eyebrow": "Integrations",
-        "title": "Lives where your stack already runs.",
-        "items": [
-          {
-            "name": "Shopify",
-            "description": "Native theme app + Liquid embed."
-          },
-          {
-            "name": "WooCommerce",
-            "description": "Plugin install in under 60 seconds."
-          },
-          {
-            "name": "Magento",
-            "description": "Adobe Commerce module included."
-          },
-          {
-            "name": "BigCommerce",
-            "description": "Stencil-ready snippet."
-          },
-          {
-            "name": "Wix & Squarespace",
-            "description": "Code-block embed, fully responsive."
-          },
-          {
-            "name": "Custom CMS",
-            "description": "Universal JS SDK + REST API."
-          }
-        ]
-      },
-      "cta": {
-        "title": "See your top SKU rebuilt — on a 30-min call.",
-        "subtitle": "We'll bring a live 3D and AR build of your hero product to the demo.",
-        "primaryCta": {
-          "text": "Book a Demo",
-          "href": "https://calendly.com/hello-thridify/30min"
-        },
-        "secondaryCta": {
-          "text": "Explore Industries",
-          "href": "/industries"
-        }
+      ],
+      "form": {
+        "title": "Start with two fields.",
+        "subtitle": "Your email and what you sell — we'll take it from there."
       }
     },
     "industries": {
@@ -552,7 +367,7 @@
           },
           {
             "name": "Pre-schools",
-            "description": "Virtual classroom and play-zone tours that dramatically improve admission funnel conversion."
+            "description": "Virtual classroom and play-zone tours that improve the admission funnel experience."
           },
           {
             "name": "Personalized Retail",
@@ -568,30 +383,6 @@
           }
         ]
       },
-      "testimonials": {
-        "eyebrow": "What partners say",
-        "title": "Lift, returns, photography spend — measured.",
-        "items": [
-          {
-            "quote": "The kitchen configurator paid for itself in 5 weeks. Our showrooms now use it as a live sales tool.",
-            "name": "Rohan Saxena",
-            "role": "Founder, Modular Kitchens",
-            "avatar": "_industries::testimonials::3__avatar__0"
-          },
-          {
-            "quote": "AR placement made our return rate look like a different category entirely. The CFO finally smiled at e-commerce.",
-            "name": "Daria Kask",
-            "role": "Director of Growth, Home Brand",
-            "avatar": "_industries::testimonials::3__avatar__1"
-          },
-          {
-            "quote": "For industrial machinery, this is the closest thing to having the equipment on the buyer's floor. Game-changing for B2B.",
-            "name": "Vincent Park",
-            "role": "VP Sales, Industrial OEM",
-            "avatar": "_industries::testimonials::3__avatar__2"
-          }
-        ]
-      },
       "cta": {
         "title": "Don't see your category?",
         "subtitle": "If it has a SKU, we can make it interactive. Tell us what you sell.",
@@ -604,6 +395,21 @@
           "href": "/platform"
         }
       }
+    },
+    "blog": {
+      "hero": {
+        "eyebrow": "Field Notes",
+        "title": "Insights from the frontier of immersive commerce.",
+        "subtitle": "Playbooks, benchmarks and engineering notes from the Thridify team.",
+        "image": "_blog::hero::1"
+      },
+      "newsletter": {
+        "eyebrow": "Stay close",
+        "title": "The 3D commerce dispatch.",
+        "subtitle": "One thoughtful email a month. No spam — ever.",
+        "placeholder": "you@brand.com",
+        "submit": "Subscribe"
+      }
     }
   },
   "footer": {
@@ -612,15 +418,19 @@
     "socials": [
       {
         "label": "LinkedIn",
-        "href": "https://linkedin.com"
+        "href": "https://linkedin.com/company/thridify"
       },
       {
         "label": "Facebook",
-        "href": "https://facebook.com"
+        "href": "https://facebook.com/thridify"
       },
       {
         "label": "Instagram",
-        "href": "https://instagram.com"
+        "href": "https://instagram.com/thridify"
+      },
+      {
+        "label": "YouTube",
+        "href": "https://youtube.com/@thridify"
       },
       {
         "label": "WhatsApp",
@@ -633,23 +443,23 @@
         "links": [
           {
             "label": "3D 360° Viewer",
-            "href": "/platform"
+            "href": "/platform#viewer"
           },
           {
             "label": "3D Configurator",
-            "href": "/platform"
+            "href": "/platform#configurator"
           },
           {
             "label": "AR Viewer",
-            "href": "/platform"
+            "href": "/platform#ar"
           },
           {
-            "label": "AI Visuals & DAM",
-            "href": "/platform"
+            "label": "3D Content Generation",
+            "href": "/platform#content"
           },
           {
             "label": "Analytics",
-            "href": "/platform"
+            "href": "/platform#analytics"
           }
         ]
       },

@@ -4,8 +4,8 @@
  * useCountUp — the ONE counter implementation (DESIGN-SPEC §5):
  * count-up over 1.4s ease-out (cubic), fires when `run` flips true.
  * `prefers-reduced-motion: reduce` → the final value is shown immediately,
- * no animation. Shared by MetricBar and ImpactBlock so the two counters on
- * one page can never disagree again (design-audit M-3).
+ * no animation. Shared by every counter on the site so counters on one
+ * page can never disagree (design-audit M-3).
  */
 
 import { useEffect, useState } from 'react';

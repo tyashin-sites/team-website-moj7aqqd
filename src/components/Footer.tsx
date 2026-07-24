@@ -1,24 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Linkedin, Facebook, Instagram, MessageCircle, Globe } from 'lucide-react';
+import { Linkedin, Facebook, Instagram, Youtube, MessageCircle, Globe } from 'lucide-react';
 import { getBrandKit } from '@/lib/brand-kit';
-import siteData from '../../content/site.json';
-
-const FALLBACK_FOOTER = {
-  tagline: 'Building the immersive commerce layer for the next decade of online retail.',
-  socials: [
-    { label: 'LinkedIn', href: 'https://linkedin.com' },
-    { label: 'Facebook', href: 'https://facebook.com' },
-    { label: 'Instagram', href: 'https://instagram.com' },
-    { label: 'WhatsApp', href: 'https://wa.me/919667747082' },
-  ],
-  columns: [],
-  copyright: '© 2026 Aapastech Private Limited. All rights reserved.',
-  legal: [
-    { label: 'Privacy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
-  ],
-};
+import { footerContent, headerContent } from '@/lib/content';
 
 // Map a social label to its official lucide icon. Returns a `Globe` for
 // anything we don't recognise so the icon row never has an empty slot.
@@ -27,6 +11,7 @@ function socialIcon(label: string) {
   if (l.includes('linkedin')) return Linkedin;
   if (l.includes('facebook')) return Facebook;
   if (l.includes('instagram')) return Instagram;
+  if (l.includes('youtube')) return Youtube;
   if (l.includes('whatsapp')) return MessageCircle;
   return Globe;
 }
@@ -34,8 +19,8 @@ function socialIcon(label: string) {
 export async function Footer() {
   const brandKit = await getBrandKit();
   const logoUrl = brandKit.logo?.dark || brandKit.logo?.light;
-  const siteName = brandKit.siteName || (siteData as any)?.header?.siteName || 'Thridify';
-  const f = (siteData as any)?.footer ?? FALLBACK_FOOTER;
+  const siteName = brandKit.siteName || headerContent.siteName;
+  const f = footerContent;
 
   return (
     // Dark ink footer — canonical #021F17 with muted #A3BFB5 text (DESIGN-SPEC §1)
@@ -59,10 +44,10 @@ export async function Footer() {
               )}
             </Link>
             <p className="text-base md:text-lg max-w-md text-muted-dark leading-relaxed">
-              {f.tagline ?? FALLBACK_FOOTER.tagline}
+              {f.tagline}
             </p>
             <div className="mt-8 flex gap-3">
-              {(f.socials ?? []).map((s: any) => {
+              {f.socials.map((s) => {
                 const Icon = socialIcon(s.label);
                 return (
                   <a
@@ -83,32 +68,25 @@ export async function Footer() {
           {/* Link columns — explicit grid widths so the Connect column has
               breathing room for "+91-966-774-7082" without wrapping. */}
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-            {(f.columns ?? []).map((col: any) => {
-              const isConnect = (col.title || '').toLowerCase() === 'connect';
+            {f.columns.map((col) => {
+              const isConnect = col.title.toLowerCase() === 'connect';
               return (
                 <div key={col.title} className={isConnect ? 'sm:col-span-2 md:col-span-1' : ''}>
                   <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-dark/80 mb-5">
                     {col.title}
                   </h4>
                   <ul className="space-y-3">
-                    {(col.links ?? []).map((link: any) => {
-                      const isPhone = String(link.href || '').startsWith('tel:');
-                      const isMail = String(link.href || '').startsWith('mailto:');
-                      const external = isPhone || isMail || /^https?:/i.test(String(link.href || ''));
+                    {col.links.map((link) => {
+                      const isPhone = link.href.startsWith('tel:');
+                      const isMail = link.href.startsWith('mailto:');
                       return (
                         <li key={link.label}>
                           <a
                             href={link.href}
-                            {...(external ? {} : {})}
                             className={
                               'text-muted-dark hover:text-paper transition-colors ' +
-                              // Numbers (and the email) must never wrap mid-token —
-                              // even on narrow phones. The `break-words` makes the
-                              // whole token break to its own line gracefully if the
-                              // container is genuinely too narrow.
-                              (isPhone || isMail
-                                ? 'whitespace-nowrap inline-block'
-                                : '')
+                              // Numbers (and the email) must never wrap mid-token.
+                              (isPhone || isMail ? 'whitespace-nowrap inline-block' : '')
                             }
                           >
                             {link.label}
@@ -124,9 +102,9 @@ export async function Footer() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-paper/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-sm text-muted-dark">
-          <p>{f.copyright ?? FALLBACK_FOOTER.copyright}</p>
+          <p>{f.copyright}</p>
           <div className="flex gap-6">
-            {(f.legal ?? []).map((l: any) => (
+            {f.legal.map((l) => (
               <Link key={l.href} href={l.href} className="hover:text-paper transition-colors">
                 {l.label}
               </Link>

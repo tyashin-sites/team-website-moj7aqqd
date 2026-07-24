@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import siteData from '@/../content/site.json';
+import { blogContent as blogPageContent } from '@/lib/content';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -77,12 +77,8 @@ export default async function BlogPage({
   const sp = await searchParams;
   const currentPage = Math.max(1, parseInt(sp.page || '1', 10) || 1);
   const { posts, totalPages } = await getPosts(currentPage);
-  const blogContent = (siteData as any).pages?.blog || {};
-
-  const heroTitle: string = blogContent.hero?.title || 'Field notes from the spatial commerce frontier';
-  const heroSubtitle: string =
-    blogContent.hero?.subtitle ||
-    'Tactical guides, customer stories, and research on building 3D and AR experiences that move the needle.';
+  const heroTitle = blogPageContent.hero.title;
+  const heroSubtitle = blogPageContent.hero.subtitle;
 
   const [featured, ...rest] = posts;
 

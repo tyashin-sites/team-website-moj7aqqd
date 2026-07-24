@@ -5,8 +5,8 @@ import { getCloudflareContext } from '@opennextjs/cloudflare';
  * Contact-form lead pipeline (BUILD-PLAN Phase 0).
  *
  * POST /api/contact
- *   1. Validates the payload (name, email required; company/industry/message
- *      optional).
+ *   1. Validates the payload (name, email required; company/category/message
+ *      optional — `industry` is accepted as a legacy alias for `category`).
  *   2. ALWAYS logs the lead to the worker console with a `LEAD:` prefix so no
  *      lead is ever lost (visible in `wrangler tail` / Cloudflare logs).
  *   3. If a TYASHIN_API_KEY binding exists, forwards the lead in the
@@ -23,6 +23,9 @@ type LeadPayload = {
   name?: unknown;
   email?: unknown;
   company?: unknown;
+  /** Product category from the concierge form (Phase 2). */
+  category?: unknown;
+  /** Legacy alias for `category` — kept for back-compat. */
   industry?: unknown;
   message?: unknown;
 };
@@ -47,7 +50,8 @@ export async function POST(request: Request) {
   const name = str(body.name, 100);
   const email = str(body.email, 200);
   const company = str(body.company, 200);
-  const industry = str(body.industry, 100);
+  // The concierge form sends `category`; older callers sent `industry`.
+  const category = str(body.category, 100) || str(body.industry, 100);
   const message = str(body.message, 5000);
 
   if (!name) {
@@ -67,7 +71,7 @@ export async function POST(request: Request) {
     name,
     email,
     company: company || undefined,
-    industry: industry || undefined,
+    category: category || undefined,
     message: message || undefined,
     submittedAt: new Date().toISOString(),
   };
@@ -97,20 +101,20 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           name,
           email,
-          subject: industry
-            ? `Website demo request — ${industry}`
+          subject: category
+            ? `Website demo request — ${category}`
             : 'Website demo request',
           message:
             [
               company ? `Company: ${company}` : null,
-              industry ? `Industry: ${industry}` : null,
+              category ? `Product category: ${category}` : null,
               '',
               message || '(no message provided)',
             ]
               .filter((l) => l !== null)
               .join('\n') || '(no message provided)',
           source: 'thridify-website-contact',
-          metadata: { company, industry },
+          metadata: { company, category },
         }),
       })
         .then((res) => {
