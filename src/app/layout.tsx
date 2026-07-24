@@ -23,12 +23,22 @@ export const metadata: Metadata = {
 };
 
 /**
- * Canonical brand tokens per DESIGN-SPEC §1/§2 — non-negotiable.
- * The platform-served /brand-kit.css (linked above this style tag) currently
- * carries stale values; this inline block is rendered AFTER that link so the
- * canonical palette wins in the cascade regardless of what the platform
- * serves. Once the Tyashin brand kit is PATCHed to these exact values the two
- * sources agree and this stays as a belt-and-braces guard.
+ * Canonical brand tokens per DESIGN-SPEC §1/§2 — non-negotiable, and the
+ * ONLY brand-token source this app loads.
+ *
+ * Why there is deliberately NO <link> to the platform's
+ * website-api.tyashin.com/.../brand-kit.css here:
+ *  1. It was render-blocking and cost 3.0–3.5s TTFB on a cold platform edge
+ *     (Atlas cold-connect) — it single-handedly pushed FCP/LCP past 5s and
+ *     Lighthouse-mobile perf to ~64 on every page.
+ *  2. This inline block re-declares every --brand-* variable the app uses,
+ *     so the external sheet contributed nothing (it currently serves a STALE
+ *     pre-canonical palette anyway — ASSET-DEBT #13).
+ *  3. Loading it async instead would flip the cascade order (appended last →
+ *     stale values would beat these canonical ones). Not worth the hazard.
+ * On custom domains (Phase 7) the platform edge can inject brand-kit.css
+ * itself; once the kit is PATCHed to these exact values the two sources
+ * agree by construction.
  */
 const CANONICAL_BRAND_CSS = `
 :root {
@@ -58,8 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${bodyFont.variable} ${headingFont.variable} ${monoFont.variable}`}>
       <head>
-        <link rel="stylesheet" href="https://website-api.tyashin.com/api/v1/public/brand-kit.css?apiKey=ak_MHWfta1xNEEMAmI1UbSE99HEwTuAEWix" />
-        {/* Canonical palette override — MUST stay after the brand-kit link. */}
+        {/* Canonical palette — single token source (see CANONICAL_BRAND_CSS note). */}
         <style dangerouslySetInnerHTML={{ __html: CANONICAL_BRAND_CSS }} />
       </head>
       <body className="font-body bg-background text-foreground antialiased">
