@@ -89,7 +89,11 @@ export default function HomePage() {
               )}
             </div>
           </div>
-          <HeroObject />
+          {/* The HeroObject IS the live demo (§9 no-gate secondary CTA target).
+              id="demo" is where the "Try the live demo" secondary scrolls. */}
+          <div id="demo" className="scroll-mt-24">
+            <HeroObject />
+          </div>
         </div>
       </section>
 

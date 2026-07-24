@@ -3,8 +3,14 @@ import Link from 'next/link';
 import { platformContent } from '@/lib/content';
 import { ctaLabel } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
+import { SectionHeading } from '@/components/SectionHeading';
 import { ProductVisual, type ProductVisualVariant } from '@/components/ProductVisual';
 import { CTABand } from '@/components/signature/CTABand';
+
+// §8 Platform blueprint: capability montage in the hero (brand-abstract, not
+// stock/fake screenshots — reuses ProductVisual per ASSET-DEBT #4, no new
+// debt). Three core capabilities in one viewport ⇒ pinkAccent off (§1 one-pink).
+const HERO_MONTAGE: ProductVisualVariant[] = ['viewer', 'configurator', 'ar'];
 
 export const metadata: Metadata = {
   title: 'Platform — 3D & AR Commerce Suite',
@@ -19,6 +25,12 @@ export const metadata: Metadata = {
 };
 
 const c = platformContent;
+
+// §8 order: deep-dives (viewer/configurator/AR/content) → integrations row →
+// standalone Analytics section → CTABand. Analytics is pulled OUT of the
+// deep-dive run so it stands alone AFTER integrations (D-2).
+const deepDives = c.products.items.filter((p) => p.id !== 'analytics');
+const analytics = c.products.items.find((p) => p.id === 'analytics');
 
 export default function PlatformPage() {
   return (
@@ -46,14 +58,23 @@ export default function PlatformPage() {
               </Link>
             )}
           </div>
+
+          {/* CAPABILITY MONTAGE (§8 Platform hero) — brand-abstract visuals in
+              canonical colors, not stock/fake screenshots. Breaks the
+              text-only hero (D-3). */}
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-4xl mx-auto reveal">
+            {HERO_MONTAGE.map((variant) => (
+              <ProductVisual key={variant} variant={variant} pinkAccent={false} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* PRODUCT DEEP-DIVES — the five real products, alternating
-          light/dark sections (§8), ≤40 words each, one visual slot per
-          product. Visuals are brand-colored abstract representations until
-          real captures exist (ASSET-DEBT #4). */}
-      {c.products.items.map((p, i) => {
+      {/* PRODUCT DEEP-DIVES — four core products (Analytics is a standalone
+          section after integrations, §8), alternating light/dark (§8), ≤40
+          words each, one visual slot per product. Visuals are brand-colored
+          abstract representations until real captures exist (ASSET-DEBT #4). */}
+      {deepDives.map((p, i) => {
         const dark = i % 2 === 1;
         return (
           <section
@@ -113,6 +134,26 @@ export default function PlatformPage() {
           </div>
         </div>
       </section>
+
+      {/* ANALYTICS — standalone section AFTER the integrations row (§8, D-2).
+          Dark showroom treatment; keeps id="analytics" for the footer anchor. */}
+      {analytics && (
+        <section id="analytics" className="section scroll-mt-20 on-dark bg-ink text-paper">
+          <div className="container-x grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <Reveal direction="right" distance={32} className="lg:col-span-5">
+              <SectionHeading
+                eyebrow={analytics.tagline}
+                title={analytics.name}
+                lead={analytics.description}
+                dark
+              />
+            </Reveal>
+            <Reveal direction="left" distance={32} className="lg:col-span-7">
+              <ProductVisual variant="analytics" onDark />
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* CTA BAND */}
       <CTABand headline={c.cta.title} ctaLabel={ctaLabel(c.cta.primaryCta) || 'Book a Demo'} />

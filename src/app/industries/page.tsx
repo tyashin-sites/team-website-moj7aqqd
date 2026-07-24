@@ -46,8 +46,8 @@ export default function IndustriesPage() {
               >
                 Book a Demo
               </a>
-              <Link href="/platform" className="btn btn-ghost">
-                See the Platform
+              <Link href="/#demo" className="btn btn-ghost">
+                Try the live demo
               </Link>
             </div>
           </div>

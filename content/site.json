@@ -39,12 +39,12 @@
           "href": "https://calendly.com/hello-thridify/30min"
         },
         "secondaryCta": {
-          "text": "Explore the Platform",
-          "href": "/platform"
+          "text": "Try the live demo",
+          "href": "#demo"
         }
       },
       "clients": {
-        "eyebrow": "Trusted by ambitious commerce teams",
+        "eyebrow": "Client work includes",
         "logos": [
           {
             "name": "Nasher Miles",
@@ -182,8 +182,8 @@
           "href": "https://calendly.com/hello-thridify/30min"
         },
         "secondaryCta": {
-          "text": "Talk to us",
-          "href": "/contact"
+          "text": "Try the live demo",
+          "href": "/#demo"
         }
       },
       "products": {
@@ -417,8 +417,8 @@
           "href": "https://calendly.com/hello-thridify/30min"
         },
         "secondaryCta": {
-          "text": "Explore Platform",
-          "href": "/platform"
+          "text": "Try the live demo",
+          "href": "/#demo"
         }
       }
     },

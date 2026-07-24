@@ -74,12 +74,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* MISSION — ≤80 words (currently 47). Dark showroom interlude. */}
-      <section className="on-dark section bg-ink text-paper">
-        <div className="container-x max-w-3xl">
-          <p className="eyebrow">{d.mission.eyebrow}</p>
-          <h2 className="tt-1 text-paper">{d.mission.title}</h2>
-          <p className="lead">{d.mission.body}</p>
+      {/* MISSION — ≤80 words (currently 47). Dark showroom interlude with a
+          brand-abstract visual (two-square logo geometry) so the About page
+          never runs >2 consecutive text-only sections (D-4, §3). No stock/
+          team photos (ASSET-DEBT #15). */}
+      <section className="on-dark section bg-ink text-paper overflow-hidden">
+        <div className="container-x grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7 max-w-2xl">
+            <p className="eyebrow">{d.mission.eyebrow}</p>
+            <h2 className="tt-1 text-paper">{d.mission.title}</h2>
+            <p className="lead">{d.mission.body}</p>
+          </div>
+          {/* Brand-mark geometry on dark — the overlapping rounded squares
+              from the Thridify logo, a dimensional signature (not stock). One
+              pink element in this viewport (§1). */}
+          <div className="lg:col-span-5 relative h-48 md:h-60" aria-hidden>
+            <div className="absolute right-10 top-6 w-32 h-32 md:w-44 md:h-44 rounded-3xl bg-accent/70 -rotate-[8deg]" />
+            <div className="absolute right-16 top-0 w-32 h-32 md:w-44 md:h-44 rounded-3xl bg-primary rotate-[4deg]" />
+            <div className="absolute right-0 bottom-4 hidden sm:block">
+              <div className="accent-line w-40 md:w-56" />
+            </div>
+          </div>
         </div>
       </section>
 
