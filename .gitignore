@@ -2,3 +2,8 @@ node_modules
 .next
 .open-next
 .env*.local
+
+# Local build artifacts — .wrangler MUST stay ignored (stale redirect trap)
+.wrangler/
+next-env.d.ts
+tsconfig.tsbuildinfo

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import siteData from '@/../content/site.json';
+import { ContactForm } from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -96,96 +97,9 @@ export default function ContactPage() {
               into immersive 3D and AR experiences &mdash; with zero engineering effort.
             </p>
 
-            <form
-              action={`mailto:${generalEmail}`}
-              method="post"
-              encType="text/plain"
-              autoComplete="on"
-              className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5"
-            >
-              <div className="md:col-span-1">
-                <label className="block text-xs font-semibold tracking-wider uppercase text-foreground/60 mb-2">
-                  Full name
-                </label>
-                <input
-                  required
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition"
-                  placeholder="Jane Doe"
-                />
-              </div>
-              <div className="md:col-span-1">
-                <label className="block text-xs font-semibold tracking-wider uppercase text-foreground/60 mb-2">
-                  Work email
-                </label>
-                <input
-                  required
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition"
-                  placeholder="jane@brand.com"
-                />
-              </div>
-              <div className="md:col-span-1">
-                <label className="block text-xs font-semibold tracking-wider uppercase text-foreground/60 mb-2">
-                  Company
-                </label>
-                <input
-                  name="company"
-                  type="text"
-                  autoComplete="organization"
-                  className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition"
-                  placeholder="Acme Furniture"
-                />
-              </div>
-              <div className="md:col-span-1">
-                <label className="block text-xs font-semibold tracking-wider uppercase text-foreground/60 mb-2">
-                  Industry
-                </label>
-                <select
-                  name="industry"
-                  defaultValue=""
-                  className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground focus:outline-none focus:border-primary transition"
-                >
-                  <option value="" disabled>
-                    Select an industry
-                  </option>
-                  <option>Furniture</option>
-                  <option>Modular Kitchens</option>
-                  <option>Automotive</option>
-                  <option>Doors &amp; Windows</option>
-                  <option>Pre-schools</option>
-                  <option>Personalized Retail</option>
-                  <option>Industrial Machinery</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-xs font-semibold tracking-wider uppercase text-foreground/60 mb-2">
-                  How can we help?
-                </label>
-                <textarea
-                  name="message"
-                  rows={5}
-                  className="w-full rounded-md bg-surface border border-foreground/10 px-4 py-3.5 text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition resize-none"
-                  placeholder="Tell us about your products and what you'd like to achieve..."
-                />
-              </div>
-              <div className="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
-                <button type="submit" className="btn btn-primary">
-                  Send message
-                </button>
-                <p className="text-sm text-foreground/60">
-                  Or email us directly at{' '}
-                  <a href={`mailto:${generalEmail}`} className="underline hover:text-primary">
-                    {generalEmail}
-                  </a>
-                </p>
-              </div>
-            </form>
+            <ContactForm fallbackEmail={generalEmail} />
+            {/* Old mailto: form removed — leads now flow through /api/contact
+                (BUILD-PLAN Phase 0 pipeline). */}
           </div>
 
           <aside className="lg:col-span-5">
