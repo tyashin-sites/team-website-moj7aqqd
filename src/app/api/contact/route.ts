@@ -10,13 +10,18 @@ import { getCloudflareContext } from '@opennextjs/cloudflare';
  *   2. ALWAYS logs the lead to the worker console with a `LEAD:` prefix so no
  *      lead is ever lost (visible in `wrangler tail` / Cloudflare logs).
  *   3. If a TYASHIN_API_KEY binding exists, forwards the lead in the
- *      background (waitUntil) to the Tyashin platform's public contact
- *      endpoint (`/api/v1/contact/public/submit`, X-API-Key auth) which
- *      stores it and notifies the project admins.
+ *      background (waitUntil) to the Tyashin platform's Contact Form & Lead
+ *      Capture plugin (`/api/v1/contact/public/submit`, X-API-Key auth). The
+ *      plugin stores the lead in the admin inbox, syncs it to the CRM, meters
+ *      it, emails the team, and (when the admin configures a Slack webhook in
+ *      the plugin settings) posts it to Slack. `company` and `category` are
+ *      sent as FIRST-CLASS fields so the plugin can qualify/segment/route by
+ *      them — not just buried in the message body.
  *   4. Always responds fast — forwarding never blocks the response.
  *
- * Slack-webhook / CRM wiring is intentionally NOT invented here — it needs
- * user-provided destinations. Tracked in docs/ASSET-DEBT.md.
+ * Slack / CRM / auto-reply destinations now live in the plugin's Settings
+ * (admin.tyashin.com → project → Contact Form & Lead Capture), so this route
+ * intentionally invents no endpoints of its own. Tracked in docs/ASSET-DEBT.md.
  */
 
 type LeadPayload = {
@@ -101,19 +106,15 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           name,
           email,
+          // First-class qualification fields the plugin filters/routes on.
+          company: company || undefined,
+          category: category || undefined,
           subject: category
             ? `Website demo request — ${category}`
             : 'Website demo request',
-          message:
-            [
-              company ? `Company: ${company}` : null,
-              category ? `Product category: ${category}` : null,
-              '',
-              message || '(no message provided)',
-            ]
-              .filter((l) => l !== null)
-              .join('\n') || '(no message provided)',
+          message: message || undefined,
           source: 'thridify-website-contact',
+          pageUrl: request.headers.get('referer') || undefined,
           metadata: { company, category },
         }),
       })
