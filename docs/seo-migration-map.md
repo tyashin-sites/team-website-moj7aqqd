@@ -140,27 +140,47 @@ it is a generic configurator query, not platform-specific, so `/platform`
 | `/thridify-help-center/` | 301(GAP) | `/contact` | No help center on the marketing site. Most help content is custom-domain setup docs that belong to the education/arbook product (**WonderlyAR**), not Thridify marketing |
 | `/post/category/thridify-help-center/` | HOLD | — | Archive of the help docs; see §H education decision |
 
-### G. Blog — GAP (posts NOT bulk-redirected)
+### G. Blog — RESOLVED (2026-08-03: 37 posts migrated 1:1, /post/* redirects live)
+
+**RESOLVED.** The 37 WordPress blog posts were migrated **1:1 into the Blog/CMS
+plugin at MATCHING slugs** and now serve **live at `/blog/<slug>`** off the
+platform edge (verified: `/blog` 200, e.g.
+`/blog/5-signals-that-3d-commerce-has-crossed-the-tipping-point-in-2026` 200).
+Slugs are PRESERVED from WordPress, so the migration is non-lossy: old
+`/post/<slug>` 301s to the identically-slugged `/blog/<slug>`. The archive URLs
+(tag / author / category) are low-value and consolidate to the `/blog` index.
 
 | Prod URL(s) | Disposition | Target | Notes |
 |---|---|---|---|
 | `/blogs/` | 301 | `/blog` | Index → index (safe) |
-| `/blog/` | KEEP | `/blog` | Native route (placeholder today) |
-| `/post/<slug>/` × 37 | **HOLD** | — | See recommendation below |
-| `/post/tag/<t>/` × 93 | HOLD | — | Tag archives |
-| `/post/category/{blog,uncategorized,thridify-help-center}/` × 3 | HOLD | — | Category archives |
-| `/post/author/{shikha-gupta,nikitha-dkaapastech-com,er-shashankuppalgmail-com}/` × 3 | HOLD | — | Author archives |
-| `/post/elementskit-content/dynamic-content-widget-…/` × 1 | HOLD/410 | — | Elementor widget fragment, not a real page — should 410/drop |
+| `/blog/` | KEEP | `/blog` | Native/platform route — now the live migrated blog (200) |
+| `/post/<slug>/` × 37 | **301** | `/blog/<slug>` | 1:1, slug preserved. `/post/:slug` rule (LAST, single-segment) in `next.config.ts` |
+| `/post/tag/<t>/` × 93 | 301 | `/blog` | Tag archives → blog index (`/post/tag/:tag`) |
+| `/post/category/{blog,uncategorized,thridify-help-center}/` × 3 | 301 | `/blog` | Category archives (`/post/category/:cat`) |
+| `/post/author/{shikha-gupta,nikitha-dkaapastech-com,er-shashankuppalgmail-com}/` × 3 | 301 | `/blog` | Author archives (`/post/author/:author`) |
+| `/category/blog` + `/category/blog/page/<n>` | 301 | `/blog` | WP category alias + its pagination |
+| `/post/elementskit-content/dynamic-content-widget-…/` × 1 | HOLD/410 | — | Elementor widget fragment, not a real page — should 410/drop (matches `/post/category/:cat`? no — 3 segments; falls through, left to 410 at cutover) |
 
-**Why the 37 posts are HELD, not redirected to `/blog`:** redirecting many
-distinct content URLs to a single unrelated index is a **soft-404** pattern —
-Google does NOT pass equity and may treat it as a broken redirect. Several posts
-rank on real intent (e.g. `…what-is-a-3d-product-configurator…`, the laminate /
-kitchen / configurator cluster). The correct fix is a **1:1 migration**: import
-the 37 posts into the Blog/CMS plugin at matching slugs (ideally keep the
-`/post/<slug>/` path, or map `/post/<slug>` → `/blog/<slug>` with a per-slug
-301 table generated at migration time). Until that happens the posts must keep
-being served by WordPress OR they 404 at cutover. **This is a Phase-7 blocker.**
+**Redirect ordering (load-bearing).** In `next.config.ts` the multi-segment
+archive rules (`/post/tag/:tag`, `/post/author/:author`, `/post/category/:cat`,
+`/category/blog/page/:n`, `/category/blog`) are placed **BEFORE** the
+single-segment `/post/:slug` → `/blog/:slug` catch. Next evaluates `redirects()`
+top-to-bottom (first match wins); without this order `:slug` would swallow
+`/post/tag/roi` (`:slug`="tag") and mis-301 it to `/blog/tag`.
+
+**The 1:1 migration** is exactly the non-lossy fix the prior HOLD note called
+for: the posts are no longer served by WordPress-only and do NOT 404 at cutover.
+Several rank on real intent (e.g. `…what-is-a-3d-product-configurator…`, the
+laminate / kitchen / configurator cluster) — their equity is preserved via the
+per-slug 301 to the same slug under `/blog`.
+
+**Education/WonderlyAR flag (unchanged).** 8 of the 37 posts are
+education/custom-domain HELP docs (`connect-your-custom-domain-to-ar-education`,
+`how-to-connect-your-{godaddy,cloudflare,google-domains,namecheap}-custom-domain-with-thridify`,
+`general-dns-setup-guide…`, `custom-domain-troubleshooting-guide…`) that
+logically belong to **WonderlyAR** (§H), not the Thridify marketing blog.
+WonderlyAR is deferred per user, so these **remain in the blog for now** —
+flagged, not removed. Re-home them to WonderlyAR when that brand/domain lands.
 
 Note: 8 of the 37 posts are education/custom-domain HELP docs
 (`connect-your-custom-domain-to-ar-education`,
@@ -193,10 +213,13 @@ real earned equity and must not be silently dropped.
 ## Summary
 
 - **160 URLs** in the WordPress sitemaps + 8 GSC-only legacy URLs cross-referenced.
-- **Implemented redirect rules in `next.config.ts`: 28** (all 301). Breakdown:
+- **Implemented redirect rules in `next.config.ts`: 34** (all 301). Breakdown:
   core 7, industries 4, capability 2, integrations 9 (now → real
-  `/integrations/*` pages), legal 3, blog-index 1, help-center 1 (GAP),
-  education 1 (FLAG/interim).
+  `/integrations/*` pages), legal 3, blog 7 (`/blogs` + `/category/blog` +
+  `/category/blog/page/:n` + `/post/tag/:tag` + `/post/author/:author` +
+  `/post/category/:cat` archives → `/blog`, plus `/post/:slug` → `/blog/:slug`
+  1:1 for the 37 migrated posts), help-center 1 (GAP), education 1
+  (FLAG/interim).
 - **KEEP-SAME (no rule needed): `/`, `/about`, `/contact`** (+ their trailing-slash
   308 variants).
 - **Clean 301s (destination page exists & is a true match): 26** — core (7),
@@ -206,8 +229,10 @@ real earned equity and must not be silently dropped.
 - **GAP rows needing NEW pages before they're truly "clean": 3** — `/pricing-plans`
   (no pricing page), the 2 capability pages (`/ar-viewer`, `/3d-product-configurator`
   could get dedicated pages), + help-center. **Integrations no longer a GAP.**
-- **HOLD (deliberately not redirected in code): ~133 blog/tag/category/author/
-  fragment URLs** — require 1:1 blog migration (Phase-7 blocker).
+- **Blog migration RESOLVED (2026-08-03):** the 37 posts are migrated 1:1 to
+  `/blog/<slug>` (slugs preserved, live) and `/post/*` now 301s in code (posts →
+  same-slug `/blog/<slug>`; tag/author/category archives → `/blog`). Only the
+  single Elementor widget fragment remains HOLD/410.
 
 ## Decisions needed from the user
 
@@ -222,10 +247,13 @@ real earned equity and must not be silently dropped.
    magento, commercetools, canva, wordpress, custom-integration) + a
    `/integrations` hub; every old integration URL now 301s to its dedicated page.
    No further user decision needed here.
-3. **Blog migration.** Approve migrating the 37 WP posts 1:1 into the Blog/CMS
-   plugin (keeping slugs) before cutover — this is the only non-lossy option and
-   is a Phase-7 blocker. Also confirm whether the 8 education/custom-domain help
-   posts move to WonderlyAR instead.
+3. ~~**Blog migration.**~~ **DONE (2026-08-03).** The 37 WP posts were migrated
+   1:1 into the Blog/CMS plugin at matching slugs and serve live at
+   `/blog/<slug>`; `/post/<slug>` → `/blog/<slug>` (per-slug 301) + the
+   tag/author/category archives → `/blog` are live in `next.config.ts`. STILL
+   OPEN: the 8 education/custom-domain help posts among the 37 logically belong
+   to WonderlyAR (§H) but remain in the blog for now (WonderlyAR deferred per
+   user) — re-home them when that brand lands.
 4. **`/pricing-plans` target.** Interim → `/services/3d-modelling`. Build a real
    `/pricing` page, or keep routing pricing intent to the service/contact flow?
 5. **Ranking image URLs.** If any `wp-content/uploads/*` images rank, export the

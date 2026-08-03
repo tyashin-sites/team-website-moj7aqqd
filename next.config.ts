@@ -79,11 +79,26 @@ const nextConfig = {
       { source: '/terms-condition-policy', destination: '/terms', statusCode: 301 },
       { source: '/terms-of-service', destination: '/terms', statusCode: 301 },
 
-      // --- Blog INDEX only (posts handled separately, see doc) ---
-      // TODO(phase7): migrate the 37 WP posts 1:1 via the Blog/CMS plugin; the
-      // /post/* URLs are intentionally NOT bulk-redirected (many->one would be a
-      // soft-404 and drop equity). /blog is currently a placeholder route.
+      // --- Blog (RESOLVED 2026-08-03: 37 WP posts migrated 1:1 into the Blog/CMS
+      //     plugin at MATCHING slugs; served live at /blog/<slug> by the platform
+      //     edge). See docs/seo-migration-map.md §G.
+      //
+      // ORDERING IS LOAD-BEARING: Next evaluates redirects() top-to-bottom, first
+      // match wins. The MULTI-segment archive rules (/post/tag/*, /post/author/*,
+      // /post/category/*) MUST come BEFORE the single-segment /post/:slug catch,
+      // otherwise :slug would swallow e.g. /post/tag/roi (`:slug` = "tag") and
+      // 301 it to /blog/tag. Archive URLs are low-value; consolidate to /blog.
+      { source: '/post/tag/:tag', destination: '/blog', statusCode: 301 },
+      { source: '/post/author/:author', destination: '/blog', statusCode: 301 },
+      { source: '/post/category/:cat', destination: '/blog', statusCode: 301 },
+      { source: '/category/blog/page/:n', destination: '/blog', statusCode: 301 },
+      { source: '/category/blog', destination: '/blog', statusCode: 301 },
       { source: '/blogs', destination: '/blog', statusCode: 301 },
+      // The 37 posts — slug PRESERVED from WordPress. LAST so it only catches a
+      // single-segment /post/<slug> (multi-segment archives already handled).
+      // 8 of the 37 are education/custom-domain help docs that logically belong
+      // to WonderlyAR (deferred per user) — they remain in the blog for now.
+      { source: '/post/:slug', destination: '/blog/:slug', statusCode: 301 },
 
       // --- Help center (GAP: no help center on the marketing site) ---
       // TODO(phase7): most help content is custom-domain setup docs that belong
