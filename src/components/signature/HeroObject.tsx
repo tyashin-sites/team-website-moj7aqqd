@@ -136,7 +136,7 @@ export function HeroObject() {
               mvRef.current = el;
             }}
             src="/models/sheen-chair.glb"
-            poster="/models/sheen-chair-poster.svg"
+            poster="/models/sheen-chair-poster.webp"
             alt="Interactive 3D chair — drag to spin"
             camera-controls
             auto-rotate
@@ -150,10 +150,14 @@ export function HeroObject() {
             style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
           />
         ) : (
-          // Poster frame while the viewer is deferred — same visual, zero JS.
+          // Poster frame while the viewer is deferred. This is a realistic
+          // raster still of the EXACT model at its initial camera pose
+          // (SEAMLESS POSTER RULE, DESIGN-SPEC §6) — rendered from
+          // sheen-chair.glb via model-viewer itself — so when the live viewer
+          // takes over there is no outline→realistic pop.
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src="/models/sheen-chair-poster.svg"
+            src="/models/sheen-chair-poster.webp"
             alt="3D product preview loading"
             width={640}
             height={640}
