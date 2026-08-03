@@ -100,6 +100,32 @@ Exit gate (auditor: QA/a11y): automated a11y scan zero criticals + manual
 keyboard walkthrough of nav/form/configurator; legal pages reviewed against
 what the site actually does; contrast spot-checks incl. pink-on-dark.
 
+STATUS (2026-08-03): **CHUNKS 1–4 SHIPPED.**
+- **CHUNK 1 (legal):** `/privacy` + `/terms` rewritten from Phase-2 stubs into
+  substantive GDPR / India DPDP Act 2023 / PIPEDA-aware policies (legal basis,
+  processors, international transfers, retention, full data-subject rights +
+  supervisory authorities, cookies, children, governing law = India). Per-page
+  canonical + BreadcrumbList JSON-LD + visible breadcrumb. Honest baselines for
+  lawyer review — open legal facts logged in ASSET-DEBT #25. No invented certs.
+- **CHUNK 2 (a11y WCAG 2.1 AA):** automated axe-core scan (wcag2a/2aa/21a/21aa)
+  across Home + industry + integration + Contact + both legal pages + Security.
+  BEFORE: 0 critical / 9 serious (muted-text contrast on breadcrumbs & captions;
+  `definition-list` structure). AFTER: **0 critical / 0 serious** on all 8
+  routes. Fixes: skip-to-content link + `<main id>` landmark; muted text
+  `text-foreground/50` & `/55` → `/70` (≥4.5:1); `definition-list` p→dd in
+  MetricBar/industry/integration/services dls; PipelineStrip unlit-card opacity
+  floor 0.45→0.75 (text passed AA in every state); MobileNav aria-expanded /
+  aria-controls / Escape-to-close; header + mobile nav landmark labels.
+- **CHUNK 3 (cookie/consent):** consent-READY, NO bespoke banner (would collide
+  with the platform consent-manager PLUGIN). Verified NO non-essential cookies
+  set pre-consent (Set-Cookie: null on both hosts; no analytics wired).
+  Integration-point comment in layout.tsx; privacy Cookies section documents
+  essential-only + future consent-gating. Plugin install = ASSET-DEBT #23.
+- **CHUNK 4 (security page):** honest `/security` (HTTPS/Cloudflare, access
+  controls, processor list, data-region note, explicit "no SOC 2/ISO claim",
+  responsible disclosure). Footer legal row + sitemap. ASSET-DEBT #24.
+Preview noindex intact on both hosts. Ready for the Phase-4 QA/a11y exit-gate.
+
 ## Phase 5 — Performance & Hardening
 
 Deliverables: LCP < 2.5s mobile / CLS < 0.1 / JS budget enforcement, 3D

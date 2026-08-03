@@ -536,6 +536,10 @@
       {
         "label": "Terms",
         "href": "/terms"
+      },
+      {
+        "label": "Security",
+        "href": "/security"
       }
     ]
   }
