@@ -265,7 +265,7 @@ export default function ThreeDModellingServicePage() {
               return (
                 <div key={s.step} className="glass-card p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="tt-mono text-accent text-sm">{s.step}</span>
+                    <span className="tt-mono text-primary text-sm">{s.step}</span>
                     <span className="w-10 h-10 rounded-xl bg-primary/15 text-paper flex items-center justify-center">
                       <Icon className="w-5 h-5" strokeWidth={1.5} aria-hidden />
                     </span>
