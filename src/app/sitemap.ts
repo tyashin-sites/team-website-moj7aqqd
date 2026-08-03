@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { INDUSTRY_SLUGS } from '@/lib/industries';
+import { COMPETITOR_SLUGS } from '@/lib/comparisons';
 
 // Absolute host for sitemap entries. On the Phase 7 cutover set
 // SITE_URL=https://www.thridify.com in the deploy environment.
@@ -27,7 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
   }));
 
-  return [...staticRoutes, ...industryRoutes].map((r) => ({
+  const compareRoutes = COMPETITOR_SLUGS.map((slug) => ({
+    path: `/compare/${slug}`,
+    priority: 0.7,
+    changeFrequency: 'monthly' as const,
+  }));
+
+  return [...staticRoutes, ...industryRoutes, ...compareRoutes].map((r) => ({
     url: `${SITE_URL}${r.path}`,
     lastModified: now,
     changeFrequency: r.changeFrequency,

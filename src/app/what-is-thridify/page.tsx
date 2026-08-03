@@ -256,6 +256,9 @@ export default function WhatIsThridifyPage() {
           <Link href="/services/3d-modelling" className="text-primary hover:underline">3D Modelling Service →</Link>
           <Link href="/industries" className="text-primary hover:underline">Industries →</Link>
           <Link href="/about" className="text-primary hover:underline">About →</Link>
+          <Link href="/compare/threekit" className="text-primary hover:underline">Thridify vs Threekit →</Link>
+          <Link href="/compare/zakeke" className="text-primary hover:underline">Thridify vs Zakeke →</Link>
+          <Link href="/compare/marxent" className="text-primary hover:underline">Thridify vs Marxent →</Link>
         </div>
       </section>
     </>
