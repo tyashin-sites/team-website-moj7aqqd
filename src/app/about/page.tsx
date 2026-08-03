@@ -7,14 +7,14 @@ import { SectionHeading } from '@/components/SectionHeading';
 import { CTABand } from '@/components/signature/CTABand';
 
 export const metadata: Metadata = {
-  title: 'About — Founded in Delhi, scaling from Toronto',
+  title: 'About Thridify — The team behind 3D & AR commerce',
   description:
-    'Thridify, by Aapastech Private Limited, was founded in Delhi in 2022. CEO Shikha Gupta now leads North American growth from the Greater Toronto Area.',
+    'Thridify, by Aapastech Private Limited, was founded in Delhi in 2022. Co-Founder & CEO Shikha Gupta leads 3D and AR commerce for North American retail from the Greater Toronto Area.',
   alternates: { canonical: '/about' },
   openGraph: {
     title: 'About Thridify',
     description:
-      'Founded in Delhi, led from the Greater Toronto Area — the team building no-code 3D and AR commerce.',
+      'Great products deserve better than a flat photo — meet the team building no-code 3D and AR commerce.',
     images: ['/og/about.png'],
   },
 };
@@ -24,7 +24,7 @@ const d = aboutContent;
 export default function AboutPage() {
   return (
     <>
-      {/* HERO — headline 6 words (≤12); subline 22 words (≤24).
+      {/* HERO — headline 8 words (≤12); subline 21 words (≤24).
           No stock/Unsplash imagery (DESIGN-SPEC §6) — brand geometry only;
           real team/office photography is tracked in ASSET-DEBT. */}
       <section className="relative overflow-hidden">
@@ -75,7 +75,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* MISSION — ≤80 words (currently 47). Dark showroom interlude with a
+      {/* MISSION — body ≤40 words (currently 38). Dark showroom interlude with a
           brand-abstract visual (two-square logo geometry) so the About page
           never runs >2 consecutive text-only sections (D-4, §3). No stock/
           team photos (ASSET-DEBT #15). */}

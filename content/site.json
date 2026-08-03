@@ -253,22 +253,22 @@
     "about": {
       "hero": {
         "eyebrow": "About Thridify",
-        "title": "Founded in Delhi. Scaling from Toronto.",
-        "subtitle": "Thridify is the 3D and AR commerce platform by Aapastech Private Limited — built so static images never decide your conversion rate again."
+        "title": "Great products deserve better than a flat photo.",
+        "subtitle": "So we built the no-code 3D and AR commerce platform that lets shoppers explore, configure and place products before they buy."
       },
       "founders": {
         "eyebrow": "The founders",
-        "title": "A Delhi-built product, led from North America.",
+        "title": "Built in Delhi. Now on North American retail floors.",
         "story": [
-          "Shikha Gupta (Co-Founder & CEO) and Aditya Gupta (Co-Founder & CTO) founded Thridify in Delhi in 2022.",
-          "Today Shikha leads the company from the Greater Toronto Area, bringing 3D and AR commerce to North American retail.",
-          "Our Delhi team continues to power engineering, 3D production and operations."
+          "Shikha Gupta and Aditya Gupta founded Thridify in Delhi in 2022, convinced that flat product photos were quietly costing brands sales — and that most teams had no realistic way to fix it.",
+          "Today Shikha (Co-Founder & CEO) leads the company from the Greater Toronto Area, bringing 3D and AR commerce to North American retailers and the suppliers behind them.",
+          "Aditya (Co-Founder & CTO) and the Delhi team power the rest — the engineering, 3D production and operations that turn a single SKU into something a customer can explore."
         ]
       },
       "mission": {
         "eyebrow": "Our Mission",
-        "title": "Make every product touchable, configurable and real — before purchase.",
-        "body": "We believe the next decade of commerce belongs to brands that let customers experience products with flagship-store depth. Thridify puts that within reach of any team — no code, no 3D specialists, no long timelines. Real-time 3D, app-free AR, expert 3D modelling and analytics, in one platform."
+        "title": "Make every product touchable, configurable and real — before the sale.",
+        "body": "The next decade of commerce belongs to brands that let customers experience products with showroom depth — from anywhere. Thridify puts that within reach of any team: real-time 3D, app-free AR, expert 3D modelling and analytics — no code required."
       },
       "presence": {
         "eyebrow": "Global presence",
@@ -321,7 +321,7 @@
         ]
       },
       "cta": {
-        "title": "Meet the team behind your next launch.",
+        "title": "Bring us one product. We'll show you the difference.",
         "primaryCta": {
           "text": "Book a Demo",
           "href": "https://calendly.com/hello-thridify/30min"
