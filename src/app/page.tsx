@@ -200,7 +200,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6">
-            <span className="text-sm text-foreground/55">Client work includes</span>
+            <span className="text-sm text-foreground/70">Client work includes</span>
             {home.clients.logos.map((logo) => (
               <Image
                 key={logo.name}

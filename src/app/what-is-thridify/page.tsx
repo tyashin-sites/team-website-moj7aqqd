@@ -158,7 +158,7 @@ export default function WhatIsThridifyPage() {
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/55">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/70">
           <li><Link href="/" className="hover:text-primary">Home</Link></li>
           <li aria-hidden>/</li>
           <li className="text-foreground/80" aria-current="page">What is Thridify?</li>

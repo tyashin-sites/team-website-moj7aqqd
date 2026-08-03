@@ -79,7 +79,7 @@ export function MetricBar({ metrics = DEFAULT_METRICS }: { metrics?: Metric[] })
             >
               <CountUp metric={m} run={run} />
             </dd>
-            <p className="mt-1.5 text-sm text-muted-dark">{m.label}</p>
+            <dd className="mt-1.5 text-sm text-muted-dark">{m.label}</dd>
           </div>
         ))}
       </dl>

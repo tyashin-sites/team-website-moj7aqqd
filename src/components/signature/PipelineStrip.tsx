@@ -80,8 +80,12 @@ export function PipelineStrip() {
               return (
                 <li
                   key={n.title}
+                  // Unlit floor kept ≥0.75 so BOTH the white heading and the
+                  // muted-dark label still clear WCAG AA 4.5:1 on the dark
+                  // glass even before the pipeline "draws" (a11y: text must
+                  // pass in every state; muted-dark at 0.65 was 4.45:1).
                   className="glass-card p-6 transition-ui"
-                  style={{ opacity: lit ? 1 : 0.45 }}
+                  style={{ opacity: lit ? 1 : 0.75 }}
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 text-paper flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6" strokeWidth={1.5} />

@@ -29,7 +29,7 @@ export async function Header() {
           )}
         </Link>
 
-        <nav className="hidden md:flex items-center gap-10 mx-auto">
+        <nav aria-label="Primary" className="hidden md:flex items-center gap-10 mx-auto">
           {nav.map((item) => (
             <Link
               key={item.href}

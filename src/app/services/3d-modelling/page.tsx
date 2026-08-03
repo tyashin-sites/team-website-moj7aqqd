@@ -186,7 +186,7 @@ export default function ThreeDModellingServicePage() {
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/55">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/70">
           <li><Link href="/" className="hover:text-primary">Home</Link></li>
           <li aria-hidden>/</li>
           <li><Link href="/platform" className="hover:text-primary">Platform</Link></li>
@@ -334,7 +334,7 @@ export default function ThreeDModellingServicePage() {
                     {m.value}
                   </dd>
                   <dt className="mt-2 text-muted-dark">{m.label}</dt>
-                  <p className="mt-3 text-sm text-muted-dark leading-relaxed">{o.context}</p>
+                  <dd className="mt-3 text-sm text-muted-dark leading-relaxed">{o.context}</dd>
                 </div>
               );
             })}

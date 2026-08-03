@@ -13,10 +13,22 @@ export function MobileNav({ nav, ctaText, ctaHref }: { nav: NavItem[]; ctaText: 
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
+  // Escape closes the menu (keyboard accessibility).
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
+
   return (
     <>
       <button
-        aria-label="Toggle menu"
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        aria-expanded={open}
+        aria-controls="mobile-nav-panel"
         onClick={() => setOpen(o => !o)}
         className="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-border"
       >
@@ -27,8 +39,11 @@ export function MobileNav({ nav, ctaText, ctaHref }: { nav: NavItem[]; ctaText: 
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-xl pt-24 px-6">
-          <nav className="flex flex-col gap-1">
+        <div
+          id="mobile-nav-panel"
+          className="fixed inset-0 z-40 md:hidden bg-background/95 backdrop-blur-xl pt-24 px-6"
+        >
+          <nav aria-label="Primary" className="flex flex-col gap-1">
             {nav.map(item => (
               <Link
                 key={item.href}

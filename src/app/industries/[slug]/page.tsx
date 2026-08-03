@@ -143,7 +143,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/55">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/70">
           <li><Link href="/" className="hover:text-primary">Home</Link></li>
           <li aria-hidden>/</li>
           <li><Link href="/industries" className="hover:text-primary">Industries</Link></li>
@@ -202,7 +202,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                     <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                       <CapIcon className="w-5 h-5" strokeWidth={1.5} aria-hidden />
                     </span>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-foreground/70">
                       {cap.label}
                     </span>
                   </div>
@@ -231,7 +231,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                     {m.value}
                   </dd>
                   <dt className="mt-2 text-muted-dark">{m.label}</dt>
-                  <p className="mt-3 text-sm text-muted-dark leading-relaxed">{o.context}</p>
+                  <dd className="mt-3 text-sm text-muted-dark leading-relaxed">{o.context}</dd>
                 </div>
               );
             })}

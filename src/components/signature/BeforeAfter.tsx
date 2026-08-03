@@ -29,7 +29,7 @@ export function BeforeAfter() {
       {/* LEFT — the flat photo */}
       <figure>
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Flat photo</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Flat photo</span>
         </div>
         <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-foreground/10 bg-tint">
           {/* Same product, rendered flat — desaturated to read as "just a

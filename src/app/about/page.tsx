@@ -107,7 +107,7 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {d.presence.items.map((o, i) => (
               <Reveal key={o.region} delay={i * 0.08} className="card p-7">
-                <div className="text-xs uppercase tracking-[0.18em] text-foreground/50">{o.region}</div>
+                <div className="text-xs uppercase tracking-[0.18em] text-foreground/70">{o.region}</div>
                 <div className="mt-2 font-heading font-bold text-2xl">{o.city}</div>
                 {o.detail && <p className="mt-2 text-sm text-foreground/65">{o.detail}</p>}
                 <div className="mt-5 flex flex-wrap gap-3 text-sm">

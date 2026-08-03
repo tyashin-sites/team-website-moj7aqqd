@@ -31,7 +31,7 @@ export function LegalDocument({
     <>
       {/* Visible breadcrumb (JSON-LD BreadcrumbList lives in the page). */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/55">
+        <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/70">
           <li>
             <Link href="/" className="hover:text-primary">
               Home
@@ -50,7 +50,7 @@ export function LegalDocument({
           <div className="max-w-3xl">
             <p className="eyebrow">{eyebrow}</p>
             <h1 className="tt-display text-foreground">{title}</h1>
-            <p className="text-sm text-foreground/55">Effective date: {effectiveDate}</p>
+            <p className="text-sm text-foreground/70">Effective date: {effectiveDate}</p>
           </div>
         </div>
       </section>

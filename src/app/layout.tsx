@@ -89,11 +89,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style dangerouslySetInnerHTML={{ __html: CANONICAL_BRAND_CSS }} />
       </head>
       <body className="font-body bg-background text-foreground antialiased">
+        {/* Skip-to-content link (WCAG 2.4.1) — visually hidden until focused,
+            then a visible pink-ringed pill at the top-left. */}
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         {/* Sitewide entity graph: Organization + SoftwareApplication on every
             page (per-page Service/FAQ/Breadcrumb blocks live in their pages). */}
         <EntitySchema />
+        {/* ─────────────────────────────────────────────────────────────
+            COOKIE / CONSENT INTEGRATION POINT (Phase 4, CHUNK 3).
+            This site is consent-READY but deliberately ships NO bespoke
+            cookie banner. Rationale:
+              1. Today the site sets only strictly-necessary cookies
+                 (Cloudflare security) and wires NO analytics/ad trackers, so
+                 nothing non-essential runs pre-consent — nothing to gate yet.
+              2. The consent banner + non-essential-cookie gating is owned by
+                 the platform **consent-manager PLUGIN** (not yet installed;
+                 needs a JWT, orchestrator-tracked — see docs/ASSET-DEBT.md
+                 #23). A hand-rolled banner here would COLLIDE with the plugin
+                 at install. When analytics is enabled it must be mounted
+                 THROUGH the plugin's consent gate, not directly.
+            Mount the plugin's consent script here at install time; do not add
+            a custom banner. ───────────────────────────────────────────── */}
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main id="main-content" tabIndex={-1} className="min-h-screen">
+          {children}
+        </main>
         <Footer />
         {/* §9 law: sticky mobile Book-a-Demo bar after 50% scroll. */}
         <MobileCtaBar />

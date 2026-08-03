@@ -55,7 +55,7 @@ export default function ContactPage() {
                       <p className="font-heading font-semibold text-lg">{o.region}</p>
                       <span className="text-sm text-foreground/60">{o.city}</span>
                     </div>
-                    {o.detail && <p className="mt-1 text-sm text-foreground/55">{o.detail}</p>}
+                    {o.detail && <p className="mt-1 text-sm text-foreground/70">{o.detail}</p>}
                     <div className="mt-3 flex flex-wrap gap-2">
                       {o.phone && (
                         <a

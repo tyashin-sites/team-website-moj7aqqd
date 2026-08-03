@@ -87,6 +87,34 @@
    ticker. Never define a reusable class outside this layer.
    ───────────────────────────────────────────────────────────────────── */
 @layer components {
+  /* Skip-to-content (WCAG 2.4.1). Off-screen until keyboard focus, then a
+     visible pill at top-left. Uses the global pink :focus-visible ring. */
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    transform: translateY(-160%);
+    background: var(--brand-primary);
+    color: var(--brand-primary-contrast);
+    padding: 0.625rem 1.125rem;
+    border-radius: var(--brand-radius-full);
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-hover);
+    transition: transform var(--dur-ui) var(--ease-brand);
+  }
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+  /* Suppress the browser's default focus outline on the programmatically
+     focused <main> (tabIndex=-1 target of the skip link) — it is not an
+     interactive control, so no ring is expected there. */
+  main:focus {
+    outline: none;
+  }
+
   /* Section rhythm — DESIGN-SPEC §4 */
   .section {
     padding-top: clamp(5rem, 10vw, 8.5rem);
