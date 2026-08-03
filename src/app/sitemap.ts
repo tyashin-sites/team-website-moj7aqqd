@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { INDUSTRY_SLUGS } from '@/lib/industries';
+import { INTEGRATION_SLUGS } from '@/lib/integrations';
 import { COMPETITOR_SLUGS } from '@/lib/comparisons';
 
 // Absolute host for sitemap entries. On the Phase 7 cutover set
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/what-is-thridify', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/services/3d-modelling', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/industries', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/integrations', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/blog', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/contact', priority: 0.6, changeFrequency: 'monthly' },
@@ -28,13 +30,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
   }));
 
+  const integrationRoutes = INTEGRATION_SLUGS.map((slug) => ({
+    path: `/integrations/${slug}`,
+    priority: 0.8,
+    changeFrequency: 'monthly' as const,
+  }));
+
   const compareRoutes = COMPETITOR_SLUGS.map((slug) => ({
     path: `/compare/${slug}`,
     priority: 0.7,
     changeFrequency: 'monthly' as const,
   }));
 
-  return [...staticRoutes, ...industryRoutes, ...compareRoutes].map((r) => ({
+  return [...staticRoutes, ...industryRoutes, ...integrationRoutes, ...compareRoutes].map((r) => ({
     url: `${SITE_URL}${r.path}`,
     lastModified: now,
     changeFrequency: r.changeFrequency,

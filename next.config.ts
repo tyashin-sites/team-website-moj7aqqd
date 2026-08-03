@@ -58,19 +58,21 @@ const nextConfig = {
       { source: '/3d-product-configurator', destination: '/platform', statusCode: 301 },
       { source: '/ar-viewer', destination: '/platform', statusCode: 301 },
 
-      // --- Integrations (GAP: no per-integration pages exist yet) ---
-      // TODO(phase7): BUILD real integration pages (/integrations/<platform>) and
-      // repoint these; /woocommerce (4415i), /magento (3334i), /shopify (2041i)
-      // carry real impressions. Interim target = /platform so nothing 404s.
-      { source: '/woocommerce', destination: '/platform', statusCode: 301 },
-      { source: '/shopify', destination: '/platform', statusCode: 301 },
-      { source: '/wix-commerce', destination: '/platform', statusCode: 301 },
-      { source: '/bigcommerce', destination: '/platform', statusCode: 301 },
-      { source: '/big-commerce', destination: '/platform', statusCode: 301 },
-      { source: '/magento', destination: '/platform', statusCode: 301 },
-      { source: '/commercetools', destination: '/platform', statusCode: 301 },
-      { source: '/canva', destination: '/platform', statusCode: 301 },
-      { source: '/custom-integration', destination: '/platform', statusCode: 301 },
+      // --- Integrations (REAL per-platform pages now exist: /integrations/*) ---
+      // Each old WordPress integration URL 301s to its dedicated landing page
+      // (src/lib/integrations.ts) to preserve its specific ranking intent;
+      // /woocommerce (4415i), /magento (3334i), /shopify (2041i) carry real
+      // impressions. Spelling variants (/big-commerce, /wix-commerce) map to the
+      // canonical slug. See docs/seo-migration-map.md §D.
+      { source: '/woocommerce', destination: '/integrations/woocommerce', statusCode: 301 },
+      { source: '/shopify', destination: '/integrations/shopify', statusCode: 301 },
+      { source: '/wix-commerce', destination: '/integrations/wix', statusCode: 301 },
+      { source: '/bigcommerce', destination: '/integrations/bigcommerce', statusCode: 301 },
+      { source: '/big-commerce', destination: '/integrations/bigcommerce', statusCode: 301 },
+      { source: '/magento', destination: '/integrations/magento', statusCode: 301 },
+      { source: '/commercetools', destination: '/integrations/commercetools', statusCode: 301 },
+      { source: '/canva', destination: '/integrations/canva', statusCode: 301 },
+      { source: '/custom-integration', destination: '/integrations/custom-integration', statusCode: 301 },
 
       // --- Legal ---
       { source: '/privacy-policy', destination: '/privacy', statusCode: 301 },

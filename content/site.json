@@ -476,6 +476,10 @@
             "href": "/services/3d-modelling"
           },
           {
+            "label": "Integrations",
+            "href": "/integrations"
+          },
+          {
             "label": "Analytics",
             "href": "/platform#analytics"
           }

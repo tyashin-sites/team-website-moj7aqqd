@@ -97,23 +97,33 @@ New industries without a legacy WP equivalent (no inbound URL to preserve):
 | `/ar-viewer/` | 26c 3106i p24 | 301(GAP) | `/platform` | High value. TODO(phase7): dedicated `/ar-viewer` page |
 | `/3d-product-configurator/` | 11c 3622i | 301(GAP) | `/platform` | TODO(phase7): dedicated `/3d-configurator` page |
 
-### D. Integrations — GAP (no per-integration pages exist yet)
+### D. Integrations — RESOLVED (real per-platform pages now exist)
 
-All interim → `/platform`. **Recommendation: BUILD real integration pages**
-(`/integrations/<platform>`); several carry real impressions. Repoint each when
-built.
+**BUILT (2026-08-03).** 9 real integration landing pages at
+`/integrations/<slug>` (typed data `src/lib/integrations.ts` +
+`src/app/integrations/[slug]/page.tsx`, mirroring the `/industries/[slug]`
+SSG pattern: `generateStaticParams` + `dynamicParams=false`, unique
+title/desc/canonical/OG + Service/FAQPage/BreadcrumbList JSON-LD each). Each old
+WordPress integration URL now 301s to its dedicated page (no longer interim
+`/platform`), preserving its specific ranking intent. Spelling variants map to
+the canonical slug. A `/integrations` hub index lists all 9 and is in the
+sitemap + footer.
 
 | Prod URL | GSC | Disposition | Target |
 |---|---|---|---|
-| `/woocommerce/` | 16c 4415i | 301(GAP) | `/platform` |
-| `/shopify/` | 9c 2041i | 301(GAP) | `/platform` |
-| `/magento/` | 2c 3334i | 301(GAP) | `/platform` |
-| `/wix-commerce/` | 6c 1065i | 301(GAP) | `/platform` |
-| `/bigcommerce/` | 3c | 301(GAP) | `/platform` |
-| `/big-commerce/` | — | 301(GAP) | `/platform` (spelling variant) |
-| `/commercetools/` | — | 301(GAP) | `/platform` |
-| `/canva/` | — | 301(GAP) | `/platform` |
-| `/custom-integration/` | 366i | 301(GAP) | `/platform` |
+| `/woocommerce/` | 16c 4415i | 301 | `/integrations/woocommerce` |
+| `/shopify/` | 9c 2041i | 301 | `/integrations/shopify` |
+| `/magento/` | 2c 3334i | 301 | `/integrations/magento` |
+| `/wix-commerce/` | 6c 1065i | 301 | `/integrations/wix` |
+| `/bigcommerce/` | 3c | 301 | `/integrations/bigcommerce` |
+| `/big-commerce/` | — | 301 | `/integrations/bigcommerce` (spelling variant) |
+| `/commercetools/` | — | 301 | `/integrations/commercetools` |
+| `/canva/` | — | 301 | `/integrations/canva` |
+| `/custom-integration/` | 366i | 301 | `/integrations/custom-integration` |
+
+Note: `/3d-product-configurator/` (§C, 11c 3622i) remains 301 → `/platform` —
+it is a generic configurator query, not platform-specific, so `/platform`
+(which hosts the configurator deep-dive) is the honest destination.
 
 ### E. Legal
 
@@ -184,16 +194,18 @@ real earned equity and must not be silently dropped.
 
 - **160 URLs** in the WordPress sitemaps + 8 GSC-only legacy URLs cross-referenced.
 - **Implemented redirect rules in `next.config.ts`: 28** (all 301). Breakdown:
-  core 7, industries 4, capability 2, integrations 9 (GAP), legal 3, blog-index 1,
-  help-center 1 (GAP), education 1 (FLAG/interim).
+  core 7, industries 4, capability 2, integrations 9 (now → real
+  `/integrations/*` pages), legal 3, blog-index 1, help-center 1 (GAP),
+  education 1 (FLAG/interim).
 - **KEEP-SAME (no rule needed): `/`, `/about`, `/contact`** (+ their trailing-slash
   308 variants).
-- **Clean 301s (destination page exists & is a true match): 17** — core (7),
-  industries (4), legal (3), capability targets that are honest fits, blog-index (1),
-  plus the two capability pages land on the real `/platform`.
-- **GAP rows needing NEW pages before they're truly "clean": 12** — 9 integration
-  pages, `/pricing-plans` (no pricing page), 2 capability pages (`/ar-viewer`,
-  `/3d-product-configurator` deserve dedicated pages), + help-center.
+- **Clean 301s (destination page exists & is a true match): 26** — core (7),
+  industries (4), legal (3), blog-index (1), the two capability rows that land on
+  the real `/platform`, **plus the 9 integration rows now landing on their real
+  `/integrations/<slug>` pages (built 2026-08-03)**.
+- **GAP rows needing NEW pages before they're truly "clean": 3** — `/pricing-plans`
+  (no pricing page), the 2 capability pages (`/ar-viewer`, `/3d-product-configurator`
+  could get dedicated pages), + help-center. **Integrations no longer a GAP.**
 - **HOLD (deliberately not redirected in code): ~133 blog/tag/category/author/
   fragment URLs** — require 1:1 blog migration (Phase-7 blocker).
 
@@ -205,10 +217,11 @@ real earned equity and must not be silently dropped.
    (current interim), (b) provide the WonderlyAR domain now so we point 301s
    there, (c) explicitly accept letting this equity lapse. **Need the WonderlyAR
    destination domain (or a decision).**
-2. **Build integration pages?** `/woocommerce` (4415i), `/magento` (3334i),
-   `/shopify` (2041i), `/custom-integration` (366i) etc. currently interim-301 to
-   `/platform`. Building `/integrations/<platform>` pages would preserve their
-   specific ranking intent. Approve building them (Phase 4/5 content work)?
+2. ~~**Build integration pages?**~~ **DONE (2026-08-03).** 9 real
+   `/integrations/<slug>` pages built (woocommerce, shopify, wix, bigcommerce,
+   magento, commercetools, canva, wordpress, custom-integration) + a
+   `/integrations` hub; every old integration URL now 301s to its dedicated page.
+   No further user decision needed here.
 3. **Blog migration.** Approve migrating the 37 WP posts 1:1 into the Blog/CMS
    plugin (keeping slugs) before cutover — this is the only non-lossy option and
    is a Phase-7 blocker. Also confirm whether the 8 education/custom-domain help
