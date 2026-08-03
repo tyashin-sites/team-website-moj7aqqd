@@ -82,12 +82,16 @@ function PillarHeader({
       <div className="flex items-center gap-3 mb-5">
         <span
           className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-            dark ? "bg-paper/10 text-accent" : "bg-primary/10 text-primary"
+            dark
+              ? "bg-primary-soft/10 text-primary-soft"
+              : "bg-primary/10 text-primary"
           }`}
         >
           <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
         </span>
-        <p className={`eyebrow mb-0 ${dark ? "text-accent" : ""}`}>{p.label}</p>
+        {/* On dark, `.on-dark .eyebrow` re-tints to --brand-primary-soft teal
+            (globals.css) — no per-page pink override (§1 one-pink). */}
+        <p className="eyebrow mb-0">{p.label}</p>
       </div>
       <h2 className={`tt-2 ${dark ? "text-paper" : ""}`}>{p.title}</h2>
       <p
@@ -99,7 +103,9 @@ function PillarHeader({
   );
 }
 
-// Curated (not full) benefit-feature list — the full 37 live on /features.
+// Curated (not full) benefit-feature list — the full capability catalog
+// (37 unique capabilities; API token access is framed under two pillars) lives
+// on /features.
 function FeatureList({
   pillarId,
   count,
@@ -115,7 +121,7 @@ function FeatureList({
       {items.map((f) => (
         <li key={f} className="flex items-start gap-3">
           <Check
-            className={`w-5 h-5 shrink-0 mt-0.5 ${dark ? "text-accent" : "text-primary"}`}
+            className={`w-5 h-5 shrink-0 mt-0.5 ${dark ? "text-primary-soft" : "text-primary"}`}
             strokeWidth={2}
             aria-hidden
           />
@@ -141,7 +147,7 @@ function SeeAll({
     <Link
       href={`/features#${pillarId}`}
       className={`inline-flex items-center gap-1.5 text-sm font-semibold hover:gap-2.5 transition-all ${
-        dark ? "text-accent" : "text-primary"
+        dark ? "text-primary-soft" : "text-primary"
       }`}
     >
       See all capabilities <ArrowRight className="w-4 h-4" aria-hidden />
@@ -338,7 +344,7 @@ export default function PlatformPage() {
               </p>
               <Link
                 href="/services/3d-modelling"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:gap-2.5 transition-all"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-soft hover:gap-2.5 transition-all"
               >
                 Explore the 3D modelling service{" "}
                 <ArrowRight className="w-4 h-4" aria-hidden />

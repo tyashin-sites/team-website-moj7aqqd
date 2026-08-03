@@ -278,13 +278,15 @@ export default function FeaturesPage() {
                   <span
                     className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                       dark
-                        ? "bg-paper/10 text-accent"
+                        ? "bg-primary-soft/10 text-primary-soft"
                         : "bg-primary/10 text-primary"
                     }`}
                   >
                     <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
                   </span>
-                  <p className={`eyebrow mb-0 ${dark ? "text-accent" : ""}`}>
+                  {/* On dark, `.on-dark .eyebrow` re-tints to --brand-primary-soft
+                      teal (globals.css) — no per-page pink override (§1 one-pink). */}
+                  <p className="eyebrow mb-0">
                     {String(i + 1).padStart(2, "0")} · {p.label}
                   </p>
                 </div>
@@ -307,7 +309,7 @@ export default function FeaturesPage() {
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-3">
                     <Check
-                      className={`w-5 h-5 shrink-0 mt-0.5 ${dark ? "text-accent" : "text-primary"}`}
+                      className={`w-5 h-5 shrink-0 mt-0.5 ${dark ? "text-primary-soft" : "text-primary"}`}
                       strokeWidth={2}
                       aria-hidden
                     />
@@ -326,7 +328,7 @@ export default function FeaturesPage() {
                     key={l.href}
                     href={l.href}
                     className={`inline-flex items-center gap-1.5 text-sm font-semibold hover:gap-2.5 transition-all ${
-                      dark ? "text-accent" : "text-primary"
+                      dark ? "text-primary-soft" : "text-primary"
                     }`}
                   >
                     {l.label} <ArrowRight className="w-4 h-4" aria-hidden />
@@ -394,14 +396,14 @@ export default function FeaturesPage() {
             Or explore{" "}
             <Link
               href="/platform"
-              className="text-accent font-semibold hover:underline"
+              className="text-primary-soft font-semibold hover:underline"
             >
               the platform
             </Link>{" "}
             and the{" "}
             <Link
               href="/integrations/shopify"
-              className="text-accent font-semibold hover:underline"
+              className="text-primary-soft font-semibold hover:underline"
             >
               Shopify integration
             </Link>
