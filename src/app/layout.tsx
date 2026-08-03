@@ -3,6 +3,7 @@ import { bodyFont, headingFont, monoFont } from '@/lib/fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { MobileCtaBar } from '@/components/MobileCtaBar';
+import { EntitySchema } from '@/components/SiteSchema';
 import './globals.css';
 
 // Absolute base for OG/Twitter URLs. While previewed on workers.dev this
@@ -88,6 +89,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style dangerouslySetInnerHTML={{ __html: CANONICAL_BRAND_CSS }} />
       </head>
       <body className="font-body bg-background text-foreground antialiased">
+        {/* Sitewide entity graph: Organization + SoftwareApplication on every
+            page (per-page Service/FAQ/Breadcrumb blocks live in their pages). */}
+        <EntitySchema />
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

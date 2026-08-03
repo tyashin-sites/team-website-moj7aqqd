@@ -16,6 +16,7 @@ import { PipelineStrip } from '@/components/signature/PipelineStrip';
 import { VerticalCard } from '@/components/signature/VerticalCard';
 import { ProofCard } from '@/components/signature/ProofCard';
 import { CTABand } from '@/components/signature/CTABand';
+import { WebsiteSchema } from '@/components/SiteSchema';
 
 export const metadata: Metadata = {
   title: 'Thridify — Reimagine how the world experiences your products',
@@ -48,6 +49,8 @@ const home = homeContent;
 export default function HomePage() {
   return (
     <>
+      {/* WebSite entity — Home + /platform only, on top of sitewide EntitySchema. */}
+      <WebsiteSchema />
       {/* 1. HERO — showroom mode (DESIGN-SPEC §7.1/§8): dark ink, live 3D
           object. Headline 7 words (≤12); subline 19 words (≤24). */}
       <section className="on-dark bg-ink text-paper relative overflow-hidden">

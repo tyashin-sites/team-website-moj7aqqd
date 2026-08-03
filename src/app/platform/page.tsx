@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/SectionHeading';
 import { ProductVisual, type ProductVisualVariant } from '@/components/ProductVisual';
 import { CapabilityDemo, type DemoMode } from '@/components/signature/CapabilityDemo';
 import { CTABand } from '@/components/signature/CTABand';
+import { WebsiteSchema } from '@/components/SiteSchema';
 
 // The three product capabilities that CAN be shown as a live interactive
 // demo (DEMO-FIRST, §6a) — everything else (content/analytics) has no
@@ -37,6 +38,8 @@ const analytics = c.products.items.find((p) => p.id === 'analytics');
 export default function PlatformPage() {
   return (
     <>
+      {/* WebSite entity — Home + /platform only, on top of sitewide EntitySchema. */}
+      <WebsiteSchema />
       {/* HERO — headline 6 words (≤12); subline 14 words (≤24). */}
       <section className="relative aurora overflow-hidden">
         <div className="container-x relative section text-center">
