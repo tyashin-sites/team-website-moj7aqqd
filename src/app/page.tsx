@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   title: 'Thridify — Reimagine how the world experiences your products',
   description:
     'No-code 3D and AR commerce: interactive product viewers, real-time configurators and app-free AR that help brands convert more and return less.',
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Thridify — 3D & AR Commerce Platform',
     description:

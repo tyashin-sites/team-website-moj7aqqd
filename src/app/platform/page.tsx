@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: 'Platform — 3D & AR Commerce Suite',
   description:
     'The Thridify platform: 3D 360° Viewer, 3D Configurator with live pricing and BOM export, app-free AR Viewer, 3D Content Generation and Analytics.',
+  alternates: { canonical: '/platform' },
   openGraph: {
     title: 'The Thridify Platform — Five modules, one immersive commerce stack',
     description:
