@@ -49,14 +49,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-/** A cell whose text starts with "Yes" renders an affirmative check chip. */
-function Cell({ text, accent }: { text: string; accent?: boolean }) {
+/** A cell whose text starts with "Yes" renders an affirmative check chip.
+ *  Checks are TEAL (text-primary) sitewide — pink is reserved for a single
+ *  "moment" per viewport (§1 one-pink), here the Thridify column header. */
+function Cell({ text }: { text: string }) {
   const yes = /^Yes\b/.test(text);
   return (
     <div className="flex items-start gap-2">
       {yes && (
         <Check
-          className={`w-4 h-4 shrink-0 mt-0.5 ${accent ? 'text-accent' : 'text-primary'}`}
+          className="w-4 h-4 shrink-0 mt-0.5 text-primary"
           strokeWidth={2.5}
           aria-hidden
         />
@@ -88,10 +90,12 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    // No /compare index page exists, so there is no crumb between Home and the
+    // leaf — collapse to Home → Thridify vs <competitor> (M-2: kill the
+    // duplicate position-2 item that pointed at the leaf URL).
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
-      { '@type': 'ListItem', position: 2, name: 'Compare', item: `${SITE_URL}/compare/${c.slug}` },
-      { '@type': 'ListItem', position: 3, name: `Thridify vs ${c.name}`, item: canonicalUrl },
+      { '@type': 'ListItem', position: 2, name: `Thridify vs ${c.name}`, item: canonicalUrl },
     ],
   };
 
@@ -133,7 +137,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
             <thead>
               <tr className="bg-surface">
                 <th className="p-4 font-heading text-sm font-semibold tracking-tight w-[38%]">Capability</th>
-                <th className="p-4 font-heading text-sm font-semibold tracking-tight text-primary w-[31%]">Thridify</th>
+                <th className="p-4 font-heading text-sm font-semibold tracking-tight text-accent w-[31%]">Thridify</th>
                 <th className="p-4 font-heading text-sm font-semibold tracking-tight w-[31%]">{c.name}</th>
               </tr>
             </thead>
@@ -141,7 +145,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
               {c.rows.map((row) => (
                 <tr key={row.feature} className="border-t border-foreground/10 align-top">
                   <th scope="row" className="p-4 font-medium text-sm text-foreground/80">{row.feature}</th>
-                  <td className="p-4 text-foreground/80"><Cell text={row.thridify} accent /></td>
+                  <td className="p-4 text-foreground/80"><Cell text={row.thridify} /></td>
                   <td className="p-4 text-foreground/70"><Cell text={row.competitor} /></td>
                 </tr>
               ))}
