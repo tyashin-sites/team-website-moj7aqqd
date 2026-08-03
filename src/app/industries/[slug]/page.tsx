@@ -53,7 +53,11 @@ export function generateStaticParams() {
   return INDUSTRY_SLUGS.map((slug) => ({ slug }));
 }
 
-export const dynamicParams = false;
+// ISR — matches the platform's proven blog/product pattern. Pure SSG with
+// dynamicParams:false 404s on an OpenNext-Cloudflare cache MISS (the incr.
+// cache isn't pre-warmed for dynamic-segment SSG); ISR regenerates on MISS
+// → 200 instead. Unknown slugs still 404 via notFound() below.
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
