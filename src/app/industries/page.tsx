@@ -5,6 +5,9 @@ import { industriesContent, homeContent } from '@/lib/content';
 import { INDUSTRIES, type Industry } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
 
+const SITE_URL =
+  process.env.SITE_URL ?? 'https://site-thridify.snowy-cherry-cd2c.workers.dev';
+
 export const metadata: Metadata = {
   title: 'Industries — 3D & AR Commerce for Every Sector',
   description:
@@ -31,8 +34,31 @@ const page = industriesContent;
 const proof = homeContent.proof;
 
 export default function IndustriesPage() {
+  const itemListLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Thridify industries',
+    itemListElement: INDUSTRIES.map((ind, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `Thridify for ${ind.gridName}`,
+      url: `${SITE_URL}/industries/${ind.slug}`,
+    })),
+  };
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+      { '@type': 'ListItem', position: 2, name: 'Industries', item: `${SITE_URL}/industries` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 aurora opacity-70 pointer-events-none" aria-hidden />

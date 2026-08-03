@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Blog — Insights on 3D & AR Commerce',
   description:
     'Stories, playbooks, and research on building immersive 3D and AR product experiences that convert.',
+  alternates: { canonical: '/blog' },
 };
 
 export const revalidate = 60;

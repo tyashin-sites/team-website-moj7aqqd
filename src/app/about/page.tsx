@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: 'About — Founded in Delhi, scaling from Toronto',
   description:
     'Thridify, by Aapastech Private Limited, was founded in Delhi in 2022. CEO Shikha Gupta now leads North American growth from the Greater Toronto Area.',
+  alternates: { canonical: '/about' },
   openGraph: {
     title: 'About Thridify',
     description:

@@ -1,5 +1,6 @@
 import { SITE_URL, CANONICAL_DESCRIPTION, LEGAL_NAME } from '@/lib/schema';
 import { INDUSTRIES } from '@/lib/industries';
+import { INTEGRATIONS } from '@/lib/integrations';
 import { COMPETITORS } from '@/lib/comparisons';
 
 /**
@@ -20,6 +21,9 @@ export function GET() {
   const compareList = COMPETITORS.map(
     (c) => `- Thridify vs ${c.name}: ${SITE_URL}/compare/${c.slug}`,
   ).join('\n');
+  const integrationList = INTEGRATIONS.map(
+    (i) => `- ${i.name}: ${SITE_URL}/integrations/${i.slug}`,
+  ).join('\n');
 
   const body = `# Thridify
 
@@ -39,7 +43,9 @@ Five products, one no-code layer:
 ${industryList}
 
 ## Integrations
-Shopify, WooCommerce, WordPress, and custom storefronts.
+Thridify runs on the store you already have — via a plugin or a lightweight embed, no re-platforming. Nine supported paths: WooCommerce, Shopify, Wix, BigCommerce, Magento, commercetools, Canva, WordPress and any custom storefront (JS SDK + API).
+Index: ${SITE_URL}/integrations
+${integrationList}
 
 ## Model formats
 glTF, GLB and USDZ — photoreal and AR-ready.
@@ -60,6 +66,7 @@ ${compareList}
 - Platform: ${SITE_URL}/platform
 - 3D Modelling Service: ${SITE_URL}/services/3d-modelling
 - Industries: ${SITE_URL}/industries
+- Integrations: ${SITE_URL}/integrations
 - About: ${SITE_URL}/about
 - Contact: ${SITE_URL}/contact
 
