@@ -70,7 +70,7 @@ GSC metrics: c=clicks, i=impressions, p=avg position (as supplied by the user).
 | `/home/` | — | 301 | `/` | WP alias of home |
 | `/about-us/` | 25c p3.9 | 301 | `/about` | |
 | `/about/` | — | KEEP | `/about` | Already the native route (308→200) |
-| `/features/` | — | 301 | `/platform` | Platform = the feature suite |
+| `/features/` | — | KEEP | `/features` | Now a REAL page — the 5-pillar capability reference (SHIPPED 2026-08-03). The old → `/platform` 301 was REMOVED from `next.config.ts` |
 | `/demo/` | — | 301 | `/contact` | `/contact` carries the demo form + Calendly. Fragment `/#demo` exists but hash redirects are unreliable |
 | `/contact/` | — | KEEP | `/contact` | Native route |
 | `/contact-us/` | — | 301 | `/contact` | |
