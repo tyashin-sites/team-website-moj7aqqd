@@ -188,18 +188,45 @@ Note: 8 of the 37 posts are education/custom-domain HELP docs
 `general-dns-setup-guide…`, `custom-domain-troubleshooting-guide…`) — these
 belong to WonderlyAR (§H), not the Thridify marketing blog.
 
-### H. Education (WonderlyAR decouple) — FLAG for user
+### H. Education (WonderlyAR decouple) — RESOLVED (2026-08-03: 301 to wonderlyar.com)
 
-DESIGN-SPEC §6: AR-for-education is being spun out to a separate brand,
-**WonderlyAR**, and MUST NOT appear on the Thridify site. But this cluster has
-real earned equity and must not be silently dropped.
+DESIGN-SPEC §6: AR-for-education is spun out to a separate brand, **WonderlyAR**,
+and MUST NOT appear on the Thridify site. This cluster has real earned equity and
+must not be silently dropped.
 
-| Prod URL(s) | GSC | Disposition | Interim target | Notes |
+**RESOLVED.** WonderlyAR is now **LIVE at https://wonderlyar.com** (verified 200,
+"WonderlyAR - AR Learning Platform for Early Childhood Education"). The education
+footprint is small + precise (verified via the thridify.com WP REST API), and each
+piece now **301s OFF-SITE to wonderlyar.com** in `next.config.ts` (was interim →
+`/` Thridify home). External absolute destinations use `basePath: false`. These are
+redirects only — no education content renders on Thridify.
+
+| Prod URL(s) | GSC | Disposition | Target | Notes |
 |---|---|---|---|---|
-| `/ar-in-education/` | 8c 938i | FLAG | `/` (interim HOLD redirect) | Replace with 301 to the WonderlyAR domain once it exists |
-| education help posts (8, see §G) | — | HOLD | — | Move to WonderlyAR with the product |
-| `ar-education-*` / `cname-*` / `dns-*` / `custom-domain-*` tags (~30 of the 93) | — | HOLD | — | Education/help tag archives |
-| `/post/author/*` | — | HOLD | — | Authorship spans both brands |
+| `/ar-in-education/` | 8c 938i | **301** | `https://wonderlyar.com` | Marketing page. `basePath:false` off-site rule (was interim → `/`) |
+| `/post/connect-your-custom-domain-to-ar-education` | — | **301** | `https://wonderlyar.com` | The ONE education blog post among the 37. SPECIFIC rule BEFORE the `/post/:slug` → `/blog/:slug` wildcard (first match wins). Still published at `/blog/…` on Thridify — flagged to orchestrator to unpublish via blog API (needs JWT) |
+| `/post/tag/ar-education-custom-domain` | — | **301** | `https://wonderlyar.com` | Education tag archive. SPECIFIC rule BEFORE `/post/tag/:tag` → `/blog` |
+| `/post/tag/ar-education-domain-connection` | — | **301** | `https://wonderlyar.com` | Education tag archive (as above) |
+| `/post/tag/ar-education-domain-setup` | — | **301** | `https://wonderlyar.com` | Education tag archive (as above) |
+
+**Education tag identification.** Fetched the live tag list from
+`thridify.com/wp-json/wp/v2/tags?per_page=100&_fields=slug` (Mozilla UA) and matched
+against the education regex
+(`education|ar-education|ar-book|arbook|flashcard|learning|pre-school|preschool|nursery|kids|children|early-child|publish`).
+EXACTLY three tag slugs match — all `ar-education-*`
+(`ar-education-custom-domain`, `ar-education-domain-connection`,
+`ar-education-domain-setup`). The `cname-*` / `dns-*` / `custom-domain-*` tags are
+Thridify PLATFORM custom-domain how-tos (not education) and correctly keep → `/blog`
+via the `/post/tag/:tag` wildcard.
+
+**Residual (orchestrator, needs JWT).** The single education post
+`connect-your-custom-domain-to-ar-education` was migrated with the other 36 and is
+still PUBLISHED at `/blog/connect-your-custom-domain-to-ar-education` on the Thridify
+blog. It should be UNPUBLISHED/deleted from the Thridify blog
+(`DELETE /api/v1/blog/projects/:id/posts/:postId`) so no education content lives on
+Thridify. The old `/post/…` URL already 301s off-site; the `/blog/…` copy remains
+until unpublished. The other 6 custom-domain help posts are Thridify platform how-tos
+and correctly remain in the blog.
 
 ### I. Misc / non-page
 
@@ -213,13 +240,15 @@ real earned equity and must not be silently dropped.
 ## Summary
 
 - **160 URLs** in the WordPress sitemaps + 8 GSC-only legacy URLs cross-referenced.
-- **Implemented redirect rules in `next.config.ts`: 34** (all 301). Breakdown:
+- **Implemented redirect rules in `next.config.ts`: 38** (all 301). Breakdown:
   core 7, industries 4, capability 2, integrations 9 (now → real
-  `/integrations/*` pages), legal 3, blog 7 (`/blogs` + `/category/blog` +
+  `/integrations/*` pages), legal 3, blog 8 (`/blogs` + `/category/blog` +
   `/category/blog/page/:n` + `/post/tag/:tag` + `/post/author/:author` +
-  `/post/category/:cat` archives → `/blog`, plus `/post/:slug` → `/blog/:slug`
-  1:1 for the 37 migrated posts), help-center 1 (GAP), education 1
-  (FLAG/interim).
+  `/post/category/:cat` archives → `/blog`, plus the education post
+  `/post/connect-your-custom-domain-to-ar-education` → wonderlyar.com off-site
+  BEFORE the `/post/:slug` → `/blog/:slug` 1:1 wildcard for the 37 migrated posts),
+  help-center 1 (GAP), education 4 (`/ar-in-education` + 3 `ar-education-*` tag
+  archives, all **301 off-site to wonderlyar.com**, `basePath:false`).
 - **KEEP-SAME (no rule needed): `/`, `/about`, `/contact`** (+ their trailing-slash
   308 variants).
 - **Clean 301s (destination page exists & is a true match): 26** — core (7),
@@ -236,12 +265,13 @@ real earned equity and must not be silently dropped.
 
 ## Decisions needed from the user
 
-1. **Education / WonderlyAR equity (highest priority).** `/ar-in-education/`
-   (8c/938i) + ~30 education tags + 8 help posts + help-center category. Options:
-   (a) hold-redirect to `/` now and 301 to the WonderlyAR domain once it exists
-   (current interim), (b) provide the WonderlyAR domain now so we point 301s
-   there, (c) explicitly accept letting this equity lapse. **Need the WonderlyAR
-   destination domain (or a decision).**
+1. ~~**Education / WonderlyAR equity.**~~ **RESOLVED (2026-08-03).** WonderlyAR is
+   LIVE at **https://wonderlyar.com**. The precise education footprint (verified via
+   the WP REST API) now 301s off-site there: `/ar-in-education`, the one education
+   post `/post/connect-your-custom-domain-to-ar-education`, and the three
+   `ar-education-*` tag archives (all `basePath:false` in `next.config.ts`). See §H.
+   STILL OPEN (orchestrator, needs JWT): unpublish the 1 education post from the
+   Thridify blog (`/blog/connect-your-custom-domain-to-ar-education`).
 2. ~~**Build integration pages?**~~ **DONE (2026-08-03).** 9 real
    `/integrations/<slug>` pages built (woocommerce, shopify, wix, bigcommerce,
    magento, commercetools, canva, wordpress, custom-integration) + a

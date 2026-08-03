@@ -144,6 +144,16 @@ brand, **WonderlyAR**. It is NOT part of Thridify. Education, pre-schools,
 AR-books, and publishing MUST NOT appear anywhere on the Thridify site
 (industries grid, industries pages, copy, metadata, icons, schema).
 
+WonderlyAR is now **LIVE at https://wonderlyar.com** (verified 200, 2026-08-03).
+The education-intent legacy URLs on the Thridify site therefore **301 OFF-SITE to
+wonderlyar.com** (in `next.config.ts` `redirects()` — the `/ar-in-education`
+marketing page, the one education blog post
+`/post/connect-your-custom-domain-to-ar-education`, and the three `ar-education-*`
+tag archives) so their earned SEO equity flows to the real WonderlyAR site rather
+than being dropped or held on the Thridify home. This is a redirect ONLY: no
+education CONTENT renders on Thridify. (Earlier those URLs interim-redirected to
+`/`; that was replaced with the real off-site 301 once the domain went live.)
+
 ## 6a. DEMO-FIRST PRINCIPLE (mandatory, sitewide)
 
 The design thesis — "the product demos itself" — is a HARD rule, not a mood.

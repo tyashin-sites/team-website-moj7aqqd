@@ -29,10 +29,16 @@ const nextConfig = {
   // aapastech-dev.thridify.com) are SEPARATE apps on other hosts and are NOT
   // touched here — next.config redirects are path-scoped to this Worker's host.
   //
-  // GAP rules (integrations, help-center, blog, education) are INTERIM: they
-  // point at an existing route so no inbound link 404s at cutover, each tagged
-  // with a TODO to replace once the real destination page exists. Blog POSTS
-  // (/post/*) are deliberately NOT bulk-redirected here — see the doc.
+  // GAP rules (help-center) are INTERIM: they point at an existing route so no
+  // inbound link 404s at cutover, tagged with a TODO to replace once the real
+  // destination page exists. Blog POSTS (/post/*) are deliberately NOT
+  // bulk-redirected here — see the doc.
+  //
+  // Education URLs (WonderlyAR decouple, DESIGN-SPEC §6) 301 OFF-SITE to
+  // wonderlyar.com (LIVE 2026-08-03) so education SEO equity goes to the real
+  // WonderlyAR brand, not the Thridify site. Off-site absolute destinations
+  // require `basePath: false` and the SPECIFIC education rules are ordered
+  // BEFORE the generic /post/:slug and /post/tag/:tag wildcards (first match wins).
   // ---------------------------------------------------------------------------
   async redirects() {
     return [
@@ -88,16 +94,37 @@ const nextConfig = {
       // /post/category/*) MUST come BEFORE the single-segment /post/:slug catch,
       // otherwise :slug would swallow e.g. /post/tag/roi (`:slug` = "tag") and
       // 301 it to /blog/tag. Archive URLs are low-value; consolidate to /blog.
+      // --- Education tag archives -> WonderlyAR (WonderlyAR decouple, DESIGN-SPEC §6) ---
+      // WonderlyAR is now LIVE at wonderlyar.com. The 3 education tag archives
+      // (ar-education-*) 301 OFF-SITE to WonderlyAR so their earned equity flows
+      // to the real education brand instead of the Thridify /blog index. These
+      // SPECIFIC rules MUST precede the generic /post/tag/:tag wildcard below
+      // (first match wins). External absolute destinations require basePath:false.
+      { source: '/post/tag/ar-education-custom-domain', destination: 'https://wonderlyar.com', basePath: false, statusCode: 301 },
+      { source: '/post/tag/ar-education-domain-connection', destination: 'https://wonderlyar.com', basePath: false, statusCode: 301 },
+      { source: '/post/tag/ar-education-domain-setup', destination: 'https://wonderlyar.com', basePath: false, statusCode: 301 },
       { source: '/post/tag/:tag', destination: '/blog', statusCode: 301 },
       { source: '/post/author/:author', destination: '/blog', statusCode: 301 },
       { source: '/post/category/:cat', destination: '/blog', statusCode: 301 },
       { source: '/category/blog/page/:n', destination: '/blog', statusCode: 301 },
       { source: '/category/blog', destination: '/blog', statusCode: 301 },
       { source: '/blogs', destination: '/blog', statusCode: 301 },
+      // The ONE education post among the 37 -> WonderlyAR (LIVE at wonderlyar.com).
+      // slug `connect-your-custom-domain-to-ar-education` is AR-for-education help
+      // content that belongs to WonderlyAR, not the Thridify blog. This SPECIFIC
+      // rule MUST precede the /post/:slug wildcard below (first match wins) so it
+      // 301s OFF-SITE instead of to /blog/<slug>. External absolute destination
+      // requires basePath:false. (The other 6 custom-domain posts are Thridify
+      // platform how-tos and correctly fall through to /blog/:slug.)
+      // NOTE(orchestrator): this post is still PUBLISHED at
+      // /blog/connect-your-custom-domain-to-ar-education on the Thridify blog and
+      // should be UNPUBLISHED via the blog API so no education content lives on
+      // Thridify (needs a JWT — flagged to the orchestrator).
+      { source: '/post/connect-your-custom-domain-to-ar-education', destination: 'https://wonderlyar.com', basePath: false, statusCode: 301 },
       // The 37 posts — slug PRESERVED from WordPress. LAST so it only catches a
       // single-segment /post/<slug> (multi-segment archives already handled).
-      // 8 of the 37 are education/custom-domain help docs that logically belong
-      // to WonderlyAR (deferred per user) — they remain in the blog for now.
+      // 6 of the remaining are custom-domain help docs (Thridify platform how-tos)
+      // — they remain in the blog.
       { source: '/post/:slug', destination: '/blog/:slug', statusCode: 301 },
 
       // --- Help center (GAP: no help center on the marketing site) ---
@@ -106,11 +133,13 @@ const nextConfig = {
       { source: '/thridify-help-center', destination: '/contact', statusCode: 301 },
 
       // --- Education (WonderlyAR decouple — DESIGN-SPEC §6) ---
-      // FLAG(user): /ar-in-education had 8 clicks / 938 impressions. AR-for-
-      // education is being spun out to WonderlyAR and MUST NOT surface on the
-      // Thridify site. Interim holding redirect -> / so equity is not silently
-      // dropped; replace with a 301 to the WonderlyAR domain once it exists.
-      { source: '/ar-in-education', destination: '/', statusCode: 301 },
+      // /ar-in-education had 8 clicks / 938 impressions. AR-for-education is spun
+      // out to WonderlyAR and MUST NOT surface on the Thridify site. WonderlyAR is
+      // now LIVE at wonderlyar.com (verified 200, 2026-08-03), so this 301s OFF-SITE
+      // to the real education brand — the education SEO equity flows to WonderlyAR
+      // instead of the interim holding redirect to the Thridify home. External
+      // absolute destination requires basePath:false.
+      { source: '/ar-in-education', destination: 'https://wonderlyar.com', basePath: false, statusCode: 301 },
     ];
   },
 };
