@@ -17,6 +17,7 @@ import { VerticalCard } from '@/components/signature/VerticalCard';
 import { ProofCard } from '@/components/signature/ProofCard';
 import { CTABand } from '@/components/signature/CTABand';
 import { WebsiteSchema } from '@/components/SiteSchema';
+import { SITE_URL } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Thridify — Reimagine how the world experiences your products',
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     title: 'Thridify — 3D & AR Commerce Platform',
     description:
       'No-code 3D and AR product experiences: viewers, configurators and app-free AR for e-commerce brands.',
+    url: `${SITE_URL}/`,
     images: ['/og/home.png'],
   },
 };

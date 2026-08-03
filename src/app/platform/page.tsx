@@ -8,6 +8,7 @@ import { ProductVisual, type ProductVisualVariant } from '@/components/ProductVi
 import { CapabilityDemo, type DemoMode } from '@/components/signature/CapabilityDemo';
 import { CTABand } from '@/components/signature/CTABand';
 import { WebsiteSchema } from '@/components/SiteSchema';
+import { SITE_URL } from '@/lib/schema';
 
 // The three product capabilities that CAN be shown as a live interactive
 // demo (DEMO-FIRST, §6a) — everything else (content/analytics) has no
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     title: 'The Thridify Platform — Five modules, one immersive commerce stack',
     description:
       '3D 360° Viewer, 3D Configurator, AR Viewer, 3D Modelling Service and Analytics — one no-code layer.',
+    url: `${SITE_URL}/platform`,
     images: ['/og/platform.png'],
   },
 };
