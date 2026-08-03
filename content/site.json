@@ -485,6 +485,10 @@
         "title": "Company",
         "links": [
           {
+            "label": "What is Thridify?",
+            "href": "/what-is-thridify"
+          },
+          {
             "label": "About",
             "href": "/about"
           },

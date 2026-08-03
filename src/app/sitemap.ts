@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
     { path: '/', priority: 1.0, changeFrequency: 'weekly' },
     { path: '/platform', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/what-is-thridify', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/services/3d-modelling', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/industries', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
