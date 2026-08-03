@@ -6,7 +6,14 @@ import { MobileNav } from './MobileNav';
 
 export async function Header() {
   const brandKit = await getBrandKit();
-  const logoUrl = brandKit.logo?.light;
+  // Self-hosted, pre-optimized brand mark (public/brand/logo-light.webp, 5KB).
+  // The platform image optimizer (/_next/image) returns 400 for the remote
+  // brand-kit PNG on OpenNext/Cloudflare — that surfaced as a console error on
+  // every page (Phase-5 best-practices). The remote source is also a 4000×4000
+  // 231KB PNG. Serving a local WebP kills the 400, the console error, the
+  // 231KB weight and the cross-origin runtime dependency. Regenerate from the
+  // brand kit if the logo changes (scratchpad sharp resize → /brand/*.webp).
+  const logoUrl = '/brand/logo-light.webp';
   const siteName = brandKit.siteName || headerContent.siteName;
   const { nav, cta } = headerContent;
 
@@ -20,10 +27,9 @@ export async function Header() {
               src={logoUrl}
               alt={siteName}
               width={220}
-              height={56}
-              sizes="220px"
-              quality={70}
+              height={220}
               loading="eager"
+              unoptimized
               className="h-10 w-auto object-contain"
             />
           ) : (

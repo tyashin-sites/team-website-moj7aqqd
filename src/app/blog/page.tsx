@@ -131,6 +131,7 @@ export default async function BlogPage({
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
                           sizes="(min-width: 768px) 50vw, 100vw"
                           priority
+                          unoptimized
                         />
                       ) : (
                         <div className="absolute inset-0 aurora" aria-hidden />
@@ -191,6 +192,7 @@ export default async function BlogPage({
                               fill
                               className="object-cover transition-transform duration-700 group-hover:scale-105"
                               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                              unoptimized
                             />
                           ) : (
                             <div className="absolute inset-0 aurora" aria-hidden />

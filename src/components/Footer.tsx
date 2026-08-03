@@ -18,7 +18,9 @@ function socialIcon(label: string) {
 
 export async function Footer() {
   const brandKit = await getBrandKit();
-  const logoUrl = brandKit.logo?.dark || brandKit.logo?.light;
+  // Self-hosted, pre-optimized brand mark — see Header.tsx note (the remote
+  // brand-kit PNG 400s through the OpenNext/Cloudflare image optimizer).
+  const logoUrl = '/brand/logo-dark.webp';
   const siteName = brandKit.siteName || headerContent.siteName;
   const f = footerContent;
 
@@ -35,8 +37,9 @@ export async function Footer() {
                 <Image
                   src={logoUrl}
                   alt={siteName}
-                  width={320}
-                  height={84}
+                  width={220}
+                  height={220}
+                  unoptimized
                   className="h-20 md:h-24 w-auto object-contain brightness-0 invert"
                 />
               ) : (

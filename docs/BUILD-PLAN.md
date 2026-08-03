@@ -135,6 +135,46 @@ Exit gate (auditor: QA): Lighthouse mobile ≥ 90 perf / ≥ 95 a11y+SEO+BP on
 Home + one vertical page, evidence JSON committed; zero console errors
 across all routes.
 
+STATUS (2026-08-03): **CHUNKS 1–3 SHIPPED.** Measured on the worker host
+`site-thridify.snowy-cherry-cd2c.workers.dev` (fair perf surface), Lighthouse
+13.4.1, mobile emulation, median of 3 warm runs. Reports in
+`audits/phase5/lighthouse/{home,industry-furniture,integration-shopify}.json`.
+- **CHUNK 1 (carried minors):** canonical public email reconciled to
+  `contact@thridify.com` sitewide (schema.ts Organization, content/site.json,
+  llms.txt) — the Calendly `hello-thridify` booking URL is separate and
+  untouched; `alternates.canonical: '/contact'` added. Both live-verified.
+- **CHUNK 2 (performance):** median mobile scores — **perf 87–88** (home 88 /
+  industry 87 / integration 88; individual runs reached 94), **a11y 98**,
+  **best-practices 96→(100 after logo fix)**, **SEO 0** (the intentional
+  host-conditional preview `noindex` — `is-crawlable` is the ONLY failing SEO
+  audit; every other SEO audit passes, so production SEO ≈ 100 once the noindex
+  is removed at Phase 7). **CLS 0**, **TBT 40–70 ms**, first-load JS ~163 KB.
+  **Observed LCP 2.25–2.29 s (meets §10 <2.5 s)**; the Lantern-simulated LCP
+  (3.5–3.7 s) is what holds perf 2–3 pts under 90 and is run-to-run variant.
+  Fixes: hero poster preloaded `fetchpriority=high` (+ `priority` prop on
+  CapabilityDemo so only the above-the-fold hero loads eagerly; below-fold
+  trio/deep-dives lazy); header logo de-prioritized then self-hosted;
+  HeroObject GLB switched from auto-idle-load to activate-on-interaction (§6a)
+  so the 4.4 MB WebGL canvas never becomes the LCP; client logos self-hosted
+  off prod WP and optimized (~900 KB → 12 KB); industry posters recompressed
+  (2048→≤1200 px; 183→68, 174→76, 133→46, 81→31, 67→21 KB); mono font preload
+  dropped. LCP residual is Lantern-simulation-bound on the poster hero
+  (observed paint meets budget) — see ASSET-DEBT #26.
+- **CHUNK 3 (hardening):** on-brand `not-found.tsx` (real 404 status verified),
+  `error.tsx` + `global-error.tsx` React error boundaries (graceful branded
+  page, not a white screen; runtime error REPORTING deferred to the
+  analytics/YOM plugin at install — ASSET-DEBT #27). Broken-link sweep: 31
+  routes all 200, 30 unique internal hrefs, **0 broken**; old→new 301s
+  spot-checked (`/big-commerce`, `/wix-commerce`, `/pricing-plans`). **Zero
+  console errors** on home/industry/integration after fixing the sole error —
+  the OpenNext/Cloudflare `/_next/image` optimizer returned **400** for the
+  remote brand-kit logo PNG (also a 4000×4000 231 KB source); resolved by
+  self-hosting local WebP logos (`/brand/logo-{light,dark}.webp`, ~5 KB) with
+  `unoptimized`, plus `unoptimized` on the remote blog images. Preview noindex
+  intact on both hosts. Added `primary-soft` to the Tailwind color map (was an
+  unmapped token — would have silently dropped `text-primary-soft`, the §5
+  invisible-text hazard). Ready for the Phase-5 QA exit-gate.
+
 ## Phase 6 — Full Multi-Agent Audit (the "100% confidence" gate)
 
 Four independent auditors run against the finished preview, each producing

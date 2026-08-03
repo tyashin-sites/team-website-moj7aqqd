@@ -9,6 +9,7 @@ export default {
         // the --brand-* custom properties (locally pinned in layout/globals).
         primary: 'var(--brand-primary)',
         'primary-deep': 'var(--brand-primary-deep)',
+        'primary-soft': 'var(--brand-primary-soft)',
         'primary-contrast': 'var(--brand-primary-contrast)',
         accent: 'var(--brand-accent)',
         ink: 'var(--brand-ink)',
