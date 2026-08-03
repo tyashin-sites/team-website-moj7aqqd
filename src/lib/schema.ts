@@ -46,7 +46,7 @@ export function organizationLd() {
     logo: LOGO_URL,
     image: LOGO_URL,
     description: CANONICAL_DESCRIPTION,
-    email: 'hello@thridify.com',
+    email: 'contact@thridify.com',
     founder: [
       { '@type': 'Person', name: 'Shikha Gupta', jobTitle: 'CEO' },
       { '@type': 'Person', name: 'Aditya Gupta', jobTitle: 'CTO' },

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Contact — Talk to Thridify',
   description:
     'Start with two fields — your email and what you sell. Regional teams in India, the Americas and Europe reply within one business day.',
+  alternates: { canonical: '/contact' },
   openGraph: {
     title: 'Contact Thridify',
     description: 'Tell us about your catalog — see your own product rebuilt in 3D and AR, live.',

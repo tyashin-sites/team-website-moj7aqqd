@@ -294,7 +294,7 @@
             "region": "Europe",
             "city": "Europe",
             "detail": "EU operations",
-            "email": "hello@thridify.com"
+            "email": "contact@thridify.com"
           }
         ]
       },
@@ -334,7 +334,7 @@
         "title": "Three regions. One conversation away.",
         "subtitle": "Tell us about your catalog — we'll show your own product rebuilt in 3D and AR, live."
       },
-      "email": "hello@thridify.com",
+      "email": "contact@thridify.com",
       "offices": [
         {
           "region": "India",
@@ -356,7 +356,7 @@
           "region": "Europe",
           "city": "Europe",
           "detail": "EU operations",
-          "email": "hello@thridify.com"
+          "email": "contact@thridify.com"
         }
       ],
       "form": {
@@ -514,8 +514,8 @@
         "title": "Connect",
         "links": [
           {
-            "label": "hello@thridify.com",
-            "href": "mailto:hello@thridify.com"
+            "label": "contact@thridify.com",
+            "href": "mailto:contact@thridify.com"
           },
           {
             "label": "India: +91-966-774-7082",

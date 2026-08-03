@@ -64,7 +64,7 @@ ${compareList}
 - Contact: ${SITE_URL}/contact
 
 ## Company
-${LEGAL_NAME} — parent company of Thridify. Contact: hello@thridify.com
+${LEGAL_NAME} — parent company of Thridify. Contact: contact@thridify.com
 LinkedIn: https://linkedin.com/company/thridify
 Instagram: https://instagram.com/thridify
 Facebook: https://facebook.com/thridify
