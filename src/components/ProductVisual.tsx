@@ -14,7 +14,7 @@ export type ProductVisualVariant =
   | 'viewer'
   | 'configurator'
   | 'ar'
-  | 'content'
+  | 'modelling'
   | 'analytics';
 
 const TEAL = '#007050';
@@ -93,7 +93,7 @@ function ArArt({ onDark, accent }: ArtProps) {
   );
 }
 
-function ContentArt({ onDark, accent }: ArtProps) {
+function ModellingArt({ onDark, accent }: ArtProps) {
   const stroke = strokeFor(onDark);
   const faint = faintFor(onDark);
   return (
@@ -138,7 +138,7 @@ const ART: Record<ProductVisualVariant, (p: ArtProps) => React.ReactElement> = {
   viewer: ViewerArt,
   configurator: ConfiguratorArt,
   ar: ArArt,
-  content: ContentArt,
+  modelling: ModellingArt,
   analytics: AnalyticsArt,
 };
 

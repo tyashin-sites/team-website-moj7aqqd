@@ -221,9 +221,33 @@ default, centered only on CTA bands), FormField (autofill attrs mandatory,
 (dark) → Verticals grid (6 cards, each linking to its own /industries/<slug>
 page) → Product trio (viewer/configurator/AR, each an interactive mini-demo
 per §6a) → Proof (metrics + logos) → CTABand.
+**Platform product suite — the FIVE canonical modules (CANONICAL, user-confirmed
+2026-08-02):** 3D 360° Viewer · 3D Configurator · AR Viewer · **3D Modelling
+Service** · Analytics. **Positioning correction (2026-08-02):** Thridify does
+NOT do automated "3D Content Generation" (unlimited AI photos/video from one
+asset). Module #4 is a HUMAN-DELIVERED **3D Modelling Service** — we model a
+customer's catalog into interactive, AR-ready assets (glTF/GLB/USDZ), no
+in-house 3D team required. No automated-content-generation / "generate
+unlimited photos" claim may render anywhere on the site (this is a No-Faking
+correction). The wedge strategy (bake into copy): sell 3D modelling of a single
+SKU/catalog into retail suppliers → prove ROI → upsell the configurator + AR
+platform. Keywords: "3D product modelling service", "3D model creation for
+ecommerce", "product 3D modelling company", "outsource 3D product modelling",
+"glTF/GLB/USDZ model creation", "3D modelling for furniture/retail".
+Module #4 has a dedicated SEO service page (below); on /platform it keeps an
+abstract `ProductVisual variant="modelling"` (no interactive form to demo).
+
 **Platform:** hero (capability montage) → product deep-dives alternating
 light/dark, each with an interactive mini-demo (§6a) + ≤40 words →
 integrations row → analytics section → CTABand.
+**3D Modelling Service (`/services/3d-modelling`):** dedicated SEO page —
+pain-led ≤12-word H1 with the primary keyword + live demo → what you get
+(formats, photoreal, turnaround) → how it works (send catalog → we model →
+delivered/embedded) → the wedge (modelling → configurator/AR) → outcomes
+(canonical metrics only) → FAQ (FAQPage schema) → CTA. Full per-page SEO:
+unique title/desc/canonical/OG, Service + FAQPage + BreadcrumbList JSON-LD,
+keyword H2s, alt text. In sitemap + footer + linked from /platform and every
+industry page.
 **Industries index (`/industries`):** lists the 6 canonical verticals, each
 card linking to its own per-industry page.
 **Per-industry pages — the 6 canonical verticals, one URL each, statically

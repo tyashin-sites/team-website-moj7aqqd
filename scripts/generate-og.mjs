@@ -22,6 +22,7 @@ const PAGES = [
   { file: 'platform.png', kicker: 'THE PLATFORM', title: 'Five modules. One\nimmersive commerce stack.' },
   { file: 'about.png', kicker: 'ABOUT THRIDIFY', title: 'Founded in Delhi.\nScaling from Toronto.' },
   { file: 'contact.png', kicker: 'TALK TO THRIDIFY', title: 'Three regions.\nOne conversation away.' },
+  { file: 'services-3d-modelling.png', kicker: '3D MODELLING SERVICE', title: 'Photoreal 3D product\nmodels, built for you.' },
   // Per-industry OG (DESIGN-SPEC §8) — brand-colored placeholders; real
   // product-render OG images per industry are tracked in docs/ASSET-DEBT.md.
   { file: 'industry-furniture.png', kicker: 'FURNITURE & HOME DECOR', title: '3D furniture configurator\n& AR viewer.' },

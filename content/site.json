@@ -176,7 +176,7 @@
       "hero": {
         "eyebrow": "The Platform",
         "title": "Five modules. One immersive commerce stack.",
-        "subtitle": "Viewer, configurator, AR, content generation and analytics — one no-code layer that ships in days.",
+        "subtitle": "Viewer, configurator, AR, done-for-you 3D modelling and analytics — one no-code layer that ships in days.",
         "primaryCta": {
           "text": "Book a Demo",
           "href": "https://calendly.com/hello-thridify/30min"
@@ -207,10 +207,10 @@
             "description": "App-free WebAR places products at true scale in the buyer's real space — one tap from the product page, on any modern smartphone."
           },
           {
-            "id": "content",
-            "name": "3D Content Generation",
-            "tagline": "Studios, on demand.",
-            "description": "Generate unlimited product photos, lifestyle scenes and videos from a single 3D asset — no photoshoots, no studios, no reshoots for every variant."
+            "id": "modelling",
+            "name": "3D Modelling Service",
+            "tagline": "Built for you.",
+            "description": "Photoreal 3D product models, built for you. Send your catalog and our team models each SKU into interactive, AR-ready assets (glTF/GLB/USDZ) — no in-house 3D team required."
           },
           {
             "id": "analytics",
@@ -268,7 +268,7 @@
       "mission": {
         "eyebrow": "Our Mission",
         "title": "Make every product touchable, configurable and real — before purchase.",
-        "body": "We believe the next decade of commerce belongs to brands that let customers experience products with flagship-store depth. Thridify puts that within reach of any team — no code, no 3D specialists, no long timelines. Real-time 3D, app-free AR, AI-generated content and analytics, in one platform."
+        "body": "We believe the next decade of commerce belongs to brands that let customers experience products with flagship-store depth. Thridify puts that within reach of any team — no code, no 3D specialists, no long timelines. Real-time 3D, app-free AR, expert 3D modelling and analytics, in one platform."
       },
       "presence": {
         "eyebrow": "Global presence",
@@ -377,7 +377,7 @@
         "items": [
           {
             "name": "Furniture & Home Decor",
-            "description": "Fabric and finish configurators, app-free AR placement and lifestyle generation for sofas, tables, beds and decor."
+            "description": "Fabric and finish configurators, app-free AR placement and photoreal 3D product modelling for sofas, tables, beds and decor."
           },
           {
             "name": "Modular Kitchens & Wardrobes",
@@ -472,8 +472,8 @@
             "href": "/platform#ar"
           },
           {
-            "label": "3D Content Generation",
-            "href": "/platform#content"
+            "label": "3D Modelling Service",
+            "href": "/services/3d-modelling"
           },
           {
             "label": "Analytics",

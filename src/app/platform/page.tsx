@@ -16,12 +16,12 @@ const DEMO_MODES = new Set<string>(['viewer', 'configurator', 'ar']);
 export const metadata: Metadata = {
   title: 'Platform — 3D & AR Commerce Suite',
   description:
-    'The Thridify platform: 3D 360° Viewer, 3D Configurator with live pricing and BOM export, app-free AR Viewer, 3D Content Generation and Analytics.',
+    'The Thridify platform: 3D 360° Viewer, 3D Configurator with live pricing and BOM export, app-free AR Viewer, done-for-you 3D Modelling Service and Analytics.',
   alternates: { canonical: '/platform' },
   openGraph: {
     title: 'The Thridify Platform — Five modules, one immersive commerce stack',
     description:
-      '3D 360° Viewer, 3D Configurator, AR Viewer, 3D Content Generation and Analytics — one no-code layer.',
+      '3D 360° Viewer, 3D Configurator, AR Viewer, 3D Modelling Service and Analytics — one no-code layer.',
     images: ['/og/platform.png'],
   },
 };
@@ -104,6 +104,14 @@ export default function PlatformPage() {
                 <p className={`mt-4 text-lg leading-relaxed ${dark ? 'text-muted-dark' : 'text-foreground/75'}`}>
                   {p.description}
                 </p>
+                {p.id === 'modelling' && (
+                  <Link
+                    href="/services/3d-modelling"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+                  >
+                    Explore the 3D modelling service <span aria-hidden>→</span>
+                  </Link>
+                )}
               </Reveal>
               <Reveal
                 direction={dark ? 'right' : 'left'}

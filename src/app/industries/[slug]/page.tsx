@@ -265,9 +265,14 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         <div className="container-x">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
             <h2 className="tt-2">Explore related industries</h2>
-            <Link href="/platform" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">
-              See the full platform <ArrowRight className="w-4 h-4" aria-hidden />
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <Link href="/services/3d-modelling" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">
+                Need the models built? 3D modelling service <ArrowRight className="w-4 h-4" aria-hidden />
+              </Link>
+              <Link href="/platform" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all">
+                See the full platform <ArrowRight className="w-4 h-4" aria-hidden />
+              </Link>
+            </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {related.map((r) => {
