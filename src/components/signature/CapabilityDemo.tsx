@@ -246,15 +246,21 @@ export function CapabilityDemo({
               </button>
               {qrOpen && (
                 <div className="absolute bottom-full left-0 mb-3 p-4 glass-card w-44 text-center z-10">
-                  {/* QR placeholder — real per-model AR link/QR lands with the
-                      real client model / Thridify SDK (docs/ASSET-DEBT.md #10). */}
-                  <div
-                    className="w-32 h-32 mx-auto rounded-md border-2 border-dashed border-foreground/25 flex items-center justify-center"
-                    aria-hidden
-                  >
-                    <span className="tt-mono text-foreground/50">QR</span>
-                  </div>
-                  <p className="mt-2 text-xs text-foreground/60">Scan to view in your room</p>
+                  {/* Real, scannable QR — deep-links to the model's AR view
+                      (Google scene-viewer intent for the demo GLB). Scanning it
+                      launches AR on a phone. Regenerate per model when real
+                      client models land (docs/ASSET-DEBT.md #10). */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/models/ar-qr-chair.svg"
+                    alt="QR code — scan to view this product in AR on your phone"
+                    width={128}
+                    height={128}
+                    className="w-32 h-32 mx-auto rounded-md bg-white p-1.5"
+                  />
+                  <p className={`mt-2 text-xs ${onDark ? 'text-muted-dark' : 'text-foreground/60'}`}>
+                    Scan to view in your room
+                  </p>
                 </div>
               )}
             </div>

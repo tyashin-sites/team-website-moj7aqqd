@@ -246,14 +246,19 @@ export function HeroObject() {
               </button>
               {qrOpen && (
                 <div className="absolute bottom-full right-0 mb-3 p-4 glass-card w-44 text-center">
-                  {/* QR placeholder — real per-model QR generation lands with
-                      real client models (docs/ASSET-DEBT.md). */}
-                  <div
-                    className="w-32 h-32 mx-auto rounded-md border-2 border-dashed border-paper/30 flex items-center justify-center"
-                    aria-hidden
-                  >
-                    <span className="tt-mono text-muted-dark">QR</span>
-                  </div>
+                  {/* Real, scannable QR — deep-links to the model's AR view
+                      (Google scene-viewer intent for the chair GLB). Scanning
+                      it launches "view in your room" AR on a phone. Regenerate
+                      per model when real client models land (docs/ASSET-DEBT.md
+                      #10, scripts/generate-ar-qr.mjs). */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/models/ar-qr-chair.svg"
+                    alt="QR code — scan to view this chair in AR on your phone"
+                    width={128}
+                    height={128}
+                    className="w-32 h-32 mx-auto rounded-md bg-white p-1.5"
+                  />
                   <p className="mt-2 text-xs text-muted-dark">Scan to view in your room</p>
                 </div>
               )}
