@@ -87,12 +87,9 @@ export function HeroObject() {
     return () => io.disconnect();
   }, []);
 
-  // Price ticker: animate the number toward the target when a swatch changes.
-  function selectFinish(i: number) {
-    setActive(i);
-    const target = FINISHES[i].price;
-
-    // Swap the model material color client-side.
+  // Apply a finish's base color to the model fabric material. Safe to call
+  // before the model is ready (no-op until materials exist).
+  function applyMaterial(i: number) {
     const mv = mvRef.current as unknown as {
       model?: { materials?: Array<{ name?: string; pbrMetallicRoughness?: { setBaseColorFactor: (c: number[]) => void } }> };
     } | null;
@@ -104,6 +101,33 @@ export function HeroObject() {
     } catch {
       // Viewer not ready yet — the swatch still updates the price/UI.
     }
+  }
+
+  // DESIGN-SPEC §7.1: the active swatch and the rendered material must agree.
+  // The seamless poster (native model finish) shows until the live viewer is
+  // ready; once model-viewer fires `load`, apply the active finish so the
+  // green "Forest" swatch renders a Forest-green chair (no swatch/material
+  // mismatch). Poster-first behaviour is untouched — this only fires after the
+  // realistic poster has handed off to the interactive viewer.
+  useEffect(() => {
+    if (!loadViewer) return;
+    const mv = mvRef.current;
+    if (!mv) return;
+    const onLoad = () => applyMaterial(active);
+    mv.addEventListener('load', onLoad);
+    // If the model is already loaded by the time this runs, apply immediately.
+    if ((mv as unknown as { loaded?: boolean }).loaded) applyMaterial(active);
+    return () => mv.removeEventListener('load', onLoad);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadViewer]);
+
+  // Price ticker: animate the number toward the target when a swatch changes.
+  function selectFinish(i: number) {
+    setActive(i);
+    const target = FINISHES[i].price;
+
+    // Swap the model material color client-side.
+    applyMaterial(i);
 
     if (window.matchMedia(REDUCED_MOTION_QUERY).matches) {
       setDisplayPrice(target);

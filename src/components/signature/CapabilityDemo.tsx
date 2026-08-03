@@ -21,7 +21,7 @@
  * (ambient `declare module 'react'` augmentation, project-wide).
  */
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { RotateCcw, SlidersHorizontal, Smartphone, Play } from 'lucide-react';
 
 export type DemoMode = 'viewer' | 'configurator' | 'ar';
@@ -77,8 +77,8 @@ export function CapabilityDemo({
       .catch(() => setLoading(false));
   }
 
-  function selectFinish(i: number) {
-    setActive(i);
+  // Apply a finish's base color to the model fabric material (no-op until ready).
+  function applyMaterial(i: number) {
     const mv = mvRef.current as unknown as {
       model?: { materials?: Array<{ name?: string; pbrMetallicRoughness?: { setBaseColorFactor: (c: number[]) => void } }> };
     } | null;
@@ -89,6 +89,26 @@ export function CapabilityDemo({
     } catch {
       // viewer not ready — price/UI still updates
     }
+  }
+
+  // DESIGN-SPEC §7.1: in configurator mode the active swatch and the rendered
+  // material must agree. Once the live viewer's model fires `load`, apply the
+  // active finish so the "Forest" swatch renders a Forest-green chair. Fires
+  // only after the seamless poster has handed off to the interactive viewer.
+  useEffect(() => {
+    if (!live || mode !== 'configurator') return;
+    const mv = mvRef.current;
+    if (!mv) return;
+    const onLoad = () => applyMaterial(active);
+    mv.addEventListener('load', onLoad);
+    if ((mv as unknown as { loaded?: boolean }).loaded) applyMaterial(active);
+    return () => mv.removeEventListener('load', onLoad);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [live, mode]);
+
+  function selectFinish(i: number) {
+    setActive(i);
+    applyMaterial(i);
     const target = FINISHES[i].price;
     if (window.matchMedia(REDUCED_MOTION_QUERY).matches) {
       setDisplayPrice(target);
