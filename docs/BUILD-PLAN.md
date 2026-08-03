@@ -73,6 +73,18 @@ page, llms.txt, robots.txt allowing OAI-SearchBot/ClaudeBot/Google-Extended/
 PerplexityBot (while KEEPING preview noindex — these are separate concerns),
 Organization+SoftwareApplication+FAQ schema, XML sitemap, canonical tags,
 internal-link pass (no ghost links per addendum §3d).
+
+STATUS (2026-08-03): Wave A (industry pages, 3D Modelling Service page,
+positioning correction, per-industry demo models) DONE in earlier commits.
+Wave B SHIPPED 2026-08-03 — [x] sitewide Organization + SoftwareApplication
+entity graph + WebSite on Home/platform (`src/lib/schema.ts`,
+`src/components/SiteSchema.tsx`); [x] `/what-is-thridify` LLM fact page;
+[x] 3 comparison pages `/compare/{threekit,zakeke,marxent}`
+(`src/lib/comparisons.ts`); [x] `/llms.txt` + `/robots.txt` route handlers with
+the full AI-crawler allowlist + Sitemap ref; [x] sitemap includes all new URLs;
+[x] preview noindex header confirmed intact on both hosts. Open: robots/llms
+platform-edge interception + SITE_URL preview→prod flip (ASSET-DEBT #20/#21,
+Phase-7 items). Ready for the Phase 3 SEO exit-gate audit.
 Exit gate (auditor: SEO): schema validates (Rich Results test logic), every
 page has unique title/description/OG/canonical, sitemap complete, vertical
 pages pass one-intent-per-URL review, extraction test (can an LLM quote the

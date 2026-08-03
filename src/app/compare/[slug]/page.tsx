@@ -26,8 +26,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = getCompetitor(slug);
   if (!c) return {};
   const canonical = `/compare/${c.slug}`;
-  return {
-    title: `${c.seoTitle} | Thridify`,
+    // title goes through the root layout template ('%s | Thridify'); use the
+    // bare seoTitle so it does not become "… | Thridify | Thridify".
+    return {
+    title: c.seoTitle,
     description: c.seoDescription,
     keywords: c.keywords,
     alternates: { canonical },

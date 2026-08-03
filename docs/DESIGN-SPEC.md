@@ -287,9 +287,28 @@ mission ≤80 words → global presence (India / Americas / Europe) → values �
 CTABand. No fake team photos.
 **Contact:** 2-field concierge form (email + product category, autofill on,
 instant Calendly offer on submit) → regional contacts → CTABand.
-**Comparisons (×2 to start):** honest tables vs Threekit/Zakeke/Marxent-class
-tools; concede real strengths; extraction-friendly.
-**/what-is-thridify:** dense declarative fact page for LLM retrieval.
+**Comparisons (×3, SHIPPED Phase 3 Wave B):** honest tables at
+`/compare/threekit`, `/compare/zakeke`, `/compare/marxent` — concede real
+competitor strengths, neutral "varies / contact vendor" where unsure (No-Faking
+on competitor facts), extraction-friendly, FAQPage + BreadcrumbList JSON-LD,
+unique title/desc/canonical/OG, cross-linked + in sitemap. Data:
+`src/lib/comparisons.ts`.
+**/what-is-thridify (SHIPPED Phase 3 Wave B):** dense declarative fact page for
+LLM retrieval — first paragraph = the canonical entity description verbatim,
+Q-style H2s with direct first-sentence answers, facts table, canonical metrics,
+FAQPage + BreadcrumbList JSON-LD, in sitemap + footer.
+**Sitewide entity graph (SHIPPED Phase 3 Wave B):** Organization +
+SoftwareApplication JSON-LD on EVERY page (root layout via
+`src/components/SiteSchema.tsx` + `src/lib/schema.ts`), WebSite entity added on
+Home + /platform. `CANONICAL_DESCRIPTION`, `LEGAL_NAME` and the 4 canonical
+socials live in `src/lib/schema.ts` and are reused verbatim in `/llms.txt` and
+`/what-is-thridify` for entity consistency. No offers/aggregateRating
+(No-Faking).
+**Crawler plumbing (SHIPPED Phase 3 Wave B):** `/robots.txt` (AI-crawler
+allowlist + Sitemap ref; crawl-access only, preview noindex header is a
+separate mechanism kept until Phase 7) and `/llms.txt` (canonical description +
+factual bullets) via route handlers. Platform-edge / Cloudflare robots
+interception logged in ASSET-DEBT #20.
 **Legal:** real privacy policy + terms (GDPR/PIPEDA aware).
 
 ## 9. UX laws
