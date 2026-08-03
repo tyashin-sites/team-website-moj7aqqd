@@ -130,7 +130,16 @@ the site declared launch-ready to the user.
 
 Prepared in advance, executed only on instruction:
 - URL inventory of the WordPress site → 301 redirect map (preserve any
-  earned equity; no ghost URLs).
+  earned equity; no ghost URLs). **DONE (prepared 2026-08-03):** the complete
+  WordPress URL inventory (160 sitemap URLs + GSC legacy URLs) and its full
+  disposition table live in `docs/seo-migration-map.md` — the **single source of
+  truth** for the redirect map. Clean 301s are already IMPLEMENTED and live-
+  verified in `next.config.ts` `async redirects()` (28 rules, all `permanent:
+  true`). Open before executing cutover: 5 user decisions in that doc
+  (WonderlyAR/education domain, build integration pages, 1:1 blog-post
+  migration, `/pricing` page, ranking image URLs) — the ~133 held blog/tag/
+  author URLs are a cutover blocker until the blog is migrated 1:1. Keep this
+  doc and `next.config.ts` in sync in the same commit.
 - Remove preview noindex + post-deploy verification that the real domain
   serves index,follow AND workers.dev behavior is intentional (verify with
   node fetch, not curl|grep — gzip false-negative trap).
