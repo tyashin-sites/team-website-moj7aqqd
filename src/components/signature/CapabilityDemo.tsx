@@ -21,7 +21,7 @@
  * (ambient `declare module 'react'` augmentation, project-wide).
  */
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { RotateCcw, SlidersHorizontal, Smartphone, Play } from 'lucide-react';
 
 export type DemoMode = 'viewer' | 'configurator' | 'ar';
@@ -31,7 +31,11 @@ const DEFAULT_POSTER_SRC = '/models/sheen-chair-poster.webp';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
 type Finish = { name: string; swatch: string; rgba: [number, number, number, number]; price: number };
+// Index 0 (Coral) is the model's OWN native material — "fabric Mystere Mango
+// Velvet", baseColorFactor [0.883, 0.035, 0, 1] — matching the seamless poster
+// exactly (DESIGN-SPEC §6/§7.1), so the initial state has no color pop.
 const FINISHES: Finish[] = [
+  { name: 'Coral', swatch: '#F13400', rgba: [0.883, 0.035, 0, 1], price: 1269 },
   { name: 'Forest', swatch: '#007050', rgba: [0.04, 0.3, 0.2, 1], price: 1249 },
   { name: 'Blush', swatch: '#FEBFCC', rgba: [0.96, 0.62, 0.7, 1], price: 1329 },
   { name: 'Natural', swatch: '#C9BBA4', rgba: [0.72, 0.66, 0.55, 1], price: 1189 },
@@ -102,20 +106,12 @@ export function CapabilityDemo({
     }
   }
 
-  // DESIGN-SPEC §7.1: in configurator mode the active swatch and the rendered
-  // material must agree. Once the live viewer's model fires `load`, apply the
-  // active finish so the "Forest" swatch renders a Forest-green chair. Fires
-  // only after the seamless poster has handed off to the interactive viewer.
-  useEffect(() => {
-    if (!live || mode !== 'configurator') return;
-    const mv = mvRef.current;
-    if (!mv) return;
-    const onLoad = () => applyMaterial(active);
-    mv.addEventListener('load', onLoad);
-    if ((mv as unknown as { loaded?: boolean }).loaded) applyMaterial(active);
-    return () => mv.removeEventListener('load', onLoad);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [live, mode]);
+  // DESIGN-SPEC §7.1 (SEAMLESS POSTER RULE): the loaded model must match the
+  // poster with NO color pop. The default active finish (FINISHES[0], Coral) IS
+  // the model's own native material, so we do NOT override the material on load
+  // — the live viewer renders the native finish the poster already shows, and
+  // the active-swatch indicator (Coral) agrees with it. Clicking any OTHER
+  // swatch changes the material on user action.
 
   function selectFinish(i: number) {
     setActive(i);

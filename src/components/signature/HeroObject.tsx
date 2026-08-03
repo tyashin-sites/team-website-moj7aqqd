@@ -37,7 +37,12 @@ type Finish = {
   price: number;
 };
 
+// Index 0 (Coral) is the model's OWN native material — "fabric Mystere Mango
+// Velvet", baseColorFactor [0.883, 0.035, 0, 1] — so it matches the seamless
+// poster exactly (DESIGN-SPEC §6/§7.1). Selecting it re-applies that exact
+// factor, restoring the native finish with no color pop.
 const FINISHES: Finish[] = [
+  { name: 'Coral', swatch: '#F13400', rgba: [0.883, 0.035, 0, 1], price: 1269 },
   { name: 'Forest', swatch: '#007050', rgba: [0.04, 0.3, 0.2, 1], price: 1249 },
   { name: 'Blush', swatch: '#FEBFCC', rgba: [0.96, 0.62, 0.7, 1], price: 1329 },
   { name: 'Natural', swatch: '#C9BBA4', rgba: [0.72, 0.66, 0.55, 1], price: 1189 },
@@ -103,23 +108,12 @@ export function HeroObject() {
     }
   }
 
-  // DESIGN-SPEC §7.1: the active swatch and the rendered material must agree.
-  // The seamless poster (native model finish) shows until the live viewer is
-  // ready; once model-viewer fires `load`, apply the active finish so the
-  // green "Forest" swatch renders a Forest-green chair (no swatch/material
-  // mismatch). Poster-first behaviour is untouched — this only fires after the
-  // realistic poster has handed off to the interactive viewer.
-  useEffect(() => {
-    if (!loadViewer) return;
-    const mv = mvRef.current;
-    if (!mv) return;
-    const onLoad = () => applyMaterial(active);
-    mv.addEventListener('load', onLoad);
-    // If the model is already loaded by the time this runs, apply immediately.
-    if ((mv as unknown as { loaded?: boolean }).loaded) applyMaterial(active);
-    return () => mv.removeEventListener('load', onLoad);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadViewer]);
+  // DESIGN-SPEC §7.1 (SEAMLESS POSTER RULE): the loaded model must match the
+  // poster with NO color pop. The default active finish (FINISHES[0], Coral) IS
+  // the model's own native material, so we do NOT override the material on load
+  // — the live viewer simply renders the native finish that the poster already
+  // shows. The active-swatch indicator (Coral) therefore agrees with what is
+  // rendered. Clicking any OTHER swatch changes the material on user action.
 
   // Price ticker: animate the number toward the target when a swatch changes.
   function selectFinish(i: number) {
