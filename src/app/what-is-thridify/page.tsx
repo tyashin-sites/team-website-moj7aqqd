@@ -165,11 +165,15 @@ export default function WhatIsThridifyPage() {
         </ol>
       </nav>
 
-      {/* HERO — H1 + canonical description VERBATIM as the first paragraph. */}
+      {/* HERO — H1 + canonical description VERBATIM as the first BODY
+          paragraph (not an oversized .lead). DESIGN-SPEC §8 exception: the
+          canonical entity description is a machine-extraction surface rendered
+          verbatim and is exempt from the §3 lead/subline word caps; as body
+          prose (2 sentences) it still satisfies §3's ≤3-sentence rule. */}
       <section className="container-x section pt-12">
         <p className="eyebrow">Fact sheet</p>
         <h1 className="tt-1 max-w-4xl">What is Thridify?</h1>
-        <p className="mt-6 lead max-w-3xl">{CANONICAL_DESCRIPTION}</p>
+        <p className="mt-6 max-w-[65ch] text-foreground/80 leading-relaxed">{CANONICAL_DESCRIPTION}</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
             Book a Demo

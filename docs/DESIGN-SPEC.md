@@ -74,6 +74,12 @@ Never name custom classes with Tailwind-utility-colliding names (`h-1`,
 - Max 2 consecutive sections without an interactive/visual element.
 - Every section scannable from heading + one bolded metric alone.
 - No paragraph over 3 sentences anywhere outside the blog.
+- **Exception (machine-extraction surface):** the canonical entity description
+  (`CANONICAL_DESCRIPTION`) is rendered verbatim as the first body paragraph on
+  `/what-is-thridify` and in `/llms.txt` for LLM/entity extraction, and is
+  exempt from the lead/subline word caps. It is rendered as ordinary body prose
+  (not an oversized `.lead`/hero subline) and, being 2 sentences, still honors
+  the ≤3-sentences-per-paragraph rule.
 
 ## 4. Spacing, grid, surfaces
 
