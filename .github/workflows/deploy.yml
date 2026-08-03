@@ -61,6 +61,18 @@ jobs:
       - name: Build with OpenNext
         run: npx @opennextjs/cloudflare build
 
+      - name: Populate static-assets incremental cache
+        # OpenNext stores prerendered SSG pages (the 6 fully-static
+        # /industries/<slug> pages) in the incremental cache, not the plain
+        # assets bundle. open-next.config.ts uses the read-only
+        # static-assets incremental cache; this step copies those `.cache`
+        # payloads into .open-next/assets/cdn-cgi/_next_cache/ BEFORE
+        # `wrangler deploy` uploads the assets, so the 6 pages resolve 200
+        # from static assets (no R2/KV) while unknown slugs stay a true 404.
+        # For the static-assets cache this is a local file copy — the `local`
+        # target needs no Cloudflare credentials.
+        run: npx @opennextjs/cloudflare populateCache local
+
       - name: Deploy to Workers
         id: deploy
         run: npx wrangler deploy

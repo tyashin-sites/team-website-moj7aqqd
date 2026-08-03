@@ -53,11 +53,17 @@ export function generateStaticParams() {
   return INDUSTRY_SLUGS.map((slug) => ({ slug }));
 }
 
-// ISR — matches the platform's proven blog/product pattern. Pure SSG with
-// dynamicParams:false 404s on an OpenNext-Cloudflare cache MISS (the incr.
-// cache isn't pre-warmed for dynamic-segment SSG); ISR regenerates on MISS
-// → 200 instead. Unknown slugs still 404 via notFound() below.
-export const revalidate = 3600;
+// FULLY STATIC (not ISR). The 6 canonical verticals are 100% build-time
+// content (src/lib/industries.ts — no runtime/external data), so with
+// generateStaticParams + dynamicParams:false + NO `revalidate` Next prerenders
+// all 6 into fully-static HTML that OpenNext-Cloudflare emits to
+// `.open-next/assets/industries/<slug>.html` and serves directly via the
+// ASSETS binding — no incremental cache, so no cache-MISS 404. Any non-canonical
+// slug falls through to a genuine framework 404 (dynamicParams:false), not a
+// soft-404. (The prior ISR `revalidate=3600` made notFound() serve HTTP 200
+// under OpenNext because this project configures no incremental-cache binding;
+// see open-next.config.ts.)
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
