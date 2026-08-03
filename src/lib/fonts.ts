@@ -24,4 +24,9 @@ export const monoFont = IBM_Plex_Mono({
   weight: ['400', '500'],
   variable: '--font-mono',
   display: 'swap',
+  // Not above-the-fold critical (price ticker / metrics only). Skip the
+  // high-priority <link rel=preload as=font> so it never competes with the
+  // hero LCP poster on the throttled connection (§10). Still self-hosted +
+  // swap, so it loads without blocking and paints the moment it arrives.
+  preload: false,
 });
