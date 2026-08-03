@@ -4,8 +4,9 @@
 inbound links (blogs, listings, backlinks) when `thridify.com` moves off
 WordPress. This document is the **single source of truth** for the 301 redirect
 map. It is implemented as `async redirects()` in `next.config.ts` (every rule
-`permanent: true` = HTTP 301). Update this doc and `next.config.ts` in the same
-commit — they must never disagree.
+uses `statusCode: 301` — a plain 301. NOTE: Next's `permanent: true` emits a
+**308**, not a 301, so the status code is set explicitly). Update this doc and
+`next.config.ts` in the same commit — they must never disagree.
 
 **Scope.** Prod `thridify.com` (WordPress) is NEVER touched before the
 user-gated Phase-7 cutover. Redirects are built and verified now on the preview
