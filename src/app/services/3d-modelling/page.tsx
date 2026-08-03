@@ -220,7 +220,7 @@ export default function ThreeDModellingServicePage() {
           </div>
           <div>
             {/* DEMO-FIRST (§6a): a live model of the kind we deliver. */}
-            <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" />
+            <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" priority />
           </div>
         </div>
       </section>

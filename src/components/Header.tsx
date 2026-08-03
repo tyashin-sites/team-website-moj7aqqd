@@ -21,8 +21,10 @@ export async function Header() {
               alt={siteName}
               width={220}
               height={56}
+              sizes="220px"
+              quality={70}
+              loading="eager"
               className="h-10 w-auto object-contain"
-              priority
             />
           ) : (
             <span className="text-2xl font-heading font-bold tracking-tight">{siteName}</span>

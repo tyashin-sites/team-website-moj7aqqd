@@ -70,7 +70,7 @@ export default function PlatformPage() {
               viewer, poster-first + activate-on-interaction, not an
               infographic montage. Breaks the text-only hero (D-3). */}
           <div className="mt-14 max-w-2xl mx-auto reveal">
-            <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" />
+            <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" priority />
           </div>
         </div>
       </section>

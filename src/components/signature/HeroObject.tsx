@@ -54,43 +54,33 @@ export function HeroObject() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const mvRef = useRef<HTMLElement | null>(null);
   const [loadViewer, setLoadViewer] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
   const [displayPrice, setDisplayPrice] = useState(FINISHES[0].price);
   const [isCoarse, setIsCoarse] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
   const tickRef = useRef<number | null>(null);
 
-  // Poster-first lazy load: pull in the model-viewer element + model only
-  // once the hero is on screen AND the main thread is idle (LCP-friendly).
+  // Coarse-pointer detection only — no eager model load. The 4.4MB GLB +
+  // model-viewer runtime are NOT pulled in until the user actually engages
+  // (DESIGN-SPEC §6a ACTIVATE-ON-INTERACTION). Auto-loading on idle used to
+  // let the WebGL canvas become the LCP element (~5s on throttled mobile);
+  // gating it on interaction keeps the seamless poster as the LCP (§10).
   useEffect(() => {
     setIsCoarse(window.matchMedia('(pointer: coarse)').matches);
-    const el = wrapRef.current;
-    if (!el) return;
-    let done = false;
-    const start = () => {
-      if (done) return;
-      done = true;
-      const kick = () => {
-        import('@google/model-viewer').then(() => setLoadViewer(true)).catch(() => {});
-      };
-      if ('requestIdleCallback' in window) {
-        (window as unknown as { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(kick);
-      } else {
-        setTimeout(kick, 200);
-      }
-    };
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          start();
-          io.disconnect();
-        }
-      },
-      { rootMargin: '200px' }
-    );
-    io.observe(el);
-    return () => io.disconnect();
   }, []);
+
+  // Pull in model-viewer + the model on first user engagement. Idempotent.
+  function activate() {
+    if (loadViewer || loading) return;
+    setLoading(true);
+    import('@google/model-viewer')
+      .then(() => {
+        setLoadViewer(true);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }
 
   // Apply a finish's base color to the model fabric material. Safe to call
   // before the model is ready (no-op until materials exist).
@@ -120,7 +110,9 @@ export function HeroObject() {
     setActive(i);
     const target = FINISHES[i].price;
 
-    // Swap the model material color client-side.
+    // Choosing a finish is engagement — bring the live model up if it's not
+    // already loaded (§6a), then swap the material color client-side.
+    activate();
     applyMaterial(i);
 
     if (window.matchMedia(REDUCED_MOTION_QUERY).matches) {
@@ -141,6 +133,8 @@ export function HeroObject() {
   }
 
   function activateAR() {
+    // Ensure the viewer is live first (AR needs the loaded model).
+    activate();
     const mv = mvRef.current as unknown as { activateAR?: () => void } | null;
     mv?.activateAR?.();
   }
@@ -173,14 +167,35 @@ export function HeroObject() {
           // (SEAMLESS POSTER RULE, DESIGN-SPEC §6) — rendered from
           // sheen-chair.glb via model-viewer itself — so when the live viewer
           // takes over there is no outline→realistic pop.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src="/models/sheen-chair-poster.webp"
-            alt="3D product preview loading"
-            width={640}
-            height={640}
-            className="w-full h-full object-contain"
-          />
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/models/sheen-chair-poster.webp"
+              alt="Interactive 3D chair preview — activate to spin"
+              width={640}
+              height={640}
+              // Hero poster = the LCP element (§10): load it eagerly at high
+              // fetch priority so it paints first, ahead of everything.
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-contain"
+            />
+            <button
+              type="button"
+              onClick={activate}
+              onMouseEnter={() => {
+                // Warm the model-viewer module on hover so the click is instant (§10).
+                import('@google/model-viewer').catch(() => {});
+              }}
+              className="absolute inset-0 flex items-end justify-center pb-6 group focus-visible:outline-none"
+              aria-label="Spin it in 3D — loads the live interactive model"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
+                {loading ? <span className="tt-mono">Loading…</span> : 'Spin it in 3D'}
+              </span>
+            </button>
+          </>
         )}
       </div>
 

@@ -169,7 +169,7 @@ export default async function IntegrationPage({ params }: { params: Promise<{ sl
             </div>
           </div>
           <div>
-            <CapabilityDemo mode={it.heroDemo} aspect="aspect-[4/3]" modelLabel={`${it.name} product`} />
+            <CapabilityDemo mode={it.heroDemo} aspect="aspect-[4/3]" modelLabel={`${it.name} product`} priority />
           </div>
         </div>
       </section>

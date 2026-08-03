@@ -55,6 +55,7 @@ export function CapabilityDemo({
   model = DEFAULT_MODEL_SRC,
   poster = DEFAULT_POSTER_SRC,
   modelLabel = 'product',
+  priority = false,
 }: {
   mode: DemoMode;
   onDark?: boolean;
@@ -66,6 +67,11 @@ export function CapabilityDemo({
   poster?: string;
   /** Short noun for alt text, e.g. the industry name. */
   modelLabel?: string;
+  /** True ONLY for the above-the-fold hero instance on a page — the poster is
+      the LCP element (§10), so load it eagerly at high fetch priority. Every
+      below-the-fold instance (home trio, /platform deep-dives) leaves this
+      false so its poster lazy-loads and never competes with the hero LCP. */
+  priority?: boolean;
 }) {
   const MODEL_SRC = model;
   const POSTER_SRC = poster;
@@ -169,6 +175,10 @@ export function CapabilityDemo({
               alt={`3D ${modelLabel} — activate to interact`}
               width={640}
               height={480}
+              loading={priority ? 'eager' : 'lazy'}
+              // fetchPriority high only for the hero LCP poster (§10).
+              fetchPriority={priority ? 'high' : 'auto'}
+              decoding="async"
               className="w-full h-full object-contain"
             />
             <button

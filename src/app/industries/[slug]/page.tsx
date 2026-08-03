@@ -179,6 +179,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
               model={ind.demoModel}
               poster={ind.demoPoster}
               modelLabel={ind.name.toLowerCase()}
+              priority
             />
           </div>
         </div>
