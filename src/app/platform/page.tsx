@@ -5,12 +5,13 @@ import { ctaLabel } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ProductVisual, type ProductVisualVariant } from '@/components/ProductVisual';
+import { CapabilityDemo, type DemoMode } from '@/components/signature/CapabilityDemo';
 import { CTABand } from '@/components/signature/CTABand';
 
-// §8 Platform blueprint: capability montage in the hero (brand-abstract, not
-// stock/fake screenshots — reuses ProductVisual per ASSET-DEBT #4, no new
-// debt). Three core capabilities in one viewport ⇒ pinkAccent off (§1 one-pink).
-const HERO_MONTAGE: ProductVisualVariant[] = ['viewer', 'configurator', 'ar'];
+// The three product capabilities that CAN be shown as a live interactive
+// demo (DEMO-FIRST, §6a) — everything else (content/analytics) has no
+// interactive form and keeps an abstract ProductVisual as a last resort.
+const DEMO_MODES = new Set<string>(['viewer', 'configurator', 'ar']);
 
 export const metadata: Metadata = {
   title: 'Platform — 3D & AR Commerce Suite',
@@ -59,13 +60,11 @@ export default function PlatformPage() {
             )}
           </div>
 
-          {/* CAPABILITY MONTAGE (§8 Platform hero) — brand-abstract visuals in
-              canonical colors, not stock/fake screenshots. Breaks the
-              text-only hero (D-3). */}
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-4xl mx-auto reveal">
-            {HERO_MONTAGE.map((variant) => (
-              <ProductVisual key={variant} variant={variant} pinkAccent={false} />
-            ))}
+          {/* HERO DEMO (§8 Platform hero, DEMO-FIRST §6a) — a live interactive
+              viewer, poster-first + activate-on-interaction, not an
+              infographic montage. Breaks the text-only hero (D-3). */}
+          <div className="mt-14 max-w-2xl mx-auto reveal">
+            <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" />
           </div>
         </div>
       </section>
@@ -110,7 +109,11 @@ export default function PlatformPage() {
                 distance={32}
                 className={`lg:col-span-7 ${dark ? 'lg:order-1' : ''}`}
               >
-                <ProductVisual variant={p.id as ProductVisualVariant} onDark={dark} />
+                {DEMO_MODES.has(p.id) ? (
+                  <CapabilityDemo mode={p.id as DemoMode} onDark={dark} aspect="aspect-[16/10]" />
+                ) : (
+                  <ProductVisual variant={p.id as ProductVisualVariant} onDark={dark} />
+                )}
               </Reveal>
             </div>
           </section>
