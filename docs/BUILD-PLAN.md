@@ -90,6 +90,32 @@ page has unique title/description/OG/canonical, sitemap complete, vertical
 pages pass one-intent-per-URL review, extraction test (can an LLM quote the
 fact page cleanly), text budgets held.
 
+## Phase 3.5 — Product-Capability Surface (5-pillar feature catalog)
+
+STATUS (2026-08-03): **SHIPPED.** The 37 real, live product features
+(user-confirmed 2026-08-03) were added sitewide as the FIVE PILLARS story
+spine (Studio / Experience / Distribute / Measure / Operate), benefit-framed
+and scannable (§3 — no 37-item wall). Positioning unchanged (3D & AR commerce
++ human-delivered 3D Modelling Service; No automated content-gen).
+- **CHUNK 1:** `src/lib/features.ts` — canonical, typed 5-pillar catalog
+  (single source of truth) imported by /features, /platform and
+  /integrations/shopify so copy never diverges.
+- **CHUNK 2:** new `/features` page (SSG) — pain-led H1, 5 pillar sections
+  (2-col scannable lists), FAQ, CTA; full SEO (unique title/desc/canonical/OG,
+  Service+FAQPage+BreadcrumbList JSON-LD, long-tail keyword leads); added to
+  sitemap + header nav + footer.
+- **CHUNK 3:** `/platform` restructured around the 5 pillars (overview strip →
+  Studio → Experience live demos → 3D Modelling Service → Distribute
+  (integrations row) → Measure/Analytics → Operate); demo-first components,
+  palette, §7.2 metrics and text budgets preserved.
+- **CHUNK 4:** `/integrations/shopify` upgraded from generic to a real,
+  detailed Shopify page — corrected mechanism to the Theme App Extension +
+  no-code App Blocks, merchant journey, real capabilities grouped by pillar,
+  Web-Pixel/GDPR framing, keyword retarget. Shared integration model extended
+  with optional `rich` content (Shopify only; other 8 pages unchanged).
+  Shopify App Store listing = user action (ASSET-DEBT #28).
+Preview noindex intact on both hosts. Canonical CTAs (Calendly / #demo).
+
 ## Phase 4 — Trust & Compliance
 
 Deliverables: real privacy policy + terms (GDPR/PIPEDA-aware for EU/Canada

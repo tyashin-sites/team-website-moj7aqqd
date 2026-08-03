@@ -253,9 +253,51 @@ ecommerce", "product 3D modelling company", "outsource 3D product modelling",
 Module #4 has a dedicated SEO service page (below); on /platform it keeps an
 abstract `ProductVisual variant="modelling"` (no interactive form to demo).
 
-**Platform:** hero (capability montage) → product deep-dives alternating
-light/dark, each with an interactive mini-demo (§6a) + ≤40 words →
-integrations row → analytics section → CTABand.
+**The FIVE PILLARS (the canonical capability spine — user-confirmed
+2026-08-03, all 37 features LIVE today).** The full capability set is the
+single source of truth `src/lib/features.ts` (imported by `/features`,
+`/platform` and `/integrations/shopify` so copy never diverges). Each pillar
+is a BENEFIT headline over its real capabilities; text budgets (§3) hold —
+scannable, grouped, NEVER a 37-item wall:
+1. **Studio** — "Publish 3D products yourself — no 3D team, no code": the
+   no-code draft→live publishing workflow (CRUD, variants, material/texture
+   libraries + bulk ops, modularization, categories, brand/theme controls,
+   preview links).
+2. **Experience** — "An interactive showroom on every product page": the 3D
+   viewer, app-free AR, full-screen immersive viewer, node-level configurator,
+   hotspots + theming, lighting presets. (Maps to the demo-first Viewer /
+   Configurator / AR modules, §6a.)
+3. **Distribute** — "One-click on Shopify. Embeddable everywhere else":
+   Shopify Theme App Extension + no-code App Blocks (product & collection
+   pages), theme auto-detection + custom CSS selectors, collection-wide badges,
+   embedded Admin onboarding, auto-link shop, embeddable widget, CDN-light +
+   anti-CLS, API tokens, MCP/AI tooling.
+4. **Measure** — "See which finishes shoppers love — and which drive the
+   sale": 3D interaction analytics, variant-level view analytics, Shopify Web
+   Pixel event bridge. (Maps to the Analytics module.)
+5. **Operate** — "Built for brand teams and enterprise workflows": team/account
+   management, OAuth + webhook verification + encrypted tokens, GDPR-ready
+   Shopify endpoints, privacy/cookie controls, vouchers/promos, API tokens.
+The 3D Modelling Service (§8 module #4) remains a distinct human-delivered
+offering, not a pillar. No automated content-generation claim (No-Faking).
+
+**/features (`/features`, SHIPPED 2026-08-03):** the comprehensive capability
+reference — pain-led ≤12-word H1, ≤40-word lead, the 5 pillar sections (icon
+chip + benefit headline + tagline + scannable 2-col feature list), FAQ
+(Shopify/materials/no-app/finishes-convert), CTA band. Full per-page SEO:
+unique title/desc/canonical/OG, Service + FAQPage + BreadcrumbList JSON-LD,
+long-tail keyword leads ("3d configurator material library", "shopify 3d
+product viewer", "ar furniture viewer", "3d commerce analytics"), internal
+links to /platform + /integrations/shopify + industries. In sitemap + header
+nav + footer.
+
+**Platform (restructured around the 5 pillars, 2026-08-03):** hero (live
+demo) → five-pillars overview strip → Studio → Experience (Viewer /
+Configurator / AR live demos, §6a) → 3D Modelling Service (own offering) →
+Distribute (integrations row folded in) → Measure/Analytics → Operate →
+CTABand. Each pillar shows 3–6 curated benefit-features with a "See all
+capabilities →" link to /features (no 37-item dump). Preserves demo-first
+components, one-pink rule, canonical palette + metrics (§7.2), text budgets.
 **3D Modelling Service (`/services/3d-modelling`):** dedicated SEO page —
 pain-led ≤12-word H1 with the primary keyword + live demo → what you get
 (formats, photoreal, turnaround) → how it works (send catalog → we model →
