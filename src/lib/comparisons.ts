@@ -56,7 +56,7 @@ export const COMPETITORS: Competitor[] = [
       'no-code 3D commerce',
     ],
     intro:
-      'Threekit and Thridify both bring products to life in 3D and AR, but they aim at different buyers. Threekit is a mature, enterprise-grade 3D configuration and virtual-photography platform. Thridify is a no-code 3D and AR commerce platform paired with a done-for-you 3D modelling service, built for custom-product brands that want results without a large integration project.',
+      'Threekit and Thridify both bring products to life in 3D and AR, but target different buyers. Threekit is an enterprise-grade 3D configuration and virtual-photography platform. Thridify pairs a no-code platform with a done-for-you 3D modelling service for custom-product brands.',
     competitorStrengths:
       'Threekit is a strong, established platform for enterprise 3D configuration and virtual photography, with deep CRM and CPQ integrations (including Salesforce) for large catalogs and sales-operations teams. For a big enterprise that already lives in that stack, it is a serious option.',
     thridifyFit:
@@ -102,7 +102,7 @@ export const COMPETITORS: Competitor[] = [
       'product customization software',
     ],
     intro:
-      'Zakeke and Thridify both let shoppers configure products in 2D/3D and view them in AR, but they specialise differently. Zakeke is a self-serve product-customization platform with a broad ecommerce plugin ecosystem. Thridify focuses on big-ticket, made-to-order products and adds a done-for-you 3D modelling service on top of its no-code platform.',
+      'Zakeke and Thridify both configure products in 3D and AR, but specialise differently. Zakeke is a self-serve product-customization platform with a broad ecommerce plugin ecosystem. Thridify focuses on big-ticket, made-to-order products and adds a done-for-you 3D modelling service.',
     competitorStrengths:
       'Zakeke is excellent at self-serve product personalization across many ecommerce platforms, with published pricing and a large plugin ecosystem. For print-on-demand and made-to-order customization at scale, it is a well-proven, accessible choice.',
     thridifyFit:
@@ -148,7 +148,7 @@ export const COMPETITORS: Competitor[] = [
       '3D room planner alternative',
     ],
     intro:
-      'Marxent (3D Cloud by Marxent) and Thridify both deliver 3D product visualization and AR, but at different scales. Marxent is an enterprise platform known for 3D room planners in big-box furniture and home-improvement retail. Thridify is a no-code platform plus a done-for-you 3D modelling service for custom-product brands that want immersive commerce without an enterprise rollout.',
+      'Marxent (3D Cloud) and Thridify both deliver 3D visualization and AR. Marxent is an enterprise platform known for 3D room planners in big-box furniture retail. Thridify pairs no-code 3D and AR with a done-for-you modelling service for custom-product brands.',
     competitorStrengths:
       'Marxent is a strong enterprise choice for 3D room planners and large-scale product visualization in big-box furniture and home-improvement retail, with extensive catalog tooling and in-store experiences. For a national retailer building a room planner, it is purpose-built.',
     thridifyFit:
