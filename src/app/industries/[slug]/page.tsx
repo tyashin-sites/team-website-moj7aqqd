@@ -173,7 +173,13 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
             </div>
           </div>
           <div>
-            <CapabilityDemo mode={ind.heroDemo} aspect="aspect-[4/3]" />
+            <CapabilityDemo
+              mode={ind.heroDemo}
+              aspect="aspect-[4/3]"
+              model={ind.demoModel}
+              poster={ind.demoPoster}
+              modelLabel={ind.name.toLowerCase()}
+            />
           </div>
         </div>
       </section>

@@ -63,6 +63,12 @@ export type Industry = {
   icon: 'sofa' | 'kitchen' | 'door' | 'prefab' | 'machinery' | 'laminate';
   /** The CapabilityDemo mode featured in the hero. */
   heroDemo: DemoMode;
+  /** Per-industry CC0 placeholder model + its seamless poster (DESIGN-SPEC
+      §6/§6a). Distinct, industry-relevant asset instead of the generic hero
+      chair. When absent, CapabilityDemo falls back to the chair (logged in
+      docs/ASSET-DEBT.md). Real client models replace these later (#16). */
+  demoModel?: string;
+  demoPoster?: string;
   primaryKeyword: string;
   keywords: string[];
   seoTitle: string;
@@ -89,6 +95,8 @@ export const INDUSTRIES: Industry[] = [
     gridName: 'Furniture & Home Decor',
     icon: 'sofa',
     heroDemo: 'ar',
+    demoModel: '/models/furniture-vase.glb',
+    demoPoster: '/models/furniture-vase-poster.webp',
     primaryKeyword: '3D furniture configurator',
     keywords: [
       '3D furniture configurator',
@@ -157,6 +165,8 @@ export const INDUSTRIES: Industry[] = [
     gridName: 'Modular Kitchens & Wardrobes',
     icon: 'kitchen',
     heroDemo: 'configurator',
+    demoModel: '/models/kitchen-teacup.glb',
+    demoPoster: '/models/kitchen-teacup-poster.webp',
     primaryKeyword: 'modular kitchen 3D design tool',
     keywords: [
       'modular kitchen 3D design tool',
@@ -225,6 +235,8 @@ export const INDUSTRIES: Industry[] = [
     gridName: 'Doors & Windows',
     icon: 'door',
     heroDemo: 'configurator',
+    demoModel: '/models/doors-lantern.glb',
+    demoPoster: '/models/doors-lantern-poster.webp',
     primaryKeyword: 'door & window configurator',
     keywords: [
       'door & window configurator',
@@ -361,6 +373,8 @@ export const INDUSTRIES: Industry[] = [
     gridName: 'Industrial Machinery',
     icon: 'machinery',
     heroDemo: 'viewer',
+    demoModel: '/models/machinery-camera.glb',
+    demoPoster: '/models/machinery-camera-poster.webp',
     primaryKeyword: '3D product viewer for machinery',
     keywords: [
       '3D product viewer for machinery',
@@ -429,6 +443,8 @@ export const INDUSTRIES: Industry[] = [
     gridName: 'Laminates & Surfaces',
     icon: 'laminate',
     heroDemo: 'configurator',
+    demoModel: '/models/surfaces-material.glb',
+    demoPoster: '/models/surfaces-material-poster.webp',
     primaryKeyword: 'laminate visualizer',
     keywords: [
       'laminate visualizer',

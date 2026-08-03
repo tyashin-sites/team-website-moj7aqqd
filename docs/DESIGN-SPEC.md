@@ -275,6 +275,13 @@ H2s, FAQPage + BreadcrumbList + Service JSON-LD, descriptive alt text,
 internal links to 2–3 related industries + /platform, all six in the
 sitemap. Text budgets (§3) still hold — SEO-rich, never walls of text.
 **Education is NOT a vertical** (spun out to WonderlyAR, §6).
+**Per-industry demo model (2026-08-02, CHUNK 3):** each industry page's
+hero demo shows a DISTINCT, industry-relevant model (not the generic chair)
+via `Industry.demoModel/demoPoster` → `CapabilityDemo model/poster`.
+Placeholders are CC0 (Khronos), draco+WebP-optimised ≤2MB, with seamless
+posters (§6); provenance in `public/models/SOURCES.md`, gaps in ASSET-DEBT.
+No CC0 structure model exists for prefab-structures → it keeps the chair
+fallback until a real model lands. All six want real client models (#16).
 **About:** founder story (Delhi→Toronto, Shikha-fronted per brand rules) →
 mission ≤80 words → global presence (India / Americas / Europe) → values →
 CTABand. No fake team photos.

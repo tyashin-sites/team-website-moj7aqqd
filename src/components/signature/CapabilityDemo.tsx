@@ -26,8 +26,8 @@ import { RotateCcw, SlidersHorizontal, Smartphone, Play } from 'lucide-react';
 
 export type DemoMode = 'viewer' | 'configurator' | 'ar';
 
-const MODEL_SRC = '/models/sheen-chair.glb';
-const POSTER_SRC = '/models/sheen-chair-poster.webp';
+const DEFAULT_MODEL_SRC = '/models/sheen-chair.glb';
+const DEFAULT_POSTER_SRC = '/models/sheen-chair-poster.webp';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
 type Finish = { name: string; swatch: string; rgba: [number, number, number, number]; price: number };
@@ -48,12 +48,23 @@ export function CapabilityDemo({
   onDark = false,
   className = '',
   aspect = 'aspect-[4/3]',
+  model = DEFAULT_MODEL_SRC,
+  poster = DEFAULT_POSTER_SRC,
+  modelLabel = 'product',
 }: {
   mode: DemoMode;
   onDark?: boolean;
   className?: string;
   aspect?: string;
+  /** Per-industry model + seamless poster (DESIGN-SPEC §6/§6a). Defaults to
+      the placeholder chair; industry pages pass their own relevant model. */
+  model?: string;
+  poster?: string;
+  /** Short noun for alt text, e.g. the industry name. */
+  modelLabel?: string;
 }) {
+  const MODEL_SRC = model;
+  const POSTER_SRC = poster;
   const [live, setLive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(0);
@@ -145,7 +156,7 @@ export function CapabilityDemo({
             }}
             src={MODEL_SRC}
             poster={POSTER_SRC}
-            alt={`Interactive 3D chair demo — ${meta.verb.toLowerCase()}`}
+            alt={`Interactive 3D ${modelLabel} demo — ${meta.verb.toLowerCase()}`}
             camera-controls
             {...(mode === 'viewer' ? { 'auto-rotate': true, 'auto-rotate-delay': '600', 'rotation-per-second': '18deg' } : {})}
             {...(mode === 'ar' ? { ar: true, 'ar-modes': 'webxr scene-viewer quick-look' } : {})}
@@ -159,7 +170,7 @@ export function CapabilityDemo({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={POSTER_SRC}
-              alt="3D product — activate to interact"
+              alt={`3D ${modelLabel} — activate to interact`}
               width={640}
               height={480}
               className="w-full h-full object-contain"
