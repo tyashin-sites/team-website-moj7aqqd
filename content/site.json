@@ -74,11 +74,11 @@
         "title": "Built for catalogs that deserve more than flat photos.",
         "items": [
           {
-            "name": "Furniture",
+            "name": "Furniture & Home Decor",
             "pain": "Shoppers can't judge scale, fabric or finish from photos — so they hesitate, or return."
           },
           {
-            "name": "Modular Kitchens",
+            "name": "Modular Kitchens & Wardrobes",
             "pain": "Hand-built quotes for layouts, finishes and hardware keep serious buyers waiting for days."
           },
           {
@@ -86,7 +86,7 @@
             "pain": "Bespoke profiles and finishes are hard to picture against a real facade."
           },
           {
-            "name": "Prefab Structures",
+            "name": "Prefab & Modular Structures",
             "pain": "High-ticket builds sold from brochures leave buyers guessing at space and specification."
           },
           {
@@ -94,8 +94,8 @@
             "pain": "Static PDFs can't show internals, motion or true scale on a buyer's floor."
           },
           {
-            "name": "Education & Publishing",
-            "pain": "Flat books and flashcards struggle to hold attention in a screen-first world."
+            "name": "Laminates & Surfaces",
+            "pain": "Sample books and flat swatches can’t show a finish on the actual product."
           }
         ]
       },
@@ -373,39 +373,31 @@
       },
       "services": {
         "eyebrow": "Sectors Served",
-        "title": "Eight industries. One immersive engine.",
+        "title": "Six industries. One immersive engine.",
         "items": [
           {
-            "name": "Furniture",
-            "description": "Web-AR placement, fabric configurators and lifestyle generation. Ideal for sofas, tables, beds and decor."
+            "name": "Furniture & Home Decor",
+            "description": "Fabric and finish configurators, app-free AR placement and lifestyle generation for sofas, tables, beds and decor."
           },
           {
-            "name": "Modular Kitchens",
-            "description": "Real-time layout configuration with finishes, hardware and appliance modules — instant quote integration."
-          },
-          {
-            "name": "Automotive",
-            "description": "Photoreal 3D walkarounds, trim and color configurators, interior 360° experiences."
+            "name": "Modular Kitchens & Wardrobes",
+            "description": "Real-time layout, finish and hardware configuration with live pricing and production-ready BOM export."
           },
           {
             "name": "Doors & Windows",
-            "description": "Visualize finishes against real architecture using web AR. Reduce site-visit dependency."
+            "description": "Configure bespoke profiles, finishes and glazing in 3D and picture them on a real facade with AR."
           },
           {
-            "name": "Pre-schools",
-            "description": "Virtual classroom and play-zone tours that improve the admission funnel experience."
-          },
-          {
-            "name": "Personalized Retail",
-            "description": "Live engraving, monogramming and material customization for premium retail SKUs."
+            "name": "Prefab & Modular Structures",
+            "description": "Walk layouts, cladding and true interior space in interactive 3D — sell high-ticket builds before construction."
           },
           {
             "name": "Industrial Machinery",
-            "description": "Show motion, internals and scale with interactive 3D — perfect for sales enablement and B2B portals."
+            "description": "Show motion, internals and scale with interactive 3D — built for B2B sales enablement and product portals."
           },
           {
-            "name": "And more",
-            "description": "Eyewear, footwear, jewelry, electronics, sports gear — if it has a SKU, we can make it interactive."
+            "name": "Laminates & Surfaces",
+            "description": "Apply laminates and surface finishes to the real product in 3D — replacing sample books and reshoots."
           }
         ]
       },

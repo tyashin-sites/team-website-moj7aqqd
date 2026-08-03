@@ -1,32 +1,36 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { Sofa, ChefHat, DoorOpen, Warehouse, Wrench, Layers, ArrowRight, type LucideIcon } from 'lucide-react';
 import { industriesContent, homeContent } from '@/lib/content';
+import { INDUSTRIES, type Industry } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
 
 export const metadata: Metadata = {
   title: 'Industries — 3D & AR Commerce for Every Sector',
   description:
-    'Thridify powers immersive 3D and AR product experiences across furniture, modular kitchens, doors & windows, retail, industrial machinery and more.',
+    'Thridify powers immersive 3D and AR product experiences across furniture, modular kitchens, doors & windows, prefab structures, industrial machinery and laminates & surfaces.',
+  alternates: { canonical: '/industries' },
   openGraph: {
     title: 'Industries — 3D & AR Commerce for Every Sector',
     description:
-      'Furniture, modular kitchens, doors & windows, machinery and more — immersive commerce per sector.',
+      'Furniture, modular kitchens, doors & windows, prefab structures, machinery and laminates — immersive commerce per sector.',
     images: ['/og/default.png'],
   },
 };
 
-// Typed, single-sourced content (src/lib/content.ts). The former page-local
-// FALLBACK_INDUSTRIES copy and the invented FALLBACK_TESTIMONIALS were
-// removed in Phase 2 (No-Faking rule) — proof is the permitted metric set
-// only, shared with the home page. Full §8 vertical-page treatment lands in
-// Phase 3.
+const INDUSTRY_ICON: Record<Industry['icon'], LucideIcon> = {
+  sofa: Sofa,
+  kitchen: ChefHat,
+  door: DoorOpen,
+  prefab: Warehouse,
+  machinery: Wrench,
+  laminate: Layers,
+};
+
 const page = industriesContent;
 const proof = homeContent.proof;
 
 export default function IndustriesPage() {
-  const industries = page.services.items;
-
   return (
     <>
       {/* HERO */}
@@ -52,22 +56,22 @@ export default function IndustriesPage() {
             </div>
           </div>
 
-          {/* Industry chips */}
+          {/* Quick links to each industry page */}
           <div className="mt-16 flex flex-wrap gap-2.5">
-            {industries.map((i) => (
-              <a
-                key={i.name}
-                href={`#${slug(i.name)}`}
-                className="px-4 py-2 rounded-full border border-foreground/15 text-sm font-medium text-foreground/80 bg-surface/60 backdrop-blur-sm hover:border-foreground/40 hover:text-foreground transition-colors"
+            {INDUSTRIES.map((i) => (
+              <Link
+                key={i.slug}
+                href={`/industries/${i.slug}`}
+                className="px-4 py-2 rounded-full border border-foreground/15 text-sm font-medium text-foreground/80 bg-surface/60 backdrop-blur-sm hover:border-primary/40 hover:text-primary transition-colors"
               >
-                {i.name}
-              </a>
+                {i.gridName}
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* INDUSTRY GRID */}
+      {/* INDUSTRY GRID — each card links to its own SEO page (§8) */}
       <section className="section pt-0">
         <div className="container-x">
           <div className="max-w-3xl mb-14">
@@ -76,17 +80,25 @@ export default function IndustriesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {industries.map((ind, idx) => (
-              <article key={ind.name} id={slug(ind.name)} className="card p-8 flex flex-col scroll-mt-24">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-heading font-bold">
-                    {String(idx + 1).padStart(2, '0')}
+            {INDUSTRIES.map((ind) => {
+              const Icon = INDUSTRY_ICON[ind.icon];
+              return (
+                <Link
+                  key={ind.slug}
+                  href={`/industries/${ind.slug}`}
+                  className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui"
+                >
+                  <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
+                    <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
                   </span>
-                </div>
-                <h3 className="tt-2 text-2xl mb-2">{ind.name}</h3>
-                <p className="text-foreground/70 leading-relaxed">{ind.description}</p>
-              </article>
-            ))}
+                  <h3 className="tt-2 text-2xl mb-2 group-hover:text-primary transition-colors">{ind.gridName}</h3>
+                  <p className="text-foreground/70 leading-relaxed flex-1">{ind.pain}</p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                    Explore {ind.gridName} <ArrowRight className="w-4 h-4" aria-hidden />
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -145,8 +157,4 @@ export default function IndustriesPage() {
       </section>
     </>
   );
-}
-
-function slug(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }

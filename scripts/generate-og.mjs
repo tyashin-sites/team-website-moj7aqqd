@@ -22,6 +22,14 @@ const PAGES = [
   { file: 'platform.png', kicker: 'THE PLATFORM', title: 'Five modules. One\nimmersive commerce stack.' },
   { file: 'about.png', kicker: 'ABOUT THRIDIFY', title: 'Founded in Delhi.\nScaling from Toronto.' },
   { file: 'contact.png', kicker: 'TALK TO THRIDIFY', title: 'Three regions.\nOne conversation away.' },
+  // Per-industry OG (DESIGN-SPEC §8) — brand-colored placeholders; real
+  // product-render OG images per industry are tracked in docs/ASSET-DEBT.md.
+  { file: 'industry-furniture.png', kicker: 'FURNITURE & HOME DECOR', title: '3D furniture configurator\n& AR viewer.' },
+  { file: 'industry-modular-kitchens.png', kicker: 'MODULAR KITCHENS', title: 'Modular kitchen 3D\ndesign tool.' },
+  { file: 'industry-doors-and-windows.png', kicker: 'DOORS & WINDOWS', title: 'Door & window\nconfigurator in 3D.' },
+  { file: 'industry-prefab-structures.png', kicker: 'PREFAB & MODULAR', title: 'Prefab 3D configurator\n& building visualizer.' },
+  { file: 'industry-industrial-machinery.png', kicker: 'INDUSTRIAL MACHINERY', title: '3D product viewer\nfor machinery.' },
+  { file: 'industry-laminates-surfaces.png', kicker: 'LAMINATES & SURFACES', title: 'Laminate visualizer &\nsurface configurator.' },
 ];
 
 const esc = (s) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;');

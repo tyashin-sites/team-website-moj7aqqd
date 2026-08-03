@@ -1,18 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  Sofa,
-  ChefHat,
-  DoorOpen,
-  GraduationCap,
-  ShoppingBag,
-  Warehouse,
-  Wrench,
-  Sparkles,
-  type LucideIcon,
-} from 'lucide-react';
+import { Sofa, ChefHat, DoorOpen, Warehouse, Wrench, Layers, type LucideIcon } from 'lucide-react';
 import { homeContent } from '@/lib/content';
+import { INDUSTRIES, type Industry } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
 import { LogoMarquee } from '@/components/LogoMarquee';
@@ -38,19 +29,17 @@ export const metadata: Metadata = {
   },
 };
 
-// Icon per vertical name (matched case-insensitively on keywords; Sparkles
-// is the safety net for unrecognized names).
-function iconForVertical(name: string): LucideIcon {
-  const n = name.toLowerCase();
-  if (n.includes('kitchen')) return ChefHat;
-  if (n.includes('door') || n.includes('window')) return DoorOpen;
-  if (n.includes('school') || n.includes('education') || n.includes('publish')) return GraduationCap;
-  if (n.includes('prefab') || n.includes('structure')) return Warehouse;
-  if (n.includes('machinery') || n.includes('industrial')) return Wrench;
-  if (n.includes('retail') || n.includes('store') || n.includes('shop')) return ShoppingBag;
-  if (n.includes('furniture') || n.includes('decor') || n.includes('sofa')) return Sofa;
-  return Sparkles;
-}
+// Icon per canonical industry (keyed on the industry's own icon token — no
+// keyword guessing, no Education branch: education is spun out to WonderlyAR,
+// DESIGN-SPEC §6).
+const INDUSTRY_ICON: Record<Industry['icon'], LucideIcon> = {
+  sofa: Sofa,
+  kitchen: ChefHat,
+  door: DoorOpen,
+  prefab: Warehouse,
+  machinery: Wrench,
+  laminate: Layers,
+};
 
 // Home content — typed, single-sourced from content/site.json (src/lib/content.ts).
 const home = homeContent;
@@ -124,7 +113,8 @@ export default function HomePage() {
       {/* 5. PIPELINE STRIP — dark (§7.4). */}
       <PipelineStrip />
 
-      {/* 6. VERTICALS GRID — 6 VerticalCards (§7.5/§8). No per-vertical
+      {/* 6. VERTICALS GRID — the 6 canonical industries (§7.5/§8). EACH card
+          links to its own /industries/<slug> SEO page. No per-vertical
           metrics until real, sourced numbers exist (ASSET-DEBT #12). */}
       <section className="section">
         <div className="container-x">
@@ -132,9 +122,14 @@ export default function HomePage() {
             <SectionHeading eyebrow={home.verticals.eyebrow} title={home.verticals.title} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {home.verticals.items.map((v, i) => (
-              <Reveal key={v.name} delay={i * 0.05}>
-                <VerticalCard icon={iconForVertical(v.name)} name={v.name} pain={v.pain} />
+            {INDUSTRIES.map((ind, i) => (
+              <Reveal key={ind.slug} delay={i * 0.05}>
+                <VerticalCard
+                  icon={INDUSTRY_ICON[ind.icon]}
+                  name={ind.gridName}
+                  pain={ind.pain}
+                  href={`/industries/${ind.slug}`}
+                />
               </Reveal>
             ))}
           </div>
