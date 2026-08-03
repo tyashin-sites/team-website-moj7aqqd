@@ -224,7 +224,7 @@ export function CapabilityDemo({
                 style={{ backgroundColor: f.swatch }}
               >
                 {active === i && (
-                  <span aria-hidden className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-accent" />
+                  <span aria-hidden className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary" />
                 )}
               </button>
             ))}

@@ -201,7 +201,7 @@ export default function WhatIsThridifyPage() {
           {SECTIONS.map((s) => (
             <div key={s.id} id={s.id}>
               <h2 className="tt-2">{s.q}</h2>
-              <p className="mt-4 lead">{s.answer}</p>
+              <p className="mt-4 text-foreground/80 leading-relaxed">{s.answer}</p>
               {s.more && (
                 <ul className="mt-5 space-y-3">
                   {s.more.map((m) => (

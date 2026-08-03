@@ -215,12 +215,13 @@ export function HeroObject() {
               }`}
               style={{ backgroundColor: f.swatch }}
             >
-              {/* Pink dot indicator on the active swatch — the ONE pink
-                  element in this viewport (DESIGN-SPEC §1). */}
+              {/* Teal dot indicator on the active swatch — kept off pink so the
+                  Blush product-finish swatch stays the ONE pink element in this
+                  viewport (DESIGN-SPEC §1 one-pink rule). */}
               {active === i && (
                 <span
                   aria-hidden
-                  className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-accent"
+                  className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-primary"
                 />
               )}
             </button>
