@@ -121,10 +121,52 @@ Never name custom classes with Tailwind-utility-colliding names (`h-1`,
 - Client logos: real files only (Nasher Miles, Guntier, Sunbaby, Vortex
   Splash already sourced from thridify.com).
 
+**SEAMLESS POSTER RULE (mandatory, applies to every `<model-viewer>` /
+interactive embed on the site).** A poster MUST be a realistic RASTER still
+(PNG/WebP) of the EXACT model at its component's initial camera pose — never
+a wireframe, outline, line-drawing, silhouette, or abstract placeholder. The
+poster is rendered from the same model with the same renderer/camera/lighting
+that will run once interactive, so the load → interactive transition is
+imperceptible (no outline→realistic "pop"). When the real client model or
+Thridify experience replaces a placeholder, its poster is regenerated the
+same way in the same commit. A hand-drawn/SVG "loading" poster is a spec
+violation.
+
+**WonderlyAR decoupling (scope boundary).** AR-for-education — pre-schools,
+AR-enabled books/flashcards, publishing — is being spun out into a SEPARATE
+brand, **WonderlyAR**. It is NOT part of Thridify. Education, pre-schools,
+AR-books, and publishing MUST NOT appear anywhere on the Thridify site
+(industries grid, industries pages, copy, metadata, icons, schema).
+
+## 6a. DEMO-FIRST PRINCIPLE (mandatory, sitewide)
+
+The design thesis — "the product demos itself" — is a HARD rule, not a mood.
+Wherever a feature or use-case CAN be shown as a live interactive demo, it
+MUST be, not an infographic, abstract SVG, or screenshot.
+
+- **Comparisons (flat vs 3D)** compare the EXPERIENCE, not abstract graphics:
+  the SAME real product as a static image (left, the "flat photo") vs its
+  interactive 3D (right). Same product, two experiences.
+- **Product capability cards** (3D 360° Viewer, Configurator, AR) MUST embed
+  an interactive mini-demo of the real model — not an abstract visual. To
+  protect LCP (§10) they are **poster-first + activate-on-interaction**
+  (tap/click to load the live demo), so only one heavy demo instantiates at
+  a time. The poster obeys the SEAMLESS POSTER RULE (§6).
+- This applies on Home AND Platform AND anywhere these cards/comparisons
+  appear (industry pages included).
+- Abstract brand-geometry visuals (`ProductVisual`) are a LAST resort only
+  where no interactive demo is possible; a capability that can be demoed and
+  is shown as an infographic instead is a spec violation.
+- Real Thridify experience embeds (per `docs/integration/`) replace the
+  placeholder-model demos when the SDK standalone-embed lands; the poster is
+  regenerated at that point.
+
 ## 7. Signature components (the design budget concentrates here)
 
 1. **HeroObject** — a photoreal furniture glTF in `<model-viewer>` (lazy,
-   poster-frame first for LCP), auto-rotating slowly, drag-to-spin. Beside
+   poster-frame first for LCP). The poster obeys the SEAMLESS POSTER RULE
+   (§6): a realistic raster still of the exact model at the initial camera
+   pose, so load→interactive is imperceptible. Auto-rotating slowly, drag-to-spin. Beside
    it: 3 finish swatches (teal ring on active, pink dot indicator) that swap
    the material; an IBM-Plex-Mono price that ticks when a swatch changes;
    an "AR" chip that reveals a QR code on desktop hover / becomes "View in
@@ -147,9 +189,13 @@ Never name custom classes with Tailwind-utility-colliding names (`h-1`,
    six as metric cards. No other quantitative claim may render anywhere
    on the site. If this list changes, change it HERE and in the site in
    the same commit — spec and site must never disagree.
-3. **BeforeAfter** — split panel: left = flat product photo annotated with
-   pains (returns, quote delays); scrolling/toggling transforms to the 3D
-   version annotated with gains in pink. The positioning made physical.
+3. **BeforeAfter** — split panel comparing the SAME product as two
+   experiences (DEMO-FIRST, §6a): left = a static raster still of the product
+   (the "flat photo") annotated with pains (returns, quote delays,
+   guesswork); right = the interactive 3D of that IDENTICAL product annotated
+   with gains in pink. Uses the hero model's seamless poster as the flat
+   still and the live `<model-viewer>` as the 3D — it must read as "same
+   product, two experiences", not two different graphics.
 4. **PipelineStrip** — dark section; one continuous animated SVG line:
    Configure → Live price → Instant quote → BOM to factory. Each node a
    glass card with icon + ≤10 words.
@@ -172,15 +218,39 @@ default, centered only on CTA bands), FormField (autofill attrs mandatory,
 ## 8. Page blueprints
 
 **Home:** HeroObject → MetricBar → LogoMarquee → BeforeAfter → PipelineStrip
-(dark) → Verticals grid (6 cards) → Product trio (viewer/configurator/AR,
-each with a real capture) → Proof (metrics + logos) → CTABand.
+(dark) → Verticals grid (6 cards, each linking to its own /industries/<slug>
+page) → Product trio (viewer/configurator/AR, each an interactive mini-demo
+per §6a) → Proof (metrics + logos) → CTABand.
 **Platform:** hero (capability montage) → product deep-dives alternating
-light/dark, each with real capture + ≤40 words → integrations row →
-analytics section → CTABand.
-**Vertical pages (×5: furniture, modular kitchens, doors & windows, prefab
-structures, industrial machinery):** pain-led hero in their vocabulary →
-category-specific demo/render → 3 outcomes with numbers → relevant proof →
-CTABand. One intent per URL.
+light/dark, each with an interactive mini-demo (§6a) + ≤40 words →
+integrations row → analytics section → CTABand.
+**Industries index (`/industries`):** lists the 6 canonical verticals, each
+card linking to its own per-industry page.
+**Per-industry pages — the 6 canonical verticals, one URL each, statically
+generated with UNIQUE content:**
+
+| Vertical | URL |
+|---|---|
+| Furniture & Home Decor | `/industries/furniture` |
+| Modular Kitchens & Wardrobes | `/industries/modular-kitchens` |
+| Doors & Windows | `/industries/doors-and-windows` |
+| Prefab & Modular Structures | `/industries/prefab-structures` |
+| Industrial Machinery | `/industries/industrial-machinery` |
+| Laminates & Surfaces | `/industries/laminates-surfaces` |
+
+Per-page structure (one intent per URL): pain-led hero in that industry's
+vocabulary (≤12-word H1 + demo/visual slot) → "How Thridify helps
+<industry>" mapping the capabilities (configurator/AR/viewer) to their sales
+workflow → industry-framed outcomes using ONLY the canonical metric set
+(§7.2) → real-client proof where it honestly maps (Guntier→kitchens & doors;
+Airolam→laminates; else metric-only) → FAQ block (4–6 real questions that
+industry Googles) → CTA band (Book a Demo → Calendly primary, Try the live
+demo → /#demo secondary). SEO is MANDATORY per page: unique
+title/description/canonical/OG, H1 with the primary keyword, keyword-targeted
+H2s, FAQPage + BreadcrumbList + Service JSON-LD, descriptive alt text,
+internal links to 2–3 related industries + /platform, all six in the
+sitemap. Text budgets (§3) still hold — SEO-rich, never walls of text.
+**Education is NOT a vertical** (spun out to WonderlyAR, §6).
 **About:** founder story (Delhi→Toronto, Shikha-fronted per brand rules) →
 mission ≤80 words → global presence (India / Americas / Europe) → values →
 CTABand. No fake team photos.
