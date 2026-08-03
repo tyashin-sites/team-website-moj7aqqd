@@ -48,19 +48,19 @@
         "logos": [
           {
             "name": "Nasher Miles",
-            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/NM.png"
+            "logoUrl": "/logos/nasher-miles.webp"
           },
           {
             "name": "Guntier",
-            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/Guntier-1.png"
+            "logoUrl": "/logos/guntier.webp"
           },
           {
             "name": "Sunbaby",
-            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/SUN_BABY.png"
+            "logoUrl": "/logos/sunbaby.webp"
           },
           {
             "name": "Vortex Splash",
-            "logoUrl": "https://thridify.com/wp-content/uploads/2025/09/Vortex-1.png"
+            "logoUrl": "/logos/vortex-splash.webp"
           }
         ]
       },
