@@ -200,8 +200,9 @@ Prepared in advance, executed only on instruction:
   WordPress URL inventory (160 sitemap URLs + GSC legacy URLs) and its full
   disposition table live in `docs/seo-migration-map.md` — the **single source of
   truth** for the redirect map. Clean 301s are already IMPLEMENTED and live-
-  verified in `next.config.ts` `async redirects()` (28 rules, all `permanent:
-  true`). Open before executing cutover: 5 user decisions in that doc
+  verified in `next.config.ts` `async redirects()` (28 rules, all using explicit
+  `statusCode: 301` — we deliberately use `statusCode: 301` rather than Next's
+  `permanent: true`, which emits a 308). Open before executing cutover: 5 user decisions in that doc
   (WonderlyAR/education domain, build integration pages, 1:1 blog-post
   migration, `/pricing` page, ranking image URLs) — the ~133 held blog/tag/
   author URLs are a cutover blocker until the blog is migrated 1:1. Keep this
