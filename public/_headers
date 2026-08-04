@@ -16,8 +16,16 @@
 # filename or append a ?v= query (versioned filenames for the real SDK embed /
 # new client models). See docs/ASSET-DEBT.md.
 #
-# NOTE: /_next/static/* is deliberately NOT listed here — its handling is out of
-# scope for this change (see ASSET-DEBT caching entry).
+# /_next/static/* holds Next's CONTENT-HASHED build output (JS/CSS chunks, media):
+# the filename changes whenever the content changes, so a 1-year immutable cache is
+# safe and standard — it is exactly what OpenNext's `migrate` command emits. Without
+# it the Workers assets runtime serves these with `public, max-age=0, must-revalidate`,
+# forcing every page's JS/CSS to re-validate on every load sitewide. Only the hashed
+# STATIC output is listed — NOT /_next/image (dynamic optimizer), /_next/data, or any
+# HTML route.
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /models/*
   Cache-Control: public, max-age=31536000, immutable
