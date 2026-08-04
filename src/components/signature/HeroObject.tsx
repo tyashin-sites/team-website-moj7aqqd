@@ -66,11 +66,25 @@ export function HeroObject() {
   const [loadViewer, setLoadViewer] = useState(false);
   const [loading, setLoading] = useState(false);
   const [autoStarted, setAutoStarted] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const [active, setActive] = useState(0);
   const [displayPrice, setDisplayPrice] = useState(FINISHES[0].price);
   const [isCoarse, setIsCoarse] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
   const tickRef = useRef<number | null>(null);
+
+  // Ref callback: keep the model-viewer handle AND reveal it (fade OUR poster
+  // <img> out) on its 'load' event. The <img> stays the LCP element (§10); the
+  // canvas is not an LCP candidate and we pass model-viewer NO poster, so no
+  // late #default-poster candidate is created. Load→reveal is seamless (§6/§7.1).
+  function attachMv(el: HTMLElement | null) {
+    mvRef.current = el;
+    const w = el as unknown as { _lbLoad?: boolean } | null;
+    if (el && w && !w._lbLoad) {
+      w._lbLoad = true;
+      el.addEventListener('load', () => setRevealed(true));
+    }
+  }
 
   // Coarse-pointer detection only. The GLB + model-viewer runtime warm AFTER
   // first paint (idle + viewport), so the seamless poster stays the LCP element
@@ -165,66 +179,73 @@ export function HeroObject() {
   return (
     <div ref={warmRef} className="relative">
       <div className="relative aspect-square max-h-[560px] w-full rounded-lg overflow-hidden">
-        {loadViewer ? (
+        {/* Persistent seamless poster = the LCP element (§10). Rendered FIRST
+            and kept fully opaque underneath the viewer — NEVER faded out — so its
+            early paint stays the recorded LCP even after the live model reveals
+            on top. A realistic raster still of the EXACT model at its initial
+            camera pose (SEAMLESS POSTER RULE, §6/§7.1). */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/models/sheen-chair-poster.webp"
+          alt="Interactive 3D chair — drag to spin"
+          width={640}
+          height={640}
+          // Hero poster = the LCP element (§10): eager + high fetch priority.
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-contain"
+        />
+        {/* Live viewer mounts ON TOP of the persistent poster (no `poster` attr,
+            so it adds no competing LCP candidate; the <canvas> is not an LCP
+            candidate). It stays transparent until its 'load' event, then fades IN
+            over the identical poster — imperceptible swap (§6/§7.1). */}
+        {loadViewer && (
           <model-viewer
-            ref={(el: HTMLElement | null) => {
-              mvRef.current = el;
-            }}
+            ref={attachMv}
             src="/models/sheen-chair.glb"
-            poster="/models/sheen-chair-poster.webp"
             alt="Interactive 3D chair — drag to spin"
             camera-controls
             auto-rotate
             auto-rotate-delay="1500"
             rotation-per-second="8deg"
             interaction-prompt="none"
+            reveal="auto"
             ar
             ar-modes="webxr scene-viewer quick-look"
             shadow-intensity="0.6"
             exposure="1.05"
-            style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'transparent',
+              opacity: revealed ? 1 : 0,
+              transition: 'opacity 400ms cubic-bezier(.22,1,.36,1)',
+              pointerEvents: revealed ? 'auto' : 'none',
+            }}
           />
-        ) : (
-          // Poster frame while the viewer is deferred. This is a realistic
-          // raster still of the EXACT model at its initial camera pose
-          // (SEAMLESS POSTER RULE, DESIGN-SPEC §6) — rendered from
-          // sheen-chair.glb via model-viewer itself — so when the live viewer
-          // takes over there is no outline→realistic pop.
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/models/sheen-chair-poster.webp"
-              alt="Interactive 3D chair preview — activate to spin"
-              width={640}
-              height={640}
-              // Hero poster = the LCP element (§10): load it eagerly at high
-              // fetch priority so it paints first, ahead of everything.
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="w-full h-full object-contain"
-            />
-            {/* Hero auto-presents once warm (§6a): suppress the CTA so the live
-                viewer reveals from the poster with no "Loading…" flash. The
-                button remains only for the reduced-motion / Save-Data fallback
-                (no auto-present) and as a keyboard affordance until then. */}
-            {!autoStarted && (
-              <button
-                type="button"
-                onClick={activate}
-                onMouseEnter={() => {
-                  // Warm the model-viewer module on hover too (belt-and-braces).
-                  import('@google/model-viewer').catch(() => {});
-                }}
-                className="absolute inset-0 flex items-end justify-center pb-6 group focus-visible:outline-none"
-                aria-label="Spin it in 3D — loads the live interactive model"
-              >
-                <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
-                  {loading ? <span className="tt-mono">Loading…</span> : 'Spin it in 3D'}
-                </span>
-              </button>
-            )}
-          </>
+        )}
+        {/* Hero auto-presents once warm (§6a): suppress the CTA once auto-started
+            so the live viewer reveals with no "Loading…" flash. The button
+            remains for the reduced-motion / Save-Data fallback (no auto-present)
+            and as a keyboard affordance until then. */}
+        {!loadViewer && !autoStarted && (
+          <button
+            type="button"
+            onClick={activate}
+            onMouseEnter={() => {
+              // Warm the model-viewer module on hover too (belt-and-braces).
+              import('@google/model-viewer').catch(() => {});
+            }}
+            className="absolute inset-0 flex items-end justify-center pb-6 group focus-visible:outline-none"
+            aria-label="Spin it in 3D — loads the live interactive model"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
+              {loading ? <span className="tt-mono">Loading…</span> : 'Spin it in 3D'}
+            </span>
+          </button>
         )}
       </div>
 

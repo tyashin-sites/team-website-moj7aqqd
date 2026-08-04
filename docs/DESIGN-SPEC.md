@@ -175,9 +175,18 @@ MUST be, not an infographic, abstract SVG, or screenshot.
   demos keep the click affordance** (only one heavy WebGL context runs at a
   time), but the click is instant because the model is already warm. **The
   above-the-fold HERO demo (`priority` / `HeroObject`) AUTO-PRESENTS** the live
-  viewer once its library + GLB are warm and it's in view — no click — using
-  model-viewer's own poster→reveal so the swap stays seamless (the poster
-  already matches the model, §6/§7.1). **Reduced-motion and
+  viewer once its library + GLB are warm and it's in view — no click — layering
+  the live `<model-viewer>` (no `poster` attr) ON TOP of the persistent poster
+  `<img>` and fading it in on the model's `load` event, so the poster `<img>`
+  stays the painted LCP element (§10) and the swap is seamless (the poster
+  already matches the model, §6/§7.1). **Auto-present is BUDGET-GATED (§10):**
+  it fires only when the model is within the ≤2MB 3D-asset budget; the current
+  4.4MB placeholder chair (ASSET-DEBT #16/#26) is OVER budget, so the pages that
+  use it (Home, /platform, /services, /integrations, prefab) keep the hero
+  warm-but-instant-click rather than auto-running a heavy WebGL context, while
+  the per-industry heroes (≤1.3MB models) auto-present today. Auto-present
+  self-activates for the heavy pages once the real ≤2MB optimized SDK embed
+  lands. **Reduced-motion and
   `navigator.connection.saveData` opt out**: no GLB prefetch and no
   auto-present (the library still warms on idle so a click stays instant) —
   fall back to click-to-activate. The AR QR asset is `<link rel="preload">`d so
@@ -416,13 +425,17 @@ interception logged in ASSET-DEBT #20.
 - LCP < 2.5s on mid-tier mobile (hero poster frame, model-viewer deferred).
 - CLS < 0.1 (fonts via next/font, dimensions on all media).
 - **Demo-loading contract (§6a, WARM-THEN-INSTANT):** poster paints first as
-  the LCP element → the model-viewer library + GLB warm AFTER first paint (on
+  the LCP element → the model-viewer library + GLB warm AFTER `window.load` (on
   idle / on viewport via `useDemoWarm`), NEVER blocking initial render →
   activation is INSTANT (model served from HTTP cache). The above-the-fold hero
-  AUTO-PRESENTS once warm (reduced-motion / Save-Data opt out → click-to-
-  activate). Warming must never make the WebGL canvas the LCP element: the hero
-  auto-present fires only after the poster has painted and the model is cached,
-  and model-viewer's own poster→reveal covers the swap.
+  AUTO-PRESENTS once warm **only when the model is within the ≤2MB budget**
+  (reduced-motion / Save-Data opt out → click-to-activate; over-budget models
+  stay click-to-activate too — a live WebGL context is only cheap enough to
+  auto-run for a budget-sized model). Warming must never make the WebGL canvas
+  the LCP element: the live `<model-viewer>` (given NO `poster` attr, so it
+  adds no competing LCP candidate — a `<canvas>` is not an LCP candidate) is
+  layered ON TOP of the persistent poster `<img>`, which is NEVER faded out, so
+  the poster's early paint stays the recorded LCP.
 - 3D assets: glTF ≤ 2MB draco-compressed, warmed on idle/viewport, activation
   from cache. (Placeholder `sheen-chair.glb` is 4.4MB, ASSET-DEBT #16/#26 —
   heavy to prefetch on slow links; the real optimized Thridify SDK embed makes

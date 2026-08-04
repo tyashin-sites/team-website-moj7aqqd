@@ -87,6 +87,7 @@ export function CapabilityDemo({
   const [live, setLive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [autoStarted, setAutoStarted] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const [active, setActive] = useState(0);
   const [displayPrice, setDisplayPrice] = useState(FINISHES[0].price);
   const [isCoarse, setIsCoarse] = useState(false);
@@ -95,6 +96,20 @@ export function CapabilityDemo({
   const tickRef = useRef<number | null>(null);
 
   const meta = MODE_META[mode];
+
+  // Ref callback: keep the model-viewer handle AND, on its 'load' event, reveal
+  // it by fading OUR poster <img> out. The <img> stays the LCP element (§10);
+  // the model-viewer canvas is not an LCP candidate, and we pass it NO poster so
+  // it creates no late #default-poster candidate. Load→reveal is seamless (the
+  // poster already matches the model, §6/§7.1).
+  function attachMv(el: HTMLElement | null) {
+    mvRef.current = el;
+    const w = el as unknown as { _lbLoad?: boolean } | null;
+    if (el && w && !w._lbLoad) {
+      w._lbLoad = true;
+      el.addEventListener('load', () => setRevealed(true));
+    }
+  }
 
   function activate() {
     if (live || loading) return;
@@ -175,62 +190,74 @@ export function CapabilityDemo({
           onDark ? 'bg-paper/[0.04] border-paper/15' : 'bg-tint border-foreground/10'
         }`}
       >
-        {live ? (
+        {/* Persistent seamless poster = the LCP element (§10). It is rendered
+            FIRST and stays fully opaque underneath the viewer — it is NEVER
+            faded out, so its early paint remains the recorded LCP even after the
+            live model reveals on top. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={POSTER_SRC}
+          alt={`3D ${modelLabel} — interactive demo`}
+          width={640}
+          height={480}
+          loading={priority ? 'eager' : 'lazy'}
+          // fetchPriority high only for the hero LCP poster (§10).
+          fetchPriority={priority ? 'high' : 'auto'}
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-contain"
+        />
+        {/* Live viewer mounts ON TOP of the persistent poster (no `poster` attr,
+            so it adds no competing LCP candidate; the <canvas> is not an LCP
+            candidate either). It stays transparent until its 'load' event, then
+            fades IN over the identical poster — imperceptible swap (§6/§7.1). */}
+        {live && (
           <model-viewer
-            ref={(el: HTMLElement | null) => {
-              mvRef.current = el;
-            }}
+            ref={attachMv}
             src={MODEL_SRC}
-            poster={POSTER_SRC}
             alt={`Interactive 3D ${modelLabel} demo — ${meta.verb.toLowerCase()}`}
             camera-controls
             {...(mode === 'viewer' ? { 'auto-rotate': true, 'auto-rotate-delay': '600', 'rotation-per-second': '18deg' } : {})}
             {...(mode === 'ar' ? { ar: true, 'ar-modes': 'webxr scene-viewer quick-look' } : {})}
             interaction-prompt="none"
+            reveal="auto"
             shadow-intensity="0.6"
             exposure="1.05"
-            style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'transparent',
+              opacity: revealed ? 1 : 0,
+              transition: 'opacity 400ms cubic-bezier(.22,1,.36,1)',
+              pointerEvents: revealed ? 'auto' : 'none',
+            }}
           />
-        ) : (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={POSTER_SRC}
-              alt={`3D ${modelLabel} — activate to interact`}
-              width={640}
-              height={480}
-              loading={priority ? 'eager' : 'lazy'}
-              // fetchPriority high only for the hero LCP poster (§10).
-              fetchPriority={priority ? 'high' : 'auto'}
-              decoding="async"
-              className="w-full h-full object-contain"
-            />
-            {/* Hero auto-present (autoStarted): suppress the CTA so the live
-                viewer reveals from the poster with no "Loading…" flash (§6a). */}
-            {!autoStarted && (
-              <button
-                type="button"
-                onClick={activate}
-                onMouseEnter={() => {
-                  // Warm the module on hover too (belt-and-braces with §6a warming).
-                  import('@google/model-viewer').catch(() => {});
-                }}
-                className="absolute inset-0 flex items-end justify-center pb-5 group focus-visible:outline-none"
-                aria-label={`${meta.verb} — loads the live 3D demo`}
-              >
-                <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
-                  {loading ? (
-                    <span className="tt-mono">Loading…</span>
-                  ) : (
-                    <>
-                      <meta.icon className="w-4 h-4" strokeWidth={1.75} aria-hidden />
-                      {meta.verb}
-                    </>
-                  )}
-                </span>
-              </button>
-            )}
-          </>
+        )}
+        {/* CTA affordance — cards click to activate; the hero auto-presents so
+            it hides its CTA once auto-started (no "Loading…" flash) (§6a). */}
+        {!live && !autoStarted && (
+          <button
+            type="button"
+            onClick={activate}
+            onMouseEnter={() => {
+              // Warm the module on hover too (belt-and-braces with §6a warming).
+              import('@google/model-viewer').catch(() => {});
+            }}
+            className="absolute inset-0 flex items-end justify-center pb-5 group focus-visible:outline-none"
+            aria-label={`${meta.verb} — loads the live 3D demo`}
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
+              {loading ? (
+                <span className="tt-mono">Loading…</span>
+              ) : (
+                <>
+                  <meta.icon className="w-4 h-4" strokeWidth={1.75} aria-hidden />
+                  {meta.verb}
+                </>
+              )}
+            </span>
+          </button>
         )}
       </div>
 
