@@ -127,8 +127,10 @@ export function useDemoWarm({
         if (prefetched) return Promise.resolve(0);
         prefetched = true;
         if (!libWarmed) void warmLibrary();
-        // (2) Pull the GLB into the HTTP cache before any interaction.
-        return fetch(modelSrc, { mode: 'cors' })
+        // (2) Pull the GLB into the HTTP cache before any interaction, at LOW
+        // priority so the heavy placeholder never competes with the LCP poster
+        // or other critical resources (§10).
+        return fetch(modelSrc, { mode: 'cors', priority: 'low' } as RequestInit)
           .then(async (r) => {
             const len = Number(r.headers.get('content-length') || 0);
             const blob = await r.blob();
