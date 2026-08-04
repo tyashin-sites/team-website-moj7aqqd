@@ -318,7 +318,12 @@ export default function PlatformPage() {
           </section>
         );
       })}
-      <section className="section pt-0">
+      {/* Experience capability checklist — full section padding so the LIGHT
+          checklist sits cleanly BELOW the dark AR demo (#ar) with proper §4
+          rhythm, instead of hugging the dark box (the `pt-0` flush-collision
+          the Phase-3.5 restructure introduced). Still visually the tail of the
+          Experience pillar, just with breathing room. */}
+      <section className="section">
         <div className="container-x">
           <FeatureList pillarId="experience" count={4} />
           <div className="mt-8">
