@@ -6,13 +6,19 @@
  * Imported by:
  *   - /features            (the comprehensive capability reference)
  *   - /platform            (curated 3–5 top benefit-features per pillar)
- *   - /integrations/shopify (the DISTRIBUTE + MEASURE Shopify capabilities)
+ *   - /integrations/[slug] (pillar LABELS only, for the rich capability groups)
  *
  * RULES baked in here (DESIGN-SPEC):
  *   - No-Faking: every capability below is LIVE today (user-confirmed
  *     2026-08-03). Present accurately; do NOT embellish beyond the list.
  *   - Positioning stays 3D & AR commerce + a human-delivered 3D Modelling
  *     Service. NO automated content-generation claim (§8 correction).
+ *   - PLATFORM-NEUTRAL surface: this catalog feeds /features AND /platform, so
+ *     it must NOT single out any one commerce platform (Shopify). The
+ *     Shopify-SPECIFIC capabilities (Theme App Extension, App Blocks, theme
+ *     auto-detection, collection badges, embedded Admin onboarding, Web Pixel,
+ *     GDPR endpoints) live ONLY in the Shopify integration's `rich` content in
+ *     src/lib/integrations.ts — never here. Thridify is platform-agnostic.
  *   - Canonical metric set ONLY (§7.2) — this module carries capabilities,
  *     never new quantitative claims.
  *   - Text budgets (§3): pillar taglines ≤14 words; feature lines are short,
@@ -80,23 +86,18 @@ export const PILLARS: Pillar[] = [
   {
     id: "distribute",
     label: "Distribute",
-    title: "One-click on Shopify. Embeddable everywhere else",
+    title: "One-click plugins, or embed on any storefront",
     tagline:
-      "A no-code Shopify App Block, a lightweight embed and an API for everything else.",
+      "One-click plugins for major platforms, a lightweight embed and an API for everything else.",
     icon: "Plug",
     features: [
-      "Shopify Theme App Extension with no-code App Blocks",
-      "Product-page and collection-page 3D on Shopify",
-      "Auto-detection of major Shopify themes, plus custom CSS selectors",
-      "Collection-wide 3D badges and triggers for many products at once",
-      "Embedded Shopify onboarding — sign up and link inside Shopify Admin",
-      "Auto-link your Shopify shop to your Thridify account",
-      "3D readiness and stats visible inside the Shopify app",
-      "Embeddable widget for non-Shopify storefronts",
-      "CDN-based lightweight integration for fast storefront performance",
-      "Anti-CLS preloading for better Core Web Vitals",
+      "One-click plugins for major commerce platforms",
+      "Embeddable widget for any storefront",
+      "CDN-light integration for fast storefronts",
+      "Anti-CLS, Core Web Vitals-friendly loading",
       "API token access for custom and enterprise integrations",
       "MCP / AI tooling to manage products, variants, materials, brand and analytics via AI assistants",
+      "Analytics event bridge for shopper interactions",
     ],
   },
   {
@@ -109,7 +110,7 @@ export const PILLARS: Pillar[] = [
     features: [
       "3D interaction analytics — engagement, demographics and performance signals",
       "Variant-level view analytics — which finishes and colours win attention",
-      "Shopify Web Pixel bridge for 3D opens, closes and variant interactions",
+      "Event bridge for 3D opens, closes and variant interactions",
     ],
   },
   {
@@ -122,7 +123,7 @@ export const PILLARS: Pillar[] = [
     features: [
       "Team and account management for multi-user brand ops",
       "Secure OAuth and webhook verification with encrypted token handling",
-      "GDPR-ready Shopify endpoints for customer and shop data deletion",
+      "GDPR-ready endpoints for customer and shop data deletion",
       "Privacy and cookie controls at brand and team level",
       "Voucher and promo support for campaign-led luxury drops",
       "API token access for enterprise workflows",

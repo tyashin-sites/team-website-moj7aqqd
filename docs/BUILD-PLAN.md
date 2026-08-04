@@ -114,6 +114,18 @@ and scannable (§3 — no 37-item wall). Positioning unchanged (3D & AR commerce
   Web-Pixel/GDPR framing, keyword retarget. Shared integration model extended
   with optional `rich` content (Shopify only; other 8 pages unchanged).
   Shopify App Store listing = user action (ASSET-DEBT #28).
+- **CHUNK 5 (2026-08-03, user-directed — de-Shopify /features + expand hub):**
+  `src/lib/features.ts` DISTRIBUTE/MEASURE/OPERATE pillars made PLATFORM-NEUTRAL
+  (no single platform named on the shared /features + /platform surfaces; the
+  Shopify-specific capabilities remain only in `/integrations/shopify` `rich`).
+  `/features` de-Shopified end-to-end (pillar copy, SEO leads, FAQ, metadata,
+  CTA link → /integrations); "Shopify" now ABSENT from rendered /features HTML.
+  Integrations hub expanded 9→12: new EMBED-based pages `drupal`, `squarespace`,
+  `prestashop`; `magento` relabelled "Adobe Commerce (Magento)" (slug kept,
+  `/adobe-commerce` 301 added); `/integrations` index regrouped
+  native/embed/custom. features.ts now imported by /features + /platform +
+  /integrations/[slug] (pillar labels only). DESIGN-SPEC §8 pillars updated to
+  match (spec-site sync).
 Preview noindex intact on both hosts. Canonical CTAs (Calendly / #demo).
 
 ## Phase 4 — Trust & Compliance

@@ -11,6 +11,9 @@ import {
   Palette,
   Globe,
   Code2,
+  Droplet,
+  Square,
+  ShoppingBasket,
   RotateCcw,
   SlidersHorizontal,
   Smartphone,
@@ -57,6 +60,9 @@ const INTEGRATION_ICON: Record<Integration["icon"], LucideIcon> = {
   canva: Palette,
   wordpress: Globe,
   code: Code2,
+  drupal: Droplet,
+  squarespace: Square,
+  prestashop: ShoppingBasket,
 };
 
 const CAPABILITY_META: Record<DemoMode, { label: string; icon: LucideIcon }> = {

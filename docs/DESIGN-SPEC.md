@@ -267,29 +267,43 @@ scannable, grouped, NEVER a 37-item wall:
    viewer, app-free AR, full-screen immersive viewer, node-level configurator,
    hotspots + theming, lighting presets. (Maps to the demo-first Viewer /
    Configurator / AR modules, §6a.)
-3. **Distribute** — "One-click on Shopify. Embeddable everywhere else":
-   Shopify Theme App Extension + no-code App Blocks (product & collection
-   pages), theme auto-detection + custom CSS selectors, collection-wide badges,
-   embedded Admin onboarding, auto-link shop, embeddable widget, CDN-light +
-   anti-CLS, API tokens, MCP/AI tooling.
+3. **Distribute** — "One-click plugins, or embed on any storefront":
+   one-click plugins for major commerce platforms, an embeddable widget for
+   any storefront, CDN-light + anti-CLS, API tokens, MCP/AI tooling, an
+   analytics event bridge. **PLATFORM-NEUTRAL on `/features` and `/platform`
+   (2026-08-03, user-directed):** Thridify is platform-agnostic, so NO single
+   platform (Shopify) is named on those shared surfaces. The Shopify-SPECIFIC
+   capabilities (Theme App Extension + no-code App Blocks, product & collection
+   pages, theme auto-detection + custom CSS selectors, collection-wide badges,
+   embedded Admin onboarding, auto-link shop, Web Pixel event bridge, GDPR
+   endpoints) live ONLY in the Shopify integration page (`/integrations/shopify`
+   `rich` content in `src/lib/integrations.ts`) — never in the shared
+   `src/lib/features.ts` catalog. The string "Shopify" must be ABSENT from
+   rendered `/features` HTML.
 4. **Measure** — "See which finishes shoppers love — and which drive the
-   sale": 3D interaction analytics, variant-level view analytics, Shopify Web
-   Pixel event bridge. (Maps to the Analytics module.)
+   sale": 3D interaction analytics, variant-level view analytics, an event
+   bridge for 3D opens/closes/variant interactions. (Maps to the Analytics
+   module. The Shopify-specific "Web Pixel" bridge is named only on the Shopify
+   integration page.)
 5. **Operate** — "Built for brand teams and enterprise workflows": team/account
    management, OAuth + webhook verification + encrypted tokens, GDPR-ready
-   Shopify endpoints, privacy/cookie controls, vouchers/promos, API tokens.
+   data-deletion endpoints, privacy/cookie controls, vouchers/promos, API
+   tokens. (Shopify-specific GDPR endpoints are named only on the Shopify
+   integration page.)
 The 3D Modelling Service (§8 module #4) remains a distinct human-delivered
 offering, not a pillar. No automated content-generation claim (No-Faking).
 
-**/features (`/features`, SHIPPED 2026-08-03):** the comprehensive capability
-reference — pain-led ≤12-word H1, ≤40-word lead, the 5 pillar sections (icon
-chip + benefit headline + tagline + scannable 2-col feature list), FAQ
-(Shopify/materials/no-app/finishes-convert), CTA band. Full per-page SEO:
-unique title/desc/canonical/OG, Service + FAQPage + BreadcrumbList JSON-LD,
-long-tail keyword leads ("3d configurator material library", "shopify 3d
-product viewer", "ar furniture viewer", "3d commerce analytics"), internal
-links to /platform + /integrations/shopify + industries. In sitemap + header
-nav + footer.
+**/features (`/features`, SHIPPED 2026-08-03; de-Shopified 2026-08-03):** the
+comprehensive capability reference — pain-led ≤12-word H1, ≤40-word lead, the 5
+pillar sections (icon chip + benefit headline + tagline + scannable 2-col
+feature list), FAQ (platform-agnostic/materials/no-app/finishes-convert), CTA
+band. **PLATFORM-NEUTRAL:** does NOT single out Shopify anywhere (Thridify is
+platform-agnostic); the Distribute section ends with a "See all integrations →"
+link to /integrations. Full per-page SEO: unique title/desc/canonical/OG,
+Service + FAQPage + BreadcrumbList JSON-LD, long-tail keyword leads ("3d
+configurator material library", "embeddable 3D product viewer", "ar furniture
+viewer", "3d commerce analytics"), internal links to /platform + /integrations
++ industries. In sitemap + header nav + footer.
 
 **Platform (restructured around the 5 pillars, 2026-08-03):** hero (live
 demo) → five-pillars overview strip → Studio → Experience (Viewer /

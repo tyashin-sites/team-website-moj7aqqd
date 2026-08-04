@@ -99,27 +99,32 @@ New industries without a legacy WP equivalent (no inbound URL to preserve):
 
 ### D. Integrations — RESOLVED (real per-platform pages now exist)
 
-**BUILT (2026-08-03).** 9 real integration landing pages at
-`/integrations/<slug>` (typed data `src/lib/integrations.ts` +
-`src/app/integrations/[slug]/page.tsx`, mirroring the `/industries/[slug]`
-SSG pattern: `generateStaticParams` + `dynamicParams=false`, unique
-title/desc/canonical/OG + Service/FAQPage/BreadcrumbList JSON-LD each). Each old
-WordPress integration URL now 301s to its dedicated page (no longer interim
-`/platform`), preserving its specific ranking intent. Spelling variants map to
-the canonical slug. A `/integrations` hub index lists all 9 and is in the
-sitemap + footer.
+**BUILT (2026-08-03); EXPANDED to 12 pages (2026-08-03, user-directed).**
+Real integration landing pages at `/integrations/<slug>` (typed data
+`src/lib/integrations.ts` + `src/app/integrations/[slug]/page.tsx`, mirroring
+the `/industries/[slug]` SSG pattern: `generateStaticParams` +
+`dynamicParams=false`, unique title/desc/canonical/OG +
+Service/FAQPage/BreadcrumbList JSON-LD each). Each old WordPress integration URL
+now 301s to its dedicated page (no longer interim `/platform`), preserving its
+specific ranking intent. Spelling variants map to the canonical slug. Three new
+EMBED-based pages added — `drupal`, `squarespace`, `prestashop`. The `magento`
+slug is KEPT (SEO) but relabelled "Adobe Commerce (Magento)"; `/adobe-commerce`
+301s to it. A `/integrations` hub index lists all 12 (grouped native/embed/custom)
+and is in the sitemap + footer.
 
 | Prod URL | GSC | Disposition | Target |
 |---|---|---|---|
 | `/woocommerce/` | 16c 4415i | 301 | `/integrations/woocommerce` |
 | `/shopify/` | 9c 2041i | 301 | `/integrations/shopify` |
 | `/magento/` | 2c 3334i | 301 | `/integrations/magento` |
+| `/adobe-commerce` | — | 301 | `/integrations/magento` (Magento's current name) |
 | `/wix-commerce/` | 6c 1065i | 301 | `/integrations/wix` |
 | `/bigcommerce/` | 3c | 301 | `/integrations/bigcommerce` |
 | `/big-commerce/` | — | 301 | `/integrations/bigcommerce` (spelling variant) |
 | `/commercetools/` | — | 301 | `/integrations/commercetools` |
 | `/canva/` | — | 301 | `/integrations/canva` |
 | `/custom-integration/` | 366i | 301 | `/integrations/custom-integration` |
+| (new) | — | — | `/integrations/{drupal,squarespace,prestashop}` (embed-based) |
 
 Note: `/3d-product-configurator/` (§C, 11c 3622i) remains 301 → `/platform` —
 it is a generic configurator query, not platform-specific, so `/platform`

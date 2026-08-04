@@ -124,6 +124,13 @@ const nextConfig = {
         destination: "/integrations/magento",
         statusCode: 301,
       },
+      // Adobe Commerce is Magento's current name; keep the high-intent /magento
+      // slug canonical and point the brand-name variant at it (no separate page).
+      {
+        source: "/adobe-commerce",
+        destination: "/integrations/magento",
+        statusCode: 301,
+      },
       {
         source: "/commercetools",
         destination: "/integrations/commercetools",

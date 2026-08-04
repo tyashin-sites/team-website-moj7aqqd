@@ -10,10 +10,17 @@ import {
   Palette,
   Globe,
   Code2,
+  Droplet,
+  Square,
+  ShoppingBasket,
   ArrowRight,
   type LucideIcon,
 } from 'lucide-react';
-import { INTEGRATIONS, type Integration } from '@/lib/integrations';
+import {
+  INTEGRATIONS,
+  type Integration,
+  type IntegrationGroup,
+} from '@/lib/integrations';
 import { homeContent } from '@/lib/content';
 
 const SITE_URL =
@@ -22,12 +29,12 @@ const SITE_URL =
 export const metadata: Metadata = {
   title: 'Integrations — 3D & AR for Every Store',
   description:
-    'Add a 3D configurator, 360° viewer and app-free AR to WooCommerce, Shopify, Wix, BigCommerce, Magento, commercetools, WordPress or any custom site — no re-platforming.',
+    'Add a 3D configurator, 360° viewer and app-free AR to Shopify, WooCommerce, WordPress, Adobe Commerce (Magento), BigCommerce, Wix, commercetools, Squarespace, PrestaShop, Drupal, Canva or any custom site — via a native plugin or a lightweight embed.',
   alternates: { canonical: '/integrations' },
   openGraph: {
     title: 'Integrations — 3D & AR for Every Store',
     description:
-      'WooCommerce, Shopify, Wix, BigCommerce, Magento, commercetools, WordPress and custom sites — immersive 3D and AR commerce, no re-platforming.',
+      'Works with every major commerce platform — and any storefront via a lightweight embed. Native plugins for Shopify, WooCommerce and WordPress; embeds for everything else.',
     url: `${SITE_URL}/integrations`,
     type: 'website',
     siteName: 'Thridify',
@@ -46,7 +53,40 @@ const INTEGRATION_ICON: Record<Integration['icon'], LucideIcon> = {
   canva: Palette,
   wordpress: Globe,
   code: Code2,
+  drupal: Droplet,
+  squarespace: Square,
+  prestashop: ShoppingBasket,
 };
+
+// Hub grouping: native plugin/app vs embed-on-any-store vs custom catch-all.
+const GROUPS: {
+  id: IntegrationGroup;
+  eyebrow: string;
+  title: string;
+  blurb: string;
+}[] = [
+  {
+    id: 'native',
+    eyebrow: 'Native plugin / app',
+    title: 'One-click on the platforms with a Thridify app',
+    blurb:
+      'A first-party Thridify plugin or app installs in a few clicks — no code, no re-platforming.',
+  },
+  {
+    id: 'embed',
+    eyebrow: 'Embed on any store',
+    title: 'Any storefront, via a lightweight embed',
+    blurb:
+      'No native app needed — drop the Thridify embed or JS SDK onto your product page and go live.',
+  },
+  {
+    id: 'custom',
+    eyebrow: 'Custom / any platform',
+    title: 'Build it your way with the SDK & API',
+    blurb:
+      'For bespoke stacks, the JS SDK, embed code and API add 3D and AR to any custom site or app.',
+  },
+];
 
 const proof = homeContent.proof;
 
@@ -84,8 +124,9 @@ export default function IntegrationsIndexPage() {
             <p className="eyebrow mb-6">Integrations</p>
             <h1 className="tt-display">Add 3D & AR to the store you already run.</h1>
             <p className="mt-7 lead max-w-2xl">
-              Thridify adds a 3D configurator, 360° viewer and app-free AR to your product pages — installed
-              with a plugin or a lightweight embed. No re-platforming, no app for your shoppers.
+              Thridify works with every major commerce platform — and any storefront via a lightweight
+              embed. A 3D configurator, 360° viewer and app-free AR on your product pages. No
+              re-platforming, no app for your shoppers.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <a
@@ -115,32 +156,57 @@ export default function IntegrationsIndexPage() {
         </div>
       </section>
 
-      {/* INTEGRATION GRID — each card links to its own SEO page */}
+      {/* INTEGRATION GRID — grouped (native plugin/app · embed · custom); each
+          card links to its own SEO page. */}
       <section className="section pt-0">
         <div className="container-x">
           <div className="max-w-3xl mb-14">
             <p className="eyebrow mb-4">One engine, every storefront</p>
-            <h2 className="tt-1">Nine ways to go live with Thridify.</h2>
+            <h2 className="tt-1">
+              {INTEGRATIONS.length} ways to go live with Thridify.
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {INTEGRATIONS.map((it) => {
-              const Icon = INTEGRATION_ICON[it.icon];
+          <div className="space-y-16">
+            {GROUPS.map((g) => {
+              const items = INTEGRATIONS.filter((it) => it.group === g.id);
+              if (items.length === 0) return null;
               return (
-                <Link
-                  key={it.slug}
-                  href={`/integrations/${it.slug}`}
-                  className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui"
-                >
-                  <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
-                    <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
-                  </span>
-                  <h3 className="tt-2 text-2xl mb-2 group-hover:text-primary transition-colors">{it.name}</h3>
-                  <p className="text-foreground/70 leading-relaxed flex-1">{it.tagline}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                    {it.name} integration <ArrowRight className="w-4 h-4" aria-hidden />
-                  </span>
-                </Link>
+                <div key={g.id}>
+                  <div className="max-w-2xl mb-8">
+                    <p className="eyebrow mb-3">{g.eyebrow}</p>
+                    <h3 className="tt-2">{g.title}</h3>
+                    <p className="mt-3 text-foreground/70 leading-relaxed">
+                      {g.blurb}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {items.map((it) => {
+                      const Icon = INTEGRATION_ICON[it.icon];
+                      return (
+                        <Link
+                          key={it.slug}
+                          href={`/integrations/${it.slug}`}
+                          className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui"
+                        >
+                          <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
+                            <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
+                          </span>
+                          <h4 className="tt-2 text-2xl mb-2 group-hover:text-primary transition-colors">
+                            {it.name}
+                          </h4>
+                          <p className="text-foreground/70 leading-relaxed flex-1">
+                            {it.tagline}
+                          </p>
+                          <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                            {it.name} integration{' '}
+                            <ArrowRight className="w-4 h-4" aria-hidden />
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
               );
             })}
           </div>

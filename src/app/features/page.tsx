@@ -48,16 +48,16 @@ const PILLAR_SEO: Record<
     ],
   },
   distribute: {
-    keyword: "Shopify 3D product viewer & embeddable AR",
-    lead: "A no-code Shopify 3D product viewer via App Blocks, a lightweight embed for any storefront, plus API and MCP tooling for custom and enterprise stacks.",
+    keyword: "embeddable 3D product viewer & one-click plugins",
+    lead: "One-click plugins for major commerce platforms, a lightweight embeddable 3D viewer and AR for any storefront, plus API and MCP tooling for custom and enterprise stacks.",
     links: [
-      { label: "Shopify integration", href: "/integrations/shopify" },
-      { label: "All integrations", href: "/integrations" },
+      { label: "See all integrations", href: "/integrations" },
+      { label: "Custom integration", href: "/integrations/custom-integration" },
     ],
   },
   measure: {
     keyword: "3D commerce analytics",
-    lead: "3D commerce analytics show which finishes and colours shoppers explore and which drive the sale — including a Shopify Web Pixel event bridge.",
+    lead: "3D commerce analytics show which finishes and colours shoppers explore and which drive the sale — with an event bridge for shopper interactions.",
     links: [{ label: "The platform", href: "/platform" }],
   },
   operate: {
@@ -72,8 +72,8 @@ const PILLAR_SEO: Record<
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Does Thridify work with Shopify?",
-    a: "Yes. Thridify ships a Shopify Theme App Extension with no-code App Blocks for product and collection pages, auto-detects major themes (with custom CSS selector support), links your shop automatically and bridges 3D events to the Shopify Web Pixel.",
+    q: "Does Thridify work with my commerce platform?",
+    a: "Yes. Thridify is platform-agnostic: it installs as a one-click plugin on major commerce platforms and as a lightweight embed on any other storefront — product and collection pages, no re-platforming. See the integrations hub for your platform.",
   },
   {
     q: "Can I customize materials and finishes?",
@@ -85,25 +85,25 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Can I see which finishes convert?",
-    a: "Yes. Variant-level view analytics show which finishes and colours win attention, alongside 3D interaction analytics and a Shopify Web Pixel bridge for opens, closes and variant interactions.",
+    a: "Yes. Variant-level view analytics show which finishes and colours win attention, alongside 3D interaction analytics and an event bridge for opens, closes and variant interactions.",
   },
   {
     q: "Do I need a 3D team or code to publish?",
     a: "No. The Studio is a no-code draft-to-live workflow: create, edit and update 3D products, manage variants and materials, and control brand assets yourself. If you need models built, our human-delivered 3D Modelling Service produces AR-ready assets for you.",
   },
   {
-    q: "Can I add 3D to a non-Shopify store?",
-    a: "Yes. An embeddable widget, a CDN-light integration and API token access add the 3D viewer, configurator and AR to WooCommerce, Wix, BigCommerce, Magento, commercetools or any custom storefront.",
+    q: "Can I add 3D to any storefront?",
+    a: "Yes. An embeddable widget, a CDN-light integration and API token access add the 3D viewer, configurator and AR to WooCommerce, Wix, BigCommerce, Adobe Commerce, commercetools, Squarespace, PrestaShop, Drupal or any custom storefront.",
   },
 ];
 
 export const metadata: Metadata = {
   title: "Features — Everything Thridify Does",
   description:
-    "The full Thridify capability reference: no-code 3D publishing, an interactive 3D viewer and app-free AR, one-click Shopify plus embeddable distribution, variant-level analytics and enterprise-ready operations.",
+    "The full Thridify capability reference: no-code 3D publishing, an interactive 3D viewer and app-free AR, one-click plugins plus embeddable distribution for any storefront, variant-level analytics and enterprise-ready operations.",
   keywords: [
     "3D configurator material library",
-    "shopify 3d product viewer",
+    "one-click 3D commerce plugins",
     "ar furniture viewer",
     "3d commerce analytics",
     "no-code 3D product publishing",
@@ -400,12 +400,12 @@ export default function FeaturesPage() {
             >
               the platform
             </Link>{" "}
-            and the{" "}
+            and{" "}
             <Link
-              href="/integrations/shopify"
+              href="/integrations"
               className="text-primary-soft font-semibold hover:underline"
             >
-              Shopify integration
+              all integrations
             </Link>
             .
           </p>

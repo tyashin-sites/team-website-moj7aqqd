@@ -15,7 +15,7 @@ const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 const LINKS: { label: string; href: string; note: string }[] = [
   { label: 'Platform', href: '/platform', note: '3D viewers, configurators & app-free AR' },
   { label: 'Industries', href: '/industries', note: 'Furniture, kitchens, laminates & more' },
-  { label: 'Integrations', href: '/integrations', note: 'Shopify, WooCommerce, Wix, Magento…' },
+  { label: 'Integrations', href: '/integrations', note: 'One-click plugins or embed on any store' },
   { label: 'What is Thridify?', href: '/what-is-thridify', note: 'The one-page explainer' },
   { label: 'About', href: '/about', note: 'The team building it' },
   { label: 'Contact', href: '/contact', note: 'Talk to a human' },

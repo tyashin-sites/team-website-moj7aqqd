@@ -77,10 +77,23 @@ export type IntegrationStep = { heading: string; body: string };
 
 export type Faq = { q: string; a: string };
 
+/**
+ * How this platform is grouped on the /integrations hub:
+ *   - "native": a first-party Thridify plugin/app exists (Shopify app,
+ *     WordPress/WooCommerce plugin).
+ *   - "embed": no native app — Thridify goes live via the universal
+ *     embeddable widget/snippet or the JS SDK (honest framing, No-Faking:
+ *     do NOT imply a native module where none exists).
+ *   - "custom": the catch-all SDK/API path for any bespoke stack.
+ */
+export type IntegrationGroup = "native" | "embed" | "custom";
+
 export type Integration = {
   slug: string;
   /** Platform display name (cards, breadcrumb, headings). */
   name: string;
+  /** Hub grouping — native plugin/app vs embed vs custom. */
+  group: IntegrationGroup;
   /** lucide icon key resolved in the page (keeps this module server-safe). */
   icon:
     | "plugin"
@@ -91,7 +104,10 @@ export type Integration = {
     | "headless"
     | "canva"
     | "wordpress"
-    | "code";
+    | "code"
+    | "drupal"
+    | "squarespace"
+    | "prestashop";
   /** The CapabilityDemo mode featured in the hero. */
   heroDemo: DemoMode;
   primaryKeyword: string;
@@ -125,6 +141,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "woocommerce",
     name: "WooCommerce",
+    group: "native",
     icon: "plugin",
     heroDemo: "configurator",
     primaryKeyword: "3D product configurator for WooCommerce",
@@ -227,6 +244,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "shopify",
     name: "Shopify",
+    group: "native",
     icon: "shopify",
     heroDemo: "ar",
     primaryKeyword: "Shopify 3D product viewer & AR app",
@@ -393,6 +411,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "wix",
     name: "Wix",
+    group: "embed",
     icon: "wix",
     heroDemo: "viewer",
     primaryKeyword: "3D product viewer for Wix",
@@ -491,6 +510,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "bigcommerce",
     name: "BigCommerce",
+    group: "embed",
     icon: "bigcommerce",
     heroDemo: "configurator",
     primaryKeyword: "3D product configurator for BigCommerce",
@@ -593,31 +613,34 @@ export const INTEGRATIONS: Integration[] = [
   },
   {
     slug: "magento",
-    name: "Magento",
+    name: "Adobe Commerce (Magento)",
+    group: "embed",
     icon: "magento",
     heroDemo: "configurator",
-    primaryKeyword: "Magento 3D product configurator",
+    primaryKeyword: "Adobe Commerce & Magento 3D product configurator",
     keywords: [
+      "Adobe Commerce 3D product configurator",
       "Magento 3D product configurator",
-      "Magento 3D viewer",
+      "Adobe Commerce 3D viewer",
       "Magento AR product viewer",
+      "add 3D to Adobe Commerce",
       "add 3D to Magento",
-      "Adobe Commerce 3D configurator",
     ],
-    seoTitle: "Magento 3D Product Configurator & AR",
+    seoTitle: "Adobe Commerce & Magento 3D Configurator & AR",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to your Magento (Adobe Commerce) store. Thridify embeds on your product template with a lightweight snippet.",
+      "Add a 3D product configurator, 360° viewer and app-free AR to your Adobe Commerce (Magento) store. Thridify embeds on your product template with a lightweight snippet.",
     hero: {
-      eyebrow: "Magento Integration",
-      h1: "Magento 3D Product Configurator & AR",
+      eyebrow: "Adobe Commerce (Magento) Integration",
+      h1: "Adobe Commerce & Magento 3D Configurator & AR",
       subtitle:
-        "Let Magento shoppers configure options in 3D, spin products and view them in their room with app-free AR — added with a lightweight embed.",
+        "Let Adobe Commerce and Magento shoppers configure options in 3D, spin products and view them in their room with app-free AR — added with a lightweight embed.",
     },
     tagline:
-      "A 3D configurator, 360° viewer and web AR for your Magento product pages.",
+      "A 3D configurator, 360° viewer and web AR for your Adobe Commerce (Magento) product pages.",
     integrationIntro:
-      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. Add it to a Magento (Adobe Commerce) product page with a lightweight embed on your product template; the Thridify JS SDK renders the published experience and matches each product and variant by ID. AR runs in the browser — no app for your shoppers.",
-    installLabel: "Install: lightweight embed on your Magento product template",
+      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. Add it to an Adobe Commerce (Magento) product page with a lightweight embed on your product template; the Thridify JS SDK renders the published experience and matches each product and variant by ID. AR runs in the browser — no app for your shoppers.",
+    installLabel:
+      "Install: lightweight embed on your Adobe Commerce (Magento) product template",
     steps: [
       {
         heading: "Publish an experience in Thridify",
@@ -633,22 +656,22 @@ export const INTEGRATIONS: Integration[] = [
       },
     ],
     helpsIntro:
-      "Magento catalogues are deep and high-consideration. Thridify turns dense listings into experiences buyers can configure, spin and place in their own space.",
+      "Adobe Commerce (Magento) catalogues are deep and high-consideration. Thridify turns dense listings into experiences buyers can configure, spin and place in their own space.",
     helps: [
       {
         capability: "configurator",
-        heading: "A 3D configurator for Magento",
-        body: "Shoppers swap finishes and options in real time with live pricing, mapped to your Magento configurable products.",
+        heading: "A 3D configurator for Adobe Commerce",
+        body: "Shoppers swap finishes and options in real time with live pricing, mapped to your Adobe Commerce (Magento) configurable products.",
       },
       {
         capability: "viewer",
         heading: "360° viewer for complex catalogues",
-        body: "Drag-to-spin and zoom let Magento shoppers inspect intricate products from every angle before they buy.",
+        body: "Drag-to-spin and zoom let Adobe Commerce shoppers inspect intricate products from every angle before they buy.",
       },
       {
         capability: "ar",
-        heading: "App-free AR from Magento",
-        body: "One tap places the product at true scale in the buyer’s space, straight from the Magento product page — no app.",
+        heading: "App-free AR from Adobe Commerce",
+        body: "One tap places the product at true scale in the buyer’s space, straight from the product page — no app.",
       },
     ],
     outcomes: [
@@ -665,25 +688,25 @@ export const INTEGRATIONS: Integration[] = [
       {
         metric: "photography",
         context:
-          "One 3D asset renders every variant — no reshoot across a large Magento catalogue.",
+          "One 3D asset renders every variant — no reshoot across a large Adobe Commerce catalogue.",
       },
     ],
     faqs: [
       {
-        q: "Does Thridify work with Magento and Adobe Commerce?",
-        a: "Yes. Thridify adds a 3D configurator, 360° viewer and app-free AR to Magento (Adobe Commerce) product pages via a lightweight embed — no re-platforming.",
+        q: "Does Thridify work with Adobe Commerce and Magento?",
+        a: "Yes. Adobe Commerce is the current name for Magento. Thridify adds a 3D configurator, 360° viewer and app-free AR to Adobe Commerce (Magento) product pages via a lightweight embed — no re-platforming.",
       },
       {
-        q: "How do I add a 3D product configurator to Magento?",
-        a: "Publish the experience in Thridify, then paste the embed on your product template and map it to the product or variant by ID. The JS SDK renders it live.",
+        q: "How do I add a 3D product configurator to Adobe Commerce?",
+        a: "Publish the experience in Thridify, then paste the embed on your Adobe Commerce (Magento) product template and map it to the product or variant by ID. The JS SDK renders it live.",
       },
       {
         q: "Do my customers need an app for AR?",
-        a: "No. AR runs in the browser on any modern smartphone, so Magento shoppers place products in their room in one tap — no app download.",
+        a: "No. AR runs in the browser on any modern smartphone, so Adobe Commerce shoppers place products in their room in one tap — no app download.",
       },
       {
-        q: "Can it map to Magento configurable products?",
-        a: "Yes. One configurable 3D model carries every option as swappable materials and maps to your Magento configurable products and variants by ID.",
+        q: "Can it map to Adobe Commerce configurable products?",
+        a: "Yes. One configurable 3D model carries every option as swappable materials and maps to your Adobe Commerce (Magento) configurable products and variants by ID.",
       },
     ],
     related: ["commercetools", "bigcommerce", "custom-integration"],
@@ -696,6 +719,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "commercetools",
     name: "commercetools",
+    group: "embed",
     icon: "headless",
     heroDemo: "viewer",
     primaryKeyword: "3D and AR for commercetools",
@@ -798,6 +822,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "canva",
     name: "Canva",
+    group: "embed",
     icon: "canva",
     heroDemo: "viewer",
     primaryKeyword: "3D and AR beyond Canva mockups",
@@ -897,6 +922,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "wordpress",
     name: "WordPress",
+    group: "native",
     icon: "wordpress",
     heroDemo: "configurator",
     primaryKeyword: "3D product configurator for WordPress",
@@ -994,8 +1020,306 @@ export const INTEGRATIONS: Integration[] = [
     relatedIndustries: ["furniture", "modular-kitchens", "doors-and-windows"],
   },
   {
+    slug: "drupal",
+    name: "Drupal Commerce",
+    group: "embed",
+    icon: "drupal",
+    heroDemo: "viewer",
+    primaryKeyword: "3D and AR for Drupal Commerce",
+    keywords: [
+      "3D and AR for Drupal Commerce",
+      "Drupal 3D product viewer",
+      "Drupal Commerce AR product viewer",
+      "add 3D to Drupal",
+      "Drupal 3D product embed",
+    ],
+    seoTitle: "3D & AR Product Viewer for Drupal Commerce",
+    seoDescription:
+      "Add a 3D viewer, configurator and app-free AR to your Drupal Commerce store. Thridify embeds on your Drupal product page with a lightweight snippet — no re-platforming.",
+    hero: {
+      eyebrow: "Drupal Integration",
+      h1: "3D & AR Product Viewer for Drupal Commerce",
+      subtitle:
+        "Let Drupal Commerce shoppers spin products in 3D, configure options and view them in their room with app-free AR — added with a lightweight embed.",
+    },
+    tagline:
+      "A 3D viewer, configurator and web AR embedded on your Drupal Commerce product pages.",
+    integrationIntro:
+      "Build your 360° viewer, configurator and AR experience once in Thridify and publish it. Add it to a Drupal Commerce product page with a lightweight embed — a custom-block or snippet in your Drupal template; the Thridify JS SDK renders the published experience and matches each product by ID. AR runs in the browser — no app for your shoppers.",
+    installLabel: "Install: lightweight embed / block on your Drupal page",
+    steps: [
+      {
+        heading: "Publish an experience in Thridify",
+        body: "Create the 3D viewer, configurator or AR experience for your product and publish it — each gets a stable ID.",
+      },
+      {
+        heading: "Embed it on your Drupal page",
+        body: "Drop the Thridify embed into a Drupal custom block or template snippet on the product page and map it to the product by ID.",
+      },
+      {
+        heading: "Shoppers spin, configure and place in AR",
+        body: "The JS SDK renders the live experience — customers explore in 3D and view the item in their room, app-free.",
+      },
+    ],
+    helpsIntro:
+      "Drupal Commerce runs high-consideration catalogues. Thridify upgrades static Drupal media into an experience shoppers can spin, configure and place in their own room.",
+    helps: [
+      {
+        capability: "viewer",
+        heading: "360° viewer on your Drupal page",
+        body: "Drag-to-spin and zoom let Drupal shoppers inspect every angle — showroom confidence right on the product page.",
+      },
+      {
+        capability: "ar",
+        heading: "App-free AR from Drupal",
+        body: "One tap places the product at true scale in the buyer’s space, straight from your Drupal page — no app to install.",
+      },
+      {
+        capability: "configurator",
+        heading: "Configure options live",
+        body: "Shoppers swap finishes and options in real time with live pricing, embedded right on the Drupal product page.",
+      },
+    ],
+    outcomes: [
+      {
+        metric: "engagement",
+        context:
+          "Interactive 3D keeps Drupal Commerce shoppers exploring the product far longer.",
+      },
+      {
+        metric: "conversion",
+        context:
+          "Seeing the real thing in 3D and AR turns Drupal browsers into buyers.",
+      },
+      {
+        metric: "returns",
+        context:
+          "Seeing true finish and scale before checkout cuts “not as pictured” returns.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Does Thridify work with Drupal?",
+        a: "Yes. Thridify embeds a 3D viewer, configurator and app-free AR on Drupal Commerce product pages via a lightweight custom-block or snippet — no re-platforming.",
+      },
+      {
+        q: "How do I add a 3D product viewer to Drupal Commerce?",
+        a: "Publish the experience in Thridify, then paste the embed into a Drupal custom block or template on the product page and map it to the product by ID. The JS SDK renders it live.",
+      },
+      {
+        q: "Do my customers need an app for AR?",
+        a: "No. AR runs in the browser on any modern smartphone, so Drupal shoppers place products in their room in one tap — no app download.",
+      },
+      {
+        q: "Will it fit my existing Drupal theme?",
+        a: "Yes. The embed sits inside your existing Drupal layout beside your current media, so it matches your site’s theme.",
+      },
+    ],
+    related: ["wordpress", "woocommerce", "custom-integration"],
+    relatedIndustries: ["furniture", "laminates-surfaces", "modular-kitchens"],
+  },
+  {
+    slug: "squarespace",
+    name: "Squarespace",
+    group: "embed",
+    icon: "squarespace",
+    heroDemo: "viewer",
+    primaryKeyword: "3D product viewer for Squarespace",
+    keywords: [
+      "3D product viewer for Squarespace",
+      "add 3D to Squarespace",
+      "Squarespace AR product viewer",
+      "Squarespace 3D configurator",
+      "Squarespace product 3D embed",
+    ],
+    seoTitle: "3D & AR Product Viewer for Squarespace",
+    seoDescription:
+      "Add a 3D viewer, configurator and app-free AR to your Squarespace store. Thridify embeds on your Squarespace product page with a lightweight code block — no re-platforming.",
+    hero: {
+      eyebrow: "Squarespace Integration",
+      h1: "3D & AR Product Viewer for Squarespace",
+      subtitle:
+        "Let Squarespace shoppers spin products in 3D, configure options and view them in their room with app-free AR — added with a lightweight embed.",
+    },
+    tagline:
+      "A 3D viewer, configurator and web AR embedded on your Squarespace product pages.",
+    integrationIntro:
+      "Build your 360° viewer, configurator and AR experience once in Thridify and publish it. Add it to a Squarespace product page with a lightweight embed dropped into a code block; the Thridify JS SDK renders the published experience and matches each product by ID. AR runs in the browser — no app for your shoppers.",
+    installLabel: "Install: lightweight embed / code block on your Squarespace page",
+    steps: [
+      {
+        heading: "Publish an experience in Thridify",
+        body: "Create the 3D viewer, configurator or AR experience for your product and publish it — each gets a stable ID.",
+      },
+      {
+        heading: "Embed it on your Squarespace page",
+        body: "Drop the Thridify embed into a Squarespace code block on the product page and map it to the product by ID.",
+      },
+      {
+        heading: "Shoppers spin, configure and place in AR",
+        body: "The JS SDK renders the live experience — customers explore in 3D and view the item in their room, app-free.",
+      },
+    ],
+    helpsIntro:
+      "Squarespace stores win on presentation. Thridify upgrades static Squarespace media into an experience shoppers can spin, configure and place in their own room.",
+    helps: [
+      {
+        capability: "viewer",
+        heading: "360° viewer on your Squarespace page",
+        body: "Drag-to-spin and zoom let Squarespace shoppers inspect every angle — showroom confidence right on the product page.",
+      },
+      {
+        capability: "ar",
+        heading: "App-free AR from Squarespace",
+        body: "One tap places the product at true scale in the buyer’s space, straight from your Squarespace page — no app to install.",
+      },
+      {
+        capability: "configurator",
+        heading: "Configure options live",
+        body: "Shoppers swap finishes and options in real time with live pricing, embedded right on the Squarespace product page.",
+      },
+    ],
+    outcomes: [
+      {
+        metric: "engagement",
+        context:
+          "Interactive 3D keeps Squarespace shoppers exploring the product far longer.",
+      },
+      {
+        metric: "conversion",
+        context:
+          "Seeing the real thing in 3D and AR turns Squarespace browsers into buyers.",
+      },
+      {
+        metric: "photography",
+        context:
+          "One 3D asset renders every angle and variant — no reshoot per option.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Does Thridify work with Squarespace?",
+        a: "Yes. Thridify embeds a 3D viewer, configurator and app-free AR on Squarespace product pages via a lightweight code block — no re-platforming.",
+      },
+      {
+        q: "How do I add a 3D product viewer to Squarespace?",
+        a: "Publish the experience in Thridify, then paste the embed into a Squarespace code block on the product page and map it to the product by ID. The JS SDK renders it live.",
+      },
+      {
+        q: "Do my customers need an app for AR?",
+        a: "No. AR runs in the browser on any modern smartphone, so Squarespace shoppers place products in their room in one tap — no app download.",
+      },
+      {
+        q: "Will it fit my existing Squarespace design?",
+        a: "Yes. The embed sits inside your existing Squarespace layout beside your current media, so it matches your site’s design.",
+      },
+    ],
+    related: ["wix", "canva", "custom-integration"],
+    relatedIndustries: ["furniture", "laminates-surfaces", "doors-and-windows"],
+  },
+  {
+    slug: "prestashop",
+    name: "PrestaShop",
+    group: "embed",
+    icon: "prestashop",
+    heroDemo: "configurator",
+    primaryKeyword: "3D product configurator for PrestaShop",
+    keywords: [
+      "3D product configurator for PrestaShop",
+      "PrestaShop 3D viewer",
+      "PrestaShop AR product viewer",
+      "add 3D to PrestaShop",
+      "PrestaShop product customizer 3D",
+    ],
+    seoTitle: "3D Product Configurator & AR for PrestaShop",
+    seoDescription:
+      "Add a 3D product configurator, 360° viewer and app-free AR to your PrestaShop store. Thridify embeds on your PrestaShop product template with a lightweight snippet — no re-platforming.",
+    hero: {
+      eyebrow: "PrestaShop Integration",
+      h1: "3D Product Configurator & AR for PrestaShop",
+      subtitle:
+        "Let PrestaShop shoppers configure options in 3D, spin products and view them in their room with app-free AR — added with a lightweight embed.",
+    },
+    tagline:
+      "A 3D configurator, 360° viewer and web AR on your PrestaShop product pages.",
+    integrationIntro:
+      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. Add it to a PrestaShop product page with a lightweight embed on your product template; the Thridify JS SDK renders the published experience and matches each product and variant by ID. AR runs in the browser — no app for your shoppers.",
+    installLabel: "Install: lightweight embed on your PrestaShop product template",
+    steps: [
+      {
+        heading: "Publish an experience in Thridify",
+        body: "Create the 3D configurator, 360° viewer or AR experience for your product and publish it — each gets a stable ID.",
+      },
+      {
+        heading: "Embed it on your PrestaShop product",
+        body: "Paste the Thridify embed into your PrestaShop product template and map it to the product or combination by ID.",
+      },
+      {
+        heading: "Shoppers configure, spin and place in AR",
+        body: "The JS SDK renders the live experience — customers configure options and view the item in their room, app-free.",
+      },
+    ],
+    helpsIntro:
+      "PrestaShop merchants compete on the product page. Thridify replaces static media with an experience buyers can configure, spin and place in their own room.",
+    helps: [
+      {
+        capability: "configurator",
+        heading: "A 3D configurator for PrestaShop",
+        body: "Shoppers swap finishes and options in real time with live pricing, mapped to your PrestaShop product combinations.",
+      },
+      {
+        capability: "ar",
+        heading: "App-free AR from PrestaShop",
+        body: "One tap places the product at true scale in the buyer’s space, straight from the product page — no app.",
+      },
+      {
+        capability: "viewer",
+        heading: "360° viewer for your catalogue",
+        body: "Drag-to-spin and zoom let PrestaShop shoppers inspect every angle — the confidence photos can’t give.",
+      },
+    ],
+    outcomes: [
+      {
+        metric: "conversion",
+        context:
+          "Configure-and-place experiences turn PrestaShop browsers into confident buyers.",
+      },
+      {
+        metric: "returns",
+        context:
+          "Seeing true finish and scale before checkout cuts “not as pictured” returns.",
+      },
+      {
+        metric: "photography",
+        context:
+          "One 3D asset renders every combination — no reshoot per finish or angle.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Does Thridify work with PrestaShop?",
+        a: "Yes. Thridify adds a 3D configurator, 360° viewer and app-free AR to PrestaShop product pages via a lightweight embed — no re-platforming.",
+      },
+      {
+        q: "How do I add a 3D configurator to PrestaShop?",
+        a: "Publish the experience in Thridify, then paste the embed on your product template and map it to the product or combination by ID. The JS SDK renders it live.",
+      },
+      {
+        q: "Do my customers need an app for AR?",
+        a: "No. AR runs in the browser on any modern smartphone, so PrestaShop shoppers place products in their room in one tap — no app download.",
+      },
+      {
+        q: "Can each PrestaShop combination map to a configuration?",
+        a: "Yes. One configurable 3D model carries every option as swappable materials and maps to your PrestaShop product combinations by ID.",
+      },
+    ],
+    related: ["woocommerce", "magento", "custom-integration"],
+    relatedIndustries: ["furniture", "industrial-machinery", "laminates-surfaces"],
+  },
+  {
     slug: "custom-integration",
     name: "Custom Integration",
+    group: "custom",
     icon: "code",
     heroDemo: "viewer",
     primaryKeyword: "custom 3D and AR integration via API and SDK",
