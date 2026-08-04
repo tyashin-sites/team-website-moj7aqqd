@@ -1,0 +1,32 @@
+# Cloudflare Workers static-assets header rules (served by the ASSETS binding).
+# https://developers.cloudflare.com/workers/static-assets/headers
+# https://opennext.js.org/cloudflare/caching#static-assets-caching
+#
+# Long-lived immutable caching for the site's STABLE, content-stable public
+# assets: 3D models + their seamless posters, per-page OG images, brand marks
+# and client logos, and the AR QR SVG (under /models). Without a rule the
+# Workers assets runtime serves these with `public, max-age=0, must-revalidate`,
+# forcing a revalidation round-trip on every load — so the prefetched 4.4 MB GLB
+# and posters never benefit from disk caching on repeat views.
+#
+# CAVEAT — immutable means clients keep a cached copy for up to a year keyed on
+# the URL. Any REPLACEMENT of an asset at the SAME filename (e.g. regenerating
+# sheen-chair.glb, or the real Thridify SDK model landing at an old name) will
+# NOT be picked up by returning visitors. Asset replacements MUST change the
+# filename or append a ?v= query (versioned filenames for the real SDK embed /
+# new client models). See docs/ASSET-DEBT.md.
+#
+# NOTE: /_next/static/* is deliberately NOT listed here — its handling is out of
+# scope for this change (see ASSET-DEBT caching entry).
+
+/models/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/brand/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/logos/*
+  Cache-Control: public, max-age=31536000, immutable
