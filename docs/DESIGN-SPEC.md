@@ -164,10 +164,24 @@ MUST be, not an infographic, abstract SVG, or screenshot.
   the SAME real product as a static image (left, the "flat photo") vs its
   interactive 3D (right). Same product, two experiences.
 - **Product capability cards** (3D 360° Viewer, Configurator, AR) MUST embed
-  an interactive mini-demo of the real model — not an abstract visual. To
-  protect LCP (§10) they are **poster-first + activate-on-interaction**
-  (tap/click to load the live demo), so only one heavy demo instantiates at
-  a time. The poster obeys the SEAMLESS POSTER RULE (§6).
+  an interactive mini-demo of the real model — not an abstract visual. The
+  **demo-loading contract (WARM-THEN-INSTANT, replaces the old cold
+  activate-on-interaction):** the seamless raster poster (§6) paints first as
+  the LCP element; then, AFTER first paint, the shared demo components
+  (`HeroObject`, `CapabilityDemo` via `useDemoWarm`) warm the `model-viewer`
+  library on `requestIdleCallback` and prefetch the GLB into the HTTP cache once
+  the demo scrolls within ~300px of the viewport — so activation loads the
+  model FROM cache with NO "Loading…" network wait. **Below-the-fold CARD
+  demos keep the click affordance** (only one heavy WebGL context runs at a
+  time), but the click is instant because the model is already warm. **The
+  above-the-fold HERO demo (`priority` / `HeroObject`) AUTO-PRESENTS** the live
+  viewer once its library + GLB are warm and it's in view — no click — using
+  model-viewer's own poster→reveal so the swap stays seamless (the poster
+  already matches the model, §6/§7.1). **Reduced-motion and
+  `navigator.connection.saveData` opt out**: no GLB prefetch and no
+  auto-present (the library still warms on idle so a click stays instant) —
+  fall back to click-to-activate. The AR QR asset is `<link rel="preload">`d so
+  the AR affordance never fetches on click.
 - This applies on Home AND Platform AND anywhere these cards/comparisons
   appear (industry pages included).
 - Abstract brand-geometry visuals (`ProductVisual`) are a LAST resort only
@@ -401,6 +415,17 @@ interception logged in ASSET-DEBT #20.
 
 - LCP < 2.5s on mid-tier mobile (hero poster frame, model-viewer deferred).
 - CLS < 0.1 (fonts via next/font, dimensions on all media).
-- 3D assets: glTF ≤ 2MB draco-compressed, loaded on interaction/idle.
+- **Demo-loading contract (§6a, WARM-THEN-INSTANT):** poster paints first as
+  the LCP element → the model-viewer library + GLB warm AFTER first paint (on
+  idle / on viewport via `useDemoWarm`), NEVER blocking initial render →
+  activation is INSTANT (model served from HTTP cache). The above-the-fold hero
+  AUTO-PRESENTS once warm (reduced-motion / Save-Data opt out → click-to-
+  activate). Warming must never make the WebGL canvas the LCP element: the hero
+  auto-present fires only after the poster has painted and the model is cached,
+  and model-viewer's own poster→reveal covers the swap.
+- 3D assets: glTF ≤ 2MB draco-compressed, warmed on idle/viewport, activation
+  from cache. (Placeholder `sheen-chair.glb` is 4.4MB, ASSET-DEBT #16/#26 —
+  heavy to prefetch on slow links; the real optimized Thridify SDK embed makes
+  activation truly instant. Reduced-motion / Save-Data skip its prefetch.)
 - No new heavy dependencies without spec amendment. If a design idea breaks
   the budget, the idea loses.

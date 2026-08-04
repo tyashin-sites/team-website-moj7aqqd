@@ -1,11 +1,18 @@
 'use client';
 
 /**
- * HeroObject — DESIGN-SPEC §7.1. The pitch, delivered pre-copy:
- * a real glTF in <model-viewer> (poster-first, lazy), slow auto-rotate,
+ * HeroObject — DESIGN-SPEC §7.1 + §6a. The pitch, delivered pre-copy:
+ * a real glTF in <model-viewer> (poster-first for LCP), slow auto-rotate,
  * drag-to-spin, 3 finish swatches that live-swap the material color,
  * an IBM Plex Mono price that ticks on swatch change, and an AR chip
- * (QR placeholder on desktop, "View in your room" on mobile).
+ * (real scannable QR on desktop, "View in your room" on mobile).
+ *
+ * WARM-THEN-INSTANT (§6a/§10): the seamless poster paints first as the LCP
+ * element; then, after first paint, `useDemoWarm` warms the model-viewer
+ * library on idle and prefetches the GLB into the HTTP cache on viewport, and
+ * the hero AUTO-PRESENTS the live viewer once warm — no click. Reduced-motion /
+ * Save-Data opt out of prefetch + auto-present (library still warms on idle so
+ * a click stays instant).
  *
  * Placeholder model: Khronos CC0 SheenChair (docs/ASSET-DEBT.md #1) hosted
  * first-party at /models/sheen-chair.glb. Prices are illustrative demo
@@ -14,6 +21,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type React from 'react';
+import { useDemoWarm } from '@/components/signature/useDemoWarm';
+
+const MODEL_SRC = '/models/sheen-chair.glb';
+const AR_QR_SRC = '/models/ar-qr-chair.svg';
 
 declare module 'react' {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -51,26 +62,24 @@ const FINISHES: Finish[] = [
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
 export function HeroObject() {
-  const wrapRef = useRef<HTMLDivElement>(null);
   const mvRef = useRef<HTMLElement | null>(null);
   const [loadViewer, setLoadViewer] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [autoStarted, setAutoStarted] = useState(false);
   const [active, setActive] = useState(0);
   const [displayPrice, setDisplayPrice] = useState(FINISHES[0].price);
   const [isCoarse, setIsCoarse] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
   const tickRef = useRef<number | null>(null);
 
-  // Coarse-pointer detection only — no eager model load. The 4.4MB GLB +
-  // model-viewer runtime are NOT pulled in until the user actually engages
-  // (DESIGN-SPEC §6a ACTIVATE-ON-INTERACTION). Auto-loading on idle used to
-  // let the WebGL canvas become the LCP element (~5s on throttled mobile);
-  // gating it on interaction keeps the seamless poster as the LCP (§10).
+  // Coarse-pointer detection only. The GLB + model-viewer runtime warm AFTER
+  // first paint (idle + viewport), so the seamless poster stays the LCP element
+  // (§10) but activation is instant. See useDemoWarm below.
   useEffect(() => {
     setIsCoarse(window.matchMedia('(pointer: coarse)').matches);
   }, []);
 
-  // Pull in model-viewer + the model on first user engagement. Idempotent.
+  // Pull in model-viewer + the model on engagement / auto-present. Idempotent.
   function activate() {
     if (loadViewer || loading) return;
     setLoading(true);
@@ -81,6 +90,20 @@ export function HeroObject() {
       })
       .catch(() => setLoading(false));
   }
+
+  // §6a/§10: warm library on idle, prefetch GLB on viewport, preload AR QR, and
+  // AUTO-PRESENT the hero once warm + in view (reduced-motion / Save-Data opt
+  // out inside the hook → falls back to click-to-activate).
+  const warmRef = useDemoWarm({
+    modelSrc: MODEL_SRC,
+    qrSrc: AR_QR_SRC,
+    autoPresent: true,
+    onAutoPresent: () => {
+      if (loadViewer || loading) return;
+      setAutoStarted(true);
+      activate();
+    },
+  });
 
   // Apply a finish's base color to the model fabric material. Safe to call
   // before the model is ready (no-op until materials exist).
@@ -140,7 +163,7 @@ export function HeroObject() {
   }
 
   return (
-    <div ref={wrapRef} className="relative">
+    <div ref={warmRef} className="relative">
       <div className="relative aspect-square max-h-[560px] w-full rounded-lg overflow-hidden">
         {loadViewer ? (
           <model-viewer
@@ -181,20 +204,26 @@ export function HeroObject() {
               decoding="async"
               className="w-full h-full object-contain"
             />
-            <button
-              type="button"
-              onClick={activate}
-              onMouseEnter={() => {
-                // Warm the model-viewer module on hover so the click is instant (§10).
-                import('@google/model-viewer').catch(() => {});
-              }}
-              className="absolute inset-0 flex items-end justify-center pb-6 group focus-visible:outline-none"
-              aria-label="Spin it in 3D — loads the live interactive model"
-            >
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
-                {loading ? <span className="tt-mono">Loading…</span> : 'Spin it in 3D'}
-              </span>
-            </button>
+            {/* Hero auto-presents once warm (§6a): suppress the CTA so the live
+                viewer reveals from the poster with no "Loading…" flash. The
+                button remains only for the reduced-motion / Save-Data fallback
+                (no auto-present) and as a keyboard affordance until then. */}
+            {!autoStarted && (
+              <button
+                type="button"
+                onClick={activate}
+                onMouseEnter={() => {
+                  // Warm the model-viewer module on hover too (belt-and-braces).
+                  import('@google/model-viewer').catch(() => {});
+                }}
+                className="absolute inset-0 flex items-end justify-center pb-6 group focus-visible:outline-none"
+                aria-label="Spin it in 3D — loads the live interactive model"
+              >
+                <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
+                  {loading ? <span className="tt-mono">Loading…</span> : 'Spin it in 3D'}
+                </span>
+              </button>
+            )}
           </>
         )}
       </div>

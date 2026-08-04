@@ -2,10 +2,16 @@
 
 /**
  * CapabilityDemo — DESIGN-SPEC §6a (DEMO-FIRST PRINCIPLE). An interactive
- * mini-demo of the real model, NOT an infographic. Poster-first +
- * ACTIVATE-ON-INTERACTION: the seamless raster poster (§6) renders for LCP;
- * the live <model-viewer> only mounts when the user taps/clicks, so only one
- * heavy WebGL demo instantiates at a time and the perf budget (§10) holds.
+ * mini-demo of the real model, NOT an infographic. Poster-first + WARM-THEN-
+ * INSTANT (DESIGN-SPEC §6a/§10): the seamless raster poster (§6) renders first
+ * as the LCP element; then, AFTER first paint, `useDemoWarm` warms the
+ * model-viewer library on idle and prefetches the GLB into the HTTP cache once
+ * the card scrolls near the viewport — so activation loads the model FROM
+ * cache with no "Loading…" network wait. Below-the-fold CARD demos keep the
+ * click affordance (only one heavy WebGL context runs at a time); the
+ * above-the-fold HERO (`priority`) AUTO-PRESENTS the live viewer once warm +
+ * in view, with NO click. Reduced-motion / Save-Data opt out of GLB prefetch
+ * and auto-present (still warm the library on idle for an instant click).
  *
  * Three modes map to the three product capabilities:
  *   - 'viewer'       → drag-to-spin + slow auto-rotate (3D 360° Viewer)
@@ -23,6 +29,9 @@
 
 import { useRef, useState } from 'react';
 import { RotateCcw, SlidersHorizontal, Smartphone, Play } from 'lucide-react';
+import { useDemoWarm } from '@/components/signature/useDemoWarm';
+
+const AR_QR_SRC = '/models/ar-qr-chair.svg';
 
 export type DemoMode = 'viewer' | 'configurator' | 'ar';
 
@@ -77,6 +86,7 @@ export function CapabilityDemo({
   const POSTER_SRC = poster;
   const [live, setLive] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [autoStarted, setAutoStarted] = useState(false);
   const [active, setActive] = useState(0);
   const [displayPrice, setDisplayPrice] = useState(FINISHES[0].price);
   const [isCoarse, setIsCoarse] = useState(false);
@@ -97,6 +107,20 @@ export function CapabilityDemo({
       })
       .catch(() => setLoading(false));
   }
+
+  // Warm the library on idle + prefetch the GLB into cache on viewport (§6a/§10).
+  // Only the above-the-fold hero instance (priority) auto-presents; below-the-
+  // fold cards keep the click affordance but activate instantly from cache.
+  const warmRef = useDemoWarm({
+    modelSrc: MODEL_SRC,
+    qrSrc: mode === 'ar' ? AR_QR_SRC : undefined,
+    autoPresent: priority,
+    onAutoPresent: () => {
+      if (live || loading) return;
+      setAutoStarted(true);
+      activate();
+    },
+  });
 
   // Apply a finish's base color to the model fabric material (no-op until ready).
   function applyMaterial(i: number) {
@@ -145,7 +169,7 @@ export function CapabilityDemo({
   }
 
   return (
-    <div className={className}>
+    <div className={className} ref={warmRef}>
       <div
         className={`relative ${aspect} rounded-lg overflow-hidden border ${
           onDark ? 'bg-paper/[0.04] border-paper/15' : 'bg-tint border-foreground/10'
@@ -181,27 +205,31 @@ export function CapabilityDemo({
               decoding="async"
               className="w-full h-full object-contain"
             />
-            <button
-              type="button"
-              onClick={activate}
-              onMouseEnter={() => {
-                // Warm the module on hover so the click is instant (§10).
-                import('@google/model-viewer').catch(() => {});
-              }}
-              className="absolute inset-0 flex items-end justify-center pb-5 group focus-visible:outline-none"
-              aria-label={`${meta.verb} — loads the live 3D demo`}
-            >
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
-                {loading ? (
-                  <span className="tt-mono">Loading…</span>
-                ) : (
-                  <>
-                    <meta.icon className="w-4 h-4" strokeWidth={1.75} aria-hidden />
-                    {meta.verb}
-                  </>
-                )}
-              </span>
-            </button>
+            {/* Hero auto-present (autoStarted): suppress the CTA so the live
+                viewer reveals from the poster with no "Loading…" flash (§6a). */}
+            {!autoStarted && (
+              <button
+                type="button"
+                onClick={activate}
+                onMouseEnter={() => {
+                  // Warm the module on hover too (belt-and-braces with §6a warming).
+                  import('@google/model-viewer').catch(() => {});
+                }}
+                className="absolute inset-0 flex items-end justify-center pb-5 group focus-visible:outline-none"
+                aria-label={`${meta.verb} — loads the live 3D demo`}
+              >
+                <span className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-contrast text-sm font-semibold px-4 py-2.5 shadow-lg transition-micro group-hover:bg-primary-deep group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2">
+                  {loading ? (
+                    <span className="tt-mono">Loading…</span>
+                  ) : (
+                    <>
+                      <meta.icon className="w-4 h-4" strokeWidth={1.75} aria-hidden />
+                      {meta.verb}
+                    </>
+                  )}
+                </span>
+              </button>
+            )}
           </>
         )}
       </div>
