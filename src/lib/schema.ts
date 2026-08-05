@@ -11,12 +11,17 @@
  * we have no honest, verifiable aggregate rating or public price, and the
  * No-Faking rule forbids inventing one.
  *
- * URLs are absolute against SITE_URL, which points at the workers.dev preview
- * until the Phase-7 cutover flips SITE_URL to the production host.
+ * URLs are absolute against SITE_URL — the ONE canonical-host source shared by
+ * layout.tsx (metadataBase → <link rel=canonical>), the JSON-LD here, and
+ * /sitemap-pages.xml, so canonicals and the sitemap always agree. The fallback
+ * is the live preview host (team-website-moj7aqqd.sites.tyashin.com) — the host
+ * the site is actually served on and the one the platform's sitemap-index +
+ * robots reference; the Phase-7 cutover sets env SITE_URL to the production host
+ * and everything moves together.
  */
 
 export const SITE_URL =
-  process.env.SITE_URL ?? 'https://site-thridify.snowy-cherry-cd2c.workers.dev';
+  process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
 
 /** The single canonical entity description — reused verbatim everywhere. */
 export const CANONICAL_DESCRIPTION =

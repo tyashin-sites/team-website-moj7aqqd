@@ -17,7 +17,7 @@ import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { CANONICAL_METRICS } from '@/lib/industries';
 
 const SITE_URL =
-  process.env.SITE_URL ?? 'https://site-thridify.snowy-cherry-cd2c.workers.dev';
+  process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 const CANONICAL = '/services/3d-modelling';
 

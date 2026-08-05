@@ -11,7 +11,7 @@ import './globals.css';
 // Phase 7 cutover set SITE_URL=https://thridify.com (or www per the
 // canonical-host decision) in the deploy environment.
 const SITE_URL =
-  process.env.SITE_URL ?? 'https://site-thridify.snowy-cherry-cd2c.workers.dev';
+  process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

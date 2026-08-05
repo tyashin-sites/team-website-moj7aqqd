@@ -26,7 +26,7 @@ import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { ProofCard } from '@/components/signature/ProofCard';
 
 const SITE_URL =
-  process.env.SITE_URL ?? 'https://site-thridify.snowy-cherry-cd2c.workers.dev';
+  process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 
 // Real quote only (No-Faking) — verbatim from production thridify.com.

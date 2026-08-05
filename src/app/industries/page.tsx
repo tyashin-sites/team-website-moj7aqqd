@@ -6,7 +6,7 @@ import { INDUSTRIES, type Industry } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
 
 const SITE_URL =
-  process.env.SITE_URL ?? 'https://site-thridify.snowy-cherry-cd2c.workers.dev';
+  process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
 
 export const metadata: Metadata = {
   title: 'Industries — 3D & AR Commerce for Every Sector',
