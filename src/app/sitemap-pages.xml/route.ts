@@ -1,4 +1,5 @@
 import { getSiteRoutes } from "@/lib/site-routes";
+import { SITE_URL } from "@/lib/schema";
 
 /**
  * /sitemap-pages.xml — the SITE'S OWN page sitemap.
@@ -13,27 +14,21 @@ import { getSiteRoutes } from "@/lib/site-routes";
  * It deliberately does NOT include blog POST URLs (`/blog/[slug]`): those are
  * platform-owned content and belong in the platform's own content sitemap.
  *
- * DYNAMIC on purpose: the absolute origin is resolved from the incoming
- * request Host header so the URLs are correct on BOTH the preview host and the
- * future custom domain (thridify.com) with no rebuild/env flip. Correctness
- * beats static prerender here (a build-time `force-static` render has no
- * request Host to read). CDN cacheability is provided via Cache-Control.
+ * ORIGIN = `SITE_URL` — the SAME constant `layout.tsx` (metadataBase →
+ * `<link rel=canonical>`) and `schema.ts` (JSON-LD) use. The sitemap MUST list
+ * the exact canonical URL of each page, so it has to share ONE origin source
+ * with the canonicals; deriving it independently (e.g. from the request Host)
+ * risks a sitemap-vs-canonical host mismatch that makes Google drop the URLs.
+ * We do NOT read the request Host: OpenNext strips `x-forwarded-host` before the
+ * route handler, and the raw dispatch Host is the workers.dev target — neither
+ * is the canonical host. `SITE_URL` flips to the production host at the Phase-7
+ * cutover, and the sitemap + every canonical move together. Build-time constant
+ * → the route can be static.
  */
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
-const FALLBACK_HOST = "site-thridify.snowy-cherry-cd2c.workers.dev";
-
-function resolveOrigin(req: Request): string {
-  const h = req.headers;
-  const host =
-    h.get("x-forwarded-host")?.split(",")[0]?.trim() ||
-    h.get("host")?.trim() ||
-    FALLBACK_HOST;
-  const proto =
-    h.get("x-forwarded-proto")?.split(",")[0]?.trim() ||
-    (host.includes("localhost") || host.startsWith("127.") ? "http" : "https");
-  return `${proto}://${host}`;
-}
+// Normalise to a bare origin (no trailing slash) so `${ORIGIN}${path}` is clean.
+const ORIGIN = SITE_URL.replace(/\/+$/, "");
 
 function escapeXml(value: string): string {
   return value
@@ -44,13 +39,12 @@ function escapeXml(value: string): string {
     .replace(/'/g, "&apos;");
 }
 
-export function GET(req: Request): Response {
-  const origin = resolveOrigin(req);
-  const lastmod = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+export function GET(): Response {
+  const lastmod = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (build date)
 
   const urls = getSiteRoutes()
     .map((route) => {
-      const loc = escapeXml(`${origin}${route.path}`);
+      const loc = escapeXml(`${ORIGIN}${route.path}`);
       return [
         "  <url>",
         `    <loc>${loc}</loc>`,
