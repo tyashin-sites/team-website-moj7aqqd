@@ -179,11 +179,18 @@ export function HeroObject() {
   return (
     <div ref={warmRef} className="relative">
       <div className="relative aspect-square max-h-[560px] w-full rounded-lg overflow-hidden">
-        {/* Persistent seamless poster = the LCP element (§10). Rendered FIRST
-            and kept fully opaque underneath the viewer — NEVER faded out — so its
-            early paint stays the recorded LCP even after the live model reveals
-            on top. A realistic raster still of the EXACT model at its initial
-            camera pose (SEAMLESS POSTER RULE, §6/§7.1). */}
+        {/* Seamless poster = the LCP element (§10). Rendered FIRST and painted
+            eagerly at high priority, so it is the recorded LCP. It stays fully
+            opaque UNTIL the live model fires its `load` event, then cross-fades
+            OUT as the model fades IN (both driven by `revealed`). We fade it out
+            rather than leaving it underneath because the live viewer reveals at
+            model-viewer's own camera pose AND auto-rotates — a static front-on
+            poster can never stay aligned with a rotating model, so keeping it
+            visible showed the model sitting on top of a second, offset chair.
+            Fading it out AFTER load (LCP already recorded; the model canvas is
+            not an LCP candidate) is LCP-safe and matches model-viewer's built-in
+            poster behavior. `revealed` only flips on a SUCCESSFUL load, so a
+            load failure keeps the poster as the fallback. (§6/§6a/§7.1/§10) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/models/sheen-chair-poster.webp"
@@ -195,6 +202,11 @@ export function HeroObject() {
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 w-full h-full object-contain"
+          style={{
+            opacity: revealed ? 0 : 1,
+            transition: 'opacity 400ms cubic-bezier(.22,1,.36,1)',
+            pointerEvents: 'none',
+          }}
         />
         {/* Live viewer mounts ON TOP of the persistent poster (no `poster` attr,
             so it adds no competing LCP candidate; the <canvas> is not an LCP

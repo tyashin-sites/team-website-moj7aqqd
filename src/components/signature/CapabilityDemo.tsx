@@ -190,10 +190,18 @@ export function CapabilityDemo({
           onDark ? 'bg-paper/[0.04] border-paper/15' : 'bg-tint border-foreground/10'
         }`}
       >
-        {/* Persistent seamless poster = the LCP element (§10). It is rendered
-            FIRST and stays fully opaque underneath the viewer — it is NEVER
-            faded out, so its early paint remains the recorded LCP even after the
-            live model reveals on top. */}
+        {/* Seamless poster = the LCP element (§10). Rendered FIRST; the hero
+            instance (priority) paints it eagerly so it is the recorded LCP. It
+            stays fully opaque UNTIL the live model fires its `load` event, then
+            cross-fades OUT as the model fades IN (both driven by `revealed`). We
+            fade it out rather than leaving it underneath because the live viewer
+            reveals at model-viewer's own camera pose (and 'viewer' mode
+            auto-rotates) — a static poster can't stay aligned with it, so
+            keeping it visible showed the model on top of a second, offset chair.
+            Fading it out AFTER load (LCP already recorded; the model canvas is
+            not an LCP candidate) is LCP-safe and matches model-viewer's built-in
+            poster. `revealed` only flips on a SUCCESSFUL load, so a load failure
+            keeps the poster as the fallback. (§6/§6a/§7.1/§10) */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={POSTER_SRC}
@@ -205,6 +213,11 @@ export function CapabilityDemo({
           fetchPriority={priority ? 'high' : 'auto'}
           decoding="async"
           className="absolute inset-0 w-full h-full object-contain"
+          style={{
+            opacity: revealed ? 0 : 1,
+            transition: 'opacity 400ms cubic-bezier(.22,1,.36,1)',
+            pointerEvents: 'none',
+          }}
         />
         {/* Live viewer mounts ON TOP of the persistent poster (no `poster` attr,
             so it adds no competing LCP candidate; the <canvas> is not an LCP
