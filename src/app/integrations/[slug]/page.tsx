@@ -27,11 +27,11 @@ import {
 } from "lucide-react";
 import {
   INTEGRATIONS,
-  INTEGRATION_SLUGS,
   CANONICAL_METRICS,
   getIntegration,
   type Integration,
 } from "@/lib/integrations";
+import { integrationStaticParams } from "@/lib/site-routes";
 import { INDUSTRIES, type Industry } from "@/lib/industries";
 import { getPillar, type PillarId } from "@/lib/features";
 import type { DemoMode } from "@/components/signature/CapabilityDemo";
@@ -78,7 +78,9 @@ const CAPABILITY_META: Record<DemoMode, { label: string; icon: LucideIcon }> = {
 // 404 (not a soft-404 200). This is the OpenNext SSG fix that closed F-1 — see
 // the /industries/[slug] note.
 export function generateStaticParams() {
-  return INTEGRATION_SLUGS.map((slug) => ({ slug }));
+  // From the single site-routes list (see src/lib/site-routes.ts) so the
+  // prerendered set and /sitemap-pages.xml can never diverge.
+  return integrationStaticParams();
 }
 export const dynamicParams = false;
 

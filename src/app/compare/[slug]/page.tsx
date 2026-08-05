@@ -4,11 +4,11 @@ import { notFound } from 'next/navigation';
 import { Check, ArrowRight } from 'lucide-react';
 import {
   COMPETITORS,
-  COMPETITOR_SLUGS,
   getCompetitor,
   type Competitor,
 } from '@/lib/comparisons';
 import { SITE_URL } from '@/lib/schema';
+import { compareStaticParams } from '@/lib/site-routes';
 
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 
@@ -18,7 +18,9 @@ const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return COMPETITOR_SLUGS.map((slug) => ({ slug }));
+  // From the single site-routes list (see src/lib/site-routes.ts) so the
+  // prerendered set and /sitemap-pages.xml can never diverge.
+  return compareStaticParams();
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

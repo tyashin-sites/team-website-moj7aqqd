@@ -16,11 +16,11 @@ import {
 } from 'lucide-react';
 import {
   INDUSTRIES,
-  INDUSTRY_SLUGS,
   CANONICAL_METRICS,
   getIndustry,
   type Industry,
 } from '@/lib/industries';
+import { industryStaticParams } from '@/lib/site-routes';
 import type { DemoMode } from '@/components/signature/CapabilityDemo';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { ProofCard } from '@/components/signature/ProofCard';
@@ -50,7 +50,9 @@ const CAPABILITY_META: Record<DemoMode, { label: string; icon: LucideIcon }> = {
 
 // Statically generate one page per canonical vertical (DESIGN-SPEC §8).
 export function generateStaticParams() {
-  return INDUSTRY_SLUGS.map((slug) => ({ slug }));
+  // Sourced from the single site-routes list so the prerendered set and the
+  // page sitemap (/sitemap-pages.xml) can never diverge. See src/lib/site-routes.ts.
+  return industryStaticParams();
 }
 
 // FULLY STATIC (not ISR). The 6 canonical verticals are 100% build-time
