@@ -490,6 +490,10 @@
           {
             "label": "Analytics",
             "href": "/platform#analytics"
+          },
+          {
+            "label": "Device compatibility",
+            "href": "/device-compatibility"
           }
         ]
       },
