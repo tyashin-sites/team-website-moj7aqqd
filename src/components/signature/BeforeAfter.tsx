@@ -11,17 +11,21 @@
  * It must read as "same product, two experiences" — comparing the
  * EXPERIENCE, not two different graphics.
  *
- * Real product photo + matching 3D model are asset debt (docs/ASSET-DEBT.md
- * #4/#1) — the placeholder chair stands in for both sides so the comparison
- * is honestly apples-to-apples.
+ * Both sides are the SAME real Thridify experience (Lounge chair, from the
+ * connected hello@thridify.com account): LEFT is that experience's own poster
+ * photo (the flat still), RIGHT is the live interactive experience — a true
+ * apples-to-apples "flat vs 3D of the identical product".
  */
 
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
+import { EXP } from '@/lib/thridify';
 
 const PAINS = ['Returns from guesswork', 'Quote delays', 'Photoshoot costs'];
 const GAINS = ['Buyers see exactly what ships', 'Instant quotes', 'One 3D asset, every angle'];
 
-const POSTER_SRC = '/models/sheen-chair-poster.webp';
+// The Lounge chair experience's own published poster (its flat photo).
+const POSTER_SRC =
+  'https://models.thridify.com/9778c64430db8927b214b554a5819391/b3042c32-0807-4f67-861a-7a4c9d12cdb1/poster/1hfll6ityj1-Lounge%20chair-poster.png';
 
 export function BeforeAfter() {
   return (
@@ -60,7 +64,7 @@ export function BeforeAfter() {
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Live 3D · same product</span>
         </div>
-        <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" />
+        <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" experiencePreviewId={EXP.loungeChair} modelLabel="lounge chair" />
         <ul className="mt-4 flex flex-wrap gap-2">
           {GAINS.map((t) => (
             <li
