@@ -26,6 +26,7 @@ export const EXP = {
   door: 's2dy4-', // DNV Door — doors & windows
   merinoBoard: '17ocfi', // Merino Marine Board (5 finishes) — laminates & surfaces
   realisticRoom: 'kn7ym_', // realistic room — prefab & modular structures
+  robot: '5c9$25', // RobotExpressive — industrial machinery / automation
 } as const;
 
 /** The <thridify-view> viewer requires the product id (pid); preview-id alone
@@ -43,6 +44,7 @@ export const PID_BY_PREVIEW: Record<string, string> = {
   's2dy4-': '07',
   '17ocfi': 'MM001',
   'kn7ym_': '903',
+  '5c9$25': 'RobotExpressive',
 };
 
 /** Industry slug → live experience preview id (undefined = keep placeholder). */
@@ -51,6 +53,6 @@ export const INDUSTRY_EXPERIENCE: Record<string, string | undefined> = {
   'modular-kitchens': EXP.modularKitchen,
   'doors-and-windows': EXP.door,
   'prefab-structures': EXP.realisticRoom,
-  'industrial-machinery': undefined, // no representative machine model yet — stays on placeholder
+  'industrial-machinery': EXP.robot, // RobotExpressive — automation/robotics stand-in
   'laminates-surfaces': EXP.merinoBoard,
 };
