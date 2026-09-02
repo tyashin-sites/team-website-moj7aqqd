@@ -13,7 +13,7 @@
 
 import { useEffect } from 'react';
 import type React from 'react';
-import { THRIDIFY_ACCOUNT_ID, THRIDIFY_VIEWER_URL } from '@/lib/thridify';
+import { THRIDIFY_ACCOUNT_ID, THRIDIFY_VIEWER_URL, PID_BY_PREVIEW } from '@/lib/thridify';
 
 declare module 'react' {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -60,9 +60,14 @@ export function ThridifyExperience({
     ensureViewerScript();
   }, []);
 
+  // The viewer requires the product id (pid); preview-id alone throws
+  // "Product ID is required". Pass both (pid resolves the experience).
+  const productId = PID_BY_PREVIEW[previewId];
+
   return (
     <thridify-view
       account-id={accountId}
+      {...(productId ? { 'product-id': productId } : {})}
       preview-id={previewId}
       aria-label={`Interactive 3D ${label} — powered by Thridify`}
       class={className}

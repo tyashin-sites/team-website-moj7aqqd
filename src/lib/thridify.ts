@@ -28,6 +28,23 @@ export const EXP = {
   realisticRoom: 'kn7ym_', // realistic room — prefab & modular structures
 } as const;
 
+/** The <thridify-view> viewer requires the product id (pid); preview-id alone
+ *  throws "Product ID is required". Map every embedded preview id → its pid. */
+export const PID_BY_PREVIEW: Record<string, string> = {
+  'k5h0f_': 'StoreModernSofa',
+  '8_-uco': '51',
+  '_z8ksj': 'loungechair',
+  'jthf23': 'DiningTable',
+  'lb724x': 'StoreArmchair',
+  '$_xy-3': '105',
+  '1z0_aa': '84',
+  '37$i57': 'luxuryfurniture',
+  '$_jaes': 'alexandria',
+  's2dy4-': '07',
+  '17ocfi': 'MM001',
+  'kn7ym_': '903',
+};
+
 /** Industry slug → live experience preview id (undefined = keep placeholder). */
 export const INDUSTRY_EXPERIENCE: Record<string, string | undefined> = {
   furniture: EXP.modernSofa,
