@@ -1,3 +1,4 @@
+import { INDUSTRY_EXPERIENCE } from '@/lib/thridify';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -182,6 +183,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
               poster={ind.demoPoster}
               modelLabel={ind.name.toLowerCase()}
               priority
+              experiencePreviewId={INDUSTRY_EXPERIENCE[ind.slug]}
             />
           </div>
         </div>

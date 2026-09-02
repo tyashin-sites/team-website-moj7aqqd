@@ -36,6 +36,7 @@ import { INDUSTRIES, type Industry } from "@/lib/industries";
 import { getPillar, type PillarId } from "@/lib/features";
 import type { DemoMode } from "@/components/signature/CapabilityDemo";
 import { CapabilityDemo } from "@/components/signature/CapabilityDemo";
+import { EXP } from "@/lib/thridify";
 
 // Pillar icons for the rich capability groups (Shopify).
 const PILLAR_ICON: Record<PillarId, LucideIcon> = {
@@ -242,6 +243,7 @@ export default async function IntegrationPage({
               aspect="aspect-[4/3]"
               modelLabel={`${it.name} product`}
               priority
+              experiencePreviewId={EXP.modernSofa}
             />
           </div>
         </div>

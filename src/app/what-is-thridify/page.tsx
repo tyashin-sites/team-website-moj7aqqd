@@ -7,6 +7,8 @@ import {
   LEGAL_NAME,
 } from '@/lib/schema';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
+import { EXP } from '@/lib/thridify';
 
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 const CANONICAL = '/what-is-thridify';
@@ -179,6 +181,18 @@ export default function WhatIsThridifyPage() {
             Book a Demo
           </a>
           <Link href="/#demo" className="btn btn-ghost">Try the live demo</Link>
+        </div>
+      </section>
+
+      {/* LIVE DEMO — make the description tangible with a real Thridify experience. */}
+      <section className="container-x section pt-0">
+        <div className="mx-auto max-w-2xl">
+          <div className="mb-6">
+            <p className="eyebrow">See it live</p>
+            <h2 className="tt-2">A Thridify experience, right here</h2>
+            <p className="mt-3 text-foreground/70">Spin it, configure it, and place it in your room &mdash; a real, live 3D experience running in your browser.</p>
+          </div>
+          <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" experiencePreviewId={EXP.loungeChair} />
         </div>
       </section>
 

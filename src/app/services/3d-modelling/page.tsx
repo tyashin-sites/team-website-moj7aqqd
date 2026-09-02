@@ -14,6 +14,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
+import { EXP } from '@/lib/thridify';
 import { CANONICAL_METRICS } from '@/lib/industries';
 
 const SITE_URL =
@@ -220,7 +221,7 @@ export default function ThreeDModellingServicePage() {
           </div>
           <div>
             {/* DEMO-FIRST (§6a): a live model of the kind we deliver. */}
-            <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" priority />
+            <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" priority experiencePreviewId={EXP.luxuryFurniture} />
           </div>
         </div>
       </section>

@@ -10,6 +10,14 @@ import { LogoMarquee } from '@/components/LogoMarquee';
 import { SectionHeading } from '@/components/SectionHeading';
 import { CapabilityDemo, type DemoMode } from '@/components/signature/CapabilityDemo';
 import { HeroObject } from '@/components/signature/HeroObject';
+import { EXP } from '@/lib/thridify';
+
+// Home product trio → a distinct live Thridify experience per capability.
+const TRIO_EXPERIENCE: Record<string, string> = {
+  viewer: EXP.bicycle,
+  configurator: EXP.nasherLuggage,
+  ar: EXP.loungeChair,
+};
 import { MetricBar } from '@/components/signature/MetricBar';
 import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { PipelineStrip } from '@/components/signature/PipelineStrip';
@@ -87,7 +95,7 @@ export default function HomePage() {
           {/* The HeroObject IS the live demo (§9 no-gate secondary CTA target).
               id="demo" is where the "Try the live demo" secondary scrolls. */}
           <div id="demo" className="scroll-mt-24">
-            <HeroObject />
+            <HeroObject experiencePreviewId={EXP.modernSofa} />
           </div>
         </div>
       </section>
@@ -155,7 +163,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {home.productTrio.items.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.08} className="card flex flex-col p-6 h-full">
-                <CapabilityDemo mode={p.id as DemoMode} />
+                <CapabilityDemo mode={p.id as DemoMode} experiencePreviewId={TRIO_EXPERIENCE[p.id]} />
                 <h3 className="font-heading text-xl font-semibold tracking-tight mt-6 mb-2">{p.name}</h3>
                 <p className="text-foreground/70 leading-relaxed">{p.description}</p>
                 <Link

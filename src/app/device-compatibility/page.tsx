@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { SITE_URL } from '@/lib/schema';
+import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
+import { EXP } from '@/lib/thridify';
 
 // Device-compatibility reference — the public answer to "will this work on my
 // shoppers' devices?". Tiers and requirements mirror the platform's actual
@@ -215,6 +217,21 @@ export default function DeviceCompatibilityPage() {
               wherever the operating system supports it.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* LIVE AR DEMO — show, don't just tell (this page explains AR; here it IS AR) */}
+      <section className="container-x section pt-0">
+        <div className="mx-auto max-w-2xl">
+          <div className="mb-6 text-center">
+            <p className="eyebrow">Try it now</p>
+            <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">See AR on this very page</h2>
+            <p className="mt-2 text-foreground/70">
+              On a phone, tap &ldquo;View in your space.&rdquo; On desktop, scan the code. This is a
+              real, live Thridify experience &mdash; the same engine described below.
+            </p>
+          </div>
+          <CapabilityDemo mode="ar" aspect="aspect-[16/10]" experiencePreviewId={EXP.modernSofa} />
         </div>
       </section>
 

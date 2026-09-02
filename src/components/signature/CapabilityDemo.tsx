@@ -30,6 +30,7 @@
 import { useRef, useState } from 'react';
 import { RotateCcw, SlidersHorizontal, Smartphone, Play } from 'lucide-react';
 import { useDemoWarm } from '@/components/signature/useDemoWarm';
+import { ThridifyExperience } from '@/components/signature/ThridifyExperience';
 
 const AR_QR_SRC = '/models/ar-qr-chair.svg';
 
@@ -65,6 +66,7 @@ export function CapabilityDemo({
   poster = DEFAULT_POSTER_SRC,
   modelLabel = 'product',
   priority = false,
+  experiencePreviewId,
 }: {
   mode: DemoMode;
   onDark?: boolean;
@@ -81,7 +83,32 @@ export function CapabilityDemo({
       below-the-fold instance (home trio, /platform deep-dives) leaves this
       false so its poster lazy-loads and never competes with the hero LCP. */
   priority?: boolean;
+  /** When set, render the REAL Thridify experience (full viewer with its own
+      variants/AR/hotspots) instead of the placeholder model-viewer. Preview id
+      from the connected hello@thridify.com account (see lib/thridify.ts). */
+  experiencePreviewId?: string;
 }) {
+  // Real live experience — dogfood the product. Renders the Thridify viewer
+  // filling the same demo frame; the viewer brings its own configure/AR UI, so
+  // the placeholder swatch/QR chrome below is skipped.
+  if (experiencePreviewId) {
+    return (
+      <div className={className}>
+        <div
+          className={`relative ${aspect} rounded-lg overflow-hidden border ${
+            onDark ? 'bg-paper/[0.04] border-paper/15' : 'bg-tint border-foreground/10'
+          }`}
+        >
+          <ThridifyExperience
+            previewId={experiencePreviewId}
+            label={modelLabel}
+            style={{ position: 'absolute', inset: 0 }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   const MODEL_SRC = model;
   const POSTER_SRC = poster;
   const [live, setLive] = useState(false);
