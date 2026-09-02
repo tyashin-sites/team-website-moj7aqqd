@@ -47,6 +47,15 @@ export const PID_BY_PREVIEW: Record<string, string> = {
   '5c9$25': 'RobotExpressive',
 };
 
+/** Preview id → default variant id, for experiences that should open on a
+ *  specific variant when none is otherwise specified (e.g. the Store Modern
+ *  Sofa's "Single Seater Chair" default rather than the full multi-seat model). */
+// NOTE: the viewer matches variant-id against the variant's vId (short id shown
+// in the admin "Variant Id" column), NOT the Mongo id.
+export const DEFAULT_VARIANT_BY_PREVIEW: Record<string, string> = {
+  'k5h0f_': 'ssc', // Store Modern Sofa → Single Seater Chair
+};
+
 /** Industry slug → live experience preview id (undefined = keep placeholder). */
 export const INDUSTRY_EXPERIENCE: Record<string, string | undefined> = {
   furniture: EXP.modernSofa,
