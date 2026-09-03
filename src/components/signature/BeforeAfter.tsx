@@ -18,14 +18,15 @@
  */
 
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
-import { EXP } from '@/lib/thridify';
+import { EXP, posterFor } from '@/lib/thridify';
 
 const PAINS = ['Returns from guesswork', 'Quote delays', 'Photoshoot costs'];
 const GAINS = ['Buyers see exactly what ships', 'Instant quotes', 'One 3D asset, every angle'];
 
-// The Lounge chair experience's own published poster (its flat photo).
-const POSTER_SRC =
-  'https://models.thridify.com/9778c64430db8927b214b554a5819391/b3042c32-0807-4f67-861a-7a4c9d12cdb1/poster/1hfll6ityj1-Lounge%20chair-poster.png';
+// The Lounge chair experience's own published poster (its flat photo) — same
+// source the SDK handoff uses for the live 3D on the right (single-sourced from
+// lib/thridify's POSTER_BY_PREVIEW).
+const POSTER_SRC = posterFor(EXP.loungeChair);
 
 export function BeforeAfter() {
   return (
@@ -64,7 +65,9 @@ export function BeforeAfter() {
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Live 3D · same product</span>
         </div>
-        <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" experiencePreviewId={EXP.loungeChair} modelLabel="lounge chair" />
+        {/* The section's focal "aha" — a single live experience → `ready` so it
+            pre-warms and feels instant on scroll (Experience Modes §3). */}
+        <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" experiencePreviewId={EXP.loungeChair} experienceMode="ready" modelLabel="lounge chair" />
         <ul className="mt-4 flex flex-wrap gap-2">
           {GAINS.map((t) => (
             <li

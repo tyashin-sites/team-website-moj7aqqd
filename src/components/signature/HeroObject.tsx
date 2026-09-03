@@ -23,6 +23,7 @@ import { useEffect, useRef, useState } from 'react';
 import type React from 'react';
 import { useDemoWarm } from '@/components/signature/useDemoWarm';
 import { ThridifyExperience } from '@/components/signature/ThridifyExperience';
+import type { ThridifyMode } from '@/lib/thridify';
 
 const MODEL_SRC = '/models/sheen-chair.glb';
 const AR_QR_SRC = '/models/ar-qr-chair.svg';
@@ -62,15 +63,21 @@ const FINISHES: Finish[] = [
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
-export function HeroObject({ experiencePreviewId }: { experiencePreviewId?: string } = {}) {
+export function HeroObject({
+  experiencePreviewId,
+  experienceMode = 'ready',
+}: { experiencePreviewId?: string; experienceMode?: ThridifyMode } = {}) {
   // Real live flagship experience — the Thridify viewer (its own configure + AR
   // UI) fills the hero frame, replacing the placeholder model + bespoke chrome.
+  // The container is relative + sized (below); the mode + poster travel with the
+  // experience so the SDK governor keeps the hero live-context to ~1 on mobile.
   if (experiencePreviewId) {
     return (
       <div className="relative">
         <div className="relative aspect-square max-h-[560px] w-full rounded-lg overflow-hidden border border-foreground/10 bg-tint">
           <ThridifyExperience
             previewId={experiencePreviewId}
+            mode={experienceMode}
             label="flagship product"
             style={{ position: 'absolute', inset: 0 }}
           />
