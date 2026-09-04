@@ -95,7 +95,11 @@ export default function HomePage() {
           {/* The HeroObject IS the live demo (§9 no-gate secondary CTA target).
               id="demo" is where the "Try the live demo" secondary scrolls. */}
           <div id="demo" className="scroll-mt-24">
-            <HeroObject experiencePreviewId={EXP.modernSofa} />
+            {/* Hero = the single primary showcase. `ready` (not `instant`) so
+                mobile shows the poster instantly and the SDK governor keeps just
+                ~1 live context — Instant would auto-downgrade to Ready here
+                anyway (Experience Modes §3). */}
+            <HeroObject experiencePreviewId={EXP.modernSofa} experienceMode="ready" />
           </div>
         </div>
       </section>
@@ -163,7 +167,15 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {home.productTrio.items.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.08} className="card flex flex-col p-6 h-full">
-                <CapabilityDemo mode={p.id as DemoMode} experiencePreviewId={TRIO_EXPERIENCE[p.id]} />
+                {/* Three live experiences in a row, below the fold → `on-demand`
+                    (poster now, load on tap): most visitors won't engage all
+                    three, so this avoids warming three heavy contexts at once
+                    (Experience Modes §3/§9). */}
+                <CapabilityDemo
+                  mode={p.id as DemoMode}
+                  experiencePreviewId={TRIO_EXPERIENCE[p.id]}
+                  experienceMode="on-demand"
+                />
                 <h3 className="font-heading text-xl font-semibold tracking-tight mt-6 mb-2">{p.name}</h3>
                 <p className="text-foreground/70 leading-relaxed">{p.description}</p>
                 <Link

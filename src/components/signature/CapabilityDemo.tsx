@@ -31,6 +31,7 @@ import { useRef, useState } from 'react';
 import { RotateCcw, SlidersHorizontal, Smartphone, Play } from 'lucide-react';
 import { useDemoWarm } from '@/components/signature/useDemoWarm';
 import { ThridifyExperience } from '@/components/signature/ThridifyExperience';
+import type { ThridifyMode } from '@/lib/thridify';
 
 const AR_QR_SRC = '/models/ar-qr-chair.svg';
 
@@ -67,6 +68,7 @@ export function CapabilityDemo({
   modelLabel = 'product',
   priority = false,
   experiencePreviewId,
+  experienceMode = 'ready',
 }: {
   mode: DemoMode;
   onDark?: boolean;
@@ -87,10 +89,14 @@ export function CapabilityDemo({
       variants/AR/hotspots) instead of the placeholder model-viewer. Preview id
       from the connected hello@thridify.com account (see lib/thridify.ts). */
   experiencePreviewId?: string;
+  /** Experience Modes seam contract (§5): mode for the live experience branch.
+   *  Defaults to `ready`; secondary/below-the-fold slots may pass `on-demand`. */
+  experienceMode?: ThridifyMode;
 }) {
   // Real live experience — dogfood the product. Renders the Thridify viewer
   // filling the same demo frame; the viewer brings its own configure/AR UI, so
-  // the placeholder swatch/QR chrome below is skipped.
+  // the placeholder swatch/QR chrome below is skipped. The wrapper is relative +
+  // sized (the SDK handoff's container); mode + poster travel via the seam.
   if (experiencePreviewId) {
     return (
       <div className={className}>
@@ -101,6 +107,7 @@ export function CapabilityDemo({
         >
           <ThridifyExperience
             previewId={experiencePreviewId}
+            mode={experienceMode}
             label={modelLabel}
             style={{ position: 'absolute', inset: 0 }}
           />

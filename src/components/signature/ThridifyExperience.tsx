@@ -18,6 +18,8 @@ import {
   THRIDIFY_VIEWER_URL,
   PID_BY_PREVIEW,
   DEFAULT_VARIANT_BY_PREVIEW,
+  posterFor,
+  type ThridifyMode,
 } from '@/lib/thridify';
 
 declare module 'react' {
@@ -54,6 +56,8 @@ export function ThridifyExperience({
   label = 'product',
   className = '',
   style,
+  mode = 'ready',
+  poster,
 }: {
   previewId: string;
   accountId?: string;
@@ -63,6 +67,16 @@ export function ThridifyExperience({
   label?: string;
   className?: string;
   style?: React.CSSProperties;
+  /** Experience Modes seam contract (§5): how eager/live this placement is.
+   *  Emitted as `data-thridify-mode`; the SDK reads it and runs the governor.
+   *  Defaults to `ready` (poster now, pre-warmed, instant on scroll/tap).
+   *  Inert until the new SDK engine ships. */
+  mode?: ThridifyMode;
+  /** Poster source for the SDK's poster↔3D handoff (§2/§5). Defaults to the
+   *  experience's mapped poster / placeholder. Emitted as `data-thridify-poster`
+   *  (a URL, not a rendered <img>) so the SDK owns exclusive-visibility handoff
+   *  and no poster bleeds under the live transparent canvas today. */
+  poster?: string;
 }) {
   useEffect(() => {
     ensureViewerScript();
@@ -74,6 +88,9 @@ export function ThridifyExperience({
   // Open on the default variant when none is specified (e.g. Store Modern Sofa
   // → Single Seater Chair instead of the full multi-seat model).
   const variant = variantId ?? DEFAULT_VARIANT_BY_PREVIEW[previewId];
+  // Poster source for the SDK handoff (§5). The container comes from the caller
+  // (relative + sized), so all this placement declares is mode + poster URL.
+  const posterSrc = poster ?? posterFor(previewId);
 
   return (
     <thridify-view
@@ -81,6 +98,8 @@ export function ThridifyExperience({
       {...(productId ? { 'product-id': productId } : {})}
       preview-id={previewId}
       {...(variant ? { 'variant-id': variant } : {})}
+      data-thridify-mode={mode}
+      {...(posterSrc ? { 'data-thridify-poster': posterSrc } : {})}
       aria-label={`Interactive 3D ${label} — powered by Thridify`}
       class={className}
       style={{ display: 'block', width: '100%', height: '100%', ...style }}

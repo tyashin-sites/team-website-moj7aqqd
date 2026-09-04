@@ -47,6 +47,34 @@ export const PID_BY_PREVIEW: Record<string, string> = {
   '5c9$25': 'RobotExpressive',
 };
 
+/**
+ * Experience Modes seam contract (THRIDIFY-EXPERIENCE-MODES-PLAN §5, Layer C).
+ * The site's ONLY job is declarative: say WHICH mode a placement uses and supply
+ * a poster source + a relative, sized container. The SDK owns the governor
+ * (context cap, warm window, hysteresis) and the poster↔3D handoff — NONE of
+ * that logic lives here. Values are inert until the new SDK engine ships.
+ */
+export type ThridifyMode = 'instant' | 'ready' | 'on-demand' | 'hover';
+
+/** Local placeholder poster used until an experience's own published poster URL
+ *  (models.thridify.com/<account>/<uuid>/poster/…) is wired. */
+export const PLACEHOLDER_POSTER = '/models/sheen-chair-poster.webp';
+
+/** Preview id → poster image URL. The SDK's poster↔3D handoff (§2/§5) needs a
+ *  poster source per placement; the host supplies it here. Real published
+ *  posters where known, local placeholder otherwise (see PLACEHOLDER_POSTER —
+ *  swap in each experience's own poster as the URLs become available). */
+export const POSTER_BY_PREVIEW: Record<string, string> = {
+  // Lounge chair — the experience's own published poster (its flat photo).
+  '_z8ksj':
+    'https://models.thridify.com/9778c64430db8927b214b554a5819391/b3042c32-0807-4f67-861a-7a4c9d12cdb1/poster/1hfll6ityj1-Lounge%20chair-poster.png',
+};
+
+/** Resolve the poster source for a placement, falling back to the placeholder. */
+export function posterFor(previewId: string): string {
+  return POSTER_BY_PREVIEW[previewId] ?? PLACEHOLDER_POSTER;
+}
+
 /** Preview id → default variant id, for experiences that should open on a
  *  specific variant when none is otherwise specified (e.g. the Store Modern
  *  Sofa's "Single Seater Chair" default rather than the full multi-seat model). */
