@@ -100,6 +100,18 @@ export default function HomePage() {
                 ~1 live context — Instant would auto-downgrade to Ready here
                 anyway (Experience Modes §3). */}
             <HeroObject experiencePreviewId={EXP.modernSofa} experienceMode="ready" />
+            {/* After the single live showcase, invite visitors to browse the
+                full Thridify demo storefront (every product live in 3D/AR). */}
+            <div className="mt-6 text-center">
+              <a
+                href="https://demo.thridify.com"
+                target="_blank"
+                rel="noopener"
+                className="btn btn-ghost px-6 py-3 text-base"
+              >
+                Explore the full demo store →
+              </a>
+            </div>
           </div>
         </div>
       </section>

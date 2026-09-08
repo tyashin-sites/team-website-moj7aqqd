@@ -468,6 +468,10 @@
             "href": "/features"
           },
           {
+            "label": "Demo store",
+            "href": "https://demo.thridify.com"
+          },
+          {
             "label": "3D 360° Viewer",
             "href": "/platform#viewer"
           },
@@ -500,6 +504,10 @@
       {
         "title": "Company",
         "links": [
+          {
+            "label": "Get a website",
+            "href": "/get-a-website"
+          },
           {
             "label": "What is Thridify?",
             "href": "/what-is-thridify"

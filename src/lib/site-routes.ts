@@ -59,6 +59,7 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/services/3d-modelling", priority: 0.9, changeFrequency: "monthly" },
   { path: "/features", priority: 0.85, changeFrequency: "monthly" },
   { path: "/what-is-thridify", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/get-a-website", priority: 0.7, changeFrequency: "monthly" },
   { path: "/industries", priority: 0.8, changeFrequency: "monthly" },
   { path: "/integrations", priority: 0.8, changeFrequency: "monthly" },
   { path: "/device-compatibility", priority: 0.6, changeFrequency: "monthly" },
