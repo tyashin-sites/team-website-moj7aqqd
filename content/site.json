@@ -65,6 +65,14 @@
           {
             "name": "Vortex Splash",
             "logoUrl": "/logos/vortex-splash.webp"
+          },
+          {
+            "name": "Woodlark Veneer",
+            "logoUrl": "/logos/woodlark.webp"
+          },
+          {
+            "name": "Airolam",
+            "logoUrl": "/logos/airolam.webp"
           }
         ]
       },
