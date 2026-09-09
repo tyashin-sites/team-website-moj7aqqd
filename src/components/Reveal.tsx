@@ -1,7 +1,21 @@
 'use client';
 
-import { motion, useReducedMotion, type Variants } from 'framer-motion';
-import type { ReactNode } from 'react';
+/**
+ * Reveal / Stagger — scroll-triggered entrances, GSAP edition (luxury pass).
+ *
+ * Same public API as the original framer-motion version (delay, direction,
+ * distance, className, as), so every existing call site upgrades in place.
+ * Now driven by ScrollTrigger with the shared 'brand' ease: elements rise
+ * and settle into focus (blur 6px → sharp), fire once at 88% viewport, and
+ * clear their inline transform/filter on complete so CSS hover states
+ * (.card lift etc.) keep working untouched afterwards.
+ *
+ * Reduced motion → no tween is ever created; server-rendered content simply
+ * stays visible. Same for no-JS visitors (nothing is hidden pre-hydration).
+ */
+
+import { useRef, type ReactNode } from 'react';
+import { gsap, useGSAP, reduced } from '@/components/motion/gsap';
 
 type Direction = 'up' | 'down' | 'left' | 'right' | 'none';
 
@@ -32,32 +46,29 @@ export function Reveal({
   className,
   as = 'div',
 }: RevealProps) {
-  const reduced = useReducedMotion();
-  const variants: Variants = reduced
-    ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
-    : {
-        hidden: { opacity: 0, filter: 'blur(6px)', ...offsetFor(direction, distance) },
-        visible: {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          // Blur-settle mirrors the CSS reveal-up keyframes — elements rack
-          // into focus rather than merely sliding (luxury pass).
-          filter: 'blur(0px)',
-          // 600ms Reveal tier per DESIGN-SPEC §5 (mirrors --dur-reveal).
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-        },
-      };
+  const ref = useRef<HTMLElement | null>(null);
 
-  const Tag = motion[as] as typeof motion.div;
+  useGSAP(
+    () => {
+      const el = ref.current;
+      if (!el || reduced()) return;
+      gsap.from(el, {
+        opacity: 0,
+        filter: 'blur(6px)',
+        ...offsetFor(direction, distance),
+        duration: 0.9,
+        delay,
+        ease: 'brand',
+        clearProps: 'filter,transform',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      });
+    },
+    { scope: ref as React.RefObject<HTMLElement> }
+  );
+
+  const Tag = as as 'div';
   return (
-    <Tag
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      variants={variants}
-    >
+    <Tag ref={ref as React.RefObject<HTMLDivElement>} className={className}>
       {children}
     </Tag>
   );
@@ -71,7 +82,7 @@ interface StaggerProps {
   as?: 'div' | 'section' | 'ul' | 'ol';
 }
 
-/** Stagger child Reveals — each direct Reveal child inherits an increasing delay. */
+/** Stagger — animates DIRECT children with an increasing delay. */
 export function Stagger({
   children,
   delay = 0,
@@ -79,24 +90,30 @@ export function Stagger({
   className,
   as = 'div',
 }: StaggerProps) {
-  const reduced = useReducedMotion();
-  const container: Variants = {
-    hidden: {},
-    visible: {
-      transition: reduced
-        ? {}
-        : { staggerChildren: stagger, delayChildren: delay },
+  const ref = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      const el = ref.current;
+      if (!el || reduced() || el.children.length === 0) return;
+      gsap.from(el.children, {
+        opacity: 0,
+        y: 24,
+        filter: 'blur(6px)',
+        duration: 0.9,
+        delay,
+        stagger,
+        ease: 'brand',
+        clearProps: 'filter,transform',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      });
     },
-  };
-  const Tag = motion[as] as typeof motion.div;
+    { scope: ref as React.RefObject<HTMLElement> }
+  );
+
+  const Tag = as as 'div';
   return (
-    <Tag
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      variants={container}
-    >
+    <Tag ref={ref as React.RefObject<HTMLDivElement>} className={className}>
       {children}
     </Tag>
   );

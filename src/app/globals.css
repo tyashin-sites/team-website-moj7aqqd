@@ -468,6 +468,39 @@
 
   /* ── Luxury utilities ─────────────────────────────────────────────── */
 
+  /* Sticky header states (HeaderFX toggles .is-scrolled): at rest the bar
+     is 72px on quiet glass; once scrolling it eases to 60px, densifies the
+     glass and lifts on a soft teal-cast shadow. */
+  .header-bar {
+    height: 72px;
+    transition: height var(--dur-ui) var(--ease-brand);
+  }
+  .site-header {
+    transition:
+      box-shadow var(--dur-ui) var(--ease-brand),
+      background-color var(--dur-ui) var(--ease-brand);
+  }
+  .site-header.is-scrolled {
+    background: color-mix(in oklab, var(--brand-bg) 92%, transparent);
+    box-shadow: 0 8px 32px rgba(2, 31, 23, 0.07);
+  }
+  .site-header.is-scrolled .header-bar {
+    height: 60px;
+  }
+
+  /* Pipeline icon chips: tint solid teal as the scrubbed line reaches them
+     (PipelineStrip toggles .is-lit). */
+  .pipeline-chip {
+    transition:
+      background-color var(--dur-ui) var(--ease-brand),
+      color var(--dur-ui) var(--ease-brand);
+  }
+  .pipeline-chip.is-lit {
+    background: var(--brand-primary);
+    color: var(--brand-primary-contrast);
+  }
+
+
   /* Gradient hairline divider — teal fading out both ways. */
   .hairline {
     height: 1px;

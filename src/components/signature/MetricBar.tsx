@@ -68,7 +68,7 @@ export function MetricBar({ metrics = DEFAULT_METRICS }: { metrics?: Metric[] })
   // never pink-on-light.
   return (
     <div ref={ref} className="bg-ink border-y border-paper/10">
-      <dl className="container-x grid grid-cols-2 md:grid-cols-4 gap-y-10 py-12 md:py-14">
+      <dl data-fx="rise" className="container-x grid grid-cols-2 md:grid-cols-4 gap-y-10 py-12 md:py-14">
         {metrics.map((m, i) => (
           <div
             key={m.label}

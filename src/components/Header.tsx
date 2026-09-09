@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getBrandKit } from '@/lib/brand-kit';
 import { headerContent } from '@/lib/content';
 import { MobileNav } from './MobileNav';
+import { HeaderFX } from './motion/HeaderFX';
 
 export async function Header() {
   const brandKit = await getBrandKit();
@@ -19,8 +20,9 @@ export async function Header() {
 
   return (
     // 72px bar + blur per DESIGN-SPEC §7; logo 40px tall
-    <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-xl border-b border-foreground/8">
-      <div className="container-x flex items-center justify-between h-[72px]">
+    <header className="site-header sticky top-0 z-50 bg-background/85 backdrop-blur-xl border-b border-foreground/8">
+      <HeaderFX />
+      <div className="header-bar container-x flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label={siteName}>
           {logoUrl ? (
             <Image

@@ -31,8 +31,10 @@ const POSTER_SRC = posterFor(EXP.loungeChair);
 export function BeforeAfter() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
-      {/* LEFT — the flat photo */}
-      <figure>
+      {/* LEFT — the flat photo. The two figures drift at slightly different
+          scroll speeds (ScrollFX parallax) — quiet depth between "flat" and
+          "live", nothing carnival. */}
+      <figure data-parallax="0.05">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Flat photo</span>
         </div>
@@ -61,7 +63,7 @@ export function BeforeAfter() {
       </figure>
 
       {/* RIGHT — the SAME product, live 3D */}
-      <figure>
+      <figure data-parallax="0.1">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">Live 3D · same product</span>
         </div>

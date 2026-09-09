@@ -29,7 +29,7 @@ export async function Footer() {
     <footer className="relative bg-ink text-paper overflow-hidden grain">
       {/* Gradient hairline where the footer meets the page — a lit seam. */}
       <div className="hairline absolute top-0 inset-x-0" aria-hidden />
-      <div className="absolute inset-0 opacity-30 aurora pointer-events-none" aria-hidden />
+      <div data-parallax="0.07" className="absolute inset-0 opacity-30 aurora pointer-events-none" aria-hidden />
       <div className="container-x relative py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14">
           {/* Brand + tagline + socials */}

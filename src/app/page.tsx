@@ -10,6 +10,7 @@ import { LogoMarquee } from '@/components/LogoMarquee';
 import { SectionHeading } from '@/components/SectionHeading';
 import { CapabilityDemo, type DemoMode } from '@/components/signature/CapabilityDemo';
 import { HeroObject } from '@/components/signature/HeroObject';
+import { HeroMotion } from '@/components/motion/HeroMotion';
 import { EXP } from '@/lib/thridify';
 
 // Home product trio → a distinct live Thridify experience per capability.
@@ -63,23 +64,27 @@ export default function HomePage() {
       <WebsiteSchema />
       {/* 1. HERO — showroom mode (DESIGN-SPEC §7.1/§8): dark ink, live 3D
           object. Headline 7 words (≤12); subline 19 words (≤24). */}
-      <section className="on-dark bg-ink text-paper relative overflow-hidden grain">
+      <section data-hero-stage className="on-dark bg-ink text-paper relative overflow-hidden grain">
+        {/* GSAP entrance timeline + scrubbed demo drift (see HeroMotion). */}
+        <HeroMotion />
         <div
+          data-parallax="0.16"
           className="absolute -right-40 top-1/4 w-[36rem] h-[36rem] rounded-full bg-accent/10 blur-3xl pointer-events-none"
           aria-hidden
         />
         {/* Second glow — deep teal from the lower left, so the ink reads as a
             lit room rather than a flat fill (luxury pass). */}
         <div
+          data-parallax="0.1"
           className="absolute -left-48 -bottom-48 w-[42rem] h-[42rem] rounded-full bg-primary/15 blur-3xl pointer-events-none"
           aria-hidden
         />
         <div className="container-x section grid lg:grid-cols-2 gap-14 items-center relative">
-          <div className="reveal-stagger">
-            <p className="eyebrow">{home.hero.eyebrow}</p>
-            <h1 className="tt-display text-paper">{home.hero.title}</h1>
-            <p className="lead max-w-xl">{home.hero.subtitle}</p>
-            <div className="mt-10 flex flex-wrap gap-4">
+          <div>
+            <p data-hero="eyebrow" className="eyebrow">{home.hero.eyebrow}</p>
+            <h1 data-hero="title" className="tt-display text-paper">{home.hero.title}</h1>
+            <p data-hero="lead" className="lead max-w-xl">{home.hero.subtitle}</p>
+            <div data-hero="ctas" className="mt-10 flex flex-wrap gap-4">
               <a
                 href={home.hero.primaryCta?.href ?? 'https://calendly.com/hello-thridify/30min'}
                 target="_blank"
@@ -100,7 +105,7 @@ export default function HomePage() {
           </div>
           {/* The HeroObject IS the live demo (§9 no-gate secondary CTA target).
               id="demo" is where the "Try the live demo" secondary scrolls. */}
-          <div id="demo" className="scroll-mt-24">
+          <div id="demo" data-hero="demo" className="scroll-mt-24">
             {/* Hero = the single primary showcase. `ready` (not `instant`) so
                 mobile shows the poster instantly and the SDK governor keeps just
                 ~1 live context — Instant would auto-downgrade to Ready here
