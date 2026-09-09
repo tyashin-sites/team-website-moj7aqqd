@@ -75,10 +75,12 @@ export function ScrollFX() {
           const split = new SplitText(el, { type: 'words', mask: 'words', wordsClass: 'fx-word' });
           gsap.from(split.words, {
             yPercent: 115,
-            duration: 0.8,
-            stagger: 0.05,
+            duration: 1.1,
+            stagger: 0.09,
             ease: 'brand',
-            scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+            // 78% — fire when the line is comfortably in view, so the rise is
+            // watched, not missed.
+            scrollTrigger: { trigger: el, start: 'top 78%', once: true },
           });
         } catch {
           gsap.from(el, {
