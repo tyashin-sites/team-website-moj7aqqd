@@ -278,6 +278,7 @@
   /* Glass card on dark ink sections — finer border + inner top highlight,
      the classic lit-edge glass cue. */
   .glass-card {
+    position: relative;
     background: linear-gradient(
       180deg,
       rgba(0, 112, 80, 0.12) 0%,
@@ -287,6 +288,36 @@
     border-radius: var(--brand-radius-lg);
     backdrop-filter: blur(8px);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  /* Cursor spotlight (PointerFX writes --mx/--my + .is-spotlit): a soft
+     radial light follows the pointer across cards — teal-cast on light
+     surfaces, paper-cast on dark glass. Pure lighting; pointer-events off. */
+  .card::after,
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur-ui) var(--ease-brand);
+    background: radial-gradient(
+      240px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--brand-primary) 7%, transparent),
+      transparent 70%
+    );
+  }
+  .glass-card::after {
+    background: radial-gradient(
+      240px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--brand-bg) 9%, transparent),
+      transparent 70%
+    );
+  }
+  .card.is-spotlit::after,
+  .glass-card.is-spotlit::after {
+    opacity: 1;
   }
 
   /* Accent line — teal→pink gradient, signature sections only */
@@ -468,12 +499,17 @@
 
   /* ── Luxury utilities ─────────────────────────────────────────────── */
 
-  /* Sticky header states (HeaderFX toggles .is-scrolled): at rest the bar
-     is 72px on quiet glass; once scrolling it eases to 60px, densifies the
-     glass and lifts on a soft teal-cast shadow. */
+  /* Sticky header states (HeaderFX toggles .is-scrolled): the bar stays a
+     CONSTANT 72px — a sticky element's height is in normal flow, so easing
+     it would shift the whole page 12px mid-scroll (a real CLS hit; scroll
+     shifts are NOT input-excluded). The "condense" reads through the logo
+     scaling down and the glass densifying + lifting instead. */
   .header-bar {
     height: 72px;
-    transition: height var(--dur-ui) var(--ease-brand);
+  }
+  .header-logo {
+    transform-origin: left center;
+    transition: transform var(--dur-ui) var(--ease-brand);
   }
   .site-header {
     transition:
@@ -484,8 +520,8 @@
     background: color-mix(in oklab, var(--brand-bg) 92%, transparent);
     box-shadow: 0 8px 32px rgba(2, 31, 23, 0.07);
   }
-  .site-header.is-scrolled .header-bar {
-    height: 60px;
+  .site-header.is-scrolled .header-logo {
+    transform: scale(0.86);
   }
 
   /* Pipeline icon chips: tint solid teal as the scrubbed line reaches them

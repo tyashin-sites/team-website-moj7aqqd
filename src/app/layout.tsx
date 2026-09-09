@@ -3,6 +3,7 @@ import { bodyFont, headingFont, monoFont } from '@/lib/fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ScrollFX } from '@/components/motion/ScrollFX';
+import { PointerFX } from '@/components/motion/PointerFX';
 import { MobileCtaBar } from '@/components/MobileCtaBar';
 import { EntitySchema } from '@/components/SiteSchema';
 import './globals.css';
@@ -88,6 +89,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Canonical palette — single token source (see CANONICAL_BRAND_CSS note). */}
         <style dangerouslySetInnerHTML={{ __html: CANONICAL_BRAND_CSS }} />
+        {/* Warm the 3D runtime origins before the client requests them:
+            mviewer.js is a classic <script> (no-CORS → no crossorigin here);
+            models.thridify.com is fetched with CORS (crossorigin required or
+            the warmed socket can't be reused). */}
+        <link rel="preconnect" href="https://viewer.thridify.com" />
+        <link rel="preconnect" href="https://models.thridify.com" crossOrigin="anonymous" />
       </head>
       <body className="font-body bg-background text-foreground antialiased">
         {/* Skip-to-content link (WCAG 2.4.1) — visually hidden until focused,
@@ -127,6 +134,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Sitewide declarative scroll effects (data-parallax / data-fx) —
             wires GSAP ScrollTriggers to server-rendered markup. */}
         <ScrollFX />
+        {/* Cursor-aware micro-physics: card spotlight + magnetic primary CTAs
+            (fine pointers only). */}
+        <PointerFX />
       </body>
     </html>
   );

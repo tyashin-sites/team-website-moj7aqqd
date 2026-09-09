@@ -16,6 +16,8 @@
  *   data-fx="rise"        → one-shot rise + blur-settle entrance at 88%.
  *   data-fx="draw"        → one-shot scaleX 0→1 draw for hairlines
  *                           (transform-origin from CSS; defaults left).
+ *   data-fx="words"       → masked SplitText word reveal. Below-fold only —
+ *                           never on a possible LCP element.
  *
  * Re-inits on every route change (usePathname dep + revertOnUpdate) and
  * refreshes trigger positions once the window fully loads (images/fonts
@@ -24,7 +26,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { gsap, ScrollTrigger, useGSAP, reduced } from '@/components/motion/gsap';
+import { gsap, ScrollTrigger, SplitText, useGSAP, reduced } from '@/components/motion/gsap';
 
 export function ScrollFX() {
   const pathname = usePathname();
@@ -63,6 +65,31 @@ export function ScrollFX() {
           clearProps: 'filter,transform',
           scrollTrigger: { trigger: el, start: 'top 88%', once: true },
         });
+      });
+
+      // Masked word reveal — the signature SplitText moment. BELOW-FOLD ONLY:
+      // an above-fold use would re-hide painted content and re-stamp LCP
+      // (see HeroMotion's LCP LAW).
+      gsap.utils.toArray<HTMLElement>('[data-fx="words"]').forEach((el) => {
+        try {
+          const split = new SplitText(el, { type: 'words', mask: 'words', wordsClass: 'fx-word' });
+          gsap.from(split.words, {
+            yPercent: 115,
+            duration: 0.8,
+            stagger: 0.05,
+            ease: 'brand',
+            scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+          });
+        } catch {
+          gsap.from(el, {
+            opacity: 0,
+            y: 28,
+            duration: 1,
+            ease: 'brand',
+            clearProps: 'transform',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+          });
+        }
       });
 
       gsap.utils.toArray<HTMLElement>('[data-fx="draw"]').forEach((el) => {

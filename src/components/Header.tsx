@@ -23,7 +23,7 @@ export async function Header() {
     <header className="site-header sticky top-0 z-50 bg-background/85 backdrop-blur-xl border-b border-foreground/8">
       <HeaderFX />
       <div className="header-bar container-x flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label={siteName}>
+        <Link href="/" className="header-logo flex items-center gap-2.5 shrink-0" aria-label={siteName}>
           {logoUrl ? (
             <Image
               src={logoUrl}

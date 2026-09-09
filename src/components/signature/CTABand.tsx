@@ -19,7 +19,7 @@ export function CTABand({
         {/* Ornamental gradient hairline above the closing headline — draws
             itself outward as it enters the viewport (ScrollFX). */}
         <div data-fx="draw" className="hairline w-40 mx-auto mb-12 origin-center" aria-hidden />
-        <h2 data-fx="rise" className="tt-1 text-paper max-w-3xl mx-auto">{headline}</h2>
+        <h2 data-fx="words" className="tt-1 text-paper max-w-3xl mx-auto">{headline}</h2>
         <div data-fx="rise" className="mt-4 flex justify-center">
           <a
             href={CALENDLY_URL}
