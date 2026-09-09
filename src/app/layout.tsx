@@ -94,6 +94,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
+        {/* Reading-progress hairline (luxury pass) — scroll-driven pure CSS,
+            renders nothing on engines without animation-timeline. */}
+        <div className="scroll-progress" aria-hidden />
+
         {/* Sitewide entity graph: Organization + SoftwareApplication on every
             page (per-page Service/FAQ/Breadcrumb blocks live in their pages). */}
         <EntitySchema />

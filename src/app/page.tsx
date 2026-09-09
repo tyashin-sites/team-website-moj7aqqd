@@ -63,9 +63,15 @@ export default function HomePage() {
       <WebsiteSchema />
       {/* 1. HERO — showroom mode (DESIGN-SPEC §7.1/§8): dark ink, live 3D
           object. Headline 7 words (≤12); subline 19 words (≤24). */}
-      <section className="on-dark bg-ink text-paper relative overflow-hidden">
+      <section className="on-dark bg-ink text-paper relative overflow-hidden grain">
         <div
           className="absolute -right-40 top-1/4 w-[36rem] h-[36rem] rounded-full bg-accent/10 blur-3xl pointer-events-none"
+          aria-hidden
+        />
+        {/* Second glow — deep teal from the lower left, so the ink reads as a
+            lit room rather than a flat fill (luxury pass). */}
+        <div
+          className="absolute -left-48 -bottom-48 w-[42rem] h-[42rem] rounded-full bg-primary/15 blur-3xl pointer-events-none"
           aria-hidden
         />
         <div className="container-x section grid lg:grid-cols-2 gap-14 items-center relative">

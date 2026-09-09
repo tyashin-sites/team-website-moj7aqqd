@@ -13,11 +13,13 @@ export function CTABand({
   ctaLabel?: string;
 }) {
   return (
-    <section className="on-dark relative bg-ink text-paper overflow-hidden">
+    <section className="on-dark relative bg-ink text-paper overflow-hidden grain">
       <div className="absolute inset-0 opacity-20 aurora pointer-events-none" aria-hidden />
       <div className="container-x section relative text-center">
+        {/* Ornamental gradient hairline above the closing headline. */}
+        <div className="hairline w-40 mx-auto mb-12" aria-hidden />
         <h2 className="tt-1 text-paper max-w-3xl mx-auto">{headline}</h2>
-        <div className="mt-2 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <a
             href={CALENDLY_URL}
             target="_blank"

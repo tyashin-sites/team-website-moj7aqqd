@@ -17,7 +17,7 @@ export function LogoMarquee({
   return (
     <section className="py-14 md:py-16 border-b border-foreground/5" aria-label="Client logos">
       <div className="container-x">
-        <p className="eyebrow mb-8 block text-center">{eyebrow}</p>
+        <p className="eyebrow eyebrow-center mb-8 w-full justify-center">{eyebrow}</p>
         <div className="relative overflow-hidden">
           <div className="absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" aria-hidden />
           <div className="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" aria-hidden />
@@ -26,7 +26,7 @@ export function LogoMarquee({
             {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
               <div
                 key={`${logo.name}-${i}`}
-                className="flex-shrink-0 mx-6 md:mx-8 px-7 py-4 bg-background rounded-lg border border-foreground/8 shadow-sm h-[4.5rem] flex items-center"
+                className="logo-quiet flex-shrink-0 mx-8 md:mx-12 h-[4.5rem] flex items-center"
               >
                 <Image
                   src={logo.logoUrl}

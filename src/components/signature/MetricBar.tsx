@@ -68,18 +68,26 @@ export function MetricBar({ metrics = DEFAULT_METRICS }: { metrics?: Metric[] })
   // never pink-on-light.
   return (
     <div ref={ref} className="bg-ink border-y border-paper/10">
-      <dl className="container-x grid grid-cols-2 md:grid-cols-4 gap-y-8 py-10 md:py-12">
-        {metrics.map((m) => (
-          <div key={m.label} className="text-center md:text-left">
+      <dl className="container-x grid grid-cols-2 md:grid-cols-4 gap-y-10 py-12 md:py-14">
+        {metrics.map((m, i) => (
+          <div
+            key={m.label}
+            // Hairline columns between stats (md+) — quiet vertical rhythm.
+            className={`text-center md:text-left md:px-8 ${
+              i > 0 ? 'md:border-l md:border-paper/10' : 'md:pl-0'
+            }`}
+          >
             <dt className="sr-only">{m.label}</dt>
             <dd
-              className={`text-3xl md:text-4xl font-medium ${
+              className={`text-4xl md:text-5xl font-normal tracking-tight ${
                 m.pink ? 'text-accent' : 'text-paper'
               }`}
             >
               <CountUp metric={m} run={run} />
             </dd>
-            <dd className="mt-1.5 text-sm text-muted-dark">{m.label}</dd>
+            <dd className="mt-2.5 text-[13px] tracking-[0.08em] uppercase text-muted-dark">
+              {m.label}
+            </dd>
           </div>
         ))}
       </dl>

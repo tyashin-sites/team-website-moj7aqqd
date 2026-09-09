@@ -36,11 +36,14 @@ export function Reveal({
   const variants: Variants = reduced
     ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
     : {
-        hidden: { opacity: 0, ...offsetFor(direction, distance) },
+        hidden: { opacity: 0, filter: 'blur(6px)', ...offsetFor(direction, distance) },
         visible: {
           opacity: 1,
           x: 0,
           y: 0,
+          // Blur-settle mirrors the CSS reveal-up keyframes — elements rack
+          // into focus rather than merely sliding (luxury pass).
+          filter: 'blur(0px)',
           // 600ms Reveal tier per DESIGN-SPEC §5 (mirrors --dur-reveal).
           transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
         },

@@ -40,9 +40,16 @@
   --dur-reveal: 600ms;
   --dur-hero: 900ms;
 
-  /* Shadows — teal-cast, never gray (DESIGN-SPEC §4) */
-  --shadow-rest: 0 1px 2px rgba(2, 31, 23, 0.06);
-  --shadow-hover: 0 12px 32px rgba(0, 112, 80, 0.14);
+  /* Shadows — teal-cast, never gray (DESIGN-SPEC §4).
+     Luxury pass: layered ambient + key shadows so surfaces sit in soft,
+     believable light instead of a single hard drop. */
+  --shadow-rest:
+    0 1px 2px rgba(2, 31, 23, 0.05),
+    0 4px 16px rgba(2, 31, 23, 0.04);
+  --shadow-hover:
+    0 2px 6px rgba(2, 31, 23, 0.05),
+    0 12px 32px rgba(0, 112, 80, 0.12),
+    0 24px 64px rgba(0, 112, 80, 0.08);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -115,10 +122,11 @@
     outline: none;
   }
 
-  /* Section rhythm — DESIGN-SPEC §4 */
+  /* Section rhythm — DESIGN-SPEC §4, opened up slightly for the luxury
+     pass: generous air is the cheapest premium signal there is. */
   .section {
-    padding-top: clamp(5rem, 10vw, 8.5rem);
-    padding-bottom: clamp(5rem, 10vw, 8.5rem);
+    padding-top: clamp(5.5rem, 11vw, 9.5rem);
+    padding-bottom: clamp(5.5rem, 11vw, 9.5rem);
   }
 
   .container-x {
@@ -137,11 +145,14 @@
      Line-heights ≥ 1.05 ALWAYS (sub-1.0 overlap bug must never return);
      margins in rem, never em. `tt-` namespace is reserved for typography —
      never name custom classes after Tailwind utilities (h-1 incident). */
+  /* Luxury pass: display tiers drop from 700 to 500 — Space Grotesk medium
+     at large sizes reads editorial and unhurried where bold read techy.
+     Hierarchy is carried by size + space, not weight. */
   .tt-display {
     font-family: var(--brand-heading-font);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
     font-size: clamp(2.75rem, 6.5vw, 5.5rem);
     margin: 0 0 2rem 0;
     padding-bottom: 0.05em; /* room for descenders */
@@ -149,9 +160,9 @@
 
   .tt-1 {
     font-family: var(--brand-heading-font);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
     font-size: clamp(2rem, 4.5vw, 3.5rem);
     margin: 0 0 1.5rem 0;
     padding-bottom: 0.05em;
@@ -159,8 +170,8 @@
 
   .tt-2 {
     font-family: var(--brand-heading-font);
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    letter-spacing: -0.015em;
     line-height: 1.2;
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     margin: 0 0 1.25rem 0;
@@ -175,13 +186,34 @@
   .eyebrow {
     font-family: var(--brand-heading-font);
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     line-height: 1;
     color: var(--brand-primary);
     margin-bottom: 1.25rem;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  /* Hairline dash before every eyebrow — a quiet editorial marker. */
+  .eyebrow::before {
+    content: '';
+    width: 1.75rem;
+    height: 1px;
+    flex: none;
+    background: linear-gradient(90deg, transparent, currentColor);
+    opacity: 0.7;
+  }
+  /* Centered contexts (CTA bands): mirror the dash on both sides. */
+  .text-center .eyebrow::after,
+  .eyebrow-center::after {
+    content: '';
+    width: 1.75rem;
+    height: 1px;
+    flex: none;
+    background: linear-gradient(90deg, currentColor, transparent);
+    opacity: 0.7;
   }
 
   .tt-caption {
@@ -199,27 +231,62 @@
 
   /* ── Surfaces — DESIGN-SPEC §4 */
 
-  /* Card primitive: 16px radius, teal-cast shadows */
+  /* Card primitive: 16px radius, teal-cast shadows.
+     Luxury pass: a masked gradient hairline (teal→pink at whisper opacity)
+     fades in on hover, and a faint top-light gradient keeps the surface from
+     reading dead-flat. */
   .card {
-    background: var(--brand-bg);
+    position: relative;
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--brand-surface) 30%, var(--brand-bg)) 0%, var(--brand-bg) 6rem);
     border: 1px solid var(--brand-border);
     border-radius: var(--brand-radius-lg);
     box-shadow: var(--shadow-rest);
     transition:
       transform var(--dur-ui) var(--ease-brand),
+      border-color var(--dur-ui) var(--ease-brand),
       box-shadow var(--dur-ui) var(--ease-brand);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--brand-primary) 45%, transparent),
+      color-mix(in oklab, var(--brand-accent) 45%, transparent)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--dur-ui) var(--ease-brand);
+    pointer-events: none;
   }
   .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
   }
+  .card:hover::before {
+    opacity: 1;
+  }
 
-  /* Glass card on dark ink sections */
+  /* Glass card on dark ink sections — finer border + inner top highlight,
+     the classic lit-edge glass cue. */
   .glass-card {
-    background: rgba(0, 112, 80, 0.08);
-    border: 1px solid rgba(0, 112, 80, 0.25);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 112, 80, 0.12) 0%,
+      rgba(0, 112, 80, 0.06) 100%
+    );
+    border: 1px solid rgba(111, 207, 171, 0.18);
     border-radius: var(--brand-radius-lg);
     backdrop-filter: blur(8px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
   }
 
   /* Accent line — teal→pink gradient, signature sections only */
@@ -262,12 +329,15 @@
   /* ── Buttons — DESIGN-SPEC §5. Primary = teal pill with #007050→#004D37
      hover sweep (150ms); pink focus ring everywhere. */
   .btn {
+    position: relative;
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.875rem 1.5rem;
     font-weight: 600;
     font-size: 0.95rem;
+    letter-spacing: 0.01em;
     border-radius: var(--brand-radius-full);
     transition:
       background-position var(--dur-micro) var(--ease-brand),
@@ -289,10 +359,34 @@
     );
     background-size: 220% 100%;
     background-position: 0% 0;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 1px 2px rgba(2, 31, 23, 0.2);
+  }
+  /* Sheen sweep — a soft light band glides across on hover (600ms, once). */
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.22) 50%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+    pointer-events: none;
   }
   .btn-primary:hover {
     background-position: 100% 0;
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      var(--shadow-hover);
+  }
+  .btn-primary:hover::after {
+    transform: translateX(120%);
+    transition: transform var(--dur-reveal) var(--ease-brand);
   }
   .btn-primary:disabled {
     opacity: 0.6;
@@ -371,22 +465,99 @@
   .marquee-track:hover {
     animation-play-state: paused;
   }
+
+  /* ── Luxury utilities ─────────────────────────────────────────────── */
+
+  /* Gradient hairline divider — teal fading out both ways. */
+  .hairline {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--brand-primary) 35%, transparent) 50%,
+      transparent
+    );
+  }
+
+  /* Nav links: hairline underline grows from the left on hover/current. */
+  .nav-link {
+    position: relative;
+    padding-bottom: 0.25rem;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--brand-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-ui) var(--ease-brand);
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+
+  /* Marquee logos: rest in quiet monochrome, wake to full color on hover. */
+  .logo-quiet {
+    filter: grayscale(1);
+    opacity: 0.55;
+    transition:
+      filter var(--dur-ui) var(--ease-brand),
+      opacity var(--dur-ui) var(--ease-brand);
+  }
+  .logo-quiet:hover {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+
+  /* Reading-progress hairline pinned above the header — scroll-driven,
+     pure CSS (animation-timeline), silently absent on older engines. */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 60;
+    background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+    transform-origin: left;
+    transform: scaleX(0);
+    pointer-events: none;
+  }
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress {
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
 }
 
 /* Keyframes are unaffected by cascade layers — kept top-level. */
 @keyframes reveal-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  /* Luxury pass: elements settle into focus — a 6px blur resolving to sharp
+     alongside the rise reads like a rack-focus, far silkier than a plain slide. */
+  from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
 @keyframes aurora-drift {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(2%, -3%, 0) scale(1.08); }
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  100% { transform: translate3d(2%, -3%, 0) scale(1.08) rotate(2deg); }
 }
 
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+@keyframes progress-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────

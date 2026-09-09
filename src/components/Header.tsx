@@ -42,7 +42,7 @@ export async function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[15px] font-medium text-foreground/75 hover:text-foreground transition-colors"
+              className="nav-link text-[15px] font-medium text-foreground/75 hover:text-foreground transition-colors"
             >
               {item.label}
             </Link>
