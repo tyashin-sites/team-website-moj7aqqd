@@ -25,6 +25,8 @@ import { industryStaticParams } from '@/lib/site-routes';
 import type { DemoMode } from '@/components/signature/CapabilityDemo';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { ProofCard } from '@/components/signature/ProofCard';
+import { SectionIndex } from '@/components/SectionIndex';
+import { HeroArt } from '@/components/HeroArt';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
@@ -175,7 +177,10 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
               <Link href="/#demo" className="btn btn-ghost">Try the live demo</Link>
             </div>
           </div>
-          <div>
+          {/* Art-directed backdrop behind the real per-industry render
+              (abstract brand artwork — no fabricated product imagery). */}
+          <div className="relative">
+            <HeroArt />
             <CapabilityDemo
               mode={ind.heroDemo}
               aspect="aspect-[4/3]"
@@ -189,8 +194,17 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
+      <SectionIndex
+        items={[
+          { id: 'how-it-works', label: 'How it works' },
+          { id: 'impact', label: 'The impact' },
+          { id: 'faq', label: 'FAQ' },
+          { id: 'related', label: 'Related' },
+        ]}
+      />
+
       {/* HOW THRIDIFY HELPS <INDUSTRY> — capability → sales workflow */}
-      <section className="section pt-0">
+      <section id="how-it-works" className="section pt-0 scroll-mt-20">
         <div className="container-x">
           <div className="max-w-3xl mb-12">
             <p className="eyebrow">How it works</p>
@@ -221,7 +235,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* OUTCOMES — canonical metric set ONLY (§7.2), industry-framed */}
-      <section className="section on-dark bg-ink text-paper">
+      <section id="impact" className="section on-dark bg-ink text-paper scroll-mt-20">
         <div className="container-x">
           <div className="max-w-3xl mb-12">
             <p className="eyebrow">The impact</p>
@@ -250,7 +264,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* FAQ — real questions the industry Googles (FAQPage schema above) */}
-      <section className="section">
+      <section id="faq" className="section scroll-mt-20">
         <div className="container-x grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-4">
             <p className="eyebrow">FAQ</p>
@@ -272,7 +286,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* RELATED + PLATFORM internal links (no ghost links, addendum §3d) */}
-      <section className="section pt-0">
+      <section id="related" className="section pt-0 scroll-mt-20">
         <div className="container-x">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
             <h2 className="tt-2">Explore related industries</h2>

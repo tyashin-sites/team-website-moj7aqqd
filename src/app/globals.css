@@ -13,6 +13,10 @@
   --brand-accent: #FEBFCC;
   --brand-ink: #021F17;
   --brand-bg: #FFFFFF;
+  /* "Paper" = the light value used ON INK (text-paper, bg-paper chips) — a
+     separate token from --brand-bg so it stays light when the page background
+     itself goes dark (see the dark-scheme block below). */
+  --brand-paper: #FFFFFF;
   --brand-surface: #F0F5FA;
   --brand-text: #021F17;
   --brand-text-muted: #5B7A6E;
@@ -53,12 +57,77 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
+   Dark scheme — first-class theme, driven by the OS preference (no toggle).
+   Only the TOKENS change; every component reads through them. The rules:
+     • the ink sections stay canonical #021F17 — the page ground drops BELOW
+       ink (#050F0C) so the showroom bands still read as lit panels;
+     • teal fills brighten to #22A97E (6.5:1 on the dark ground as text) and
+       carry INK text instead of white (5.8:1) — white on any teal that passes
+       as text on dark can't reach AA, so the button polarity flips;
+     • the accent pink, primary-soft and muted-dark are already tuned for ink
+       and are left alone;
+     • selector specificity (:root:not([data-theme=light]) = 0,2,0) beats the
+       plain :root palette re-declared inline in layout.tsx regardless of
+       source order, and an explicit data-theme wins in both directions.
+   Contrast floors (all ≥ AA): text 17.3:1 · muted 7.8:1 · primary 6.5:1 ·
+   ink-on-primary 5.8:1 · ink-on-primary-deep 4.9:1 · danger 7.0:1.
+   ───────────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand-primary: #22A97E;
+    --brand-primary-deep: #1A9A72;
+    --brand-primary-contrast: #021F17;
+    --brand-bg: #050F0C;
+    --brand-paper: #F1F6F3;
+    --brand-surface: #0A1A15;
+    --brand-text: #ECF3EF;
+    --brand-text-muted: #8FAA9E;
+    --brand-border: rgba(236, 243, 239, 0.1);
+    --brand-danger: #F87171;
+    --shadow-rest:
+      0 1px 2px rgba(0, 0, 0, 0.35),
+      0 4px 16px rgba(0, 0, 0, 0.25);
+    --shadow-hover:
+      0 2px 6px rgba(0, 0, 0, 0.35),
+      0 12px 32px rgba(34, 169, 126, 0.14),
+      0 24px 64px rgba(0, 0, 0, 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  --brand-primary: #22A97E;
+  --brand-primary-deep: #1A9A72;
+  --brand-primary-contrast: #021F17;
+  --brand-bg: #050F0C;
+  --brand-paper: #F1F6F3;
+  --brand-surface: #0A1A15;
+  --brand-text: #ECF3EF;
+  --brand-text-muted: #8FAA9E;
+  --brand-border: rgba(236, 243, 239, 0.1);
+  --brand-danger: #F87171;
+  --shadow-rest:
+    0 1px 2px rgba(0, 0, 0, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-hover:
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    0 12px 32px rgba(34, 169, 126, 0.14),
+    0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
    Base element styles.
    ───────────────────────────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    /* Native controls, scrollbars and form popups follow the scheme. */
+    color-scheme: light dark;
+  }
+  html[data-theme="light"] {
+    color-scheme: light;
+  }
+  html[data-theme="dark"] {
+    color-scheme: dark;
   }
 
   body {
@@ -313,7 +382,7 @@
   .glass-card::after {
     background: radial-gradient(
       280px circle at var(--mx, 50%) var(--my, 50%),
-      color-mix(in oklab, var(--brand-bg) 14%, transparent),
+      color-mix(in oklab, var(--brand-paper) 14%, transparent),
       transparent 72%
     );
   }
@@ -446,13 +515,13 @@
   }
   .on-dark .btn-ghost,
   .btn-ghost-dark {
-    color: var(--brand-bg); /* paper-white on ink — 17.5:1 */
-    border-color: color-mix(in oklab, var(--brand-bg) 28%, transparent);
+    color: var(--brand-paper); /* paper-white on ink — 17.5:1 */
+    border-color: color-mix(in oklab, var(--brand-paper) 28%, transparent);
   }
   .on-dark .btn-ghost:hover,
   .btn-ghost-dark:hover {
-    background: color-mix(in oklab, var(--brand-bg) 10%, transparent);
-    border-color: color-mix(in oklab, var(--brand-bg) 55%, transparent);
+    background: color-mix(in oklab, var(--brand-paper) 10%, transparent);
+    border-color: color-mix(in oklab, var(--brand-paper) 55%, transparent);
   }
   .on-dark .lead {
     color: var(--brand-muted-dark);
@@ -651,7 +720,7 @@
     border-radius: var(--brand-radius-sm);
     font-size: 0.75rem;
     line-height: 1.25;
-    color: var(--brand-bg);
+    color: var(--brand-paper);
   }
 
   @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
@@ -778,6 +847,12 @@
     filter: grayscale(0);
     opacity: 1;
   }
+  /* On the dark ground the monochrome logos sink — rest a little brighter. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .logo-quiet {
+      opacity: 0.8;
+    }
+  }
 
   /* Reading-progress hairline pinned above the header — scroll-driven,
      pure CSS (animation-timeline), silently absent on older engines. */
@@ -798,6 +873,385 @@
       animation: progress-grow linear both;
       animation-timeline: scroll(root);
     }
+  }
+
+  /* ── Wayfinding: sticky section index (SectionIndex.tsx) ───────────────
+     Desktop (xl+): a fixed rail of hairline ticks at the viewport's left
+     edge, vertically centred. Labels sit beside the ticks from 2xl up (the
+     container leaves ≥8rem of gutter there); at xl they surface only for
+     the active/hovered/focused item as a glass pill so they never collide
+     with content. Mobile/tablet: a slim horizontal strip pinned under the
+     72px header. Both fade in after the hero and out before the
+     closing band — the component toggles .is-visible. */
+  .section-index {
+    position: fixed;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-ui) var(--ease-brand);
+  }
+  .section-index.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  @media (min-width: 1280px) {
+    .section-index {
+      display: block;
+    }
+  }
+  .section-index ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .section-index a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 1.25rem;
+    color: var(--brand-text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color var(--dur-ui) var(--ease-brand);
+  }
+  .section-index a::before {
+    content: '';
+    display: block;
+    flex: none;
+    width: 1.125rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+    transform-origin: left;
+    transition:
+      width var(--dur-ui) var(--ease-brand),
+      opacity var(--dur-ui) var(--ease-brand),
+      background-color var(--dur-ui) var(--ease-brand);
+  }
+  .section-index a:hover,
+  .section-index a:focus-visible,
+  .section-index a[aria-current='location'] {
+    color: var(--brand-text);
+  }
+  .section-index a[aria-current='location']::before {
+    width: 2rem;
+    opacity: 1;
+    background: var(--brand-primary);
+  }
+  .section-index .label {
+    white-space: nowrap;
+  }
+  /* xl: labels collapse into a pill that only surfaces on active/hover. */
+  @media (min-width: 1280px) and (max-width: 1535.98px) {
+    .section-index .label {
+      position: absolute;
+      left: 2.5rem;
+      top: 50%;
+      transform: translate(-0.25rem, -50%);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--brand-radius-full);
+      background: color-mix(in oklab, var(--brand-bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--brand-border);
+      box-shadow: var(--shadow-rest);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity var(--dur-ui) var(--ease-brand),
+        transform var(--dur-ui) var(--ease-brand);
+    }
+    .section-index a:hover .label,
+    .section-index a:focus-visible .label,
+    .section-index a[aria-current='location'] .label {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+  }
+
+  /* Mobile / tablet strip. */
+  .section-index-bar {
+    position: fixed;
+    top: 72px; /* the sticky header's constant height */
+    left: 0;
+    right: 0;
+    z-index: 39;
+    height: 2.75rem;
+    background: color-mix(in oklab, var(--brand-bg) 88%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--brand-border);
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    pointer-events: none;
+    transition:
+      opacity var(--dur-ui) var(--ease-brand),
+      transform var(--dur-ui) var(--ease-brand);
+  }
+  .section-index-bar.is-visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  @media (min-width: 1280px) {
+    .section-index-bar {
+      display: none;
+    }
+  }
+  .section-index-bar ol {
+    display: flex;
+    gap: 0.25rem;
+    height: 100%;
+    align-items: center;
+    padding-inline: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-inline: 1rem;
+  }
+  .section-index-bar ol::-webkit-scrollbar {
+    display: none;
+  }
+  .section-index-bar a {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--brand-radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--brand-text-muted);
+    border: 1px solid transparent;
+    transition:
+      color var(--dur-ui) var(--ease-brand),
+      border-color var(--dur-ui) var(--ease-brand),
+      background-color var(--dur-ui) var(--ease-brand);
+  }
+  .section-index-bar a[aria-current='location'] {
+    color: var(--brand-primary);
+    border-color: color-mix(in oklab, var(--brand-primary) 35%, transparent);
+    background: color-mix(in oklab, var(--brand-primary) 8%, transparent);
+  }
+
+  /* ── Scroll-to-top affordance (ScrollToTop.tsx) — a hairline ring that
+     surfaces after ~1.5 viewports and hides again near the top. Sits above
+     the mobile CTA bar on small screens. */
+  .scroll-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 41;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--brand-radius-full);
+    border: 1px solid color-mix(in oklab, var(--brand-text) 18%, transparent);
+    background: color-mix(in oklab, var(--brand-bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    color: var(--brand-text);
+    box-shadow: var(--shadow-rest);
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.94);
+    pointer-events: none;
+    transition:
+      opacity var(--dur-ui) var(--ease-brand),
+      transform var(--dur-ui) var(--ease-brand),
+      border-color var(--dur-ui) var(--ease-brand),
+      color var(--dur-ui) var(--ease-brand);
+  }
+  .scroll-top.is-visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .scroll-top:hover {
+    color: var(--brand-primary);
+    border-color: color-mix(in oklab, var(--brand-primary) 55%, transparent);
+  }
+  /* Lift above the sticky mobile CTA bar (MobileCtaBar, <768px) once it
+     has slid in — the bar toggles body.has-cta-bar. */
+  @media (max-width: 767.98px) {
+    body.has-cta-bar .scroll-top {
+      bottom: calc(5.25rem + env(safe-area-inset-bottom));
+    }
+  }
+
+  /* ── Forms: floating labels (FormField.tsx). The label rests as the
+     placeholder inside the field and floats to a small caps eyebrow on
+     focus or once the field has a value (:placeholder-shown drives it, so
+     inputs need a placeholder of at least " "). Selects keep the label
+     raised — they always show a value. The pink :focus-visible ring is
+     untouched; the border additionally warms to teal on focus. */
+  .field {
+    position: relative;
+  }
+  .field-control {
+    width: 100%;
+    border-radius: var(--brand-radius-md);
+    background: var(--brand-bg);
+    border: 1px solid color-mix(in oklab, var(--brand-text) 14%, transparent);
+    color: var(--brand-text);
+    padding: 1.55rem 1rem 0.6rem;
+    line-height: 1.4;
+    transition:
+      border-color var(--dur-micro) var(--ease-brand),
+      background-color var(--dur-micro) var(--ease-brand),
+      box-shadow var(--dur-micro) var(--ease-brand);
+  }
+  .field-control::placeholder {
+    color: transparent;
+  }
+  .field-control:hover {
+    border-color: color-mix(in oklab, var(--brand-text) 28%, transparent);
+  }
+  .field-control:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-primary) 14%, transparent);
+  }
+  .field-label {
+    position: absolute;
+    left: 1rem;
+    top: 1.05rem;
+    font-size: 0.95rem;
+    color: var(--brand-text-muted);
+    pointer-events: none;
+    transform-origin: left top;
+    transition:
+      transform var(--dur-ui) var(--ease-brand),
+      color var(--dur-ui) var(--ease-brand),
+      letter-spacing var(--dur-ui) var(--ease-brand);
+  }
+  .field-control:focus ~ .field-label,
+  .field-control:not(:placeholder-shown) ~ .field-label,
+  .field.is-raised .field-label {
+    transform: translateY(-0.62rem) scale(0.74);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .field-control:focus ~ .field-label {
+    color: var(--brand-primary);
+  }
+  .field-control:user-invalid {
+    border-color: var(--brand-danger);
+  }
+  .field-control:user-invalid ~ .field-label {
+    color: var(--brand-danger);
+  }
+  select.field-control {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:
+      calc(100% - 1.3rem) 1.35rem,
+      calc(100% - 1rem) 1.35rem;
+    background-size: 0.3rem 0.3rem;
+    background-repeat: no-repeat;
+    padding-right: 2.75rem;
+  }
+  textarea.field-control {
+    min-height: 8rem;
+    resize: none;
+  }
+
+  /* ── Hero artwork (HeroArt.tsx): abstract brand-gradient composition
+     behind hero media — layered light fields, a hairline orbit set and a
+     fine dot grid, all token-driven so it re-tints in dark scheme. */
+  .hero-art {
+    position: absolute;
+    inset: -22% -18%;
+    z-index: -1;
+    pointer-events: none;
+    isolation: isolate;
+  }
+  .hero-art-field {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(48% 42% at 68% 34%, color-mix(in oklab, var(--brand-primary) 26%, transparent) 0%, transparent 70%),
+      radial-gradient(38% 36% at 26% 70%, color-mix(in oklab, var(--brand-accent) 34%, transparent) 0%, transparent 70%),
+      radial-gradient(60% 55% at 60% 80%, color-mix(in oklab, var(--brand-primary-deep) 18%, transparent) 0%, transparent 72%);
+    filter: blur(28px) saturate(115%);
+  }
+  .hero-art-grid {
+    position: absolute;
+    inset: 4%;
+    background-image: radial-gradient(color-mix(in oklab, var(--brand-text) 22%, transparent) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(60% 60% at 55% 50%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(60% 60% at 55% 50%, #000 20%, transparent 75%);
+    opacity: 0.5;
+  }
+  .hero-art-orbits {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--brand-primary);
+    opacity: 0.45;
+  }
+  .hero-art-plinth {
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 9%;
+    height: 14%;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, color-mix(in oklab, var(--brand-ink) 28%, transparent), transparent 70%);
+    filter: blur(14px);
+  }
+
+  /* ── Editorial voice band (home) — one real quote given a full dark
+     moment: oversized opening mark, display-scale quote, mono attribution. */
+  .voice-mark {
+    font-family: var(--brand-heading-font);
+    font-size: clamp(6rem, 14vw, 11rem);
+    line-height: 0.6;
+    font-weight: 500;
+    color: var(--brand-accent);
+    opacity: 0.85;
+  }
+
+  /* ── Hairline stat row — metrics as a ruled ledger, not a card grid. */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--brand-border);
+  }
+  @media (min-width: 768px) {
+    .stat-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .stat-row > * {
+    padding: 2rem 1.5rem 2rem 0;
+    border-bottom: 1px solid var(--brand-border);
+  }
+  @media (min-width: 768px) {
+    .stat-row > *:not(:nth-child(3n + 1)) {
+      padding-left: 2rem;
+      border-left: 1px solid var(--brand-border);
+    }
+  }
+
+  /* ── 404: oversized outlined numeral — a quiet typographic object. */
+  .numeral-outline {
+    font-family: var(--brand-heading-font);
+    font-weight: 500;
+    font-size: clamp(8rem, 26vw, 22rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in oklab, var(--brand-paper) 28%, transparent);
+    user-select: none;
   }
 }
 
@@ -855,5 +1309,155 @@
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Print — for the quote-oriented pages (3D modelling service, fact sheet,
+   comparisons, security, legal). Ink on white, no chrome, no motion, no
+   live demos; dark bands flatten to ruled sections; external link targets
+   are printed after their text in prose. Unlayered so it beats utilities.
+   ───────────────────────────────────────────────────────────────────── */
+@media print {
+  /* Same specificity as the dark-scheme block (and later in source) so a
+     dark-mode OS still prints ink on white. */
+  :root,
+  :root:not([data-theme="light"]),
+  :root[data-theme="dark"] {
+    --brand-primary: #007050;
+    --brand-primary-deep: #004D37;
+    --brand-primary-contrast: #FFFFFF;
+    --brand-bg: #FFFFFF;
+    --brand-paper: #FFFFFF;
+    --brand-text: #021F17;
+    --brand-text-muted: #4B655A;
+    --brand-muted-dark: #4B655A;
+    --brand-surface: #FFFFFF;
+    --brand-border: rgba(2, 31, 23, 0.25);
+    --brand-primary-soft: #004D37;
+    --brand-danger: #B91C1C;
+    --shadow-rest: none;
+    --shadow-hover: none;
+  }
+  html {
+    color-scheme: light;
+  }
+  @page {
+    margin: 16mm 14mm;
+  }
+  body {
+    background: #fff !important;
+    color: #021F17 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  header.site-header,
+  footer,
+  .skip-link,
+  .scroll-progress,
+  .scroll-top,
+  .section-index,
+  .section-index-bar,
+  .mobile-cta-bar,
+  .aurora::before,
+  .grain::after,
+  .hero-art,
+  .btn,
+  nav[aria-label='Breadcrumb'],
+  [data-print='hide'] {
+    display: none !important;
+  }
+  main {
+    min-height: 0 !important;
+  }
+  .section,
+  .container-x.section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  /* Dark showroom bands become ruled sections. */
+  .on-dark,
+  .bg-ink,
+  [class*='bg-ink'] {
+    background: #fff !important;
+    color: #021F17 !important;
+    border-top: 1px solid rgba(2, 31, 23, 0.25);
+  }
+  .on-dark *,
+  .bg-ink * {
+    color: #021F17 !important;
+  }
+  .on-dark .eyebrow,
+  .eyebrow {
+    color: #004D37 !important;
+  }
+  .glass-card,
+  .card {
+    background: #fff !important;
+    border: 1px solid rgba(2, 31, 23, 0.25) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    break-inside: avoid;
+  }
+  .card::before {
+    display: none !important;
+  }
+  .text-accent {
+    color: #004D37 !important;
+  }
+  /* Type scale tightened for paper. */
+  .tt-display {
+    font-size: 26pt !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .tt-1 {
+    font-size: 20pt !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .tt-2 {
+    font-size: 15pt !important;
+    margin-bottom: 0.4rem !important;
+  }
+  .lead {
+    font-size: 12pt !important;
+    color: #021F17 !important;
+  }
+  h1, h2, h3, h4 {
+    break-after: avoid;
+  }
+  ul, ol, dl, figure, details {
+    break-inside: avoid;
+  }
+  /* Live demos: keep only the seamless poster frame. */
+  model-viewer,
+  .demo-chrome {
+    display: none !important;
+  }
+  /* Show where links go, prose only (no chrome buttons). */
+  .legal-prose a[href^='http']::after,
+  .print-links a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    color: #4B655A;
+  }
+  a {
+    color: #004D37 !important;
+    text-decoration: underline;
+  }
+  details > summary {
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  details > summary svg {
+    display: none;
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

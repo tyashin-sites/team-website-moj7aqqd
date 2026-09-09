@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Sofa, ChefHat, DoorOpen, Warehouse, Wrench, Layers, ArrowRight, type LucideIcon } from 'lucide-react';
 import { industriesContent, homeContent } from '@/lib/content';
 import { INDUSTRIES, type Industry } from '@/lib/industries';
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: 'Industries — 3D & AR Commerce for Every Sector',
     description:
       'Furniture, modular kitchens, doors & windows, prefab structures, machinery and laminates — immersive commerce per sector.',
-    images: ['/og/default.png'],
+    images: ['/og/industries.png'],
   },
 };
 
@@ -112,10 +113,29 @@ export default function IndustriesPage() {
                 <Link
                   key={ind.slug}
                   href={`/industries/${ind.slug}`}
-                  className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui"
+                  className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui overflow-hidden"
                 >
-                  <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
-                    <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
+                  {/* Still render of the industry's own demo model (the
+                      seamless poster the detail page ships) on a soft
+                      brand-light field — no fabricated product imagery;
+                      industries without a poster keep the icon only. */}
+                  <span className="relative flex items-end justify-between mb-6 min-h-12">
+                    <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
+                      <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
+                    </span>
+                    {ind.demoPoster && (
+                      <span className="relative w-28 h-28 -mr-4 -mt-6 shrink-0" aria-hidden>
+                        <span className="absolute inset-0 rounded-full bg-primary/10 blur-2xl group-hover:bg-primary/15 transition-colors" />
+                        <Image
+                          src={ind.demoPoster}
+                          alt=""
+                          width={112}
+                          height={112}
+                          className="relative w-full h-full object-contain drop-shadow-md transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03]"
+                          unoptimized
+                        />
+                      </span>
+                    )}
                   </span>
                   <h3 className="tt-2 text-2xl mb-2 group-hover:text-primary transition-colors">{ind.gridName}</h3>
                   <p className="text-foreground/70 leading-relaxed flex-1">{ind.pain}</p>

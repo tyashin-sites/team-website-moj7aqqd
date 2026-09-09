@@ -73,7 +73,7 @@ export function HeroObject({
   // experience so the SDK governor keeps the hero live-context to ~1 on mobile.
   if (experiencePreviewId) {
     return (
-      <div className="relative">
+      <div className="relative" data-print="hide">
         <div className="relative aspect-square max-h-[560px] w-full rounded-lg overflow-hidden border border-foreground/10 bg-tint">
           <ThridifyExperience
             previewId={experiencePreviewId}

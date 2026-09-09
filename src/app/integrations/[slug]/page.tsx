@@ -37,6 +37,8 @@ import { getPillar, type PillarId } from "@/lib/features";
 import type { DemoMode } from "@/components/signature/CapabilityDemo";
 import { CapabilityDemo } from "@/components/signature/CapabilityDemo";
 import { EXP } from "@/lib/thridify";
+import { SectionIndex } from "@/components/SectionIndex";
+import { HeroArt } from "@/components/HeroArt";
 
 // Pillar icons for the rich capability groups (Shopify).
 const PILLAR_ICON: Record<PillarId, LucideIcon> = {
@@ -94,7 +96,9 @@ export async function generateMetadata({
   const it = getIntegration(slug);
   if (!it) return {};
   const canonical = `/integrations/${it.slug}`;
-  const og = "/og/default.png";
+  // Per-integration OG (scripts/generate-og.mjs) — typographic brand artwork,
+  // no third-party logos embedded.
+  const og = `/og/integration-${it.slug}.png`;
   return {
     title: it.seoTitle,
     description: it.seoDescription,
@@ -237,7 +241,8 @@ export default async function IntegrationPage({
               </Link>
             </div>
           </div>
-          <div>
+          <div className="relative">
+            <HeroArt />
             <CapabilityDemo
               mode={it.heroDemo}
               aspect="aspect-[4/3]"
@@ -249,8 +254,24 @@ export default async function IntegrationPage({
         </div>
       </section>
 
+      <SectionIndex
+        items={[
+          { id: "how-it-integrates", label: "How it integrates" },
+          { id: "what-you-get", label: "What you get" },
+          ...(it.rich
+            ? [
+                { id: "journey", label: "Merchant journey" },
+                { id: "capabilities", label: "Capabilities" },
+              ]
+            : []),
+          { id: "impact", label: "The impact" },
+          { id: "faq", label: "FAQ" },
+          { id: "related", label: "More integrations" },
+        ]}
+      />
+
       {/* HOW THRIDIFY INTEGRATES WITH <PLATFORM> — the real mechanism */}
-      <section className="section pt-0">
+      <section id="how-it-integrates" className="section pt-0 scroll-mt-20">
         <div className="container-x">
           <div className="max-w-3xl mb-10">
             <p className="eyebrow">How it integrates</p>
@@ -278,7 +299,7 @@ export default async function IntegrationPage({
       </section>
 
       {/* WHAT YOU GET — capabilities framed for this platform's merchants */}
-      <section className="section pt-0">
+      <section id="what-you-get" className="section pt-0 scroll-mt-20">
         <div className="container-x">
           <div className="max-w-3xl mb-12">
             <p className="eyebrow">What you get</p>
@@ -319,7 +340,7 @@ export default async function IntegrationPage({
       {/* RICH: THE MERCHANT JOURNEY (Shopify) — install → publish → shoppers
           configure & view in AR → measure via Web Pixel → GDPR-ready. */}
       {it.rich && (
-        <section className="section pt-0">
+        <section id="journey" className="section pt-0 scroll-mt-20">
           <div className="container-x">
             <div className="max-w-3xl mb-10">
               <p className="eyebrow">The merchant journey</p>
@@ -348,7 +369,7 @@ export default async function IntegrationPage({
 
       {/* RICH: REAL CAPABILITIES grouped by canonical pillar (Shopify). */}
       {it.rich && (
-        <section className="section pt-0">
+        <section id="capabilities" className="section pt-0 scroll-mt-20">
           <div className="container-x">
             <div className="max-w-3xl mb-12">
               <p className="eyebrow">The real capabilities</p>
@@ -408,7 +429,7 @@ export default async function IntegrationPage({
       )}
 
       {/* OUTCOMES — canonical metric set ONLY (§7.2), platform-framed */}
-      <section className="section on-dark bg-ink text-paper">
+      <section id="impact" className="section on-dark bg-ink text-paper scroll-mt-20">
         <div className="container-x">
           <div className="max-w-3xl mb-12">
             <p className="eyebrow">The impact</p>
@@ -436,7 +457,7 @@ export default async function IntegrationPage({
       </section>
 
       {/* FAQ — real questions merchants Google (FAQPage schema above) */}
-      <section className="section">
+      <section id="faq" className="section scroll-mt-20">
         <div className="container-x grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-4">
             <p className="eyebrow">FAQ</p>
@@ -465,7 +486,7 @@ export default async function IntegrationPage({
       </section>
 
       {/* RELATED integrations + industries + PLATFORM (no ghost links, §3d) */}
-      <section className="section pt-0">
+      <section id="related" className="section pt-0 scroll-mt-20">
         <div className="container-x">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
             <h2 className="tt-2">Explore more integrations</h2>

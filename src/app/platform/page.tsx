@@ -14,6 +14,7 @@ import { platformContent } from "@/lib/content";
 import { ctaLabel } from "@/lib/cta";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SectionIndex, type SectionIndexItem } from "@/components/SectionIndex";
 import {
   ProductVisual,
   type ProductVisualVariant,
@@ -70,6 +71,18 @@ const experienceModules = c.products.items.filter((p) =>
 );
 const modelling = c.products.items.find((p) => p.id === "modelling");
 const analytics = c.products.items.find((p) => p.id === "analytics");
+
+// Sticky section index (wayfinding) — one entry per anchored section, in
+// page order. Labels come from the same data the sections render from.
+const INDEX: SectionIndexItem[] = [
+  { id: "overview", label: "Overview" },
+  { id: "studio", label: getPillar("studio").label },
+  ...experienceModules.map((p) => ({ id: p.id, label: p.name })),
+  ...(modelling ? [{ id: "modelling", label: modelling.name }] : []),
+  { id: "distribute", label: getPillar("distribute").label },
+  ...(analytics ? [{ id: "analytics", label: getPillar("measure").label }] : []),
+  { id: "operate", label: getPillar("operate").label },
+];
 
 // Small reusable pillar header (icon chip + benefit headline + tagline).
 function PillarHeader({
@@ -164,6 +177,7 @@ export default function PlatformPage() {
     <>
       {/* WebSite entity — Home + /platform only, on top of sitewide EntitySchema. */}
       <WebsiteSchema />
+      <SectionIndex items={INDEX} />
 
       {/* HERO — headline 6 words (≤12); subline 14 words (≤24). */}
       <section className="relative aurora overflow-hidden">
@@ -203,7 +217,7 @@ export default function PlatformPage() {
 
       {/* FIVE PILLARS OVERVIEW — the story spine. Each card jumps to the full
           capability reference on /features. */}
-      <section className="section bg-surface/50 border-y border-foreground/5">
+      <section id="overview" className="section scroll-mt-20 bg-surface/50 border-y border-foreground/5">
         <div className="container-x">
           <SectionHeading
             eyebrow="The platform in five pillars"

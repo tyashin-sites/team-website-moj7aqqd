@@ -276,7 +276,7 @@ export default async function BlogPage({
                   name="email"
                   required
                   placeholder="you@brand.com"
-                  className="flex-1 px-5 py-4 rounded-full bg-background/10 border border-background/20 text-background placeholder:text-background/50 focus:outline-none focus:border-background/60"
+                  className="flex-1 px-5 py-4 rounded-full bg-paper/10 border border-paper/20 text-paper placeholder:text-paper/50 focus:outline-none focus:border-paper/60"
                 />
                 <button
                   type="submit"

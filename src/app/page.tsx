@@ -58,6 +58,10 @@ const INDUSTRY_ICON: Record<Industry['icon'], LucideIcon> = {
 // Home content — typed, single-sourced from content/site.json (src/lib/content.ts).
 const home = homeContent;
 
+// The first real testimonial carries the dark "voice" band; the rest stay
+// as ProofCards. Order is content order — nothing is re-ranked here.
+const [leadQuote, ...otherQuotes] = home.proof.testimonials;
+
 export default function HomePage() {
   return (
     <>
@@ -216,30 +220,68 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. PROOF — the 6 canonical impact metrics + REAL customer quotes
-          (verbatim from production thridify.com, user-confirmed 2026-07-24)
-          + real client logos (§7.6, No-Faking). */}
+      {/* 8a. VOICE — the lead REAL customer quote given a full dark-band
+          moment (luxury pass, editorial restraint): one voice at display
+          scale instead of three equal cards. Same verbatim quote, same
+          company-level attribution (No-Faking); layout only. */}
+      {leadQuote && (
+        <section className="on-dark bg-ink text-paper relative overflow-hidden grain">
+          <div
+            data-parallax="0.12"
+            className="absolute -left-40 -top-40 w-[40rem] h-[40rem] rounded-full bg-primary/15 blur-3xl pointer-events-none"
+            aria-hidden
+          />
+          <div
+            data-parallax="0.08"
+            className="absolute -right-32 -bottom-40 w-[32rem] h-[32rem] rounded-full bg-accent/10 blur-3xl pointer-events-none"
+            aria-hidden
+          />
+          <div className="container-x section relative">
+            <figure className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+              <div className="lg:col-span-2 flex lg:justify-end">
+                <span data-fx="rise" className="voice-mark" aria-hidden>
+                  &ldquo;
+                </span>
+              </div>
+              <div className="lg:col-span-9">
+                <blockquote data-fx="rise" className="tt-1 text-paper max-w-4xl m-0">
+                  {leadQuote.quote}
+                </blockquote>
+                <figcaption data-fx="rise" className="mt-10 flex items-center gap-4">
+                  <span className="hairline w-16" aria-hidden />
+                  <span className="tt-mono text-primary-soft">{leadQuote.company}</span>
+                </figcaption>
+              </div>
+            </figure>
+          </div>
+        </section>
+      )}
+
+      {/* 8b. PROOF — the 6 canonical impact metrics as a ruled ledger (not a
+          card grid), the remaining REAL quotes (verbatim from production
+          thridify.com, user-confirmed 2026-07-24) + real client logos
+          (§7.6, No-Faking). */}
       <section className="section">
         <div className="container-x">
           <div className="max-w-2xl mb-14">
             <SectionHeading eyebrow={home.proof.eyebrow} title={home.proof.title} />
           </div>
-          <dl className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <dl className="stat-row">
             {home.proof.metrics.map((m, i) => (
-              <Reveal key={m.label} delay={i * 0.08} className="card p-8">
+              <Reveal key={m.label} delay={i * 0.06}>
                 <dd
-                  className={`font-mono tabular-nums text-4xl md:text-5xl font-medium ${
+                  className={`font-mono tabular-nums text-4xl md:text-5xl font-normal tracking-tight ${
                     i === 1 ? 'text-primary' : 'text-foreground'
                   }`}
                 >
                   {m.value}
                 </dd>
-                <dt className="mt-3 text-foreground/65">{m.label}</dt>
+                <dt className="mt-3 text-[13px] tracking-[0.08em] uppercase text-foreground/60">{m.label}</dt>
               </Reveal>
             ))}
           </dl>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {home.proof.testimonials.map((t, i) => (
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {otherQuotes.map((t, i) => (
               <Reveal key={t.company} delay={i * 0.08}>
                 <ProofCard quote={t.quote} company={t.company} />
               </Reveal>

@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/integrations`,
     type: 'website',
     siteName: 'Thridify',
-    images: ['/og/default.png'],
+    images: ['/og/integrations.png'],
   },
-  twitter: { card: 'summary_large_image', title: 'Integrations — 3D & AR for Every Store', images: ['/og/default.png'] },
+  twitter: { card: 'summary_large_image', title: 'Integrations — 3D & AR for Every Store', images: ['/og/integrations.png'] },
 };
 
 const INTEGRATION_ICON: Record<Integration['icon'], LucideIcon> = {
