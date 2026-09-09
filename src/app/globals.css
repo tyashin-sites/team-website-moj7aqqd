@@ -292,9 +292,11 @@
 
   /* Cursor spotlight (PointerFX writes --mx/--my + .is-spotlit): a soft
      radial light follows the pointer across cards — teal-cast on light
-     surfaces, paper-cast on dark glass. Pure lighting; pointer-events off. */
+     surfaces, paper-cast on dark glass. Pure lighting; pointer-events off.
+     `.spot` opts any other surface in (e.g. VerticalCard). */
   .card::after,
-  .glass-card::after {
+  .glass-card::after,
+  .spot::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -303,20 +305,21 @@
     opacity: 0;
     transition: opacity var(--dur-ui) var(--ease-brand);
     background: radial-gradient(
-      240px circle at var(--mx, 50%) var(--my, 50%),
-      color-mix(in oklab, var(--brand-primary) 7%, transparent),
-      transparent 70%
+      280px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--brand-primary) 13%, transparent),
+      transparent 72%
     );
   }
   .glass-card::after {
     background: radial-gradient(
-      240px circle at var(--mx, 50%) var(--my, 50%),
-      color-mix(in oklab, var(--brand-bg) 9%, transparent),
-      transparent 70%
+      280px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--brand-bg) 14%, transparent),
+      transparent 72%
     );
   }
   .card.is-spotlit::after,
-  .glass-card.is-spotlit::after {
+  .glass-card.is-spotlit::after,
+  .spot.is-spotlit::after {
     opacity: 1;
   }
 

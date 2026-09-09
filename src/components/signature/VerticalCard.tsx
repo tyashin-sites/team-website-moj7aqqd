@@ -34,7 +34,7 @@ export function VerticalCard({
   return (
     <Link
       href={href}
-      className={`group relative block rounded-lg border border-foreground/10 bg-surface/40 p-7 transition-ui hover:bg-surface hover:-translate-y-1 hover:shadow-lg hover:border-primary/20 overflow-hidden ${className}`}
+      className={`spot group relative block rounded-lg border border-foreground/10 bg-surface/40 p-7 transition-ui hover:bg-surface hover:-translate-y-1 hover:shadow-lg hover:border-primary/20 overflow-hidden ${className}`}
     >
       {/* decorative blob */}
       <div

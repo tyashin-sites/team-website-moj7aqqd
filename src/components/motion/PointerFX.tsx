@@ -24,7 +24,8 @@
 import { useEffect } from 'react';
 import { gsap, reduced } from '@/components/motion/gsap';
 
-const MAGNET_MAX = 3; // px — a lean, not a lunge
+const MAGNET_MAX = 5; // px — a lean, not a lunge
+const SPOT_SELECTOR = '.card, .glass-card, .spot';
 
 export function PointerFX() {
   useEffect(() => {
@@ -67,7 +68,7 @@ export function PointerFX() {
       const target = e.target as Element | null;
 
       // 1. Spotlight
-      const card = target?.closest<HTMLElement>('.card, .glass-card') ?? null;
+      const card = target?.closest<HTMLElement>(SPOT_SELECTOR) ?? null;
       if (card !== spotCard) {
         spotCard?.classList.remove('is-spotlit');
         card?.classList.add('is-spotlit');
@@ -102,7 +103,7 @@ export function PointerFX() {
 
     const onOut = (e: PointerEvent) => {
       const to = e.relatedTarget as Element | null;
-      if (spotCard && !to?.closest('.card, .glass-card')) {
+      if (spotCard && !to?.closest(SPOT_SELECTOR)) {
         spotCard.classList.remove('is-spotlit');
         spotCard = null;
       }
