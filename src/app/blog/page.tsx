@@ -261,13 +261,13 @@ export default async function BlogPage({
       {/* Newsletter */}
       <section className="section pt-0">
         <div className="container-x">
-          <div className="relative overflow-hidden rounded-lg bg-foreground text-background p-10 md:p-16 aurora grain">
+          <div className="on-dark relative overflow-hidden rounded-lg bg-ink text-paper border border-paper/10 p-10 md:p-16 aurora grain">
             <div className="relative z-10 max-w-2xl">
-              <p className="eyebrow !text-background/60">The Dispatch</p>
-              <h2 className="tt-2 mt-4">
+              <p className="eyebrow">The Dispatch</p>
+              <h2 className="tt-2 mt-4 text-paper">
                 One sharp read on 3D & AR commerce, every other Thursday.
               </h2>
-              <p className="mt-5 text-background/70 text-lg leading-relaxed">
+              <p className="mt-5 text-muted-dark text-lg leading-relaxed">
                 Join operators and product teams from leading brands. No fluff, unsubscribe anytime.
               </p>
               <form data-aapas-newsletter className="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg">
@@ -280,7 +280,7 @@ export default async function BlogPage({
                 />
                 <button
                   type="submit"
-                  className="btn bg-background text-foreground hover:bg-background/90"
+                  className="btn bg-paper text-ink hover:bg-paper/90"
                 >
                   Subscribe
                 </button>

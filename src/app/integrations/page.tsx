@@ -236,11 +236,11 @@ export default function IntegrationsIndexPage() {
       {/* CTA */}
       <section className="section">
         <div className="container-x">
-          <div className="relative overflow-hidden rounded-lg bg-foreground text-background p-10 md:p-16">
+          <div className="on-dark relative overflow-hidden rounded-lg bg-ink text-paper border border-paper/10 p-10 md:p-16">
             <div className="absolute inset-0 aurora opacity-40 pointer-events-none" aria-hidden />
             <div className="relative max-w-3xl">
-              <h2 className="tt-1">Not sure which fits your stack?</h2>
-              <p className="mt-5 text-lg text-background/75 leading-relaxed">
+              <h2 className="tt-1 text-paper">Not sure which fits your stack?</h2>
+              <p className="mt-5 text-lg text-muted-dark leading-relaxed">
                 Book a demo and we will show Thridify running on your platform — or wire it into a custom build
                 with the SDK and API.
               </p>
@@ -249,13 +249,13 @@ export default function IntegrationsIndexPage() {
                   href="https://calendly.com/hello-thridify/30min"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-background text-foreground font-semibold hover:bg-primary hover:text-primary-contrast transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-paper text-ink font-semibold hover:bg-primary hover:text-primary-contrast transition-colors"
                 >
                   Book a Demo <ArrowRight className="w-4 h-4" aria-hidden />
                 </a>
                 <Link
                   href="/integrations/custom-integration"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-background/30 text-background font-semibold hover:bg-background/10 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-paper/30 text-paper font-semibold hover:bg-paper/10 transition-colors"
                 >
                   Custom integration
                 </Link>

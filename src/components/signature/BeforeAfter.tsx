@@ -54,7 +54,7 @@ export function BeforeAfter() {
           {PAINS.map((t) => (
             <li
               key={t}
-              className="text-xs md:text-sm font-medium px-3 py-1.5 rounded-full bg-paper text-foreground/70 border border-foreground/15"
+              className="text-xs md:text-sm font-medium px-3 py-1.5 rounded-full bg-surface text-foreground/70 border border-foreground/15"
             >
               {t}
             </li>
