@@ -78,14 +78,15 @@ const PAGES = [
   { file: 'services-3d-modelling.png', kicker: '3D modelling service', title: 'Photoreal 3D product models, built for you.', poster: 'sheen-chair' },
   { file: 'industries.png', kicker: 'Industries', title: 'Built for products that vary by size, finish and material.' },
   { file: 'integrations.png', kicker: 'Integrations', title: '3D & AR for every store. One-click or embed anywhere.' },
-  // Per-industry (DESIGN-SPEC §8) — real per-industry demo renders where
-  // they exist (ASSET-DEBT #19; prefab has none → artwork only).
-  { file: 'industry-furniture.png', kicker: 'Furniture & home decor', title: '3D furniture configurator & AR viewer.', poster: 'furniture-vase' },
-  { file: 'industry-modular-kitchens.png', kicker: 'Modular kitchens', title: 'Modular kitchen 3D design tool.', poster: 'kitchen-teacup' },
-  { file: 'industry-doors-and-windows.png', kicker: 'Doors & windows', title: 'Door & window configurator in 3D.', poster: 'doors-lantern' },
+  // Per-industry OG (DESIGN-SPEC §8) — the REAL Thridify demo product each
+  // page shows live (Industry.hubArt stills, public/models/hub-*-still.webp);
+  // prefab's live product is an enclosed interior with no object render.
+  { file: 'industry-furniture.png', kicker: 'Furniture & home decor', title: '3D furniture configurator & AR viewer.', poster: 'hub-furniture-still' },
+  { file: 'industry-modular-kitchens.png', kicker: 'Modular kitchens', title: 'Modular kitchen 3D design tool.', poster: 'hub-kitchen-still' },
+  { file: 'industry-doors-and-windows.png', kicker: 'Doors & windows', title: 'Door & window configurator in 3D.', poster: 'hub-door-still' },
   { file: 'industry-prefab-structures.png', kicker: 'Prefab & modular', title: 'Prefab 3D configurator & building visualizer.' },
-  { file: 'industry-industrial-machinery.png', kicker: 'Industrial machinery', title: '3D product viewer for machinery.', poster: 'machinery-camera' },
-  { file: 'industry-laminates-surfaces.png', kicker: 'Laminates & surfaces', title: 'Laminate visualizer & surface configurator.', poster: 'surfaces-material' },
+  { file: 'industry-industrial-machinery.png', kicker: 'Industrial machinery', title: '3D product viewer for machinery.', poster: 'hub-robot-still' },
+  { file: 'industry-laminates-surfaces.png', kicker: 'Laminates & surfaces', title: 'Laminate visualizer & surface configurator.', poster: 'hub-laminate-still' },
   // Per-integration — typographic (no third-party logos are embedded).
   ...[
     ['shopify', 'Shopify', 'Native app'],
@@ -111,7 +112,9 @@ const PAGES = [
 const posterCache = new Map();
 async function posterDataUri(name) {
   if (posterCache.has(name)) return posterCache.get(name);
-  const png = await sharp(`${MODELS}${name}-poster.webp`).resize({ height: 520, fit: 'inside' }).png().toBuffer();
+  // `name` is either a demo-model poster (<name>-poster.webp) or a hub still (<name>.webp).
+  const file = name.endsWith('-still') ? `${MODELS}${name}.webp` : `${MODELS}${name}-poster.webp`;
+  const png = await sharp(file).resize({ height: 520, fit: 'inside' }).png().toBuffer();
   const uri = `data:image/png;base64,${png.toString('base64')}`;
   posterCache.set(name, uri);
   return uri;

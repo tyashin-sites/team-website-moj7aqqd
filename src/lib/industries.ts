@@ -69,6 +69,15 @@ export type Industry = {
       docs/ASSET-DEBT.md). Real client models replace these later (#16). */
   demoModel?: string;
   demoPoster?: string;
+  /** Hub-card + OG artwork: a transparent render of the REAL Thridify
+      demo-store product this industry's live hero shows (INDUSTRY_EXPERIENCE
+      in src/lib/thridify.ts), rendered from the product's own GLB with
+      <model-viewer> — `still` is one frame, `turn` a slow animated WebP
+      (turntable or a limited sway where the object only reads from one
+      side). Served with a reduced-motion <picture> fallback to the still.
+      Absent when the live product has no usable object render (prefab's
+      "realistic room" is an enclosed interior — docs/ASSET-DEBT.md #19). */
+  hubArt?: { still: string; turn: string; alt: string };
   primaryKeyword: string;
   keywords: string[];
   seoTitle: string;
@@ -97,6 +106,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'ar',
     demoModel: '/models/furniture-vase.glb',
     demoPoster: '/models/furniture-vase-poster.webp',
+    hubArt: {
+      still: '/models/hub-furniture-still.webp',
+      turn: '/models/hub-furniture-turn.webp',
+      alt: 'Store Modern Sofa — the live Thridify demo product on this page, rendered in 3D',
+    },
     primaryKeyword: '3D furniture configurator',
     keywords: [
       '3D furniture configurator',
@@ -167,6 +181,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'configurator',
     demoModel: '/models/kitchen-teacup.glb',
     demoPoster: '/models/kitchen-teacup-poster.webp',
+    hubArt: {
+      still: '/models/hub-kitchen-still.webp',
+      turn: '/models/hub-kitchen-turn.webp',
+      alt: 'Store ModularKitchen — the live Thridify demo kitchen on this page, rendered in 3D',
+    },
     primaryKeyword: 'modular kitchen 3D design tool',
     keywords: [
       'modular kitchen 3D design tool',
@@ -237,6 +256,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'configurator',
     demoModel: '/models/doors-lantern.glb',
     demoPoster: '/models/doors-lantern-poster.webp',
+    hubArt: {
+      still: '/models/hub-door-still.webp',
+      turn: '/models/hub-door-turn.webp',
+      alt: 'DNV Door — the live Thridify demo door on this page, rendered in 3D',
+    },
     primaryKeyword: 'door & window configurator',
     keywords: [
       'door & window configurator',
@@ -375,6 +399,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'viewer',
     demoModel: '/models/machinery-camera.glb',
     demoPoster: '/models/machinery-camera-poster.webp',
+    hubArt: {
+      still: '/models/hub-robot-still.webp',
+      turn: '/models/hub-robot-turn.webp',
+      alt: 'RobotExpressive — the live Thridify automation demo on this page, rendered in 3D',
+    },
     primaryKeyword: '3D product viewer for machinery',
     keywords: [
       '3D product viewer for machinery',
@@ -445,6 +474,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'configurator',
     demoModel: '/models/surfaces-material.glb',
     demoPoster: '/models/surfaces-material-poster.webp',
+    hubArt: {
+      still: '/models/hub-laminate-still.webp',
+      turn: '/models/hub-laminate-turn.webp',
+      alt: 'Merino Marine Board — the live Thridify demo laminate on this page, rendered in 3D',
+    },
     primaryKeyword: 'laminate visualizer',
     keywords: [
       'laminate visualizer',

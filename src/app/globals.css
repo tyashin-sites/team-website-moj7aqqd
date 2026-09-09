@@ -59,8 +59,11 @@
 /* ─────────────────────────────────────────────────────────────────────────
    Dark scheme — first-class theme, driven by the OS preference (no toggle).
    Only the TOKENS change; every component reads through them. The rules:
-     • the ink sections stay canonical #021F17 — the page ground drops BELOW
-       ink (#050F0C) so the showroom bands still read as lit panels;
+     • the page ground IS canonical ink #021F17 — the brand's own dark, no
+       foreign black — and the showroom panels (hero, metric bar, story,
+       CTA bands, footer) lift toward teal instead: --brand-ink becomes
+       #0B2D23 (ink + 8% primary-soft), so surfaces read as lit from within
+       the palette, not as a page dropping below it;
      • teal fills brighten to #22A97E (6.5:1 on the dark ground as text) and
        carry INK text instead of white (5.8:1) — white on any teal that passes
        as text on dark can't reach AA, so the button polarity flips;
@@ -69,17 +72,20 @@
      • selector specificity (:root:not([data-theme=light]) = 0,2,0) beats the
        plain :root palette re-declared inline in layout.tsx regardless of
        source order, and an explicit data-theme wins in both directions.
-   Contrast floors (all ≥ AA): text 17.3:1 · muted 7.8:1 · primary 6.5:1 ·
-   ink-on-primary 5.8:1 · ink-on-primary-deep 4.9:1 · danger 7.0:1.
+   Contrast floors (all ≥ AA) on the ground: text 17.3:1 · muted 7.8:1 ·
+   primary 6.5:1 · ink-on-primary 5.8:1 · ink-on-primary-deep 4.9:1 ·
+   danger 7.0:1. On the raised panels: paper 13.6:1 · primary-soft 7.9:1 ·
+   muted-dark 7.6:1 · accent 9.6:1 · primary 5.0:1.
    ───────────────────────────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --brand-primary: #22A97E;
     --brand-primary-deep: #1A9A72;
     --brand-primary-contrast: #021F17;
-    --brand-bg: #050F0C;
+    --brand-bg: #021F17;
+    --brand-ink: #0B2D23;
     --brand-paper: #F1F6F3;
-    --brand-surface: #0A1A15;
+    --brand-surface: #0B2D23;
     --brand-text: #ECF3EF;
     --brand-text-muted: #8FAA9E;
     --brand-border: rgba(236, 243, 239, 0.1);
@@ -97,9 +103,10 @@
   --brand-primary: #22A97E;
   --brand-primary-deep: #1A9A72;
   --brand-primary-contrast: #021F17;
-  --brand-bg: #050F0C;
+  --brand-bg: #021F17;
+  --brand-ink: #0B2D23;
   --brand-paper: #F1F6F3;
-  --brand-surface: #0A1A15;
+  --brand-surface: #0B2D23;
   --brand-text: #ECF3EF;
   --brand-text-muted: #8FAA9E;
   --brand-border: rgba(236, 243, 239, 0.1);
