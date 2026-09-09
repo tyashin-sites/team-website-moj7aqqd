@@ -111,7 +111,10 @@ Never name custom classes with Tailwind-utility-colliding names (`h-1`,
 - Pipeline strip: SVG path draw (stroke-dashoffset) tied to scroll progress.
 - `prefers-reduced-motion: reduce` → all transforms off, opacity-only, no
   marquee autoplay, no counters (show final values).
-- NO parallax, NO scroll-jacking, NO cursor-following gimmicks.
+- NO parallax, NO scroll-jacking, NO cursor-following gimmicks. (The
+  ScrollStory pin is scroll-SCRUBBED, not scroll-jacked: native scrolling
+  stays native, the reader owns the pace, and it is off entirely under
+  reduced motion — §7.4.)
 
 ## 6. Iconography & imagery
 
@@ -238,6 +241,17 @@ MUST be, not an infographic, abstract SVG, or screenshot.
 4. **PipelineStrip** — dark section; one continuous animated SVG line:
    Configure → Live price → Instant quote → BOM to factory. Each node a
    glass card with icon + ≤10 words.
+   **ScrollStory** (homepage, feature-flagged in
+   `components/signature/ScrollStory`) is the signature edition of the same
+   four beats: the flagship product stays PINNED while native scroll scrubs
+   the camera orbit, a finish swap, the live price, an assembling quote and
+   BOM part callouts anchored on the model. Desktop = GSAP pin + scrub;
+   mobile/tablet = no pin (sticky stage, one camera move per beat);
+   reduced motion = stacked content, poster only. Transform/opacity only,
+   brand ease, palette unchanged. The product is driven through a
+   `SceneBackend` seam (Google `<model-viewer>` today; `<thridify-view>`
+   exposes no camera API yet — see backend.ts). The flat PipelineStrip is
+   the fallback when the flag is off and remains on /gallery.
 5. **VerticalCard** — icon chip, vertical name, 1-line pain in their
    vocabulary, one metric, "Explore →" slide-in on hover.
 6. **ProofCard** — REAL quotes only (No-Faking rule), company-level

@@ -22,6 +22,7 @@ const TRIO_EXPERIENCE: Record<string, string> = {
 import { MetricBar } from '@/components/signature/MetricBar';
 import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { PipelineStrip } from '@/components/signature/PipelineStrip';
+import { ScrollStory, SCROLL_STORY_ENABLED } from '@/components/signature/ScrollStory';
 import { VerticalCard } from '@/components/signature/VerticalCard';
 import { ProofCard } from '@/components/signature/ProofCard';
 import { CTABand } from '@/components/signature/CTABand';
@@ -151,8 +152,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. PIPELINE STRIP — dark (§7.4). */}
-      <PipelineStrip />
+      {/* 5. PIPELINE — dark (§7.4). The signature scroll-driven 3D story
+          (pinned product, four scrubbed beats) when enabled; the flat
+          PipelineStrip otherwise. Feature flag lives in ScrollStory/index. */}
+      {SCROLL_STORY_ENABLED ? <ScrollStory /> : <PipelineStrip />}
 
       {/* 6. VERTICALS GRID — the 6 canonical industries (§7.5/§8). EACH card
           links to its own /industries/<slug> SEO page. No per-vertical

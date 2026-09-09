@@ -541,6 +541,196 @@
     color: var(--brand-primary-contrast);
   }
 
+  /* ── ScrollStory — the signature scroll-driven 3D story
+     (components/signature/ScrollStory). Base rules = the stacked rendering
+     (mobile + reduced motion): sticky stage, panels scrolling beneath it.
+     The pinned desktop rendering is layered on under the same media query
+     gsap.matchMedia uses, so CSS and choreography always agree. */
+  .story-frame {
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
+  .story-head .tt-1 {
+    margin-bottom: 1rem;
+  }
+  .story-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .story-stage-col {
+    position: sticky;
+    top: 72px; /* the sticky header's constant height */
+    align-self: start; /* a stretched grid item has no room to stick */
+    z-index: 1;
+    padding-bottom: 1.25rem;
+    /* Solid ink backing so panels scrolling under the live (transparent)
+       canvas never show through it — ink on ink, so the edge is invisible. */
+    background: var(--brand-ink);
+  }
+  .story-stage {
+    height: min(40svh, 86vw);
+    aspect-ratio: 1;
+    margin-inline: auto;
+  }
+  @media (min-width: 640px) {
+    .story-stage {
+      height: min(46svh, 520px);
+    }
+  }
+  /* Reduced motion: plain stacked content — the stage does not stick. */
+  @media (prefers-reduced-motion: reduce) {
+    .story-stage-col {
+      position: static;
+      background: none;
+    }
+  }
+  .story-panel {
+    min-height: 50svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 1.5rem;
+  }
+  .story-rail {
+    display: none;
+  }
+
+  .story-swatch {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    transition:
+      transform var(--dur-ui) var(--ease-brand),
+      border-color var(--dur-ui) var(--ease-brand);
+  }
+  .story-swatch.is-active {
+    border-color: var(--brand-primary-soft);
+    transform: scale(1.12);
+  }
+  .story-swatch.is-active::after {
+    content: '';
+    position: absolute;
+    top: -0.2rem;
+    right: -0.2rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+    background: var(--brand-primary-soft);
+  }
+
+  /* Part callouts — model-viewer hotspots. The viewer positions the element
+     in model space and fades it when facing away (--min-hotspot-opacity);
+     the story fades the whole set with data-callouts. Opacity only. */
+  .story-callout {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur-reveal) var(--ease-brand);
+  }
+  .story-stage[data-callouts='on'] .story-callout {
+    opacity: 1;
+  }
+  .story-callout-dot {
+    flex: none;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 999px;
+    background: var(--brand-primary-soft);
+    box-shadow: 0 0 0 4px rgba(111, 207, 171, 0.22);
+  }
+  .story-callout-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.4rem 0.65rem;
+    border-radius: var(--brand-radius-sm);
+    font-size: 0.75rem;
+    line-height: 1.25;
+    color: var(--brand-bg);
+  }
+
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .scroll-story {
+      height: 100svh;
+    }
+    .story-frame {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: 6.5rem;
+      padding-bottom: 2.5rem;
+    }
+    .story-grid {
+      flex: 1;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: center;
+      gap: 3rem;
+    }
+    .story-stage-col {
+      position: static;
+      grid-column: span 7 / span 7;
+      order: 2;
+      padding: 0;
+      background: none;
+    }
+    .story-copy-col {
+      grid-column: span 5 / span 5;
+      order: 1;
+    }
+    .story-stage {
+      height: min(58svh, 600px);
+    }
+    .story-rail {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+      margin-bottom: 2.75rem;
+      padding-bottom: 0.875rem;
+    }
+    .story-rail-track {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: rgba(163, 191, 181, 0.18);
+    }
+    .story-rail-fill {
+      position: absolute;
+      inset: 0;
+      background: var(--brand-primary-soft);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .story-rail-step {
+      opacity: 0.35;
+    }
+    .story-rail-step:nth-child(2) {
+      opacity: 1;
+    }
+    .story-panels {
+      position: relative;
+      min-height: 27rem;
+    }
+    .story-panel {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+      padding: 0;
+      justify-content: flex-start;
+      opacity: 0;
+    }
+    .story-panel:first-child {
+      opacity: 1;
+    }
+  }
+
 
   /* Gradient hairline divider — teal fading out both ways. */
   .hairline {
