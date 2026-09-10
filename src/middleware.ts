@@ -61,9 +61,6 @@ export function middleware(request: NextRequest) {
   if (!isProduction && PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix))) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow');
   }
-  // Temporary cutover diagnostic (remove after verification): which host the
-  // guard actually evaluated, so the live check is unambiguous.
-  response.headers.set('X-Site-Effective-Host', host);
   return response;
 }
 
