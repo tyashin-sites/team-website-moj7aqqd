@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import {
@@ -10,6 +9,8 @@ import { CANONICAL_METRICS } from '@/lib/industries';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { EXP } from '@/lib/thridify';
 import { SectionIndex } from '@/components/SectionIndex';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 const CANONICAL = '/what-is-thridify';
@@ -17,7 +18,7 @@ const CANONICAL = '/what-is-thridify';
 // FULLY STATIC — declarative, build-time content only.
 export const dynamicParams = false;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'What is Thridify? No-code 3D & AR commerce platform',
   description:
     'Thridify is a no-code 3D and AR commerce platform and 3D modelling service for furniture, kitchen, door and custom-product brands — 3D configurators, app-free AR and photoreal 3D models.',
@@ -29,21 +30,12 @@ export const metadata: Metadata = {
     '3D modelling service',
     'app-free AR viewer',
   ],
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: 'What is Thridify?',
-    description: CANONICAL_DESCRIPTION,
-    url: `${SITE_URL}${CANONICAL}`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/what-is-thridify.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'What is Thridify?',
-    images: ['/og/what-is-thridify.png'],
-  },
-};
+  path: CANONICAL,
+  image: '/og/what-is-thridify.png',
+  ogTitle: 'What is Thridify?',
+  ogDescription:
+    CANONICAL_DESCRIPTION,
+});
 
 // Declarative Q → one-line-answer blocks. Structured for machine extraction:
 // each H2 is a question, each first sentence is a complete, quotable answer.
@@ -156,8 +148,7 @@ export default function WhatIsThridifyPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[faqLd, breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">

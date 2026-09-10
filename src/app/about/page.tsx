@@ -1,29 +1,32 @@
-import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 import { aboutContent } from '@/lib/content';
 import { ctaLabel } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
 import { SectionHeading } from '@/components/SectionHeading';
 import { CTABand } from '@/components/signature/CTABand';
+import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbLd } from '@/lib/knowledge-graph';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'About Thridify — The team behind 3D & AR commerce',
   description:
     'Thridify, by Aapastech Private Limited, was founded in Delhi in 2022. Co-Founder & CEO Shikha Gupta leads 3D and AR commerce for North American retail from the Greater Toronto Area.',
-  alternates: { canonical: '/about' },
-  openGraph: {
-    title: 'About Thridify',
-    description:
-      'Great products deserve better than a flat photo — meet the team building no-code 3D and AR commerce.',
-    images: ['/og/about.png'],
-  },
-};
+  path: '/about',
+  image: '/og/about.png',
+  ogTitle: 'About Thridify',
+  ogDescription:
+    'Great products deserve better than a flat photo — meet the team building no-code 3D and AR commerce.',
+});
 
 const d = aboutContent;
 
 export default function AboutPage() {
   return (
     <>
+      {/* WebPage + BreadcrumbList for this route (addendum §3b; the WebPage
+          node is derived from the breadcrumb in graphJson). */}
+      <JsonLd nodes={[breadcrumbLd('/about', [{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])]} />
       {/* HERO — headline 8 words (≤12); subline 21 words (≤24).
           No stock/Unsplash imagery (DESIGN-SPEC §6) — brand geometry only;
           real team/office photography is tracked in ASSET-DEBT. */}

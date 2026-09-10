@@ -116,6 +116,23 @@ export async function Footer() {
             ))}
           </div>
         </div>
+
+        {/* Tyashin attribution — addendum §3f: the footer's last row, centred,
+            in the footer's own muted tokens (never Tyashin brand colours); a
+            plain follow link to tyashin.com, opened safely. */}
+        <div className="mt-8 pt-6 border-t border-paper/10 text-center">
+          <p className="text-xs text-muted-dark/80">
+            Made with <span aria-label="love">♥</span> by{' '}
+            <a
+              href="https://tyashin.com"
+              target="_blank"
+              rel="noopener"
+              className="hover:text-paper hover:underline transition-colors"
+            >
+              Tyashin
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

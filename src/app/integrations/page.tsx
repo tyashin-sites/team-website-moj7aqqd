@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   Plug,
@@ -22,26 +21,21 @@ import {
   type IntegrationGroup,
 } from '@/lib/integrations';
 import { homeContent } from '@/lib/content';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Integrations — 3D & AR for Every Store',
   description:
     'Add a 3D configurator, 360° viewer and app-free AR to Shopify, WooCommerce, WordPress, Adobe Commerce (Magento), BigCommerce, Wix, commercetools, Squarespace, PrestaShop, Drupal, Canva or any custom site — via a native plugin or a lightweight embed.',
-  alternates: { canonical: '/integrations' },
-  openGraph: {
-    title: 'Integrations — 3D & AR for Every Store',
-    description:
-      'Works with every major commerce platform — and any storefront via a lightweight embed. Native plugins for Shopify, WooCommerce and WordPress; embeds for everything else.',
-    url: `${SITE_URL}/integrations`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/integrations.png'],
-  },
-  twitter: { card: 'summary_large_image', title: 'Integrations — 3D & AR for Every Store', images: ['/og/integrations.png'] },
-};
+  path: '/integrations',
+  image: '/og/integrations.png',
+  ogDescription:
+    'Works with every major commerce platform — and any storefront via a lightweight embed. Native plugins for Shopify, WooCommerce and WordPress; embeds for everything else.',
+});
 
 const INTEGRATION_ICON: Record<Integration['icon'], LucideIcon> = {
   plugin: Plug,
@@ -113,8 +107,7 @@ export default function IntegrationsIndexPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[itemListLd, breadcrumbLd]} />
 
       {/* HERO */}
       <section className="relative overflow-hidden">

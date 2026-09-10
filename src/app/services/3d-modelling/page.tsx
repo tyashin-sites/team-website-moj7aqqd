@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   Boxes,
@@ -17,6 +16,9 @@ import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { EXP } from '@/lib/thridify';
 import { CANONICAL_METRICS } from '@/lib/industries';
 import { HeroArt } from '@/components/HeroArt';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
+import { ORG_ID } from '@/lib/schema';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
@@ -26,7 +28,7 @@ const CANONICAL = '/services/3d-modelling';
 // FULLY STATIC — build-time content only, no runtime data.
 export const dynamicParams = false;
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: '3D Product Modelling Service | glTF, GLB & USDZ',
   description:
     'Outsource 3D product modelling to Thridify. We build photoreal, AR-ready 3D models (glTF/GLB/USDZ) from your catalog — fast turnaround, no in-house 3D team required.',
@@ -39,22 +41,12 @@ export const metadata: Metadata = {
     '3D modelling for furniture',
     '3D modelling for retail',
   ],
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: '3D Product Modelling Service — Photoreal models, built for you',
-    description:
-      'Send your catalog. We model each SKU into interactive, AR-ready 3D assets (glTF/GLB/USDZ). Fast turnaround, photoreal, production-ready.',
-    url: `${SITE_URL}${CANONICAL}`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/services-3d-modelling.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: '3D Product Modelling Service | Thridify',
-    images: ['/og/services-3d-modelling.png'],
-  },
-};
+  path: CANONICAL,
+  image: '/og/services-3d-modelling.png',
+  ogTitle: '3D Product Modelling Service — Photoreal models, built for you',
+  ogDescription:
+    'Send your catalog. We model each SKU into interactive, AR-ready 3D assets (glTF/GLB/USDZ). Fast turnaround, photoreal, production-ready.',
+});
 
 const WHAT_YOU_GET: { icon: LucideIcon; title: string; body: string }[] = [
   {
@@ -157,7 +149,7 @@ export default function ThreeDModellingServicePage() {
     description:
       'Done-for-you 3D product modelling: photoreal, AR-ready models (glTF/GLB/USDZ) built from your catalog for ecommerce and retail.',
     url: `${SITE_URL}${CANONICAL}`,
-    provider: { '@type': 'Organization', name: 'Thridify', url: SITE_URL },
+    provider: { '@id': ORG_ID },
     areaServed: ['CA', 'US', 'IN', 'GB', 'EU'],
     audience: { '@type': 'BusinessAudience', name: 'Retailers, suppliers and manufacturers' },
   };
@@ -182,9 +174,7 @@ export default function ThreeDModellingServicePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[serviceLd, faqLd, breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">

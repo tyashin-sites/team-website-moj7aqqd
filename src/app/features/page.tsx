@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   LayoutPanelTop,
@@ -12,7 +11,9 @@ import {
 } from "lucide-react";
 import { PILLARS, type Pillar } from "@/lib/features";
 import { SectionIndex } from "@/components/SectionIndex";
-import { SITE_URL } from "@/lib/schema";
+import { SITE_URL, ORG_ID } from "@/lib/schema";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 
 const CALENDLY = "https://calendly.com/hello-thridify/30min";
 
@@ -98,7 +99,7 @@ const FAQS: { q: string; a: string }[] = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Features — Everything Thridify Does",
   description:
     "The full Thridify capability reference: no-code 3D publishing, an interactive 3D viewer and app-free AR, one-click plugins plus embeddable distribution for any storefront, variant-level analytics and enterprise-ready operations.",
@@ -110,22 +111,12 @@ export const metadata: Metadata = {
     "no-code 3D product publishing",
     "embeddable 3D product viewer",
   ],
-  alternates: { canonical: "/features" },
-  openGraph: {
-    title: "Thridify Features — the full 3D & AR commerce capability set",
-    description:
-      "Studio, Experience, Distribute, Measure and Operate — every Thridify capability, grouped into five pillars.",
-    url: `${SITE_URL}/features`,
-    type: "website",
-    siteName: "Thridify",
-    images: ["/og/features.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Thridify Features — 3D & AR commerce capabilities",
-    images: ["/og/features.png"],
-  },
-};
+  path: "/features",
+  image: "/og/features.png",
+  ogTitle: "Thridify Features — the full 3D & AR commerce capability set",
+  ogDescription:
+    "Studio, Experience, Distribute, Measure and Operate — every Thridify capability, grouped into five pillars.",
+});
 
 export default function FeaturesPage() {
   const canonicalUrl = `${SITE_URL}/features`;
@@ -137,7 +128,7 @@ export default function FeaturesPage() {
     serviceType: "3D and AR product visualization for ecommerce",
     description: metadata.description,
     url: canonicalUrl,
-    provider: { "@type": "Organization", name: "Thridify", url: SITE_URL },
+    provider: { "@id": ORG_ID },
     areaServed: ["IN", "CA", "US", "GB", "EU"],
     audience: {
       "@type": "BusinessAudience",
@@ -178,18 +169,7 @@ export default function FeaturesPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
+      <JsonLd nodes={[serviceLd, faqLd, breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">

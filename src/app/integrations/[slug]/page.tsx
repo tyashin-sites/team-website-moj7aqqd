@@ -39,6 +39,9 @@ import { CapabilityDemo } from "@/components/signature/CapabilityDemo";
 import { EXP } from "@/lib/thridify";
 import { SectionIndex } from "@/components/SectionIndex";
 import { HeroArt } from "@/components/HeroArt";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
+import { ORG_ID } from "@/lib/schema";
 
 // Pillar icons for the rich capability groups (Shopify).
 const PILLAR_ICON: Record<PillarId, LucideIcon> = {
@@ -95,29 +98,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const it = getIntegration(slug);
   if (!it) return {};
-  const canonical = `/integrations/${it.slug}`;
   // Per-integration OG (scripts/generate-og.mjs) — typographic brand artwork,
   // no third-party logos embedded.
-  const og = `/og/integration-${it.slug}.png`;
-  return {
+  return pageMetadata({
     title: it.seoTitle,
     description: it.seoDescription,
     keywords: it.keywords,
-    alternates: { canonical },
-    openGraph: {
-      title: `${it.seoTitle} | Thridify`,
-      description: it.seoDescription,
-      url: `${SITE_URL}${canonical}`,
-      type: "website",
-      siteName: "Thridify",
-      images: [og],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${it.seoTitle} | Thridify`,
-      images: [og],
-    },
-  };
+    path: `/integrations/${it.slug}`,
+    image: `/og/integration-${it.slug}.png`,
+    ogTitle: `${it.seoTitle} | Thridify`,
+  });
 }
 
 export default async function IntegrationPage({
@@ -140,7 +130,7 @@ export default async function IntegrationPage({
     serviceType: it.primaryKeyword,
     description: it.seoDescription,
     url: canonicalUrl,
-    provider: { "@type": "Organization", name: "Thridify", url: SITE_URL },
+    provider: { "@id": ORG_ID },
     areaServed: ["IN", "CA", "US", "GB", "EU"],
     audience: { "@type": "BusinessAudience", name: `${it.name} merchants` },
   };
@@ -177,18 +167,7 @@ export default async function IntegrationPage({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
+      <JsonLd nodes={[serviceLd, faqLd, breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">

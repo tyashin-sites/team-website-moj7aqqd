@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 // Phase-4 security & practices page — a modest, HONEST description of how this
 // website handles data. NO fabricated compliance badges or certifications
@@ -12,26 +13,16 @@ import { SITE_URL } from '@/lib/schema';
 const CANONICAL = '/security';
 const MAIL = 'contact@thridify.com';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Security & Data Practices',
   description:
     'How Thridify (Aapastech Private Limited) protects information on this website — encryption in transit, access controls, our processor list, data-region note and responsible-disclosure contact.',
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: 'Security & Data Practices — Thridify',
-    description:
-      'How we protect information on this website: HTTPS everywhere, access controls, our processors, and how to report a security issue.',
-    url: `${SITE_URL}${CANONICAL}`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/default.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Security & Data Practices — Thridify',
-    images: ['/og/default.png'],
-  },
-};
+  path: CANONICAL,
+  image: '/og/default.png',
+  ogTitle: 'Security & Data Practices — Thridify',
+  ogDescription:
+    'How we protect information on this website: HTTPS everywhere, access controls, our processors, and how to report a security issue.',
+});
 
 function Mail() {
   return (
@@ -53,10 +44,7 @@ export default function SecurityPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
+      <JsonLd nodes={[breadcrumbLd]} />
 
       <LegalDocument
         eyebrow="Trust"

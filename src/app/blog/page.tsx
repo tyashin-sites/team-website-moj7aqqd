@@ -1,15 +1,17 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { blogContent as blogPageContent } from '@/lib/content';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbLd } from '@/lib/knowledge-graph';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Blog — Insights on 3D & AR Commerce',
   description:
     'Stories, playbooks, and research on building immersive 3D and AR product experiences that convert.',
-  alternates: { canonical: '/blog' },
-};
+  path: '/blog',
+});
 
 export const revalidate = 60;
 
@@ -85,6 +87,9 @@ export default async function BlogPage({
 
   return (
     <>
+      {/* WebPage + BreadcrumbList for this route (addendum §3b; the WebPage
+          node is derived from the breadcrumb in graphJson). */}
+      <JsonLd nodes={[breadcrumbLd('/blog', [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }])]} />
       {/* Hero */}
       <section className="relative overflow-hidden aurora grain section">
         <div className="container-x relative z-10">

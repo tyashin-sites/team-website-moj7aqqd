@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SITE_URL } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 // FULLY STATIC — declarative, build-time content only.
 export const dynamicParams = false;
@@ -10,7 +11,7 @@ const CANONICAL = '/get-a-website';
 const TYASHIN_CONTACT = 'https://tyashin.com/contact';
 const DEMO_STORE = 'https://demo.thridify.com';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'No website yet? Get a Thridify-powered storefront',
   description:
     "Thridify brings your products to life in 3D and AR — but it needs a storefront to live on. No website yet? Our platform partner Tyashin builds you a fast, SEO-ready store with Thridify's 3D & AR built in from day one.",
@@ -22,22 +23,12 @@ export const metadata: Metadata = {
     'build a 3D product website',
     'Tyashin Thridify',
   ],
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: 'Get a Thridify-powered website',
-    description:
-      "No website yet? Get a fast, SEO-ready storefront with Thridify's 3D & AR experiences built in from day one — via our platform partner Tyashin.",
-    url: `${SITE_URL}${CANONICAL}`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/default.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Get a Thridify-powered website',
-    images: ['/og/default.png'],
-  },
-};
+  path: CANONICAL,
+  image: '/og/default.png',
+  ogTitle: 'Get a Thridify-powered website',
+  ogDescription:
+    "No website yet? Get a fast, SEO-ready storefront with Thridify's 3D & AR experiences built in from day one — via our platform partner Tyashin.",
+});
 
 const WHY: { title: string; body: string }[] = [
   {
@@ -84,7 +75,7 @@ export default function GetAWebsitePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[breadcrumbLd]} />
 
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">

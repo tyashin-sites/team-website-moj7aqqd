@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
 import { SITE_URL } from '@/lib/schema';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { EXP } from '@/lib/thridify';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 // Device-compatibility reference — the public answer to "will this work on my
 // shoppers' devices?". Tiers and requirements mirror the platform's actual
@@ -11,26 +12,16 @@ import { EXP } from '@/lib/thridify';
 
 const CANONICAL = '/device-compatibility';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Device Compatibility — 3D & AR on every shopper device',
   description:
     'Which phones, tablets and computers run Thridify 3D and AR experiences: iPhone and iPad tiers, Android ARCore support, desktop behaviour, connection guidance and troubleshooting.',
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: 'Thridify Device Compatibility',
-    description:
-      'Full 3D everywhere, instant AR on LiDAR devices, guided AR on the rest — and an automatic Lite mode for older hardware. The complete device matrix.',
-    url: `${SITE_URL}${CANONICAL}`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/default.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Thridify Device Compatibility',
-    images: ['/og/default.png'],
-  },
-};
+  path: CANONICAL,
+  image: '/og/default.png',
+  ogTitle: 'Thridify Device Compatibility',
+  ogDescription:
+    'Full 3D everywhere, instant AR on LiDAR devices, guided AR on the rest — and an automatic Lite mode for older hardware. The complete device matrix.',
+});
 
 const ARCORE_LIST = 'https://developers.google.com/ar/devices';
 const PLAY_AR = 'https://play.google.com/store/apps/details?id=com.google.ar.core';
@@ -201,7 +192,7 @@ export default function DeviceCompatibilityPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[breadcrumbLd]} />
 
       {/* HERO */}
       <section className="relative overflow-hidden">
