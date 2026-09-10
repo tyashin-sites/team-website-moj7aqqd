@@ -41,10 +41,14 @@ export const CANONICAL_SOCIALS = [
 /** Absolute logo URL for schema (Organization.logo / image). */
 const LOGO_URL = `${SITE_URL}/brand/logo-favicon.png`;
 
+export const ORG_ID = `${SITE_URL}/#organization`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+
 export function organizationLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': ORG_ID,
     name: 'Thridify',
     legalName: LEGAL_NAME,
     url: SITE_URL,
@@ -70,7 +74,7 @@ export function softwareApplicationLd() {
     url: SITE_URL,
     image: LOGO_URL,
     description: CANONICAL_DESCRIPTION,
-    publisher: { '@type': 'Organization', name: 'Thridify', legalName: LEGAL_NAME, url: SITE_URL },
+    publisher: { '@id': ORG_ID },
   };
 }
 
@@ -78,9 +82,10 @@ export function websiteLd() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': WEBSITE_ID,
     name: 'Thridify',
     url: SITE_URL,
     description: CANONICAL_DESCRIPTION,
-    publisher: { '@type': 'Organization', name: 'Thridify', url: SITE_URL },
+    publisher: { '@id': ORG_ID },
   };
 }

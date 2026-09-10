@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
 import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 // Phase-4 terms of use — an honest, reviewable baseline reflecting how this
 // marketing website is actually used (browse + contact us; interactive 3D/AR
@@ -11,25 +12,16 @@ import { SITE_URL } from '@/lib/schema';
 const CANONICAL = '/terms';
 const MAIL = 'contact@thridify.com';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Terms of Use',
   description:
     'The terms that govern your use of the Thridify (Aapastech Private Limited) website — acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: 'Terms of Use — Thridify',
-    description: 'The terms that govern your use of the Thridify website.',
-    url: `${SITE_URL}${CANONICAL}`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/default.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Terms of Use — Thridify',
-    images: ['/og/default.png'],
-  },
-};
+  path: CANONICAL,
+  image: '/og/default.png',
+  ogTitle: 'Terms of Use — Thridify',
+  ogDescription:
+    'The terms that govern your use of the Thridify website.',
+});
 
 function Mail() {
   return (
@@ -51,10 +43,7 @@ export default function TermsPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
+      <JsonLd nodes={[breadcrumbLd]} />
 
       <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate="3 August 2026">
         <LegalSection title="Acceptance of these terms">

@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { homeContent } from '@/lib/content';
@@ -25,22 +24,19 @@ import { ScrollStory, SCROLL_STORY_ENABLED } from '@/components/signature/Scroll
 import { VerticalCard } from '@/components/signature/VerticalCard';
 import { ProofCard } from '@/components/signature/ProofCard';
 import { CTABand } from '@/components/signature/CTABand';
-import { WebsiteSchema } from '@/components/SiteSchema';
 import { SITE_URL } from '@/lib/schema';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Thridify — Reimagine how the world experiences your products',
   description:
     'No-code 3D and AR commerce: interactive product viewers, real-time configurators and app-free AR that help brands convert more and return less.',
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: 'Thridify — 3D & AR Commerce Platform',
-    description:
-      'No-code 3D and AR product experiences: viewers, configurators and app-free AR for e-commerce brands.',
-    url: `${SITE_URL}/`,
-    images: ['/og/home.png'],
-  },
-};
+  path: '/',
+  image: '/og/home.png',
+  ogTitle: 'Thridify — 3D & AR Commerce Platform',
+  ogDescription:
+    'No-code 3D and AR product experiences: viewers, configurators and app-free AR for e-commerce brands.',
+});
 
 // Home content — typed, single-sourced from content/site.json (src/lib/content.ts).
 const home = homeContent;
@@ -52,8 +48,6 @@ const [leadQuote, ...otherQuotes] = home.proof.testimonials;
 export default function HomePage() {
   return (
     <>
-      {/* WebSite entity — Home + /platform only, on top of sitewide EntitySchema. */}
-      <WebsiteSchema />
       {/* 1. HERO — showroom mode (DESIGN-SPEC §7.1/§8): dark ink, live 3D
           object. Headline 7 words (≤12); subline 19 words (≤24). */}
       <section data-hero-stage className="on-dark bg-ink text-paper relative overflow-hidden grain">

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   LayoutPanelTop,
@@ -28,9 +27,11 @@ import { EXP } from "@/lib/thridify";
 // Platform Experience-pillar deep-dives → one live experience per capability.
 const PILLAR_EXPERIENCE: Record<string, string> = { viewer: EXP.baxterLounge, configurator: EXP.diningTable, ar: EXP.armChair };
 import { CTABand } from "@/components/signature/CTABand";
-import { WebsiteSchema } from "@/components/SiteSchema";
 import { SITE_URL } from "@/lib/schema";
 import { PILLARS, getPillar, topFeatures, type Pillar } from "@/lib/features";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbLd } from "@/lib/knowledge-graph";
 
 // The three product capabilities that CAN be shown as a live interactive
 // demo (DEMO-FIRST, §6a). Studio/Distribute/Operate have no interactive form,
@@ -45,20 +46,16 @@ const PILLAR_ICON: Record<Pillar["icon"], LucideIcon> = {
   ShieldCheck,
 };
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Platform — 3D & AR Commerce, Five Pillars",
   description:
     "The Thridify platform across five pillars: Studio (no-code 3D publishing), Experience (3D viewer, configurator, app-free AR), Distribute (one-click Shopify plus embeddable everywhere), Measure (variant-level analytics) and Operate (enterprise-ready teams and compliance).",
-  alternates: { canonical: "/platform" },
-  openGraph: {
-    title:
-      "The Thridify Platform — Studio · Experience · Distribute · Measure · Operate",
-    description:
-      "No-code 3D publishing, an interactive viewer + app-free AR, one-click Shopify, variant-level analytics and enterprise operations — one immersive commerce stack.",
-    url: `${SITE_URL}/platform`,
-    images: ["/og/platform.png"],
-  },
-};
+  path: "/platform",
+  image: "/og/platform.png",
+  ogTitle: "The Thridify Platform — Studio · Experience · Distribute · Measure · Operate",
+  ogDescription:
+    "No-code 3D publishing, an interactive viewer + app-free AR, one-click Shopify, variant-level analytics and enterprise operations — one immersive commerce stack.",
+});
 
 const c = platformContent;
 
@@ -175,8 +172,9 @@ function SeeAll({
 export default function PlatformPage() {
   return (
     <>
-      {/* WebSite entity — Home + /platform only, on top of sitewide EntitySchema. */}
-      <WebsiteSchema />
+      {/* WebPage + BreadcrumbList for this route (addendum §3b; the WebPage
+          node is derived from the breadcrumb in graphJson). */}
+      <JsonLd nodes={[breadcrumbLd("/platform", [{ name: "Home", path: "/" }, { name: "Platform", path: "/platform" }])]} />
       <SectionIndex items={INDEX} />
 
       {/* HERO — headline 6 words (≤12); subline 14 words (≤24). */}

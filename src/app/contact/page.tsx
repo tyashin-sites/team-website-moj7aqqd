@@ -1,19 +1,20 @@
-import type { Metadata } from 'next';
 import { contactContent } from '@/lib/content';
 import { ConciergeForm } from '@/components/ConciergeForm';
 import { CTABand } from '@/components/signature/CTABand';
+import { pageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbLd } from '@/lib/knowledge-graph';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Contact — Talk to Thridify',
   description:
     'Start with two fields — your email and what you sell. Regional teams in India, the Americas and Europe reply within one business day.',
-  alternates: { canonical: '/contact' },
-  openGraph: {
-    title: 'Contact Thridify',
-    description: 'Tell us about your catalog — see your own product rebuilt in 3D and AR, live.',
-    images: ['/og/contact.png'],
-  },
-};
+  path: '/contact',
+  image: '/og/contact.png',
+  ogTitle: 'Contact Thridify',
+  ogDescription:
+    'Tell us about your catalog — see your own product rebuilt in 3D and AR, live.',
+});
 
 const c = contactContent;
 
@@ -25,6 +26,9 @@ function telHref(raw?: string, pretty?: string) {
 export default function ContactPage() {
   return (
     <>
+      {/* WebPage + BreadcrumbList for this route (addendum §3b; the WebPage
+          node is derived from the breadcrumb in graphJson). */}
+      <JsonLd nodes={[breadcrumbLd('/contact', [{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])]} />
       {/* HERO — headline 5 words (≤12); subline 17 words (≤24). */}
       <section className="relative overflow-hidden aurora">
         <div className="container-x section pb-16 md:pb-20 text-center">

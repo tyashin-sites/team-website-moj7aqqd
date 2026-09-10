@@ -27,6 +27,9 @@ import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { ProofCard } from '@/components/signature/ProofCard';
 import { SectionIndex } from '@/components/SectionIndex';
 import { HeroArt } from '@/components/HeroArt';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
+import { ORG_ID } from '@/lib/schema';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
@@ -74,23 +77,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const ind = getIndustry(slug);
   if (!ind) return {};
-  const canonical = `/industries/${ind.slug}`;
-  const og = `/og/industry-${ind.slug}.png`;
-  return {
+  return pageMetadata({
     title: ind.seoTitle,
     description: ind.seoDescription,
     keywords: ind.keywords,
-    alternates: { canonical },
-    openGraph: {
-      title: `${ind.seoTitle} | Thridify`,
-      description: ind.seoDescription,
-      url: `${SITE_URL}${canonical}`,
-      type: 'website',
-      siteName: 'Thridify',
-      images: [og],
-    },
-    twitter: { card: 'summary_large_image', title: `${ind.seoTitle} | Thridify`, images: [og] },
-  };
+    path: `/industries/${ind.slug}`,
+    image: `/og/industry-${ind.slug}.png`,
+    ogTitle: `${ind.seoTitle} | Thridify`,
+  });
 }
 
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -109,11 +103,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     serviceType: ind.primaryKeyword,
     description: ind.seoDescription,
     url: canonicalUrl,
-    provider: {
-      '@type': 'Organization',
-      name: 'Thridify',
-      url: SITE_URL,
-    },
+    provider: { '@id': ORG_ID },
     areaServed: ['IN', 'CA', 'US', 'GB', 'EU'],
     audience: { '@type': 'BusinessAudience', name: ind.name },
   };
@@ -142,9 +132,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[serviceLd, faqLd, breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">

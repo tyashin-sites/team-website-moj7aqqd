@@ -9,6 +9,8 @@ import {
 } from '@/lib/comparisons';
 import { SITE_URL } from '@/lib/schema';
 import { compareStaticParams } from '@/lib/site-routes';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 
@@ -27,28 +29,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const c = getCompetitor(slug);
   if (!c) return {};
-  const canonical = `/compare/${c.slug}`;
-    // title goes through the root layout template ('%s | Thridify'); use the
-    // bare seoTitle so it does not become "… | Thridify | Thridify".
-    return {
+  // title goes through the root layout template ('%s | Thridify'); use the
+  // bare seoTitle so it does not become "… | Thridify | Thridify".
+  return pageMetadata({
     title: c.seoTitle,
     description: c.seoDescription,
     keywords: c.keywords,
-    alternates: { canonical },
-    openGraph: {
-      title: `${c.seoTitle} | Thridify`,
-      description: c.seoDescription,
-      url: `${SITE_URL}${canonical}`,
-      type: 'website',
-      siteName: 'Thridify',
-      images: ['/og/default.png'],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${c.seoTitle} | Thridify`,
-      images: ['/og/default.png'],
-    },
-  };
+    path: `/compare/${c.slug}`,
+    ogTitle: `${c.seoTitle} | Thridify`,
+  });
 }
 
 /** A cell whose text starts with "Yes" renders an affirmative check chip.
@@ -103,8 +92,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[faqLd, breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">

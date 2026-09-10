@@ -1,26 +1,24 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { industriesContent, homeContent } from '@/lib/content';
 import { INDUSTRIES } from '@/lib/industries';
 import { VerticalCard } from '@/components/signature/VerticalCard';
 import { ctaLabel } from '@/lib/cta';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Industries — 3D & AR Commerce for Every Sector',
   description:
     'Thridify powers immersive 3D and AR product experiences across furniture, modular kitchens, doors & windows, prefab structures, industrial machinery and laminates & surfaces.',
-  alternates: { canonical: '/industries' },
-  openGraph: {
-    title: 'Industries — 3D & AR Commerce for Every Sector',
-    description:
-      'Furniture, modular kitchens, doors & windows, prefab structures, machinery and laminates — immersive commerce per sector.',
-    images: ['/og/industries.png'],
-  },
-};
+  path: '/industries',
+  image: '/og/industries.png',
+  ogDescription:
+    'Furniture, modular kitchens, doors & windows, prefab structures, machinery and laminates — immersive commerce per sector.',
+});
 
 const page = industriesContent;
 const proof = homeContent.proof;
@@ -48,8 +46,7 @@ export default function IndustriesPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd nodes={[itemListLd, breadcrumbLd]} />
 
       {/* HERO */}
       <section className="relative overflow-hidden">

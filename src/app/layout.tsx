@@ -91,6 +91,15 @@ export const viewport: Viewport = {
  * whatever the order; the dark block (0,2,0) still beats both.
  */
 const CANONICAL_BRAND_CSS = `
+/* First-frame paint (addendum §11): html/body take the page ground from the
+   very first frame, before the CSS bundle arrives — scheme-aware, so a dark-
+   mode visitor never sees a white flash. Only --brand-bg is mirrored here;
+   the full dark palette lives in globals.css. */
+html, body { background-color: var(--brand-bg); }
+@media (prefers-color-scheme: dark) {
+  html:root:not([data-theme="light"]) { --brand-bg: #021F17; }
+}
+html:root[data-theme="dark"] { --brand-bg: #021F17; }
 html:root {
   --brand-primary: #007050;
   --brand-primary-deep: #004D37;
@@ -157,7 +166,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Mount the plugin's consent script here at install time; do not add
             a custom banner. ───────────────────────────────────────────── */}
         <Header />
-        <main id="main-content" tabIndex={-1} className="min-h-screen">
+        {/* overflow-x-clip (addendum §11): contains decorative glows / marquees
+            without creating a scroll container, so sticky sections still work. */}
+        <main id="main-content" tabIndex={-1} className="min-h-screen overflow-x-clip">
           {children}
         </main>
         <Footer />

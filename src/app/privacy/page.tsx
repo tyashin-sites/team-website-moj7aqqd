@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
 import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
+import { JsonLd } from '@/components/JsonLd';
+import { pageMetadata } from '@/lib/seo';
 
 // Phase-4 privacy policy — an honest, reviewable GDPR / DPDP Act 2023 / PIPEDA
 // -aware baseline reflecting the site's ACTUAL data practices (contact form +
@@ -13,26 +14,16 @@ import { SITE_URL } from '@/lib/schema';
 const CANONICAL = '/privacy';
 const MAIL = 'contact@thridify.com';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Privacy Policy',
   description:
     'How Thridify (Aapastech Private Limited) collects, uses, shares and protects personal information through this website — with GDPR, India DPDP Act 2023 and PIPEDA data-subject rights.',
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: 'Privacy Policy — Thridify',
-    description:
-      'What Thridify collects through this website, why, the legal basis, how long we keep it, who we share it with, and your rights under GDPR, the DPDP Act and PIPEDA.',
-    url: `${SITE_URL}${CANONICAL}`,
-    type: 'website',
-    siteName: 'Thridify',
-    images: ['/og/default.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Privacy Policy — Thridify',
-    images: ['/og/default.png'],
-  },
-};
+  path: CANONICAL,
+  image: '/og/default.png',
+  ogTitle: 'Privacy Policy — Thridify',
+  ogDescription:
+    'What Thridify collects through this website, why, the legal basis, how long we keep it, who we share it with, and your rights under GDPR, the DPDP Act and PIPEDA.',
+});
 
 function Mail() {
   return (
@@ -54,10 +45,7 @@ export default function PrivacyPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
+      <JsonLd nodes={[breadcrumbLd]} />
 
       <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate="3 August 2026">
         <LegalSection title="Summary">
