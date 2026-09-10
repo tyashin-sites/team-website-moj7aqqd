@@ -3,10 +3,12 @@
 
 /* ─────────────────────────────────────────────────────────────────────────
    Canonical Thridify brand tokens — DESIGN-SPEC §1 (non-negotiable).
-   Same values are re-declared inline in layout.tsx AFTER the platform
-   /brand-kit.css link so the canonical palette always wins the cascade.
+   Same values are re-declared inline in layout.tsx. Both use `html:root`
+   (0,1,1) so they outrank the plain `:root{}` brand-kit block the platform
+   edge injects on *.sites.tyashin.com (see the layout.tsx note) regardless
+   of source order; the dark block below (0,2,0) outranks both.
    ───────────────────────────────────────────────────────────────────── */
-:root {
+html:root {
   --brand-primary: #007050;
   --brand-primary-deep: #004D37;
   --brand-primary-contrast: #FFFFFF;
@@ -1328,7 +1330,7 @@
 @media print {
   /* Same specificity as the dark-scheme block (and later in source) so a
      dark-mode OS still prints ink on white. */
-  :root,
+  html:root,
   :root:not([data-theme="light"]),
   :root[data-theme="dark"] {
     --brand-primary: #007050;
