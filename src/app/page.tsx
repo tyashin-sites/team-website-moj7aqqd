@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sofa, ChefHat, DoorOpen, Warehouse, Wrench, Layers, type LucideIcon } from 'lucide-react';
 import { homeContent } from '@/lib/content';
-import { INDUSTRIES, type Industry } from '@/lib/industries';
+import { INDUSTRIES } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
 import { Reveal } from '@/components/Reveal';
 import { LogoMarquee } from '@/components/LogoMarquee';
@@ -41,18 +40,6 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/`,
     images: ['/og/home.png'],
   },
-};
-
-// Icon per canonical industry (keyed on the industry's own icon token — no
-// keyword guessing, no Education branch: education is spun out to WonderlyAR,
-// DESIGN-SPEC §6).
-const INDUSTRY_ICON: Record<Industry['icon'], LucideIcon> = {
-  sofa: Sofa,
-  kitchen: ChefHat,
-  door: DoorOpen,
-  prefab: Warehouse,
-  machinery: Wrench,
-  laminate: Layers,
 };
 
 // Home content — typed, single-sourced from content/site.json (src/lib/content.ts).
@@ -161,9 +148,10 @@ export default function HomePage() {
           PipelineStrip otherwise. Feature flag lives in ScrollStory/index. */}
       {SCROLL_STORY_ENABLED ? <ScrollStory /> : <PipelineStrip />}
 
-      {/* 6. VERTICALS GRID — the 6 canonical industries (§7.5/§8). EACH card
-          links to its own /industries/<slug> SEO page. No per-vertical
-          metrics until real, sourced numbers exist (ASSET-DEBT #12). */}
+      {/* 6. VERTICALS GRID — the 6 canonical industries (§7.5/§8), the SAME
+          VerticalCard the /industries hub uses (real product renders, one
+          look). EACH card links to its own /industries/<slug> SEO page. No
+          per-vertical metrics until real, sourced numbers exist (ASSET-DEBT #12). */}
       <section className="section">
         <div className="container-x">
           <div className="max-w-2xl mb-14">
@@ -173,9 +161,10 @@ export default function HomePage() {
             {INDUSTRIES.map((ind, i) => (
               <Reveal key={ind.slug} delay={i * 0.05}>
                 <VerticalCard
-                  icon={INDUSTRY_ICON[ind.icon]}
+                  icon={ind.icon}
                   name={ind.gridName}
                   pain={ind.pain}
+                  art={ind.hubArt}
                   href={`/industries/${ind.slug}`}
                 />
               </Reveal>

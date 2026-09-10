@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Sofa, ChefHat, DoorOpen, Warehouse, Wrench, Layers, ArrowRight, type LucideIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { industriesContent, homeContent } from '@/lib/content';
-import { INDUSTRIES, type Industry } from '@/lib/industries';
+import { INDUSTRIES } from '@/lib/industries';
+import { VerticalCard } from '@/components/signature/VerticalCard';
 import { ctaLabel } from '@/lib/cta';
 
 const SITE_URL =
@@ -19,15 +20,6 @@ export const metadata: Metadata = {
       'Furniture, modular kitchens, doors & windows, prefab structures, machinery and laminates — immersive commerce per sector.',
     images: ['/og/industries.png'],
   },
-};
-
-const INDUSTRY_ICON: Record<Industry['icon'], LucideIcon> = {
-  sofa: Sofa,
-  kitchen: ChefHat,
-  door: DoorOpen,
-  prefab: Warehouse,
-  machinery: Wrench,
-  laminate: Layers,
 };
 
 const page = industriesContent;
@@ -97,7 +89,8 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* INDUSTRY GRID — each card links to its own SEO page (§8) */}
+      {/* INDUSTRY GRID — the shared VerticalCard (same as the home grid); each
+          card links to its own SEO page (§8). */}
       <section className="section pt-0">
         <div className="container-x">
           <div className="max-w-3xl mb-14">
@@ -106,49 +99,16 @@ export default function IndustriesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {INDUSTRIES.map((ind) => {
-              const Icon = INDUSTRY_ICON[ind.icon];
-              return (
-                <Link
-                  key={ind.slug}
-                  href={`/industries/${ind.slug}`}
-                  className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui overflow-hidden"
-                >
-                  {/* The REAL Thridify demo product this industry's page shows
-                      live, rendered from its own GLB (Industry.hubArt): a slow
-                      animated WebP on a soft brand-light field, with the still
-                      frame for reduced-motion visitors. No fabricated imagery;
-                      industries without a usable render keep the icon only. */}
-                  <span className="relative flex items-end justify-between mb-6 min-h-12">
-                    <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
-                      <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
-                    </span>
-                    {ind.hubArt && (
-                      <span className="relative w-36 h-36 -mr-5 -mt-5 shrink-0">
-                        <span className="absolute inset-3 rounded-full bg-primary/10 blur-2xl group-hover:bg-primary/15 transition-colors" aria-hidden />
-                        <picture>
-                          <source srcSet={ind.hubArt.still} media="(prefers-reduced-motion: reduce)" />
-                          <img
-                            src={ind.hubArt.turn}
-                            alt={ind.hubArt.alt}
-                            width={480}
-                            height={480}
-                            loading="lazy"
-                            decoding="async"
-                            className="relative w-full h-full object-contain drop-shadow-lg transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03]"
-                          />
-                        </picture>
-                      </span>
-                    )}
-                  </span>
-                  <h3 className="tt-2 text-2xl mb-2 group-hover:text-primary transition-colors">{ind.gridName}</h3>
-                  <p className="text-foreground/70 leading-relaxed flex-1">{ind.pain}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                    Explore {ind.gridName} <ArrowRight className="w-4 h-4" aria-hidden />
-                  </span>
-                </Link>
-              );
-            })}
+            {INDUSTRIES.map((ind) => (
+              <VerticalCard
+                key={ind.slug}
+                icon={ind.icon}
+                name={ind.gridName}
+                pain={ind.pain}
+                art={ind.hubArt}
+                href={`/industries/${ind.slug}`}
+              />
+            ))}
           </div>
         </div>
       </section>
