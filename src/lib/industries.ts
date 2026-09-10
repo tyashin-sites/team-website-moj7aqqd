@@ -105,11 +105,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'ar',
     demoModel: '/models/furniture-vase.glb',
     demoPoster: '/models/furniture-vase-poster.webp',
-    // admin.thridify.com/p/1fxaka — Store Living Room Sofa (turntable)
+    // admin.thridify.com/p/1fxaka — Store Living Room Sofa: slow pan cycling its velvet finishes
     hubArt: {
       still: '/models/hub-furniture-still.webp',
       turn: '/models/hub-furniture-turn.webp',
-      alt: 'Store Living Room Sofa — a Thridify 3D product, rotating',
+      alt: 'Store Living Room Sofa — a Thridify 3D product panning slowly while its velvet finish changes',
     },
     primaryKeyword: '3D furniture configurator',
     keywords: [
@@ -181,11 +181,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'configurator',
     demoModel: '/models/kitchen-teacup.glb',
     demoPoster: '/models/kitchen-teacup-poster.webp',
-    // admin.thridify.com/p/dcnt2x — Modern Wardrobe, Maple Dark finish (sway)
+    // admin.thridify.com/p/dcnt2x — Modern Wardrobe: slow pan cycling its laminate finishes
     hubArt: {
       still: '/models/hub-wardrobe-still.webp',
       turn: '/models/hub-wardrobe-turn.webp',
-      alt: 'Modern Wardrobe in Maple Dark — a Thridify 3D product',
+      alt: 'Modern Wardrobe — a Thridify 3D product panning slowly while its laminate finish changes',
     },
     primaryKeyword: 'modular kitchen 3D design tool',
     keywords: [
@@ -330,11 +330,11 @@ export const INDUSTRIES: Industry[] = [
     name: 'Prefab & Modular Structures',
     gridName: 'Prefab & Modular Structures',
     icon: 'prefab',
-    // admin.thridify.com/p/cmbneh — Studio Apartment, roofless dollhouse view (turntable)
+    // admin.thridify.com/p/cmbneh — Studio Apartment, roofless dollhouse view (slow pan)
     hubArt: {
       still: '/models/hub-studio-still.webp',
       turn: '/models/hub-studio-turn.webp',
-      alt: 'Studio apartment — a Thridify 3D space seen from above, rotating',
+      alt: 'Studio apartment — a Thridify 3D space seen from above, panning slowly',
     },
     heroDemo: 'viewer',
     primaryKeyword: 'prefab 3D configurator',
@@ -407,11 +407,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'viewer',
     demoModel: '/models/machinery-camera.glb',
     demoPoster: '/models/machinery-camera-poster.webp',
-    // admin.thridify.com/p/34zvplz0gw8 — industrial water cooler, Pink variant (turntable)
+    // admin.thridify.com/p/34zvplz0gw8 — industrial water cooler: slow pan cycling its colour variants
     hubArt: {
       still: '/models/hub-cooler-still.webp',
       turn: '/models/hub-cooler-turn.webp',
-      alt: 'Industrial water cooler — a Thridify 3D product, rotating',
+      alt: 'Industrial water cooler — a Thridify 3D product panning slowly while its colour changes',
     },
     primaryKeyword: '3D product viewer for machinery',
     keywords: [
