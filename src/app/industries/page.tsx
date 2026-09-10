@@ -124,7 +124,7 @@ export default function IndustriesPage() {
                       <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
                     </span>
                     {ind.hubArt && (
-                      <span className="relative w-36 h-36 -mr-6 -mt-10 shrink-0">
+                      <span className="relative w-36 h-36 -mr-5 -mt-5 shrink-0">
                         <span className="absolute inset-3 rounded-full bg-primary/10 blur-2xl group-hover:bg-primary/15 transition-colors" aria-hidden />
                         <picture>
                           <source srcSet={ind.hubArt.still} media="(prefers-reduced-motion: reduce)" />

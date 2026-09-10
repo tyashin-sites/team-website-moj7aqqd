@@ -78,15 +78,14 @@ const PAGES = [
   { file: 'services-3d-modelling.png', kicker: '3D modelling service', title: 'Photoreal 3D product models, built for you.', poster: 'sheen-chair' },
   { file: 'industries.png', kicker: 'Industries', title: 'Built for products that vary by size, finish and material.' },
   { file: 'integrations.png', kicker: 'Integrations', title: '3D & AR for every store. One-click or embed anywhere.' },
-  // Per-industry OG (DESIGN-SPEC §8) — the REAL Thridify demo product each
-  // page shows live (Industry.hubArt stills, public/models/hub-*-still.webp);
-  // prefab's live product is an enclosed interior with no object render.
+  // Per-industry OG (DESIGN-SPEC §8) — REAL Thridify products (Industry.hubArt
+  // stills, public/models/hub-*-still.webp; product list in ASSET-DEBT #19).
   { file: 'industry-furniture.png', kicker: 'Furniture & home decor', title: '3D furniture configurator & AR viewer.', poster: 'hub-furniture-still' },
-  { file: 'industry-modular-kitchens.png', kicker: 'Modular kitchens', title: 'Modular kitchen 3D design tool.', poster: 'hub-kitchen-still' },
+  { file: 'industry-modular-kitchens.png', kicker: 'Modular kitchens', title: 'Modular kitchen 3D design tool.', poster: 'hub-wardrobe-still' },
   { file: 'industry-doors-and-windows.png', kicker: 'Doors & windows', title: 'Door & window configurator in 3D.', poster: 'hub-door-still' },
-  { file: 'industry-prefab-structures.png', kicker: 'Prefab & modular', title: 'Prefab 3D configurator & building visualizer.' },
-  { file: 'industry-industrial-machinery.png', kicker: 'Industrial machinery', title: '3D product viewer for machinery.', poster: 'hub-robot-still' },
-  { file: 'industry-laminates-surfaces.png', kicker: 'Laminates & surfaces', title: 'Laminate visualizer & surface configurator.', poster: 'hub-laminate-still' },
+  { file: 'industry-prefab-structures.png', kicker: 'Prefab & modular', title: 'Prefab 3D configurator & building visualizer.', poster: 'hub-studio-still' },
+  { file: 'industry-industrial-machinery.png', kicker: 'Industrial machinery', title: '3D product viewer for machinery.', poster: 'hub-cooler-still' },
+  { file: 'industry-laminates-surfaces.png', kicker: 'Laminates & surfaces', title: 'Laminate visualizer & surface configurator.', poster: 'hub-veneer-still' },
   // Per-integration — typographic (no third-party logos are embedded).
   ...[
     ['shopify', 'Shopify', 'Native app'],

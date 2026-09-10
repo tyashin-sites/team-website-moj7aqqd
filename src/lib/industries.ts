@@ -69,14 +69,13 @@ export type Industry = {
       docs/ASSET-DEBT.md). Real client models replace these later (#16). */
   demoModel?: string;
   demoPoster?: string;
-  /** Hub-card + OG artwork: a transparent render of the REAL Thridify
-      demo-store product this industry's live hero shows (INDUSTRY_EXPERIENCE
-      in src/lib/thridify.ts), rendered from the product's own GLB with
-      <model-viewer> — `still` is one frame, `turn` a slow animated WebP
-      (turntable or a limited sway where the object only reads from one
-      side). Served with a reduced-motion <picture> fallback to the still.
-      Absent when the live product has no usable object render (prefab's
-      "realistic room" is an enclosed interior — docs/ASSET-DEBT.md #19). */
+  /** Hub-card + OG artwork: a transparent render of a REAL Thridify product
+      chosen per industry (admin preview ids in the comments below), rendered
+      from the product's own GLB with <model-viewer> — `still` is one frame,
+      `turn` a slow animated WebP: a turntable, a limited sway, or a
+      variant / finish switch cross-fading through the product's real
+      options. Served with a reduced-motion <picture> fallback to the still.
+      Pipeline + product list: docs/ASSET-DEBT.md #19. */
   hubArt?: { still: string; turn: string; alt: string };
   primaryKeyword: string;
   keywords: string[];
@@ -106,10 +105,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'ar',
     demoModel: '/models/furniture-vase.glb',
     demoPoster: '/models/furniture-vase-poster.webp',
+    // admin.thridify.com/p/1fxaka — Store Living Room Sofa (turntable)
     hubArt: {
       still: '/models/hub-furniture-still.webp',
       turn: '/models/hub-furniture-turn.webp',
-      alt: 'Store Modern Sofa — the live Thridify demo product on this page, rendered in 3D',
+      alt: 'Store Living Room Sofa — a Thridify 3D product, rotating',
     },
     primaryKeyword: '3D furniture configurator',
     keywords: [
@@ -181,10 +181,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'configurator',
     demoModel: '/models/kitchen-teacup.glb',
     demoPoster: '/models/kitchen-teacup-poster.webp',
+    // admin.thridify.com/p/dcnt2x — Modern Wardrobe, Maple Dark finish (sway)
     hubArt: {
-      still: '/models/hub-kitchen-still.webp',
-      turn: '/models/hub-kitchen-turn.webp',
-      alt: 'Store ModularKitchen — the live Thridify demo kitchen on this page, rendered in 3D',
+      still: '/models/hub-wardrobe-still.webp',
+      turn: '/models/hub-wardrobe-turn.webp',
+      alt: 'Modern Wardrobe in Maple Dark — a Thridify 3D product',
     },
     primaryKeyword: 'modular kitchen 3D design tool',
     keywords: [
@@ -256,10 +257,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'configurator',
     demoModel: '/models/doors-lantern.glb',
     demoPoster: '/models/doors-lantern-poster.webp',
+    // admin.thridify.com/p/gmqb_q — Door, cycling its eight real variants
     hubArt: {
       still: '/models/hub-door-still.webp',
       turn: '/models/hub-door-turn.webp',
-      alt: 'DNV Door — the live Thridify demo door on this page, rendered in 3D',
+      alt: 'A Thridify 3D door product switching between its eight variants',
     },
     primaryKeyword: 'door & window configurator',
     keywords: [
@@ -328,6 +330,12 @@ export const INDUSTRIES: Industry[] = [
     name: 'Prefab & Modular Structures',
     gridName: 'Prefab & Modular Structures',
     icon: 'prefab',
+    // admin.thridify.com/p/cmbneh — Studio Apartment, roofless dollhouse view (turntable)
+    hubArt: {
+      still: '/models/hub-studio-still.webp',
+      turn: '/models/hub-studio-turn.webp',
+      alt: 'Studio apartment — a Thridify 3D space seen from above, rotating',
+    },
     heroDemo: 'viewer',
     primaryKeyword: 'prefab 3D configurator',
     keywords: [
@@ -399,10 +407,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'viewer',
     demoModel: '/models/machinery-camera.glb',
     demoPoster: '/models/machinery-camera-poster.webp',
+    // admin.thridify.com/p/34zvplz0gw8 — industrial water cooler, Pink variant (turntable)
     hubArt: {
-      still: '/models/hub-robot-still.webp',
-      turn: '/models/hub-robot-turn.webp',
-      alt: 'RobotExpressive — the live Thridify automation demo on this page, rendered in 3D',
+      still: '/models/hub-cooler-still.webp',
+      turn: '/models/hub-cooler-turn.webp',
+      alt: 'Industrial water cooler — a Thridify 3D product, rotating',
     },
     primaryKeyword: '3D product viewer for machinery',
     keywords: [
@@ -474,10 +483,11 @@ export const INDUSTRIES: Industry[] = [
     heroDemo: 'configurator',
     demoModel: '/models/surfaces-material.glb',
     demoPoster: '/models/surfaces-material-poster.webp',
+    // admin.thridify.com/p/zmg1cx — single-wall kitchen cycling Woodlark veneers
     hubArt: {
-      still: '/models/hub-laminate-still.webp',
-      turn: '/models/hub-laminate-turn.webp',
-      alt: 'Merino Marine Board — the live Thridify demo laminate on this page, rendered in 3D',
+      still: '/models/hub-veneer-still.webp',
+      turn: '/models/hub-veneer-turn.webp',
+      alt: 'A Thridify 3D kitchen switching between Woodlark veneer finishes',
     },
     primaryKeyword: 'laminate visualizer',
     keywords: [
