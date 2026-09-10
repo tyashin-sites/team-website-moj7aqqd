@@ -78,12 +78,20 @@ export const viewport: Viewport = {
  * agree by construction.
  *
  * DARK SCHEME: this block is the LIGHT palette only. The dark values live
- * once, in globals.css, under `:root:not([data-theme="light"])` — a more
- * specific selector than this plain `:root`, so they win regardless of
- * source order. Do not add dark values here.
+ * once, in globals.css, under `:root:not([data-theme="light"])` (0,2,0) —
+ * more specific than this block, so they win regardless of source order.
+ * Do not add dark values here.
+ *
+ * SELECTOR: `html:root` (0,1,1), not `:root` (0,1,0). The platform edge on
+ * *.sites.tyashin.com injects its own `<style id="brand-kit">:root{…}` AFTER
+ * this block (verified live 2026-09-10: it carried a stale default palette —
+ * --brand-primary #111827 and system fonts — which turned every light-mode
+ * button navy and dropped Space Grotesk/Inter in production). With (0,1,1)
+ * the canonical palette beats any injected plain `:root` by specificity,
+ * whatever the order; the dark block (0,2,0) still beats both.
  */
 const CANONICAL_BRAND_CSS = `
-:root {
+html:root {
   --brand-primary: #007050;
   --brand-primary-deep: #004D37;
   --brand-primary-contrast: #FFFFFF;
