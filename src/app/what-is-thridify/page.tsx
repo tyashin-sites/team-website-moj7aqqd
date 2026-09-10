@@ -9,6 +9,7 @@ import {
 import { CANONICAL_METRICS } from '@/lib/industries';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { EXP } from '@/lib/thridify';
+import { SectionIndex } from '@/components/SectionIndex';
 
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 const CANONICAL = '/what-is-thridify';
@@ -35,12 +36,12 @@ export const metadata: Metadata = {
     url: `${SITE_URL}${CANONICAL}`,
     type: 'website',
     siteName: 'Thridify',
-    images: ['/og/default.png'],
+    images: ['/og/what-is-thridify.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'What is Thridify?',
-    images: ['/og/default.png'],
+    images: ['/og/what-is-thridify.png'],
   },
 };
 
@@ -184,8 +185,18 @@ export default function WhatIsThridifyPage() {
         </div>
       </section>
 
+      <SectionIndex
+        items={[
+          { id: 'demo', label: 'See it live' },
+          { id: 'facts', label: 'At a glance' },
+          { id: 'answers', label: 'Answers' },
+          { id: 'impact', label: 'The impact' },
+          { id: 'faq', label: 'FAQ' },
+        ]}
+      />
+
       {/* LIVE DEMO — make the description tangible with a real Thridify experience. */}
-      <section className="container-x section pt-0">
+      <section id="demo" className="container-x section pt-0 scroll-mt-20">
         <div className="mx-auto max-w-2xl">
           <div className="mb-6">
             <p className="eyebrow">See it live</p>
@@ -197,7 +208,7 @@ export default function WhatIsThridifyPage() {
       </section>
 
       {/* FACTS TABLE — dense, machine-readable key/value pairs. */}
-      <section className="container-x section pt-0">
+      <section id="facts" className="container-x section pt-0 scroll-mt-20">
         <h2 className="tt-2">Thridify at a glance</h2>
         <dl className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/10 border border-foreground/10 rounded-2xl overflow-hidden">
           {FACTS.map((row) => (
@@ -210,7 +221,7 @@ export default function WhatIsThridifyPage() {
       </section>
 
       {/* Q-STYLE SECTIONS — each first sentence is a complete, quotable answer. */}
-      <section className="container-x section pt-0">
+      <section id="answers" className="container-x section pt-0 scroll-mt-20">
         <div className="grid gap-12 max-w-3xl">
           {SECTIONS.map((s) => (
             <div key={s.id} id={s.id}>
@@ -232,7 +243,7 @@ export default function WhatIsThridifyPage() {
       </section>
 
       {/* PROOF — canonical metrics only (§7.2). */}
-      <section className="section on-dark bg-ink text-paper">
+      <section id="impact" className="section on-dark bg-ink text-paper scroll-mt-20">
         <div className="container-x">
           <p className="eyebrow">The impact</p>
           <h2 className="tt-2 text-paper">What Thridify changes for brands</h2>
@@ -253,7 +264,7 @@ export default function WhatIsThridifyPage() {
       </section>
 
       {/* FAQ — FAQPage schema above. */}
-      <section className="container-x section">
+      <section id="faq" className="container-x section scroll-mt-20">
         <p className="eyebrow">FAQ</p>
         <h2 className="tt-2">Thridify, answered</h2>
         <div className="mt-8 max-w-3xl divide-y divide-foreground/10 border-t border-foreground/10">

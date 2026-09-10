@@ -1,77 +1,281 @@
 /**
- * generate-og.mjs — brand-colored static OG images (1200×630).
+ * generate-og.mjs — Open Graph images (1200×630) in the luxury design
+ * language: ink ground, layered teal + one-pink light fields, hairline
+ * rules, Space Grotesk medium display type with the eyebrow dash, mono
+ * kicker, and — where a REAL render exists — the page's own seamless demo
+ * poster (public/models/*-poster.webp) art-directed on a plinth glow.
  *
- * Placeholder OGs per docs/ASSET-DEBT.md: real product-render OG images
- * replace these once real client 3D captures exist. Canonical palette only
- * (DESIGN-SPEC §1); the logo mark is drawn per the knowledge-bank spec
- * (two overlapping rounded squares: pink -8°, teal +4°) rather than
- * embedding the raster logo, so the output stays crisp at OG size.
+ * No-Faking: the only imagery composited is the poster of the model the
+ * page itself shows (CC0 stand-ins tracked in docs/ASSET-DEBT.md #19). Pages
+ * without a real render get the abstract brand artwork only.
  *
- * Run:  node scripts/generate-og.mjs   (writes public/og/*.png, commit them)
+ * Rendering: satori (HTML/CSS → SVG) + resvg (SVG → PNG), fonts fetched
+ * from Google Fonts on first run and cached in node_modules/.cache/og-fonts.
+ * Output is palette-quantised PNG (~60–120 KB each).
+ *
+ * Run:  node scripts/generate-og.mjs [filter]   (writes public/og/*.png, commit)
+ *   e.g. node scripts/generate-og.mjs industry-   → only the industry set
+ *
+ * NOTE: /og/* is served immutable (public/_headers) — a changed design at
+ * an unchanged filename is NOT picked up by returning clients' caches, but
+ * OG consumers (social scrapers) fetch fresh, which is what matters here.
  */
 
+import satori from 'satori';
+import { Resvg } from '@resvg/resvg-js';
 import sharp from 'sharp';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 const OUT = new URL('../public/og/', import.meta.url).pathname;
+const MODELS = new URL('../public/models/', import.meta.url).pathname;
+const FONT_CACHE = new URL('../node_modules/.cache/og-fonts/', import.meta.url).pathname;
 mkdirSync(OUT, { recursive: true });
+mkdirSync(FONT_CACHE, { recursive: true });
 
-const PAGES = [
-  { file: 'default.png', kicker: '3D & AR COMMERCE', title: 'Reimagine how the world\nexperiences your products.' },
-  { file: 'home.png', kicker: '3D & AR COMMERCE', title: 'Reimagine how the world\nexperiences your products.' },
-  { file: 'platform.png', kicker: 'THE PLATFORM', title: 'Five modules. One\nimmersive commerce stack.' },
-  { file: 'about.png', kicker: 'ABOUT THRIDIFY', title: 'Founded in Delhi.\nScaling from Toronto.' },
-  { file: 'contact.png', kicker: 'TALK TO THRIDIFY', title: 'Three regions.\nOne conversation away.' },
-  { file: 'services-3d-modelling.png', kicker: '3D MODELLING SERVICE', title: 'Photoreal 3D product\nmodels, built for you.' },
-  // Per-industry OG (DESIGN-SPEC §8) — brand-colored placeholders; real
-  // product-render OG images per industry are tracked in docs/ASSET-DEBT.md.
-  { file: 'industry-furniture.png', kicker: 'FURNITURE & HOME DECOR', title: '3D furniture configurator\n& AR viewer.' },
-  { file: 'industry-modular-kitchens.png', kicker: 'MODULAR KITCHENS', title: 'Modular kitchen 3D\ndesign tool.' },
-  { file: 'industry-doors-and-windows.png', kicker: 'DOORS & WINDOWS', title: 'Door & window\nconfigurator in 3D.' },
-  { file: 'industry-prefab-structures.png', kicker: 'PREFAB & MODULAR', title: 'Prefab 3D configurator\n& building visualizer.' },
-  { file: 'industry-industrial-machinery.png', kicker: 'INDUSTRIAL MACHINERY', title: '3D product viewer\nfor machinery.' },
-  { file: 'industry-laminates-surfaces.png', kicker: 'LAMINATES & SURFACES', title: 'Laminate visualizer &\nsurface configurator.' },
-];
+// ── Canonical palette (DESIGN-SPEC §1) ──────────────────────────────────
+const INK = '#021F17';
+const TEAL = '#007050';
+const TEAL_DEEP = '#004D37';
+const TEAL_SOFT = '#6FCFAB';
+const PINK = '#FEBFCC';
+const PAPER = '#FFFFFF';
+const MUTED = '#A3BFB5';
 
-const esc = (s) => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;');
-
-function svgFor({ kicker, title }) {
-  kicker = esc(kicker);
-  const lines = title.split('\n');
-  const titleSpans = lines
-    .map(
-      (l, i) =>
-        `<tspan x="80" dy="${i === 0 ? 0 : 78}">${esc(l)}</tspan>`
-    )
-    .join('');
-  return `
-<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#021F17"/>
-  <!-- aurora blobs, canonical teal + one pink -->
-  <circle cx="1060" cy="90" r="300" fill="#007050" opacity="0.28"/>
-  <circle cx="1150" cy="520" r="260" fill="#FEBFCC" opacity="0.14"/>
-  <circle cx="120" cy="600" r="240" fill="#004D37" opacity="0.35"/>
-  <!-- logo mark: pink back layer -8deg, teal front +4deg -->
-  <g transform="translate(80,88)">
-    <rect x="6" y="10" width="76" height="76" rx="18" fill="#FEBFCC" transform="rotate(-8 44 48)"/>
-    <rect x="14" y="2" width="76" height="76" rx="18" fill="#007050" transform="rotate(4 52 40)"/>
-    <text x="112" y="64" font-family="Helvetica, Arial, sans-serif" font-size="52" font-weight="700" fill="#FFFFFF">thridify</text>
-  </g>
-  <text x="80" y="300" font-family="Helvetica, Arial, sans-serif" font-size="24" letter-spacing="6" fill="#6FCFAB">${kicker}</text>
-  <text x="80" y="392" font-family="Helvetica, Arial, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF">${titleSpans}</text>
-  <rect x="80" y="${392 + (lines.length - 1) * 78 + 44}" width="220" height="6" rx="3" fill="url(#g)"/>
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#007050"/>
-      <stop offset="1" stop-color="#FEBFCC"/>
-    </linearGradient>
-  </defs>
-  <text x="80" y="580" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#A3BFB5">No code. No app. No friction.</text>
-</svg>`;
+// ── Fonts (Google Fonts → WOFF, cached) ─────────────────────────────────
+async function font(family, weight) {
+  const key = `${family.replaceAll(' ', '-')}-${weight}.woff`;
+  const path = `${FONT_CACHE}${key}`;
+  if (existsSync(path)) return readFileSync(path);
+  const css = await fetch(
+    `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@${weight}&display=swap`,
+    // An older UA makes the API serve plain WOFF (satori reads TTF/OTF/WOFF).
+    { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:20.0) Gecko/20100101 Firefox/20.0' } }
+  ).then((r) => r.text());
+  const url = css.match(/src:\s*url\(([^)]+)\)/)?.[1];
+  if (!url) throw new Error(`No font URL for ${family} ${weight}`);
+  const buf = Buffer.from(await fetch(url).then((r) => r.arrayBuffer()));
+  writeFileSync(path, buf);
+  return buf;
 }
 
-for (const page of PAGES) {
-  const svg = Buffer.from(svgFor(page));
-  await sharp(svg).png().toFile(`${OUT}${page.file}`);
-  console.log('wrote', page.file);
+const FONTS = [
+  { name: 'Space Grotesk', data: await font('Space Grotesk', 500), weight: 500, style: 'normal' },
+  { name: 'Inter', data: await font('Inter', 400), weight: 400, style: 'normal' },
+  { name: 'IBM Plex Mono', data: await font('IBM Plex Mono', 500), weight: 500, style: 'normal' },
+];
+
+// ── Pages ───────────────────────────────────────────────────────────────
+// `poster` = a REAL render that exists in public/models (the page's own
+// demo poster). Kept in sync with src/lib/industries.ts demoPoster.
+const PAGES = [
+  { file: 'default.png', kicker: '3D & AR commerce', title: 'Reimagine how the world experiences your products.', poster: 'sheen-chair' },
+  { file: 'home.png', kicker: '3D & AR commerce', title: 'Reimagine how the world experiences your products.', poster: 'sheen-chair' },
+  { file: 'platform.png', kicker: 'The platform', title: 'Five pillars. One immersive commerce stack.', poster: 'sheen-chair' },
+  { file: 'features.png', kicker: 'Capability reference', title: 'Everything Thridify does for your product pages.' },
+  { file: 'what-is-thridify.png', kicker: 'Fact sheet', title: 'What is Thridify?', sub: 'No-code 3D & AR commerce for configurable products.' },
+  { file: 'about.png', kicker: 'About Thridify', title: 'Founded in Delhi. Scaling from Toronto.' },
+  { file: 'contact.png', kicker: 'Talk to Thridify', title: 'Three regions. One conversation away.' },
+  { file: 'services-3d-modelling.png', kicker: '3D modelling service', title: 'Photoreal 3D product models, built for you.', poster: 'sheen-chair' },
+  { file: 'industries.png', kicker: 'Industries', title: 'Built for products that vary by size, finish and material.' },
+  { file: 'integrations.png', kicker: 'Integrations', title: '3D & AR for every store. One-click or embed anywhere.' },
+  // Per-industry OG (DESIGN-SPEC §8) — REAL Thridify products (Industry.hubArt
+  // stills, public/models/hub-*-still.webp; product list in ASSET-DEBT #19).
+  { file: 'industry-furniture.png', kicker: 'Furniture & home decor', title: '3D furniture configurator & AR viewer.', poster: 'hub-furniture-still' },
+  { file: 'industry-modular-kitchens.png', kicker: 'Modular kitchens', title: 'Modular kitchen 3D design tool.', poster: 'hub-wardrobe-still' },
+  { file: 'industry-doors-and-windows.png', kicker: 'Doors & windows', title: 'Door & window configurator in 3D.', poster: 'hub-door-still' },
+  { file: 'industry-prefab-structures.png', kicker: 'Prefab & modular', title: 'Prefab 3D configurator & building visualizer.', poster: 'hub-studio-still' },
+  { file: 'industry-industrial-machinery.png', kicker: 'Industrial machinery', title: '3D product viewer for machinery.', poster: 'hub-cooler-still' },
+  { file: 'industry-laminates-surfaces.png', kicker: 'Laminates & surfaces', title: 'Laminate visualizer & surface configurator.', poster: 'hub-veneer-still' },
+  // Per-integration — typographic (no third-party logos are embedded).
+  ...[
+    ['shopify', 'Shopify', 'Native app'],
+    ['woocommerce', 'WooCommerce', 'Native plugin'],
+    ['wordpress', 'WordPress', 'Native plugin'],
+    ['wix', 'Wix', 'Embed'],
+    ['bigcommerce', 'BigCommerce', 'Embed'],
+    ['magento', 'Adobe Commerce (Magento)', 'Embed'],
+    ['commercetools', 'commercetools', 'Embed'],
+    ['canva', 'Canva', 'Embed'],
+    ['drupal', 'Drupal', 'Embed'],
+    ['squarespace', 'Squarespace', 'Embed'],
+    ['prestashop', 'PrestaShop', 'Embed'],
+    ['custom-integration', 'any custom storefront', 'SDK & API'],
+  ].map(([slug, name, mode]) => ({
+    file: `integration-${slug}.png`,
+    kicker: `Integration · ${mode}`,
+    title: `3D, AR & configuration for ${name}.`,
+  })),
+];
+
+// ── Assets ──────────────────────────────────────────────────────────────
+const posterCache = new Map();
+async function posterDataUri(name) {
+  if (posterCache.has(name)) return posterCache.get(name);
+  // `name` is either a demo-model poster (<name>-poster.webp) or a hub still (<name>.webp).
+  const file = name.endsWith('-still') ? `${MODELS}${name}.webp` : `${MODELS}${name}-poster.webp`;
+  const png = await sharp(file).resize({ height: 520, fit: 'inside' }).png().toBuffer();
+  const uri = `data:image/png;base64,${png.toString('base64')}`;
+  posterCache.set(name, uri);
+  return uri;
+}
+
+// Brand mark — pink back layer -8°, teal front +4° (knowledge-bank spec).
+const mark = (size = 44) => ({
+  type: 'div',
+  props: {
+    style: { display: 'flex', position: 'relative', width: size * 1.35, height: size * 1.2 },
+    children: [
+      {
+        type: 'div',
+        props: {
+          style: { position: 'absolute', left: 0, top: size * 0.16, width: size, height: size, borderRadius: size * 0.24, background: PINK, transform: 'rotate(-8deg)', opacity: 0.92 },
+        },
+      },
+      {
+        type: 'div',
+        props: {
+          style: { position: 'absolute', left: size * 0.22, top: 0, width: size, height: size, borderRadius: size * 0.24, background: TEAL, transform: 'rotate(4deg)' },
+        },
+      },
+    ],
+  },
+});
+
+// ── Layout ──────────────────────────────────────────────────────────────
+function layout({ kicker, title, sub, poster }, posterUri) {
+  const hasPoster = Boolean(posterUri);
+  const titleSize = title.length > 44 ? 58 : title.length > 30 ? 66 : 80;
+  return {
+    type: 'div',
+    props: {
+      style: {
+        width: 1200,
+        height: 630,
+        display: 'flex',
+        position: 'relative',
+        background: INK,
+        fontFamily: 'Inter',
+        color: PAPER,
+        overflow: 'hidden',
+      },
+      children: [
+        // Light fields — teal from the upper right, one pink from the lower
+        // right, deep teal pooling at the lower left.
+        field('62%', '-18%', 720, `${TEAL}55`),
+        field('72%', '48%', 560, `${PINK}33`),
+        field('-16%', '58%', 640, `${TEAL_DEEP}99`),
+        // Fine dot grid, masked to the right half (behind the object).
+        {
+          type: 'div',
+          props: {
+            style: {
+              position: 'absolute',
+              left: 640,
+              top: 60,
+              width: 500,
+              height: 510,
+              backgroundImage: `radial-gradient(circle, ${PAPER}26 1.2px, transparent 1.6px)`,
+              backgroundSize: '22px 22px',
+              opacity: hasPoster ? 0.7 : 0.35,
+            },
+          },
+        },
+        // Hairline orbit set.
+        orbit(hasPoster ? 890 : 980, 330, 430, 190, 0.28),
+        orbit(hasPoster ? 890 : 980, 330, 520, 232, 0.16),
+        orbit(hasPoster ? 890 : 980, 330, 330, 146, 0.22),
+        // The object — a REAL render on a plinth glow.
+        hasPoster && {
+          type: 'div',
+          props: {
+            style: { position: 'absolute', left: 700, top: 70, width: 400, height: 500, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+            children: [
+              { type: 'div', props: { style: { position: 'absolute', left: 60, bottom: 30, width: 280, height: 70, borderRadius: 200, background: `${INK}`, opacity: 0.55, filter: 'blur(18px)' } } },
+              { type: 'img', props: { src: posterUri, style: { height: 460, objectFit: 'contain' } } },
+            ],
+          },
+        },
+        // Top hairline + mark + wordmark.
+        {
+          type: 'div',
+          props: {
+            style: { position: 'absolute', left: 72, top: 64, display: 'flex', alignItems: 'center', gap: 20 },
+            children: [
+              mark(40),
+              { type: 'div', props: { style: { fontFamily: 'Space Grotesk', fontSize: 34, fontWeight: 500, letterSpacing: -1, color: PAPER }, children: 'Thridify' } },
+            ],
+          },
+        },
+        // Copy block.
+        {
+          type: 'div',
+          props: {
+            style: { position: 'absolute', left: 72, top: 214, width: hasPoster ? 600 : 860, display: 'flex', flexDirection: 'column' },
+            children: [
+              {
+                type: 'div',
+                props: {
+                  style: { display: 'flex', alignItems: 'center', gap: 14, fontFamily: 'Space Grotesk', fontSize: 20, fontWeight: 500, letterSpacing: 5, textTransform: 'uppercase', color: TEAL_SOFT },
+                  children: [
+                    { type: 'div', props: { style: { width: 34, height: 1, background: TEAL_SOFT, opacity: 0.8 } } },
+                    kicker,
+                  ],
+                },
+              },
+              {
+                type: 'div',
+                props: {
+                  style: { marginTop: 26, fontFamily: 'Space Grotesk', fontSize: titleSize, fontWeight: 500, lineHeight: 1.06, letterSpacing: -2.2, color: PAPER },
+                  children: title,
+                },
+              },
+              sub && {
+                type: 'div',
+                props: { style: { marginTop: 22, fontSize: 26, lineHeight: 1.4, color: MUTED }, children: sub },
+              },
+            ].filter(Boolean),
+          },
+        },
+        // Bottom rule + tagline.
+        {
+          type: 'div',
+          props: {
+            style: { position: 'absolute', left: 72, right: 72, bottom: 58, display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: `1px solid ${PAPER}22`, paddingTop: 22 },
+            children: [
+              { type: 'div', props: { style: { fontFamily: 'IBM Plex Mono', fontSize: 19, letterSpacing: 1, color: MUTED }, children: 'No code · No app · No friction' } },
+              { type: 'div', props: { style: { fontFamily: 'IBM Plex Mono', fontSize: 19, letterSpacing: 1, color: MUTED }, children: 'thridify.com' } },
+            ],
+          },
+        },
+      ].filter(Boolean),
+    },
+  };
+}
+
+function field(left, top, size, color) {
+  return {
+    type: 'div',
+    props: {
+      style: { position: 'absolute', left, top, width: size, height: size, borderRadius: size, background: `radial-gradient(circle, ${color} 0%, ${INK}00 68%)` },
+    },
+  };
+}
+function orbit(cx, cy, rx, ry, opacity) {
+  return {
+    type: 'div',
+    props: {
+      style: { position: 'absolute', left: cx - rx, top: cy - ry, width: rx * 2, height: ry * 2, borderRadius: '50%', border: `1px solid ${TEAL_SOFT}`, opacity },
+    },
+  };
+}
+
+// ── Render ──────────────────────────────────────────────────────────────
+const filter = process.argv[2] ?? '';
+for (const page of PAGES.filter((p) => p.file.includes(filter))) {
+  const posterUri = page.poster ? await posterDataUri(page.poster) : null;
+  const svg = await satori(layout(page, posterUri), { width: 1200, height: 630, fonts: FONTS });
+  const png = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } }).render().asPng();
+  const out = await sharp(png).png({ palette: true, quality: 90, compressionLevel: 9 }).toBuffer();
+  writeFileSync(`${OUT}${page.file}`, out);
+  console.log('wrote', page.file, `${Math.round(out.length / 1024)} KB`);
 }

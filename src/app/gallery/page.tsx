@@ -136,10 +136,10 @@ export default function GalleryPage() {
             <h2 className="tt-2">FormField</h2>
             <form className="space-y-5 max-w-md" aria-label="Gallery demo form">
               <FormField label="Work email" htmlFor="g-email">
-                <input id="g-email" type="email" name="email" autoComplete="email" className={inputClass} placeholder="you@company.com" />
+                <input id="g-email" type="email" name="email" autoComplete="email" className={inputClass} placeholder=" " />
               </FormField>
               <FormField label="Product category" htmlFor="g-cat">
-                <input id="g-cat" type="text" name="category" autoComplete="organization-title" className={inputClass} placeholder="e.g. Furniture" />
+                <input id="g-cat" type="text" name="category" autoComplete="organization-title" className={inputClass} placeholder=" " />
               </FormField>
             </form>
           </div>

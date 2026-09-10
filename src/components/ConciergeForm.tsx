@@ -111,10 +111,10 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
           type="email"
           autoComplete="email"
           className={inputClass}
-          placeholder="you@brand.com"
+          placeholder=" "
         />
       </FormField>
-      <FormField label="What do you sell?" htmlFor="contact-category" className="md:col-span-1">
+      <FormField label="What do you sell?" htmlFor="contact-category" className="md:col-span-1" raised>
         <select
           id="contact-category"
           required
@@ -123,7 +123,7 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
           className={inputClass}
         >
           <option value="" disabled>
-            Select a product category
+            Select a category
           </option>
           {CATEGORIES.map((c) => (
             <option key={c} value={c}>
@@ -144,7 +144,7 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
               type="text"
               autoComplete="name"
               className={inputClass}
-              placeholder="Jane Doe"
+              placeholder=" "
             />
           </FormField>
           <FormField label="Company" htmlFor="contact-company" className="md:col-span-1">
@@ -154,7 +154,7 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
               type="text"
               autoComplete="organization"
               className={inputClass}
-              placeholder="Acme Furniture"
+              placeholder=" "
             />
           </FormField>
           <FormField label="Anything we should know?" htmlFor="contact-message" className="md:col-span-2">
@@ -162,8 +162,8 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
               id="contact-message"
               name="message"
               rows={4}
-              className={`${inputClass} resize-none`}
-              placeholder="Catalog size, current storefront, what you'd like to see in the demo..."
+              className={inputClass}
+              placeholder=" "
             />
           </FormField>
         </>
@@ -191,7 +191,7 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
         </p>
       </div>
       {status === 'error' && (
-        <p className="md:col-span-2 text-sm text-red-700" role="alert">
+        <p className="md:col-span-2 text-sm text-danger" role="alert">
           {error} — please try again, or email us at{' '}
           <a href={`mailto:${fallbackEmail}`} className="underline">
             {fallbackEmail}

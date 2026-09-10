@@ -13,8 +13,11 @@ export default {
         'primary-contrast': 'var(--brand-primary-contrast)',
         accent: 'var(--brand-accent)',
         ink: 'var(--brand-ink)',
-        paper: 'var(--brand-bg)',
+        // Light-on-ink value — independent of the page background so it
+        // stays light in the dark scheme (globals.css).
+        paper: 'var(--brand-paper)',
         tint: 'var(--brand-surface)',
+        danger: 'var(--brand-danger)',
         background: 'var(--brand-bg)',
         surface: 'var(--brand-surface)',
         foreground: 'var(--brand-text)',

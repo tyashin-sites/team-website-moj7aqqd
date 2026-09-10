@@ -99,7 +99,7 @@ export function CapabilityDemo({
   // sized (the SDK handoff's container); mode + poster travel via the seam.
   if (experiencePreviewId) {
     return (
-      <div className={className}>
+      <div className={className} data-print="hide">
         <div
           className={`relative ${aspect} rounded-lg overflow-hidden border ${
             onDark ? 'bg-paper/[0.04] border-paper/15' : 'bg-tint border-foreground/10'
@@ -218,7 +218,7 @@ export function CapabilityDemo({
   }
 
   return (
-    <div className={className} ref={warmRef}>
+    <div className={className} ref={warmRef} data-print="hide">
       <div
         className={`relative ${aspect} rounded-lg overflow-hidden border ${
           onDark ? 'bg-paper/[0.04] border-paper/15' : 'bg-tint border-foreground/10'

@@ -29,9 +29,16 @@ export function MobileCtaBar() {
     };
   }, []);
 
+  // Let the scroll-to-top ring clear the bar once it is in (globals.css
+  // `body.has-cta-bar .scroll-top`).
+  useEffect(() => {
+    document.body.classList.toggle('has-cta-bar', show);
+    return () => document.body.classList.remove('has-cta-bar');
+  }, [show]);
+
   return (
     <div
-      className={`md:hidden fixed bottom-0 inset-x-0 z-40 transition-transform duration-300 ${
+      className={`mobile-cta-bar md:hidden fixed bottom-0 inset-x-0 z-40 transition-transform duration-300 ${
         show ? 'translate-y-0' : 'translate-y-full'
       }`}
       aria-hidden={!show}

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'Industries — 3D & AR Commerce for Every Sector',
     description:
       'Furniture, modular kitchens, doors & windows, prefab structures, machinery and laminates — immersive commerce per sector.',
-    images: ['/og/default.png'],
+    images: ['/og/industries.png'],
   },
 };
 
@@ -112,10 +112,34 @@ export default function IndustriesPage() {
                 <Link
                   key={ind.slug}
                   href={`/industries/${ind.slug}`}
-                  className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui"
+                  className="group card p-8 flex flex-col hover:-translate-y-1 transition-ui overflow-hidden"
                 >
-                  <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
-                    <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
+                  {/* The REAL Thridify demo product this industry's page shows
+                      live, rendered from its own GLB (Industry.hubArt): a slow
+                      animated WebP on a soft brand-light field, with the still
+                      frame for reduced-motion visitors. No fabricated imagery;
+                      industries without a usable render keep the icon only. */}
+                  <span className="relative flex items-end justify-between mb-6 min-h-12">
+                    <span className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-contrast transition-colors">
+                      <Icon className="w-6 h-6" strokeWidth={1.5} aria-hidden />
+                    </span>
+                    {ind.hubArt && (
+                      <span className="relative w-36 h-36 -mr-5 -mt-5 shrink-0">
+                        <span className="absolute inset-3 rounded-full bg-primary/10 blur-2xl group-hover:bg-primary/15 transition-colors" aria-hidden />
+                        <picture>
+                          <source srcSet={ind.hubArt.still} media="(prefers-reduced-motion: reduce)" />
+                          <img
+                            src={ind.hubArt.turn}
+                            alt={ind.hubArt.alt}
+                            width={480}
+                            height={480}
+                            loading="lazy"
+                            decoding="async"
+                            className="relative w-full h-full object-contain drop-shadow-lg transition-transform duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03]"
+                          />
+                        </picture>
+                      </span>
+                    )}
                   </span>
                   <h3 className="tt-2 text-2xl mb-2 group-hover:text-primary transition-colors">{ind.gridName}</h3>
                   <p className="text-foreground/70 leading-relaxed flex-1">{ind.pain}</p>
@@ -152,26 +176,26 @@ export default function IndustriesPage() {
       {/* CTA */}
       <section className="section">
         <div className="container-x">
-          <div className="relative overflow-hidden rounded-lg bg-foreground text-background p-10 md:p-16">
+          <div className="on-dark relative overflow-hidden rounded-lg bg-ink text-paper border border-paper/10 p-10 md:p-16">
             <div className="absolute inset-0 aurora opacity-40 pointer-events-none" aria-hidden />
             <div className="relative max-w-3xl">
-              <h2 className="tt-1">{page.cta.title}</h2>
+              <h2 className="tt-1 text-paper">{page.cta.title}</h2>
               {page.cta.subtitle && (
-                <p className="mt-5 text-lg text-background/75 leading-relaxed">{page.cta.subtitle}</p>
+                <p className="mt-5 text-lg text-muted-dark leading-relaxed">{page.cta.subtitle}</p>
               )}
               <div className="mt-9 flex flex-wrap gap-3">
                 <a
                   href={page.cta.primaryCta.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-background text-foreground font-semibold hover:bg-primary hover:text-primary-contrast transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-paper text-ink font-semibold hover:bg-primary hover:text-primary-contrast transition-colors"
                 >
                   {ctaLabel(page.cta.primaryCta)} <ArrowRight className="w-4 h-4" aria-hidden />
                 </a>
                 {page.cta.secondaryCta && (
                   <Link
                     href={page.cta.secondaryCta.href}
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-background/30 text-background font-semibold hover:bg-background/10 transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-paper/30 text-paper font-semibold hover:bg-paper/10 transition-colors"
                   >
                     {ctaLabel(page.cta.secondaryCta)}
                   </Link>

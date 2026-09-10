@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { PILLARS, type Pillar } from "@/lib/features";
+import { SectionIndex } from "@/components/SectionIndex";
 import { SITE_URL } from "@/lib/schema";
 
 const CALENDLY = "https://calendly.com/hello-thridify/30min";
@@ -117,12 +118,12 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/features`,
     type: "website",
     siteName: "Thridify",
-    images: ["/og/default.png"],
+    images: ["/og/features.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Thridify Features — 3D & AR commerce capabilities",
-    images: ["/og/default.png"],
+    images: ["/og/features.png"],
   },
 };
 
@@ -204,6 +205,12 @@ export default function FeaturesPage() {
           </li>
         </ol>
       </nav>
+      <SectionIndex
+        items={[
+          ...PILLARS.map((p) => ({ id: p.id, label: p.label })),
+          { id: "faq", label: "FAQ" },
+        ]}
+      />
 
       {/* HERO — pain-led H1 (6 words ≤12); lead 37 words (≤40). */}
       <section className="relative overflow-hidden">
@@ -341,7 +348,7 @@ export default function FeaturesPage() {
       })}
 
       {/* FAQ — questions merchants Google (FAQPage schema above). */}
-      <section className="section">
+      <section id="faq" className="section scroll-mt-20">
         <div className="container-x grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-4">
             <p className="eyebrow">FAQ</p>

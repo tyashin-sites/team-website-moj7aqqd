@@ -16,6 +16,7 @@ import {
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { EXP } from '@/lib/thridify';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { HeroArt } from '@/components/HeroArt';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
@@ -219,7 +220,8 @@ export default function ThreeDModellingServicePage() {
               <Link href="/#demo" className="btn btn-ghost">Try the live demo</Link>
             </div>
           </div>
-          <div>
+          <div className="relative">
+            <HeroArt />
             {/* DEMO-FIRST (§6a): a live model of the kind we deliver. */}
             <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" priority experiencePreviewId={EXP.luxuryFurniture} />
           </div>
