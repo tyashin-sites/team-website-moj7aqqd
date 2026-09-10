@@ -21,7 +21,7 @@
  */
 
 export const SITE_URL =
-  process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
+  process.env.SITE_URL ?? 'https://thridify.com';
 
 /** The single canonical entity description — reused verbatim everywhere. */
 export const CANONICAL_DESCRIPTION =

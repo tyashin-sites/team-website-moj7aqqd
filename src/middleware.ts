@@ -16,8 +16,8 @@ import type { NextRequest } from 'next/server';
  *     (e.g. team-website-moj7aqqd.sites.tyashin.com). Neither is ever the
  *     production host for THIS project (production = thridify.com), so
  *     hard-coding noindex on them is safe.
- * The future production domain (thridify.com / www.thridify.com) is
- * untouched by design and remains fully indexable.
+ * The production domain (thridify.com) is never stamped; www.thridify.com
+ * 301s to the apex.
  *
  * REMOVAL: this guard is removed in BUILD-PLAN.md Phase 7 (launch cutover),
  * with post-deploy verification on ALL hosts. See the ROBOTS_NOINDEX incident
@@ -26,13 +26,44 @@ import type { NextRequest } from 'next/server';
  * ─────────────────────────────────────────────────────────────────────────────
  */
 const PREVIEW_HOST_SUFFIXES = ['.workers.dev', '.sites.tyashin.com'];
+const PRODUCTION_HOST = 'thridify.com';
+
+/**
+ * The host the VISITOR used. Under Tyashin dispatch the Worker is fetched at
+ * its workers.dev URL and the platform forwards the real hostname in
+ * `X-Forwarded-Host` (custom domains + *.sites.tyashin.com). A direct hit on
+ * workers.dev carries no forwarded host. Keying the guard on the raw `host`
+ * alone stamped noindex on thridify.com itself at cutover (2026-09-10).
+ */
+function effectiveHost(request: NextRequest): string {
+  return (
+    request.headers.get('x-forwarded-host') ??
+    request.headers.get('host') ??
+    ''
+  ).toLowerCase();
+}
 
 export function middleware(request: NextRequest) {
+  const host = effectiveHost(request);
+
+  // Canonical host: www → apex, permanent. The platform emits apex canonicals
+  // for this project, so the www hostname must not serve a duplicate copy.
+  if (host === `www.${PRODUCTION_HOST}`) {
+    const url = request.nextUrl.clone();
+    url.protocol = 'https:';
+    url.host = PRODUCTION_HOST;
+    url.port = '';
+    return NextResponse.redirect(url, 301);
+  }
+
   const response = NextResponse.next();
-  const host = request.headers.get('host') ?? '';
-  if (PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix))) {
+  const isProduction = host === PRODUCTION_HOST;
+  if (!isProduction && PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix))) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow');
   }
+  // Temporary cutover diagnostic (remove after verification): which host the
+  // guard actually evaluated, so the live check is unambiguous.
+  response.headers.set('X-Site-Effective-Host', host);
   return response;
 }
 

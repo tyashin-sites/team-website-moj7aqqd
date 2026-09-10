@@ -232,6 +232,14 @@ the site declared launch-ready to the user.
 
 ## Phase 7 — Launch Readiness & Cutover (USER GO REQUIRED)
 
+**STATUS (2026-09-10): CUTOVER EXECUTED.** thridify.com + www attached to the Tyashin
+project by the user; both resolve to the site Worker (`x-tyashin-dispatch: nextjs`).
+Found at cutover: the preview-noindex guard keyed on the raw `host` (workers.dev under
+dispatch) so thridify.com itself served `noindex` — fixed by keying on `X-Forwarded-Host`
+(middleware), plus www→apex 301 and `SITE_URL` default → `https://thridify.com`.
+Remaining: SEO Co-Pilot install, Search Console/Bing verification + sitemap submission,
+48h watch.
+
 Prepared in advance, executed only on instruction:
 - URL inventory of the WordPress site → 301 redirect map (preserve any
   earned equity; no ghost URLs). **DONE (prepared 2026-08-03):** the complete
