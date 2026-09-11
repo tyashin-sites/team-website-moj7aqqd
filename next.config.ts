@@ -48,7 +48,6 @@ const nextConfig = {
       // reference). Keep it un-redirected so the SSG page serves.
       { source: "/demo", destination: "/contact", statusCode: 301 },
       { source: "/contact-us", destination: "/contact", statusCode: 301 },
-      { source: "/faq", destination: "/what-is-thridify", statusCode: 301 },
       {
         source: "/pricing-plans",
         destination: "/services/3d-modelling",

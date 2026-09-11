@@ -74,7 +74,7 @@ GSC metrics: c=clicks, i=impressions, p=avg position (as supplied by the user).
 | `/demo/` | — | 301 | `/contact` | `/contact` carries the demo form + Calendly. Fragment `/#demo` exists but hash redirects are unreliable |
 | `/contact/` | — | KEEP | `/contact` | Native route |
 | `/contact-us/` | — | 301 | `/contact` | |
-| `/faq/` | 5c 1259i | 301 | `/what-is-thridify` | Fact page carries FAQPage schema |
+| `/faq/` | 5c 1259i | KEEP | `/faq` | Native FAQ hub shipped 2026-09-11 (50 Q&As, FAQPage schema) — interim 301 to `/what-is-thridify` removed |
 | `/pricing-plans/` | — | 301 | `/services/3d-modelling` | No pricing page on new site; the service page carries the commercial offer/turnaround. TODO(phase7): consider a real `/pricing` page |
 
 ### B. Industries
