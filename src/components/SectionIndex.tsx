@@ -18,6 +18,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ScrollTrigger, useGSAP, reduced } from '@/components/motion/gsap';
+import { smoothScrollToElement } from '@/components/motion/scroll';
 
 export type SectionIndexItem = { id: string; label: string };
 
@@ -66,7 +67,7 @@ export function SectionIndex({ items }: { items: SectionIndexItem[] }) {
     const el = document.getElementById(id);
     if (!el) return;
     e.preventDefault();
-    el.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
+    smoothScrollToElement(el);
     history.replaceState(null, '', `#${id}`);
   };
 

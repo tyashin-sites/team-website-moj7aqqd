@@ -127,7 +127,10 @@ html:root {
    ───────────────────────────────────────────────────────────────────── */
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* No CSS smooth scrolling: ScrollTrigger.refresh() cancels in-flight
+       native smooth scrolls (deep links landed at the top). All programmatic
+       scrolling is the per-frame tween in components/motion/scroll.ts. */
+    scroll-behavior: auto;
     -webkit-font-smoothing: antialiased;
     /* Native controls, scrollbars and form popups follow the scheme. */
     color-scheme: light dark;

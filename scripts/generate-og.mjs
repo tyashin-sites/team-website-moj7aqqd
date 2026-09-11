@@ -9,6 +9,7 @@
  * page itself shows (CC0 stand-ins tracked in docs/ASSET-DEBT.md #19). Pages
  * without a real render get the abstract brand artwork only.
  *
+ * Brand mark: the official logo-favicon.png raster, embedded — NOT redrawn.
  * Rendering: satori (HTML/CSS → SVG) + resvg (SVG → PNG), fonts fetched
  * from Google Fonts on first run and cached in node_modules/.cache/og-fonts.
  * Output is palette-quantised PNG (~60–120 KB each).
@@ -119,26 +120,17 @@ async function posterDataUri(name) {
   return uri;
 }
 
-// Brand mark — pink back layer -8°, teal front +4° (knowledge-bank spec).
+// Brand mark — the OFFICIAL raster mark (public/brand/logo-favicon.png, the
+// same file the header/favicon use), embedded as a data URI. Never redraw it.
+const BRAND = new URL('../public/brand/', import.meta.url).pathname;
+const markPng = await sharp(`${BRAND}logo-favicon.png`).trim().resize({ height: 96, fit: 'inside' }).png().toBuffer();
+const markMeta = await sharp(markPng).metadata();
+const MARK_ASPECT = (markMeta.width ?? 96) / (markMeta.height ?? 96);
+const MARK_URI = `data:image/png;base64,${markPng.toString('base64')}`;
+// satori needs explicit dimensions on <img>.
 const mark = (size = 44) => ({
-  type: 'div',
-  props: {
-    style: { display: 'flex', position: 'relative', width: size * 1.35, height: size * 1.2 },
-    children: [
-      {
-        type: 'div',
-        props: {
-          style: { position: 'absolute', left: 0, top: size * 0.16, width: size, height: size, borderRadius: size * 0.24, background: PINK, transform: 'rotate(-8deg)', opacity: 0.92 },
-        },
-      },
-      {
-        type: 'div',
-        props: {
-          style: { position: 'absolute', left: size * 0.22, top: 0, width: size, height: size, borderRadius: size * 0.24, background: TEAL, transform: 'rotate(4deg)' },
-        },
-      },
-    ],
-  },
+  type: 'img',
+  props: { src: MARK_URI, width: Math.round(size * MARK_ASPECT), height: size, style: { width: Math.round(size * MARK_ASPECT), height: size } },
 });
 
 // ── Layout ──────────────────────────────────────────────────────────────
@@ -201,7 +193,7 @@ function layout({ kicker, title, sub, poster }, posterUri) {
           props: {
             style: { position: 'absolute', left: 72, top: 64, display: 'flex', alignItems: 'center', gap: 20 },
             children: [
-              mark(40),
+              mark(44),
               { type: 'div', props: { style: { fontFamily: 'Space Grotesk', fontSize: 34, fontWeight: 500, letterSpacing: -1, color: PAPER }, children: 'Thridify' } },
             ],
           },
