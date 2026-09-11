@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { homeContent } from '@/lib/content';
 import { INDUSTRIES } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
@@ -22,7 +21,6 @@ import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { PipelineStrip } from '@/components/signature/PipelineStrip';
 import { ScrollStory, SCROLL_STORY_ENABLED } from '@/components/signature/ScrollStory';
 import { VerticalCard } from '@/components/signature/VerticalCard';
-import { ProofCard } from '@/components/signature/ProofCard';
 import { CTABand } from '@/components/signature/CTABand';
 import { SITE_URL } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
@@ -41,8 +39,8 @@ export const metadata = pageMetadata({
 // Home content — typed, single-sourced from content/site.json (src/lib/content.ts).
 const home = homeContent;
 
-// The first real testimonial carries the dark "voice" band; the rest stay
-// as ProofCards. Order is content order — nothing is re-ranked here.
+// The first real testimonial carries the dark "voice" band; the rest sit
+// beneath it as glass cards. Order is content order — nothing is re-ranked.
 const [leadQuote, ...otherQuotes] = home.proof.testimonials;
 
 export default function HomePage() {
@@ -203,10 +201,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8a. VOICE — the lead REAL customer quote given a full dark-band
-          moment (luxury pass, editorial restraint): one voice at display
-          scale instead of three equal cards. Same verbatim quote, same
-          company-level attribution (No-Faking); layout only. */}
+      {/* 8. VOICE — the REAL customer quotes (verbatim from production
+          thridify.com, user-confirmed 2026-07-24; company-level attribution,
+          No-Faking). The lead quote gets the full dark-band moment, the other
+          two sit beneath it as glass cards — ONE proof moment. The metric bar
+          under the hero and the client marquee already carry the numbers and
+          logos, so nothing is repeated here. */}
       {leadQuote && (
         <section className="on-dark bg-ink text-paper relative overflow-hidden grain">
           <div
@@ -220,7 +220,8 @@ export default function HomePage() {
             aria-hidden
           />
           <div className="container-x section relative">
-            <figure className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <p data-fx="rise" className="eyebrow">{home.proof.eyebrow}</p>
+            <figure className="mt-6 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               <div className="lg:col-span-2 flex lg:justify-end">
                 <span data-fx="rise" className="voice-mark" aria-hidden>
                   &ldquo;
@@ -236,56 +237,23 @@ export default function HomePage() {
                 </figcaption>
               </div>
             </figure>
+            {otherQuotes.length > 0 && (
+              <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 lg:ml-[calc(100%/12*2+3rem)]">
+                {otherQuotes.map((t, i) => (
+                  <Reveal key={t.company} delay={i * 0.08}>
+                    <figure className="glass-card p-7 h-full flex flex-col">
+                      <blockquote className="text-lg leading-relaxed text-paper/90 flex-1">
+                        &ldquo;{t.quote}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-6 tt-mono text-primary-soft">{t.company}</figcaption>
+                    </figure>
+                  </Reveal>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
-
-      {/* 8b. PROOF — the 6 canonical impact metrics as a ruled ledger (not a
-          card grid), the remaining REAL quotes (verbatim from production
-          thridify.com, user-confirmed 2026-07-24) + real client logos
-          (§7.6, No-Faking). */}
-      <section className="section">
-        <div className="container-x">
-          <div className="max-w-2xl mb-14">
-            <SectionHeading eyebrow={home.proof.eyebrow} title={home.proof.title} />
-          </div>
-          <dl className="stat-row">
-            {home.proof.metrics.map((m, i) => (
-              <Reveal key={m.label} delay={i * 0.06}>
-                <dd
-                  className={`font-mono tabular-nums text-4xl md:text-5xl font-normal tracking-tight ${
-                    i === 1 ? 'text-primary' : 'text-foreground'
-                  }`}
-                >
-                  {m.value}
-                </dd>
-                <dt className="mt-3 text-[13px] tracking-[0.08em] uppercase text-foreground/60">{m.label}</dt>
-              </Reveal>
-            ))}
-          </dl>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {otherQuotes.map((t, i) => (
-              <Reveal key={t.company} delay={i * 0.08}>
-                <ProofCard quote={t.quote} company={t.company} />
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6">
-            <span className="text-sm text-foreground/70">Client work includes</span>
-            {home.clients.logos.map((logo) => (
-              <Image
-                key={logo.name}
-                src={logo.logoUrl}
-                alt={logo.name}
-                width={120}
-                height={36}
-                className="h-8 w-auto object-contain opacity-80"
-                unoptimized
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 9. CTA BAND (§7.7). */}
       <CTABand headline={home.cta.title} ctaLabel={ctaLabel(home.cta.primaryCta) || 'Book a Demo'} />

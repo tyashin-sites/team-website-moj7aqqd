@@ -9,7 +9,7 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { reduced } from '@/components/motion/gsap';
+import { smoothScrollTo } from '@/components/motion/scroll';
 
 export function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -31,7 +31,7 @@ export function ScrollToTop() {
   return (
     <button
       type="button"
-      onClick={() => window.scrollTo({ top: 0, behavior: reduced() ? 'auto' : 'smooth' })}
+      onClick={() => smoothScrollTo(0)}
       className={`scroll-top${visible ? ' is-visible' : ''}`}
       aria-label="Back to top"
       tabIndex={visible ? 0 : -1}

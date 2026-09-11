@@ -7,6 +7,7 @@ import { PointerFX } from '@/components/motion/PointerFX';
 import { MobileCtaBar } from '@/components/MobileCtaBar';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import { PrintFX } from '@/components/PrintFX';
+import { HashScroll } from '@/components/HashScroll';
 import { EntitySchema } from '@/components/SiteSchema';
 import './globals.css';
 
@@ -177,6 +178,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Back-to-top ring (luxury pass) + print-time FAQ expansion. */}
         <ScrollToTop />
         <PrintFX />
+        {/* Reliable #anchor deep links (e.g. /platform#analytics from the footer). */}
+        <HashScroll />
         {/* Sitewide declarative scroll effects (data-parallax / data-fx) —
             wires GSAP ScrollTriggers to server-rendered markup. */}
         <ScrollFX />
