@@ -120,10 +120,11 @@ async function posterDataUri(name) {
   return uri;
 }
 
-// Brand mark — the OFFICIAL raster mark (public/brand/logo-favicon.png, the
-// same file the header/favicon use), embedded as a data URI. Never redraw it.
+// Brand mark — the OFFICIAL mark (public/brand/logo-mark.png, cut from the
+// brand kit's 4000px logo; the header/favicon use the same artwork), embedded
+// as a data URI. Never redraw it.
 const BRAND = new URL('../public/brand/', import.meta.url).pathname;
-const markPng = await sharp(`${BRAND}logo-favicon.png`).trim().resize({ height: 96, fit: 'inside' }).png().toBuffer();
+const markPng = await sharp(`${BRAND}logo-mark.png`).trim().resize({ height: 96, fit: 'inside' }).png().toBuffer();
 const markMeta = await sharp(markPng).metadata();
 const MARK_ASPECT = (markMeta.width ?? 96) / (markMeta.height ?? 96);
 const MARK_URI = `data:image/png;base64,${markPng.toString('base64')}`;

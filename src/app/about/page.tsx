@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { aboutContent } from '@/lib/content';
 import { ctaLabel } from '@/lib/cta';
@@ -38,12 +39,22 @@ export default function AboutPage() {
             <h1 className="tt-display text-foreground">{d.hero.title}</h1>
             <p className="lead max-w-2xl">{d.hero.subtitle}</p>
           </div>
-          {/* Brand mark geometry — the two overlapping rounded squares from
-              the Thridify logo, as a dimensional signature (not stock). */}
+          {/* The OFFICIAL brand mark (public/brand/logo-favicon.png — the same
+              file the header and favicon use), set large on a soft brand-light
+              field as the page's dimensional signature. Never redraw the mark. */}
           <div className="mt-14 relative h-40 md:h-52" aria-hidden>
-            <div className="absolute left-4 top-4 w-32 h-32 md:w-44 md:h-44 rounded-3xl bg-accent/70 -rotate-[8deg]" />
-            <div className="absolute left-10 top-0 w-32 h-32 md:w-44 md:h-44 rounded-3xl bg-primary rotate-[4deg]" />
-            <div className="absolute left-44 md:left-64 top-8 hidden sm:block">
+            <div className="absolute left-0 top-0 w-40 h-40 md:w-52 md:h-52">
+              <div className="absolute inset-3 rounded-full bg-primary/10 blur-2xl" />
+              <Image
+                src="/brand/logo-mark.png"
+                alt=""
+                width={600}
+                height={600}
+                unoptimized
+                className="relative w-full h-full object-contain drop-shadow-lg"
+              />
+            </div>
+            <div className="absolute left-48 md:left-64 top-10 hidden sm:block">
               <div className="accent-line w-40 md:w-64" />
             </div>
           </div>
@@ -79,7 +90,7 @@ export default function AboutPage() {
       </section>
 
       {/* MISSION — body ≤40 words (currently 38). Dark showroom interlude with a
-          brand-abstract visual (two-square logo geometry) so the About page
+          the official brand mark as a visual so the About page
           never runs >2 consecutive text-only sections (D-4, §3). No stock/
           team photos (ASSET-DEBT #15). */}
       <section className="on-dark section bg-ink text-paper overflow-hidden">
@@ -89,12 +100,21 @@ export default function AboutPage() {
             <h2 className="tt-1 text-paper">{d.mission.title}</h2>
             <p className="lead">{d.mission.body}</p>
           </div>
-          {/* Brand-mark geometry on dark — the overlapping rounded squares
-              from the Thridify logo, a dimensional signature (not stock). One
-              pink element in this viewport (§1). */}
+          {/* The OFFICIAL brand mark on dark — same asset as the header, on a
+              soft teal field. The mark's own pink is the one pink element in
+              this viewport (§1). */}
           <div className="lg:col-span-5 relative h-48 md:h-60" aria-hidden>
-            <div className="absolute right-10 top-6 w-32 h-32 md:w-44 md:h-44 rounded-3xl bg-accent/70 -rotate-[8deg]" />
-            <div className="absolute right-16 top-0 w-32 h-32 md:w-44 md:h-44 rounded-3xl bg-primary rotate-[4deg]" />
+            <div className="absolute right-8 top-0 w-44 h-44 md:w-56 md:h-56">
+              <div className="absolute inset-3 rounded-full bg-primary-soft/15 blur-2xl" />
+              <Image
+                src="/brand/logo-mark.png"
+                alt=""
+                width={600}
+                height={600}
+                unoptimized
+                className="relative w-full h-full object-contain drop-shadow-xl"
+              />
+            </div>
             <div className="absolute right-0 bottom-4 hidden sm:block">
               <div className="accent-line w-40 md:w-56" />
             </div>
