@@ -28,13 +28,54 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { gsap, ScrollTrigger, SplitText, useGSAP, reduced } from '@/components/motion/gsap';
 
+// React stamps a `__reactFiber$…` key on every DOM node it has hydrated.
+const isHydrated = (el: Element) => Object.keys(el).some((k) => k.startsWith('__reactFiber$'));
+
 export function ScrollFX() {
   const pathname = usePathname();
 
   useGSAP(
-    () => {
-      if (reduced()) return;
+    (context) => {
+      if (reduced() || !context) return;
 
+      // HYDRATION LAW: this component lives in the root layout, which hydrates
+      // BEFORE the page segment streaming in behind loading.tsx. Writing inline
+      // styles onto server-rendered nodes React has not claimed yet produces a
+      // hydration-mismatch warning on every page. So: wait until every target
+      // node carries React's fiber key, then wire. Polled per frame; gives up
+      // quietly after ~8s (a page with no targets simply wires nothing).
+      let raf = 0;
+      const deadline = performance.now() + 8000;
+      const tryWire = () => {
+        const targets = document.querySelectorAll('[data-parallax],[data-fx]');
+        const ready = targets.length > 0 && Array.from(targets).every(isHydrated);
+        if (!ready && performance.now() < deadline) {
+          raf = requestAnimationFrame(tryWire);
+          return;
+        }
+        if (ready) context.add(wire);
+      };
+      raf = requestAnimationFrame(tryWire);
+      return () => cancelAnimationFrame(raf);
+    },
+    { dependencies: [pathname], revertOnUpdate: true }
+  );
+
+  // Trigger positions depend on late layout (images, fonts, 3D posters) —
+  // re-measure once everything has loaded.
+  useEffect(() => {
+    const onLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === 'complete') return;
+    window.addEventListener('load', onLoad);
+    return () => window.removeEventListener('load', onLoad);
+  }, []);
+
+  return null;
+}
+
+/** The actual wiring — runs inside the component's GSAP context (context.add)
+ *  so revertOnUpdate still tears every trigger down on route change. */
+function wire() {
       gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {
         const speed = parseFloat(el.dataset.parallax || '0.15');
         const travel = () => speed * Math.min(window.innerHeight, 900) * 0.5;
@@ -103,18 +144,6 @@ export function ScrollFX() {
           scrollTrigger: { trigger: el, start: 'top 92%', once: true },
         });
       });
-    },
-    { dependencies: [pathname], revertOnUpdate: true }
-  );
-
-  // Trigger positions depend on late layout (images, fonts, 3D posters) —
-  // re-measure once everything has loaded.
-  useEffect(() => {
-    const onLoad = () => ScrollTrigger.refresh();
-    if (document.readyState === 'complete') return;
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
-  }, []);
-
-  return null;
+      // Targets that streamed in late need fresh trigger positions.
+      ScrollTrigger.refresh();
 }
