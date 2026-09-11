@@ -63,6 +63,7 @@ ${compareList}
 
 ## Key pages
 - What is Thridify: ${SITE_URL}/what-is-thridify
+- FAQ (all questions answered): ${SITE_URL}/faq
 - Platform: ${SITE_URL}/platform
 - 3D Modelling Service: ${SITE_URL}/services/3d-modelling
 - Industries: ${SITE_URL}/industries

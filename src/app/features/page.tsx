@@ -352,6 +352,15 @@ export default function FeaturesPage() {
                 </p>
               </details>
             ))}
+            <div className="py-5">
+              <Link
+                href="/faq"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+              >
+                Browse all FAQs
+                <ArrowRight className="w-4 h-4" aria-hidden />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
