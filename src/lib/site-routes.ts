@@ -1,6 +1,7 @@
 import { INDUSTRY_SLUGS } from "@/lib/industries";
 import { INTEGRATION_SLUGS } from "@/lib/integrations";
 import { COMPETITOR_SLUGS } from "@/lib/comparisons";
+import { GLOSSARY_SLUGS } from "@/lib/glossary";
 
 /**
  * SINGLE SOURCE OF TRUTH for the site's indexable URL tree.
@@ -60,6 +61,10 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/features", priority: 0.85, changeFrequency: "monthly" },
   { path: "/what-is-thridify", priority: 0.8, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/resources", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/resources/roi-of-3d-and-ar-commerce", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/resources/3d-configurator-cost", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/glossary", priority: 0.7, changeFrequency: "monthly" },
   { path: "/get-a-website", priority: 0.7, changeFrequency: "monthly" },
   { path: "/industries", priority: 0.8, changeFrequency: "monthly" },
   { path: "/integrations", priority: 0.8, changeFrequency: "monthly" },
@@ -71,6 +76,12 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ];
+
+const GLOSSARY_ROUTES: SiteRoute[] = GLOSSARY_SLUGS.map((slug) => ({
+  path: `/glossary/${slug}`,
+  priority: 0.6,
+  changeFrequency: "monthly" as const,
+}));
 
 const INDUSTRY_ROUTES: SiteRoute[] = INDUSTRY_SLUGS.map((slug) => ({
   path: `/industries/${slug}`,
@@ -99,6 +110,7 @@ export function getSiteRoutes(): SiteRoute[] {
   return [
     ...STATIC_ROUTES,
     ...INDUSTRY_ROUTES,
+    ...GLOSSARY_ROUTES,
     ...INTEGRATION_ROUTES,
     ...COMPARE_ROUTES,
   ];

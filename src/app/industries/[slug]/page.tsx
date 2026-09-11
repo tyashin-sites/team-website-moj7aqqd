@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   Sofa,
+  Bath,
+  Speaker,
+  Luggage,
   ChefHat,
   DoorOpen,
   Warehouse,
@@ -46,6 +49,9 @@ const INDUSTRY_ICON: Record<Industry['icon'], LucideIcon> = {
   prefab: Warehouse,
   machinery: Wrench,
   laminate: Layers,
+  bath: Bath,
+  speaker: Speaker,
+  luggage: Luggage,
 };
 
 const CAPABILITY_META: Record<DemoMode, { label: string; icon: LucideIcon }> = {

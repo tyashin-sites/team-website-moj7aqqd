@@ -17,6 +17,9 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Sofa,
+  Bath,
+  Speaker,
+  Luggage,
   ChefHat,
   DoorOpen,
   Warehouse,
@@ -34,6 +37,9 @@ const INDUSTRY_ICON: Record<Industry['icon'], LucideIcon> = {
   prefab: Warehouse,
   machinery: Wrench,
   laminate: Layers,
+  bath: Bath,
+  speaker: Speaker,
+  luggage: Luggage,
 };
 
 export type VerticalCardProps = {

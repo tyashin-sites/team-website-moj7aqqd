@@ -60,7 +60,7 @@ export type Industry = {
   /** Short label for the home grid card. */
   gridName: string;
   /** lucide icon key resolved in the page (keeps this module server-safe). */
-  icon: 'sofa' | 'kitchen' | 'door' | 'prefab' | 'machinery' | 'laminate';
+  icon: 'sofa' | 'kitchen' | 'door' | 'prefab' | 'machinery' | 'laminate' | 'bath' | 'speaker' | 'luggage';
   /** The CapabilityDemo mode featured in the hero. */
   heroDemo: DemoMode;
   /** Per-industry CC0 placeholder model + its seamless poster (DESIGN-SPEC
@@ -550,6 +550,217 @@ export const INDUSTRIES: Industry[] = [
       },
     ],
     related: ['furniture', 'modular-kitchens', 'doors-and-windows'],
+  },
+
+  {
+    slug: 'sanitaryware',
+    name: 'Luxury Sanitaryware & Bath',
+    gridName: 'Sanitaryware & Bath',
+    icon: 'bath',
+    heroDemo: 'configurator',
+    // No sanitaryware experience is published in the hello@ account yet —
+    // the hero uses the shared placeholder until one lands (ASSET-DEBT #31).
+    primaryKeyword: 'sanitaryware 3D configurator',
+    keywords: [
+      'sanitaryware 3D configurator',
+      'bathroom fittings AR viewer',
+      'faucet finish configurator',
+      'view sanitaryware in your bathroom',
+    ],
+    seoTitle: 'Sanitaryware 3D Configurator & Bathroom AR Viewer',
+    seoDescription:
+      'A sanitaryware 3D configurator and app-free AR viewer: buyers switch faucet and fitting finishes in real time and place basins, WCs and taps in their own bathroom before ordering.',
+    hero: {
+      eyebrow: 'Luxury Sanitaryware & Bath',
+      h1: 'A sanitaryware configurator that shows every finish in the buyer’s bathroom.',
+      subtitle:
+        'Buyers switch chrome, brushed and matte finishes on the real fitting in 3D, then place it in their bathroom with app-free AR — before the plumber is booked.',
+    },
+    pain: 'Finish and proportion are judged from a catalogue swatch — until the fitting arrives and looks wrong.',
+    helpsIntro:
+      'Bath fittings are chosen on finish, form and fit. Thridify lets buyers see the exact finish on the exact product, at true scale, in the room it is going into.',
+    helps: [
+      {
+        capability: 'configurator',
+        heading: 'Switch finishes on the real fitting',
+        body: 'Chrome, brushed nickel, matte black, brass — buyers swap finishes on the actual faucet or accessory in real time and see the price update.',
+      },
+      {
+        capability: 'viewer',
+        heading: 'Inspect form, edge and sheen',
+        body: 'Drag-to-spin and zoom show the profile, spout reach and surface sheen from every angle — the detail a flat photo flattens.',
+      },
+      {
+        capability: 'ar',
+        heading: 'Place it in the bathroom',
+        body: 'App-free AR sets a basin, WC or shower fitting at true scale against the buyer’s own wall and vanity, so proportion is confirmed before ordering.',
+      },
+    ],
+    outcomes: [
+      { metric: 'returns', context: 'Seeing the true finish and scale in the room cuts “not what I expected” returns on heavy, costly-to-ship fittings.' },
+      { metric: 'photography', context: 'One 3D fitting renders every finish and angle — no reshoot per finish variant.' },
+      { metric: 'conversion', context: 'Buyers who configure and place a fitting commit with confidence instead of ordering samples.' },
+    ],
+    showGuntierQuote: false,
+    faqs: [
+      {
+        q: 'Can buyers see a faucet or basin in their own bathroom before ordering?',
+        a: 'Yes. Thridify’s AR viewer runs in the browser on any modern smartphone — no app. Buyers place the fitting at true scale against their own wall, vanity or floor from the product page.',
+      },
+      {
+        q: 'Can shoppers switch sanitaryware finishes online?',
+        a: 'Yes. The 3D configurator applies chrome, brushed, matte, brass and other finishes to the actual product in real time, with live pricing for each option.',
+      },
+      {
+        q: 'Do I need a 3D model for every finish?',
+        a: 'No. One model carries every finish as a swappable material, so you publish one product and sell every variant from it.',
+      },
+      {
+        q: 'Does this work with my existing catalogue site?',
+        a: 'Yes. Thridify installs as a plugin on Shopify, WooCommerce, WordPress and the other supported platforms, or as a lightweight embed on any custom site — no re-platforming.',
+      },
+    ],
+    related: ['laminates-surfaces', 'modular-kitchens', 'doors-and-windows'],
+  },
+  {
+    slug: 'electronics-audio',
+    name: 'Electronics & Audio',
+    gridName: 'Electronics & Audio',
+    icon: 'speaker',
+    heroDemo: 'viewer',
+    // No audio/electronics experience is published in the hello@ account yet
+    // — the hero uses the shared placeholder until one lands (ASSET-DEBT #31).
+    primaryKeyword: '3D product viewer for electronics',
+    keywords: [
+      '3D product viewer for electronics',
+      'AR speaker viewer',
+      'view speakers in your room',
+      'electronics product configurator',
+    ],
+    seoTitle: '3D Product Viewer & AR for Electronics and Audio',
+    seoDescription:
+      'A 3D product viewer, colourway configurator and app-free AR for electronics and audio brands: buyers inspect every port and finish, then place speakers and screens at true scale in their room.',
+    hero: {
+      eyebrow: 'Electronics & Audio',
+      h1: 'A 3D product viewer that lets buyers inspect every port and finish.',
+      subtitle:
+        'Shoppers spin the product, read the back panel, switch colourways and set a speaker or screen at true scale on their own shelf — all from the product page.',
+    },
+    pain: 'Spec sheets and studio photos hide the details buyers actually check — ports, controls, size on the shelf.',
+    helpsIntro:
+      'Electronics are bought on detail and fit: the ports on the back, the grille texture, whether it clears the shelf. Thridify puts all of that in the buyer’s hands before checkout.',
+    helps: [
+      {
+        capability: 'viewer',
+        heading: 'Inspect ports, controls and grille',
+        body: 'Drag-to-spin and zoom show the back panel, dials and material texture in photoreal 3D, with hotspots that explain each connection.',
+      },
+      {
+        capability: 'configurator',
+        heading: 'Switch colourways and accessories',
+        body: 'Buyers change finishes, grille colours and bundled accessories in real time, with the price updating as they configure.',
+      },
+      {
+        capability: 'ar',
+        heading: 'Check size on the shelf or wall',
+        body: 'App-free AR places a speaker, soundbar or screen at true scale in the buyer’s room, so “will it fit?” is answered before the order.',
+      },
+    ],
+    outcomes: [
+      { metric: 'engagement', context: 'Spinning, zooming and configuring keeps shoppers on the page far longer than a gallery.' },
+      { metric: 'ctr', context: 'Interactive listings pull more clicks than flat product photos.' },
+      { metric: 'returns', context: 'Seeing ports, size and finish accurately cuts returns from mismatched expectations.' },
+    ],
+    showGuntierQuote: false,
+    faqs: [
+      {
+        q: 'Can shoppers see the back panel and ports in 3D?',
+        a: 'Yes. The 3D viewer lets buyers spin the product and zoom into ports, controls and textures, with hotspots and annotations that explain each connection.',
+      },
+      {
+        q: 'Can buyers preview a speaker or TV in their room?',
+        a: 'Yes. App-free AR places the product at true scale on the buyer’s shelf, desk or wall from any modern smartphone — no app to install.',
+      },
+      {
+        q: 'Can I offer colourways and bundles as a configurator?',
+        a: 'Yes. One 3D model carries every finish and accessory option as swappable parts, mapped to your store’s variants by ID, with live pricing.',
+      },
+      {
+        q: 'Which platforms does this run on?',
+        a: 'Shopify, WooCommerce, WordPress, Wix, BigCommerce, Adobe Commerce, commercetools and custom storefronts via the JS SDK — as a plugin or lightweight embed.',
+      },
+    ],
+    related: ['furniture', 'luggage', 'industrial-machinery'],
+  },
+  {
+    slug: 'luggage',
+    name: 'Luggage & Bags',
+    gridName: 'Luggage & Bags',
+    icon: 'luggage',
+    heroDemo: 'configurator',
+    // Hero: the Nasher Miles “Alexandria” experience (54 colourways) — real
+    // client work, embedded via INDUSTRY_EXPERIENCE in src/lib/thridify.ts.
+    primaryKeyword: 'luggage 3D configurator',
+    keywords: [
+      'luggage 3D configurator',
+      'suitcase colour configurator',
+      'AR luggage viewer',
+      '3D bags product viewer',
+    ],
+    seoTitle: 'Luggage 3D Configurator & AR Viewer for Bags',
+    seoDescription:
+      'A luggage 3D configurator and app-free AR viewer: sell every colourway, trim and size from one 3D model, and let buyers check a suitcase at true scale before they order.',
+    hero: {
+      eyebrow: 'Luggage & Bags',
+      h1: 'A luggage configurator that sells every colourway from one 3D model.',
+      subtitle:
+        'Buyers spin the case, switch colours and trims, and place a cabin or check-in size at true scale in their hallway — no photoshoot per colour, no app.',
+    },
+    pain: 'Dozens of colourways and sizes mean endless photoshoots — and buyers still can’t judge true size.',
+    helpsIntro:
+      'Luggage sells on colour, hardware and size. Thridify turns one 3D case into every colourway and size the range offers, at true scale, on the product page.',
+    helps: [
+      {
+        capability: 'configurator',
+        heading: 'Every colourway from one model',
+        body: 'Buyers switch shell colours, trims and hardware in real time and see the price update — one configurable model replaces a photoshoot per variant.',
+      },
+      {
+        capability: 'viewer',
+        heading: 'Inspect wheels, handles and hardware',
+        body: 'Drag-to-spin and zoom show wheel housings, telescopic handles, zips and locks in photoreal 3D — the details that decide a purchase.',
+      },
+      {
+        capability: 'ar',
+        heading: 'Check cabin vs check-in size at home',
+        body: 'App-free AR places the case at true scale in the buyer’s hallway or next to an existing bag, so the size question is settled before checkout.',
+      },
+    ],
+    outcomes: [
+      { metric: 'photography', context: 'One 3D case renders every colourway and angle — no reshoot for each new shade.' },
+      { metric: 'conversion', context: 'Configuring a colour and seeing the true size turns browsers into confident buyers.' },
+      { metric: 'inventory', context: 'Sell colourways from the model before committing stock to every shade.' },
+    ],
+    showGuntierQuote: false,
+    faqs: [
+      {
+        q: 'Can I sell many luggage colourways without photographing each one?',
+        a: 'Yes. One configurable 3D model carries every shell colour, trim and hardware option as swappable materials, so you add a colourway without a new photoshoot.',
+      },
+      {
+        q: 'Can buyers check a suitcase’s real size at home?',
+        a: 'Yes. App-free AR places the cabin or check-in case at true scale in the buyer’s space from any modern smartphone, straight from the product page.',
+      },
+      {
+        q: 'Does the configurator map to my store’s variants?',
+        a: 'Yes. Each colour and size option maps to your store’s variants by ID, so the cart receives exactly what the buyer configured.',
+      },
+      {
+        q: 'Does Thridify work for bags and backpacks too?',
+        a: 'Yes. The same viewer, configurator and AR apply to backpacks, totes, briefcases and travel accessories — any product sold on colour, finish and size.',
+      },
+    ],
+    related: ['electronics-audio', 'furniture', 'laminates-surfaces'],
   },
 ];
 

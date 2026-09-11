@@ -537,6 +537,14 @@
             "href": "/faq"
           },
           {
+            "label": "Resources",
+            "href": "/resources"
+          },
+          {
+            "label": "Glossary",
+            "href": "/glossary"
+          },
+          {
             "label": "Contact",
             "href": "/contact"
           }

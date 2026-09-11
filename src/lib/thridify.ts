@@ -92,4 +92,6 @@ export const INDUSTRY_EXPERIENCE: Record<string, string | undefined> = {
   'prefab-structures': EXP.realisticRoom,
   'industrial-machinery': EXP.robot, // RobotExpressive — automation/robotics stand-in
   'laminates-surfaces': EXP.merinoBoard,
+  luggage: EXP.nasherLuggage, // Nasher Miles Alexandria — 54 colourways
+  // sanitaryware / electronics-audio: no published experience yet → placeholder (ASSET-DEBT #31)
 };

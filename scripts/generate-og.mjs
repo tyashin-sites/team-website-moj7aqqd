@@ -68,7 +68,19 @@ const FONTS = [
 // ── Pages ───────────────────────────────────────────────────────────────
 // `poster` = a REAL render that exists in public/models (the page's own
 // demo poster). Kept in sync with src/lib/industries.ts demoPoster.
+// Blog covers for migrated posts whose original WordPress image is gone
+// (scripts/blog-covers.json, generated from the live post list). Branded
+// title cards — never fabricated product imagery.
+const BLOG_COVERS = existsSync(new URL('./blog-covers.json', import.meta.url).pathname)
+  ? JSON.parse(readFileSync(new URL('./blog-covers.json', import.meta.url).pathname, 'utf8'))
+  : [];
+
 const PAGES = [
+  ...BLOG_COVERS,
+  { file: 'glossary.png', kicker: 'Glossary', title: 'The vocabulary of 3D & AR commerce.' },
+  { file: 'resources.png', kicker: 'Resources', title: 'The numbers behind 3D & AR commerce.' },
+  { file: 'resource-roi-of-3d-and-ar-commerce.png', kicker: 'ROI guide', title: 'The ROI of 3D and AR: returns, conversion, content cost.' },
+  { file: 'resource-3d-configurator-cost.png', kicker: 'Cost guide', title: 'How much does a 3D product configurator cost?' },
   { file: 'default.png', kicker: '3D & AR commerce', title: 'Reimagine how the world experiences your products.', poster: 'sheen-chair' },
   { file: 'home.png', kicker: '3D & AR commerce', title: 'Reimagine how the world experiences your products.', poster: 'sheen-chair' },
   { file: 'platform.png', kicker: 'The platform', title: 'Five pillars. One immersive commerce stack.', poster: 'sheen-chair' },
@@ -87,6 +99,9 @@ const PAGES = [
   { file: 'industry-prefab-structures.png', kicker: 'Prefab & modular', title: 'Prefab 3D configurator & building visualizer.', poster: 'hub-studio-still' },
   { file: 'industry-industrial-machinery.png', kicker: 'Industrial machinery', title: '3D product viewer for machinery.', poster: 'hub-cooler-still' },
   { file: 'industry-laminates-surfaces.png', kicker: 'Laminates & surfaces', title: 'Laminate visualizer & surface configurator.', poster: 'hub-veneer-still' },
+  { file: 'industry-sanitaryware.png', kicker: 'Sanitaryware & bath', title: 'Sanitaryware 3D configurator & bathroom AR.' },
+  { file: 'industry-electronics-audio.png', kicker: 'Electronics & audio', title: '3D product viewer & AR for electronics.' },
+  { file: 'industry-luggage.png', kicker: 'Luggage & bags', title: 'Luggage 3D configurator & AR viewer.' },
   // Per-integration — typographic (no third-party logos are embedded).
   ...[
     ['shopify', 'Shopify', 'Native app'],

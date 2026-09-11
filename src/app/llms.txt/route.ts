@@ -64,6 +64,9 @@ ${compareList}
 ## Key pages
 - What is Thridify: ${SITE_URL}/what-is-thridify
 - FAQ (all questions answered): ${SITE_URL}/faq
+- ROI of 3D & AR (sourced data + calculator): ${SITE_URL}/resources/roi-of-3d-and-ar-commerce
+- 3D configurator cost guide: ${SITE_URL}/resources/3d-configurator-cost
+- Glossary (quotable definitions): ${SITE_URL}/glossary
 - Platform: ${SITE_URL}/platform
 - 3D Modelling Service: ${SITE_URL}/services/3d-modelling
 - Industries: ${SITE_URL}/industries
