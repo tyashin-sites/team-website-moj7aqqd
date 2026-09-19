@@ -77,15 +77,15 @@ const nextConfig = {
       },
 
       // --- Product / capability pages ---
-      // No dedicated /ar-viewer or /configurator page yet; /platform hosts both.
-      // TODO(phase7): consider dedicated /ar-viewer + /3d-configurator pages
-      // (/ar-viewer had 26 clicks p24; /3d-product-configurator 11 clicks).
-      {
-        source: "/3d-product-configurator",
-        destination: "/platform",
-        statusCode: 301,
-      },
-      { source: "/ar-viewer", destination: "/platform", statusCode: 301 },
+      // RESOLVED (2026-09-19, phase7): both URLs are REAL PAGES again.
+      // `/ar-viewer` (26c 3106i on WordPress) and `/3d-product-configurator`
+      // (11c 3622i) were 301'd into `/platform` at cutover as a documented GAP.
+      // That collapsed two pages with their own ranking history and their own
+      // topic into one generic five-pillar page — which is the most plausible
+      // reason the head term "3d product configurator" sits at position ~64
+      // with 230 impressions and 0 clicks. Serving each intent from a page that
+      // IS that intent restores what the redirect threw away, so NEITHER path
+      // may be redirected again. See docs/seo-migration-map.md §C.
 
       // --- Integrations (REAL per-platform pages now exist: /integrations/*) ---
       // Each old WordPress integration URL 301s to its dedicated landing page

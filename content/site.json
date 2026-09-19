@@ -480,16 +480,20 @@
             "href": "https://demo.thridify.com"
           },
           {
-            "label": "3D 360° Viewer",
-            "href": "/platform#viewer"
+            "label": "360° Product Viewer",
+            "href": "/360-product-viewer"
           },
           {
-            "label": "3D Configurator",
-            "href": "/platform#configurator"
+            "label": "3D Product Configurator",
+            "href": "/3d-product-configurator"
           },
           {
-            "label": "AR Viewer",
-            "href": "/platform#ar"
+            "label": "AR Product Viewer",
+            "href": "/ar-viewer"
+          },
+          {
+            "label": "3D Product Visualization",
+            "href": "/3d-product-visualization"
           },
           {
             "label": "3D Modelling Service",

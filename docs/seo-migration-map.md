@@ -94,8 +94,8 @@ New industries without a legacy WP equivalent (no inbound URL to preserve):
 
 | Prod URL | GSC | Disposition | Target | Notes |
 |---|---|---|---|---|
-| `/ar-viewer/` | 26c 3106i p24 | 301(GAP) | `/platform` | High value. TODO(phase7): dedicated `/ar-viewer` page |
-| `/3d-product-configurator/` | 11c 3622i | 301(GAP) | `/platform` | TODO(phase7): dedicated `/3d-configurator` page |
+| `/ar-viewer/` | 26c 3106i p24 | **200 (page)** | — | RESOLVED 2026-09-19: real page restored at the same path. Do NOT redirect. |
+| `/3d-product-configurator/` | 11c 3622i | **200 (page)** | — | RESOLVED 2026-09-19: real page restored at the same path. Do NOT redirect. |
 
 ### D. Integrations — RESOLVED (real per-platform pages now exist)
 
@@ -126,9 +126,14 @@ and is in the sitemap + footer.
 | `/custom-integration/` | 366i | 301 | `/integrations/custom-integration` |
 | (new) | — | — | `/integrations/{drupal,squarespace,prestashop}` (embed-based) |
 
-Note: `/3d-product-configurator/` (§C, 11c 3622i) remains 301 → `/platform` —
-it is a generic configurator query, not platform-specific, so `/platform`
-(which hosts the configurator deep-dive) is the honest destination.
+Note (superseded 2026-09-19): `/3d-product-configurator/` used to 301 to
+`/platform` on the reasoning that a generic configurator query was best served
+by the page hosting the configurator deep-dive. That reasoning was wrong in
+practice. Google ranks the page that IS the subject of the query, and
+`/platform` is about five modules, not about configurators — so the term fell
+to position ~64 (230 impressions, 0 clicks in the trailing period). Both
+capability URLs are now real pages again at their original paths, inheriting
+their own history with no redirect hop. Neither may be redirected again.
 
 ### E. Legal
 

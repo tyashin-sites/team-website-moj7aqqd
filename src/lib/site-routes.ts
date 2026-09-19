@@ -57,6 +57,13 @@ export interface SiteRoute {
 const STATIC_ROUTES: SiteRoute[] = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/platform", priority: 0.9, changeFrequency: "weekly" },
+  // Solution pages — one page per head term, because `/platform` (five
+  // pillars) and `/features` (everything) are about the company, not about
+  // the query. Top-level slugs on purpose: exact match, no parent segment.
+  { path: "/3d-product-configurator", priority: 0.95, changeFrequency: "weekly" },
+  { path: "/3d-product-visualization", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/360-product-viewer", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/ar-viewer", priority: 0.9, changeFrequency: "weekly" },
   { path: "/services/3d-modelling", priority: 0.9, changeFrequency: "monthly" },
   { path: "/features", priority: 0.85, changeFrequency: "monthly" },
   { path: "/what-is-thridify", priority: 0.8, changeFrequency: "monthly" },
