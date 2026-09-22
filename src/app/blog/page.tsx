@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { blogContent as blogPageContent } from '@/lib/content';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbLd } from '@/lib/knowledge-graph';
+import { PostCardMedia } from '@/components/PostCardMedia';
 
 export const metadata = pageMetadata({
   title: 'Blog — Insights on 3D & AR Commerce',
@@ -129,19 +129,12 @@ export default async function BlogPage({
                 >
                   <div className="grid md:grid-cols-2 gap-0">
                     <div className="relative aspect-[4/3] md:aspect-auto bg-foreground/5 overflow-hidden">
-                      {(featured.featuredImage || featured.coverImage || featured.image) ? (
-                        <Image
-                          src={(featured.featuredImage || featured.coverImage || featured.image)!}
-                          alt={featured.title}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          sizes="(min-width: 768px) 50vw, 100vw"
-                          priority
-                          unoptimized
-                        />
-                      ) : (
-                        <div className="absolute inset-0 aurora" aria-hidden />
-                      )}
+                      <PostCardMedia
+                        src={featured.featuredImage || featured.coverImage || featured.image}
+                        alt={featured.title}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        priority
+                      />
                     </div>
                     <div className="p-8 md:p-12 flex flex-col justify-center">
                       <div className="flex items-center gap-3 text-xs">
@@ -191,18 +184,11 @@ export default async function BlogPage({
                         style={{ animationDelay: `${i * 60}ms` }}
                       >
                         <div className="relative aspect-[16/10] bg-foreground/5 overflow-hidden">
-                          {img ? (
-                            <Image
-                              src={img}
-                              alt={post.title}
-                              fill
-                              className="object-cover transition-transform duration-700 group-hover:scale-105"
-                              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                              unoptimized
-                            />
-                          ) : (
-                            <div className="absolute inset-0 aurora" aria-hidden />
-                          )}
+                          <PostCardMedia
+                            src={img}
+                            alt={post.title}
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          />
                           {post.category && (
                             <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/90 backdrop-blur text-[11px] font-semibold uppercase tracking-wider">
                               {post.category}
