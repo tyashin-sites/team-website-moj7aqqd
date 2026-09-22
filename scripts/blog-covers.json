@@ -1,5 +1,70 @@
 [
  {
+  "file": "blog-how-to-add-3d-and-ar-to-a-shopify-product-page.png",
+  "kicker": "Shopify · How-to",
+  "title": "Add 3D and AR to a Shopify product page.",
+  "poster": "hub-wardrobe-still"
+ },
+ {
+  "file": "blog-3d-product-configurator-for-luggage-and-bags.png",
+  "kicker": "Luggage & bags",
+  "title": "One shell, fifty-four colourways."
+ },
+ {
+  "file": "blog-how-to-build-a-laminate-and-veneer-visualiser.png",
+  "kicker": "Surfaces · How-to",
+  "title": "Build a laminate and veneer visualiser.",
+  "poster": "hub-veneer-still"
+ },
+ {
+  "file": "blog-how-to-build-a-door-and-window-configurator.png",
+  "kicker": "Doors & windows · How-to",
+  "title": "Build a door and window configurator.",
+  "poster": "hub-door-still"
+ },
+ {
+  "file": "blog-360-viewer-vs-3d-configurator-vs-ar-which-one-do-you-need.png",
+  "kicker": "Decision guide",
+  "title": "360° viewer vs configurator vs AR.",
+  "poster": "hub-cooler-still"
+ },
+ {
+  "file": "blog-how-to-prepare-a-3d-model-for-the-web.png",
+  "kicker": "Technical · How-to",
+  "title": "glTF, Draco, KTX2 and poly budgets.",
+  "poster": "hub-studio-still"
+ },
+ {
+  "file": "blog-3d-visualization-for-furniture-brands-what-actually-changes.png",
+  "kicker": "Furniture · Strategy",
+  "title": "3D visualization for furniture brands.",
+  "poster": "hub-furniture-still"
+ },
+ {
+  "file": "blog-how-to-add-view-in-your-room-ar-to-a-product-page.png",
+  "kicker": "WebAR · How-to",
+  "title": "Add “view in your room” AR to a product page.",
+  "poster": "furniture-vase"
+ },
+ {
+  "file": "blog-how-to-add-a-360-degree-product-viewer-to-your-website.png",
+  "kicker": "360° viewer · How-to",
+  "title": "How to add a 360° product viewer to your site.",
+  "poster": "machinery-camera"
+ },
+ {
+  "file": "blog-how-to-make-3d-furniture-look-photorealistic.png",
+  "kicker": "Furniture · How-to",
+  "title": "How to make 3D furniture look photorealistic.",
+  "poster": "sheen-chair"
+ },
+ {
+  "file": "blog-how-to-add-a-3d-product-configurator-to-wordpress.png",
+  "kicker": "WordPress · How-to",
+  "title": "Add a 3D product configurator to WordPress.",
+  "poster": "hub-furniture-still"
+ },
+ {
   "file": "blog-how-to-add-a-3d-product-configurator-to-woocommerce.png",
   "kicker": "WooCommerce · How-to",
   "title": "Add a 3D product configurator to WooCommerce.",

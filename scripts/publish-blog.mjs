@@ -19,11 +19,12 @@
  *   admin.tyashin.com -> devtools -> localStorage['auth-storage'].state.accessToken
  */
 
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, basename } from 'node:path';
 
 const API = process.env.TYASHIN_API_URL || 'https://website-api.tyashin.com';
 const PROJECT_ID = process.env.THRIDIFY_PROJECT_ID || '69f1354e7766b41fbc101ded';
+const SITE_ORIGIN = process.env.THRIDIFY_SITE_ORIGIN || 'https://thridify.com';
 const DIR = join(process.cwd(), 'content', 'blog');
 
 const args = process.argv.slice(2);
@@ -235,12 +236,29 @@ if (files.length === 0) {
   process.exit(1);
 }
 
+/**
+ * Cover image. `image:` in front matter wins; otherwise the conventional OG
+ * card `public/og/blog-<slug>.png` is used IF it exists on disk, so adding a
+ * cover is just `node scripts/generate-og.mjs blog-<slug>` + a re-run.
+ *
+ * Absolute, because the API validates featuredImage as a URL and the blog is
+ * rendered by the PLATFORM on its own origin — a root-relative path would not
+ * resolve there.
+ */
+function resolveCover(slug, meta) {
+  if (meta.image) {
+    return /^https?:\/\//.test(meta.image) ? meta.image : `${SITE_ORIGIN}${meta.image}`;
+  }
+  const local = join(process.cwd(), 'public', 'og', `blog-${slug}.png`);
+  return existsSync(local) ? `${SITE_ORIGIN}/og/blog-${slug}.png` : undefined;
+}
+
 const prepared = files.map((f) => {
   const slug = basename(f, '.md');
   const { meta, body } = parseFrontMatter(readFileSync(join(DIR, f), 'utf8'));
   const html = toHtml(body);
   const words = validate(slug, meta, html);
-  return { slug, meta, html, words };
+  return { slug, meta, html, words, coverUrl: resolveCover(slug, meta) };
 });
 
 console.log(`Prepared ${prepared.length} post(s):`);
@@ -249,6 +267,7 @@ for (const p of prepared) {
     `  ${p.slug}  ${String(p.words).padStart(5)}w  ` +
       `title ${(p.meta.metaTitle || p.meta.title).length}c  ` +
       `desc ${p.meta.metaDescription.length}c  ` +
+      `${p.coverUrl ? 'cover' : 'NO COVER'}  ` +
       `${p.meta.publishAt ? `-> ${p.meta.publishAt}` : '-> publish now'}`
   );
 }
@@ -273,9 +292,11 @@ for (const p of prepared) {
     status: scheduled ? 'scheduled' : 'published',
     ...(scheduled ? { scheduledAt: new Date(p.meta.publishAt).toISOString() } : {}),
     tags: Array.isArray(p.meta.tags) ? p.meta.tags : [],
+    ...(p.coverUrl ? { featuredImage: p.coverUrl } : {}),
     seo: {
       metaTitle: p.meta.metaTitle || p.meta.title,
       metaDescription: p.meta.metaDescription,
+      ...(p.coverUrl ? { ogImage: p.coverUrl } : {}),
     },
   };
 
