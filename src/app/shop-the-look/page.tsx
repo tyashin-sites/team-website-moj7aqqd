@@ -248,15 +248,15 @@ export default function ShopTheLookPage() {
           <div className="grid md:grid-cols-3 gap-5 mb-10">
             <RoomCapture
               src="/room-visualizer/admin-editor.webp"
-              alt="The admin Room Visualizer with a saved room, the Published switch on, and the Room & Lighting panel open."
-              caption="1. Style it in the admin: lighting preset, walls, wall finish, products."
+              alt="The admin Room Visualizer with the Scandi Living Room saved and Published, the Room & Lighting panel open: lighting preset, wall toggles, wall and floor finishes."
+              caption="1. Style it in the admin: lighting preset, walls, finishes, products."
               width={1357}
               height={896}
               sizes="(min-width: 768px) 33vw, 100vw"
             />
             <RoomCapture
               src="/room-visualizer/admin-plan.webp"
-              alt="The admin Room Visualizer in Plan view: a top-down look at the table, two chairs, sofa and wall art with their real footprints."
+              alt="The admin Room Visualizer in Plan view: a top-down look at the sofa, ottomans, two armchairs, sideboard, rug, plant and lamp with their real footprints."
               caption="2. Check the plan: real footprints, top down."
               width={1357}
               height={896}
@@ -264,7 +264,7 @@ export default function ShopTheLookPage() {
             />
             <RoomCapture
               src="/room-visualizer/admin-my-rooms.webp"
-              alt="The admin Start a room dialog, My rooms tab, showing the saved room with a Published badge."
+              alt="The admin Start a room dialog, My rooms tab, showing the Scandi Living Room and another saved room, each with a Published badge."
               caption="3. Save and publish: the look now appears on your Shop the Look page."
               width={1357}
               height={896}
@@ -290,7 +290,7 @@ export default function ShopTheLookPage() {
           <div className="lg:col-span-7">
             <RoomCapture
               src="/room-visualizer/luxe.webp"
-              alt="The shopper’s placed products shown in the Luxe Boutique room style: dark floor, warm spot lighting, the same five products."
+              alt="The curated Scandi living room re-styled by a shopper into the Luxe Boutique room: dark floor, dramatic spot lighting, the same six products in place."
               caption="Luxe Boutique: the shopper switched the room style and every placed product stayed where it was."
               sizes="(min-width: 1024px) 58vw, 100vw"
             />

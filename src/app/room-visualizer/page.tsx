@@ -244,8 +244,8 @@ export default function RoomVisualizerPage() {
             <Reveal delay={0.2}>
               <RoomCapture
                 src="/room-visualizer/room.webp"
-                alt="Thridify Shop the Look: a 3D living room with an armchair, a dining chair, a leather chair, a classical table and a hanging basket chair placed on an oak floor, lit by a pendant and a floor lamp."
-                caption="The shopper’s room on a live Thridify account: five catalogue products placed at true scale, pendant and floor light, wall art, plant."
+                alt="Thridify Shop the Look: the brand’s curated Scandi living room — a grey three-seater sofa under a Monet print, two patterned armchairs, a pair of tufted ottomans on an ivory wool rug, a whitewashed sideboard, a fiddle-leaf fig, a pendant and a floor lamp on a natural oak floor."
+                caption="A curated look on a live Thridify account: six catalogue products at true scale, dressed with rug, art, plant and lighting."
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
@@ -354,8 +354,8 @@ export default function RoomVisualizerPage() {
             />
             <RoomCapture
               src="/room-visualizer/scandi.webp"
-              alt="The same placed products shown in the Scandi Living room style, with pale floor and cool daylight."
-              caption="Scandi Living: same products, different shell."
+              alt="The Scandi living room look as a shopper opens it on the Shop the Look page, with the Rooms tab showing the brand’s curated looks."
+              caption="Curated look, opened by the shopper: every product still live."
               sizes="(min-width: 768px) 33vw, 100vw"
             />
             <RoomCapture
@@ -388,7 +388,7 @@ export default function RoomVisualizerPage() {
           <div className="lg:col-span-5 space-y-5">
             <RoomCapture
               src="/room-visualizer/admin-editor.webp"
-              alt="The admin Room Visualizer: a saved room named “Save Room test” with five items, the Published switch on, Shop the Look, AR and Save buttons, and the Room & Lighting panel with lighting preset, wall toggles and wall finish textures."
+              alt="The admin Room Visualizer: the Scandi Living Room saved with twelve items, the Published switch on, Shop the Look, AR and Save buttons, and the Room & Lighting panel with lighting preset, wall toggles and finishes."
               caption="The admin Room Visualizer: a saved, published room with its lighting and wall-finish controls."
               width={1357}
               height={896}
@@ -397,7 +397,7 @@ export default function RoomVisualizerPage() {
             <div className="grid grid-cols-2 gap-5 items-start">
               <RoomCapture
                 src="/room-visualizer/admin-my-rooms.webp"
-                alt="The Start a room dialog in the admin, My rooms tab, showing the saved room with a Published badge."
+                alt="The Start a room dialog in the admin, My rooms tab, showing the Scandi Living Room and another saved room, each with a Published badge."
                 caption="My rooms: saved looks, with their published state."
                 width={1357}
                 height={896}

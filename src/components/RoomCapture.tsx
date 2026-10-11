@@ -49,8 +49,8 @@ export function RoomCapture({
 }
 
 /**
- * The ~35-second screen recording of the shopper flow (browse → room →
- * orbit → plan → walk → room styles → elements). Muted, looped, inline; the poster is the
+ * The ~30-second screen capture of the shopper flow (browse → curated look →
+ * orbit → plan → walk → room styles → elements), frames from the live page at 15 fps. Muted, looped, inline; the poster is the
  * first room frame so the LCP is an image, not a video (performance law).
  */
 export function RoomRecording({ className = '' }: { className?: string }) {
@@ -64,13 +64,13 @@ export function RoomRecording({ className = '' }: { className?: string }) {
         playsInline
         preload="metadata"
         poster="/room-visualizer/room.webp"
-        aria-label="Screen recording of Thridify Shop the Look: catalogue products placed in a 3D room, orbited, viewed in plan and walk-through, then re-styled across room styles."
+        aria-label="Screen capture of Thridify Shop the Look: the brand’s curated Scandi living room is opened from the Rooms tab, orbited, viewed in plan and walk-through, re-styled as a Luxe Boutique and back, then the Elements panel is opened."
       >
         <source src="/room-visualizer/shop-the-look.mp4" type="video/mp4" />
         <source src="/room-visualizer/shop-the-look.webm" type="video/webm" />
       </video>
       <p className="px-5 py-3 text-xs text-foreground/60 border-t border-foreground/10">
-        Screen recording of the shopper flow on a live Thridify account, 11 Oct 2026 — cut for length, nothing composited or retouched.
+        Screen capture of the shopper flow on a live Thridify account, 11 Oct 2026: frames taken from the live page and assembled at 15 fps, nothing composited or retouched.
       </p>
     </div>
   );
