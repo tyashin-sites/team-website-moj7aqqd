@@ -385,21 +385,31 @@ export default function RoomVisualizerPage() {
               How Shop the Look pages work <ArrowRight className="w-4 h-4" aria-hidden />
             </Link>
           </div>
-          <div className="lg:col-span-5 grid grid-cols-2 gap-5 items-start">
+          <div className="lg:col-span-5 space-y-5">
             <RoomCapture
-              src="/room-visualizer/rooms.webp"
-              alt="The Rooms tab of the shopper page: a curated look published by the brand at the top, then the room styles the shopper can switch between."
-              caption="Rooms: the brand’s curated look first, then the room styles."
-              sizes="(min-width: 1024px) 20vw, 50vw"
+              src="/room-visualizer/admin-editor.webp"
+              alt="The admin Room Visualizer: a saved room named “Save Room test” with five items, the Published switch on, Shop the Look, AR and Save buttons, and the Room & Lighting panel with lighting preset, wall toggles and wall finish textures."
+              caption="The admin Room Visualizer: a saved, published room with its lighting and wall-finish controls."
+              width={1357}
+              height={896}
+              sizes="(min-width: 1024px) 40vw, 100vw"
             />
-            <RoomCapture
-              src="/room-visualizer/mobile-room.webp"
-              alt="The room page on a phone, portrait, with the 3D room and the product dock."
-              caption="The same page on a phone."
-              width={1170}
-              height={2532}
-              sizes="(min-width: 1024px) 20vw, 50vw"
-            />
+            <div className="grid grid-cols-2 gap-5 items-start">
+              <RoomCapture
+                src="/room-visualizer/admin-my-rooms.webp"
+                alt="The Start a room dialog in the admin, My rooms tab, showing the saved room with a Published badge."
+                caption="My rooms: saved looks, with their published state."
+                width={1357}
+                height={896}
+                sizes="(min-width: 1024px) 20vw, 50vw"
+              />
+              <RoomCapture
+                src="/room-visualizer/rooms.webp"
+                alt="The Rooms tab of the shopper page: the same curated look at the top, then the room styles the shopper can switch between."
+                caption="The shopper side: the curated look appears first."
+                sizes="(min-width: 1024px) 20vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </section>

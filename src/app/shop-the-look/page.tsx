@@ -245,6 +245,32 @@ export default function ShopTheLookPage() {
             <p className="eyebrow">The loop</p>
             <h2 className="tt-2">Curated by your team. Finished by the shopper.</h2>
           </div>
+          <div className="grid md:grid-cols-3 gap-5 mb-10">
+            <RoomCapture
+              src="/room-visualizer/admin-editor.webp"
+              alt="The admin Room Visualizer with a saved room, the Published switch on, and the Room & Lighting panel open."
+              caption="1. Style it in the admin: lighting preset, walls, wall finish, products."
+              width={1357}
+              height={896}
+              sizes="(min-width: 768px) 33vw, 100vw"
+            />
+            <RoomCapture
+              src="/room-visualizer/admin-plan.webp"
+              alt="The admin Room Visualizer in Plan view: a top-down look at the table, two chairs, sofa and wall art with their real footprints."
+              caption="2. Check the plan: real footprints, top down."
+              width={1357}
+              height={896}
+              sizes="(min-width: 768px) 33vw, 100vw"
+            />
+            <RoomCapture
+              src="/room-visualizer/admin-my-rooms.webp"
+              alt="The admin Start a room dialog, My rooms tab, showing the saved room with a Published badge."
+              caption="3. Save and publish: the look now appears on your Shop the Look page."
+              width={1357}
+              height={896}
+              sizes="(min-width: 768px) 33vw, 100vw"
+            />
+          </div>
           <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {LOOP.map((d, i) => (
               <li key={d.t} className="card p-6 relative">
