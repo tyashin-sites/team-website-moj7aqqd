@@ -368,7 +368,7 @@ export default function ConfiguratorPage() {
               { href: '/360-product-viewer', t: '360° product viewer', b: 'When the product has no options to configure.' },
               { href: '/ar-viewer', t: 'AR product viewer', b: 'The in-their-room step, without an app.' },
               { href: '/3d-product-visualization', t: '3D product visualization', b: 'Photoreal imagery and video from one model.' },
-              { href: '/resources/3d-configurator-cost', t: 'What it costs', b: 'The six drivers behind the number.' },
+              { href: '/room-visualizer', t: '3D room visualizer', b: 'The configured product, placed in a whole room.' },
             ].map((r) => (
               <li key={r.href}>
                 <Link

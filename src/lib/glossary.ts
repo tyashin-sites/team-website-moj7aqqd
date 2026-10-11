@@ -322,6 +322,45 @@ export const GLOSSARY: GlossaryTerm[] = [
       { label: 'Custom integration', href: '/integrations/custom-integration' },
     ],
   },
+  {
+    slug: 'room-visualizer',
+    term: '3D room visualizer',
+    aka: ['room planner', '3D room planner', 'room visualiser'],
+    short:
+      'A 3D room visualizer lets a shopper place a brand’s real products in a 3D room at true scale, dress the room around them, and view the composed result from any angle or in AR.',
+    body: [
+      'Where a product-page viewer shows one product, a room visualizer composes many: the sofa, the rug under it, the lamp beside it and the art above it, arranged in a room whose floor, walls, lighting and dimensions the shopper can change.',
+      'A commerce-grade room visualizer is populated from the brand’s own published catalogue, runs the product configurator inside the room so the placed product is the exact configuration the shopper chose, keeps every model at its real size, and offers orbit, plan (top-down) and walk-through (eye-height) views.',
+      'The composed room can be exported as one model and opened in the phone’s native AR viewer (Scene Viewer on Android, AR Quick Look on iOS), with a QR hand-off from desktop. No app is installed.',
+    ],
+    whyItMatters:
+      'Product-page 3D answers “does it fit?”. A room visualizer answers “does it go with the rest?”, which is the question that decides whether the basket has one item or four.',
+    related: ['webar', '3d-product-configurator', 'shop-the-look', 'gltf-glb'],
+    seeAlso: [
+      { label: '3D Room Visualizer', href: '/room-visualizer' },
+      { label: 'Shop the Look', href: '/shop-the-look' },
+      { label: 'Furniture', href: '/industries/furniture' },
+    ],
+  },
+  {
+    slug: 'shop-the-look',
+    term: 'Shop the Look page',
+    aka: ['shoppable room', 'curated look', 'shop the room'],
+    short:
+      'A Shop the Look page is a brand-hosted 3D room page where shoppers open rooms the brand styled, change the products in them, and buy the pieces they keep.',
+    body: [
+      'The brand’s merchandising team builds rooms in the admin Room Visualizer from the published catalogue, in the product configurations it wants to sell, and publishes them. Published rooms appear as curated looks on the brand’s hosted Shop the Look page.',
+      'A shopper opens a curated look as their own draft: every product is still live and configurable, the room style, floor, walls and rug can be changed, and the whole room can be viewed in AR. The look is a starting point, not a locked image.',
+      'The page inherits the account’s brand settings (logo, accent colour, currency, whether prices show) and is switched on per account. It is reached from a link: a homepage banner, a QR in a showroom, an exhibition tablet.',
+    ],
+    whyItMatters:
+      'Lifestyle photography is a styled room nobody can buy from. A Shop the Look page is the same room, in 3D, that they can, and it is where the rug, the lamp and the second chair get sold.',
+    related: ['room-visualizer', '3d-product-configurator', 'webar', 'visual-commerce'],
+    seeAlso: [
+      { label: 'Shop the Look', href: '/shop-the-look' },
+      { label: '3D Room Visualizer', href: '/room-visualizer' },
+    ],
+  },
 ];
 
 export const GLOSSARY_SLUGS = GLOSSARY.map((g) => g.slug);

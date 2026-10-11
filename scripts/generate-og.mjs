@@ -102,6 +102,8 @@ const PAGES = [
   { file: 'industry-sanitaryware.png', kicker: 'Sanitaryware & bath', title: 'Sanitaryware 3D configurator & bathroom AR.' },
   { file: 'industry-electronics-audio.png', kicker: 'Electronics & audio', title: '3D product viewer & AR for electronics.' },
   { file: 'industry-luggage.png', kicker: 'Luggage & bags', title: 'Luggage 3D configurator & AR viewer.' },
+  { file: 'room-visualizer.png', kicker: '3D room visualizer', title: 'Shoppers don’t buy a sofa. They buy a living room.' },
+  { file: 'shop-the-look.png', kicker: 'Shop the Look', title: 'Curated by your team. Finished by the shopper.' },
   // Per-integration — typographic (no third-party logos are embedded).
   ...[
     ['shopify', 'Shopify', 'Native app'],

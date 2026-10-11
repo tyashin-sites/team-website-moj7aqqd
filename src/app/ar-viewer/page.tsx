@@ -264,7 +264,7 @@ export default function ArViewerPage() {
           <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               { href: '/3d-product-configurator', t: '3D product configurator', b: 'Let them specify it, then place it.' },
-              { href: '/360-product-viewer', t: '360° product viewer', b: 'The desktop half of the same model.' },
+              { href: '/room-visualizer', t: '3D room visualizer', b: 'AR of the whole composed room, not one product.' },
               { href: '/device-compatibility', t: 'Device compatibility', b: 'What supports AR, and what falls back.' },
               { href: '/industries/furniture', t: 'AR for furniture', b: 'The category AR was made for.' },
             ].map((r) => (

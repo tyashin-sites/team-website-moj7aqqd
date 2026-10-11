@@ -66,6 +66,8 @@ ${compareList}
 - FAQ (all questions answered): ${SITE_URL}/faq
 - ROI of 3D & AR (sourced data + calculator): ${SITE_URL}/resources/roi-of-3d-and-ar-commerce
 - 3D configurator cost guide: ${SITE_URL}/resources/3d-configurator-cost
+- 3D Room Visualizer (compose a whole room from the catalogue, true scale, whole-room AR): ${SITE_URL}/room-visualizer
+- Shop the Look (brand-curated shoppable rooms, hosted per account): ${SITE_URL}/shop-the-look
 - Glossary (quotable definitions): ${SITE_URL}/glossary
 - Platform: ${SITE_URL}/platform
 - 3D Modelling Service: ${SITE_URL}/services/3d-modelling

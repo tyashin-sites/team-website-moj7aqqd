@@ -37,8 +37,14 @@ const val = (n) => {
 const JWT = val('--jwt') || process.env.TYASHIN_JWT;
 const DRY = flag('--dry-run');
 const ONLY = val('--only');
+/**
+ * --emit <file>: write the prepared API payloads as JSON and stop, so they can
+ * be sent from a context that already holds a session (the admin browser tab)
+ * without the JWT ever being copied out of it.
+ */
+const EMIT = val('--emit');
 
-if (!JWT && !DRY) {
+if (!JWT && !DRY && !EMIT) {
   console.error('Missing --jwt (or TYASHIN_JWT). Use --dry-run to validate without publishing.');
   process.exit(1);
 }
@@ -274,6 +280,33 @@ for (const p of prepared) {
 
 if (DRY) {
   console.log('\n--dry-run: validated only, nothing sent.');
+  process.exit(0);
+}
+
+function payloadFor(p) {
+  const scheduled = p.meta.publishAt && new Date(p.meta.publishAt) > new Date();
+  return {
+    title: p.meta.title,
+    slug: p.slug,
+    excerpt: p.meta.excerpt,
+    content: p.html,
+    contentFormat: 'html',
+    status: scheduled ? 'scheduled' : 'published',
+    ...(scheduled ? { scheduledAt: new Date(p.meta.publishAt).toISOString() } : {}),
+    tags: Array.isArray(p.meta.tags) ? p.meta.tags : [],
+    ...(p.coverUrl ? { featuredImage: p.coverUrl } : {}),
+    seo: {
+      metaTitle: p.meta.metaTitle || p.meta.title,
+      metaDescription: p.meta.metaDescription,
+      ...(p.coverUrl ? { ogImage: p.coverUrl } : {}),
+    },
+  };
+}
+
+if (EMIT) {
+  const { writeFileSync } = await import('node:fs');
+  writeFileSync(EMIT, JSON.stringify({ api: API, projectId: PROJECT_ID, posts: prepared.map(payloadFor) }, null, 2));
+  console.log(`\n--emit: wrote ${prepared.length} payload(s) to ${EMIT}; nothing sent.`);
   process.exit(0);
 }
 

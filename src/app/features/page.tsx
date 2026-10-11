@@ -45,8 +45,9 @@ const PILLAR_SEO: Record<
     keyword: "AR furniture viewer & 3D product viewer",
     lead: "An AR furniture viewer and interactive 3D product viewer on every PDP — sofas, tables, chairs and beds shoppers can spin, configure and place in their own room.",
     links: [
+      { label: "3D Room Visualizer", href: "/room-visualizer" },
+      { label: "Shop the Look", href: "/shop-the-look" },
       { label: "Modular kitchens", href: "/industries/modular-kitchens" },
-      { label: "Doors & windows", href: "/industries/doors-and-windows" },
     ],
   },
   distribute: {

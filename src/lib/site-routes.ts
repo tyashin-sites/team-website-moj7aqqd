@@ -64,6 +64,8 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/3d-product-visualization", priority: 0.9, changeFrequency: "weekly" },
   { path: "/360-product-viewer", priority: 0.9, changeFrequency: "weekly" },
   { path: "/ar-viewer", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/room-visualizer", priority: 0.95, changeFrequency: "weekly" },
+  { path: "/shop-the-look", priority: 0.9, changeFrequency: "weekly" },
   { path: "/services/3d-modelling", priority: 0.9, changeFrequency: "monthly" },
   { path: "/features", priority: 0.85, changeFrequency: "monthly" },
   { path: "/what-is-thridify", priority: 0.8, changeFrequency: "monthly" },
