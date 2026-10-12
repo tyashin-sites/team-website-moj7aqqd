@@ -4,7 +4,7 @@ import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
-import { RoomCapture } from '@/components/RoomCapture';
+import { RoomCapture, RoomRecording } from '@/components/RoomCapture';
 
 /**
  * /shop-the-look — the brand-facing explanation of the hosted shopper page.
@@ -245,6 +245,13 @@ export default function ShopTheLookPage() {
             <p className="eyebrow">The loop</p>
             <h2 className="tt-2">Curated by your team. Finished by the shopper.</h2>
           </div>
+          <RoomRecording
+            className="mb-5"
+            name="admin-build"
+            poster="/room-visualizer/admin-editor.webp"
+            label="Captioned time-lapse of the admin Room Visualizer: a room template is chosen, products and décor are placed stage by stage, the plan is checked, a lighting preset is picked, the look is published and appears in My rooms."
+            caption="How a merchandiser builds a look, 12 Oct 2026: twelve stages in the admin, each a real screenshot of the editor, captions added. No 3D team, no code."
+          />
           <div className="grid md:grid-cols-3 gap-5 mb-10">
             <RoomCapture
               src="/room-visualizer/admin-editor.webp"
@@ -287,7 +294,12 @@ export default function ShopTheLookPage() {
 
       <section className="section bg-surface">
         <div className="container-x grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 space-y-5">
+            <RoomRecording
+              name="shopper-value"
+              label="Screen capture from the shopper’s side: the curated look is opened, the three-seater removed, a sectional configured and added at true scale, dragged into place, the rug swapped, the room walked through and taken into AR with a QR code."
+              caption="What the shopper gets, 12 Oct 2026: the brand’s look as a starting point, every product live, the whole room in AR. Frames from the live page at 15 fps, nothing composited."
+            />
             <RoomCapture
               src="/room-visualizer/luxe.webp"
               alt="The curated Scandi living room re-styled by a shopper into the Luxe Boutique room: dark floor, dramatic spot lighting, the same six products in place."

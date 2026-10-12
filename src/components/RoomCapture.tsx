@@ -53,7 +53,20 @@ export function RoomCapture({
  * orbit → plan → walk → room styles → elements), frames from the live page at 15 fps. Muted, looped, inline; the poster is the
  * first room frame so the LCP is an image, not a video (performance law).
  */
-export function RoomRecording({ className = '' }: { className?: string }) {
+export function RoomRecording({
+  className = '',
+  name = 'shop-the-look',
+  poster = '/room-visualizer/room.webp',
+  label = 'Screen capture of Thridify Shop the Look: the brand’s curated Scandi living room is opened from the Rooms tab, orbited, viewed in plan and walk-through, re-styled as a Luxe Boutique and back, then the Elements panel is opened.',
+  caption = 'Screen capture of the shopper flow on a live Thridify account, 11 Oct 2026: frames taken from the live page and assembled at 15 fps, nothing composited or retouched.',
+}: {
+  className?: string;
+  /** Basename under /room-visualizer/ — both <name>.mp4 and <name>.webm must exist. */
+  name?: string;
+  poster?: string;
+  label?: string;
+  caption?: string;
+}) {
   return (
     <div className={`card overflow-hidden ${className}`}>
       <video
@@ -63,15 +76,13 @@ export function RoomRecording({ className = '' }: { className?: string }) {
         loop
         playsInline
         preload="metadata"
-        poster="/room-visualizer/room.webp"
-        aria-label="Screen capture of Thridify Shop the Look: the brand’s curated Scandi living room is opened from the Rooms tab, orbited, viewed in plan and walk-through, re-styled as a Luxe Boutique and back, then the Elements panel is opened."
+        poster={poster}
+        aria-label={label}
       >
-        <source src="/room-visualizer/shop-the-look.mp4" type="video/mp4" />
-        <source src="/room-visualizer/shop-the-look.webm" type="video/webm" />
+        <source src={`/room-visualizer/${name}.mp4`} type="video/mp4" />
+        <source src={`/room-visualizer/${name}.webm`} type="video/webm" />
       </video>
-      <p className="px-5 py-3 text-xs text-foreground/60 border-t border-foreground/10">
-        Screen capture of the shopper flow on a live Thridify account, 11 Oct 2026: frames taken from the live page and assembled at 15 fps, nothing composited or retouched.
-      </p>
+      <p className="px-5 py-3 text-xs text-foreground/60 border-t border-foreground/10">{caption}</p>
     </div>
   );
 }

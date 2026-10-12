@@ -311,7 +311,11 @@ export default function RoomVisualizerPage() {
               ))}
             </ol>
             <div className="lg:col-span-7 space-y-5">
-              <RoomRecording />
+              <RoomRecording
+                name="shopper-value"
+                label="Screen capture of Thridify Shop the Look from the shopper’s side: the brand’s curated living room is opened, the three-seater is removed, a sectional is searched for, customized in the configurator and added at true scale, dragged into place, the rug is swapped, the room is walked through, then View in AR shows the composed room with a QR code for the phone."
+                caption="The shopper’s side, 12 Oct 2026: open the brand’s look, swap the sofa for a sectional in the fabric you want, change the rug, walk through it, take it into AR. Frames from the live page at 15 fps, nothing composited."
+              />
               <div className="grid sm:grid-cols-2 gap-5">
                 <RoomCapture
                   src="/room-visualizer/browse.webp"
@@ -386,6 +390,12 @@ export default function RoomVisualizerPage() {
             </Link>
           </div>
           <div className="lg:col-span-5 space-y-5">
+            <RoomRecording
+              name="admin-build"
+              poster="/room-visualizer/admin-editor.webp"
+              label="Captioned time-lapse of the admin Room Visualizer: a room template is chosen, the three-seater, armchairs, ottomans, sideboard, rug, art, plant and lighting are placed stage by stage, the plan is checked, a lighting preset is picked, the look is published and appears in My rooms."
+              caption="The brand’s side, 12 Oct 2026: twelve stages of the same look being built in the admin, each a real screenshot of the editor, with captions added. Roughly thirty seconds."
+            />
             <RoomCapture
               src="/room-visualizer/admin-editor.webp"
               alt="The admin Room Visualizer: the Scandi Living Room saved with twelve items, the Published switch on, Shop the Look, AR and Save buttons, and the Room & Lighting panel with lighting preset, wall toggles and finishes."
