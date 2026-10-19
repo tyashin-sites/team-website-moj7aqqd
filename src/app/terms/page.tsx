@@ -45,7 +45,7 @@ export default function TermsPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
 
-      <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate="3 August 2026">
+      <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate="19 October 2026">
         <LegalSection title="Acceptance of these terms">
           <p>
             This website is operated by <strong>Aapastech Private Limited</strong>, a
@@ -136,12 +136,32 @@ export default function TermsPage() {
           </p>
         </LegalSection>
 
-        <LegalSection title="Governing law">
+        <LegalSection title="Governing law and disputes">
           <p>
-            These terms are governed by the laws of India, and the courts of India will
-            have jurisdiction over any dispute arising from this website, without prejudice
-            to any mandatory consumer or data-protection rights you may have under the laws
-            of your country of residence.
+            These terms are governed by the laws of India. Any dispute arising out of or in
+            connection with this website or the Thridify platform will be finally settled by
+            arbitration administered by the Delhi International Arbitration Centre (DIAC)
+            under its rules, before a sole arbitrator, seated in New Delhi and conducted in
+            English. Either party may seek urgent interim relief from any competent court;
+            subject to arbitration, the courts at New Delhi have exclusive jurisdiction.
+          </p>
+          <p>
+            This does not affect any mandatory consumer or data-protection rights you may
+            have under the laws of your country of residence.
+          </p>
+        </LegalSection>
+
+        <LegalSection title="Public Material Library">
+          <p>
+            Brands that publish materials to the Thridify Public Material Library, and every
+            account that uses them, are also bound by the{' '}
+            <a
+              href="/legal/public-material-contribution-agreement"
+              className="text-primary underline underline-offset-4"
+            >
+              Public Material Contribution Agreement and Public Material Licence
+            </a>
+            . For those materials, that agreement prevails over these terms.
           </p>
         </LegalSection>
 
