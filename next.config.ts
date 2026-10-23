@@ -9,7 +9,6 @@ const nextConfig = {
   // src/lib/content.ts only protects against site.json drift if drift can
   // break CI (Phase 2, QA carry-forward on the `(siteData as any)` casts).
   typescript: { ignoreBuildErrors: false },
-  eslint: { ignoreDuringBuilds: true },
 
   // ---------------------------------------------------------------------------
   // WordPress -> Next.js SEO-preservation 301 map (Phase-7 cutover prep).
