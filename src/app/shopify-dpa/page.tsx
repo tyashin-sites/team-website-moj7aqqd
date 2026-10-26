@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/seo';
 
 // Data Processing Addendum for merchants using the Thridify app for Shopify.
 // Linked from /shopify-privacy. Draft for the owner's review: publish only
-// after approval (open point: the liability reference, see section 9).
+// after approval. Sections 9-10: recommend counsel review.
 
 const CANONICAL = '/shopify-dpa';
 const MAIL = 'contact@thridify.com';
@@ -159,12 +159,43 @@ export default function ShopifyDpaPage() {
           </ul>
         </LegalSection>
 
-        <LegalSection title="9. Liability and precedence">
+        <LegalSection title="9. Limitation of liability">
+          {/* Recommend counsel review before publishing. */}
           <p>
-            Each party&rsquo;s liability under this DPA is subject to the limits in the
-            agreement under which the Controller uses Thridify [LINK: merchant terms of
-            service]. If this DPA and that agreement conflict on data protection, this DPA
-            applies.
+            This section applies to both parties equally and only to the extent permitted by
+            law.
+          </p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Cap.</strong> Each party&rsquo;s total liability arising out of or in
+              connection with this DPA is limited to the fees the merchant paid to Thridify in
+              the 12 months before the event that gave rise to the claim, or US$100 if that
+              amount is lower (for example, for merchants on the free plan).
+            </li>
+            <li>
+              <strong>Excluded losses.</strong> Neither party is liable for indirect,
+              incidental, special or consequential damages, including lost profits, revenue,
+              goodwill or data, even if it was told such damages were possible.
+            </li>
+            <li>
+              <strong>What this does not limit.</strong> Nothing in this DPA limits liability
+              that cannot be limited under applicable law, including the rights of individuals
+              to compensation under data protection law (such as Article 82 GDPR) and fines
+              imposed by a regulator on the party that incurred them.
+            </li>
+          </ul>
+          <p>
+            If this DPA and any other agreement between the parties conflict on data
+            protection, this DPA applies.
+          </p>
+        </LegalSection>
+
+        <LegalSection title="10. Governing law">
+          <p>
+            This DPA is governed by the laws of the Province of Ontario and the federal laws
+            of Canada that apply there, and the courts of Ontario have jurisdiction, except
+            where data protection law requires another law or forum (for example, the EU
+            Standard Contractual Clauses, which follow the law and courts they specify).
           </p>
         </LegalSection>
 
