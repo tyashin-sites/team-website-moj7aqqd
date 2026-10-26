@@ -27,7 +27,7 @@ export const SITE_URL =
 export const CANONICAL_DESCRIPTION =
   'Thridify is a no-code 3D and AR commerce platform and 3D modelling service that lets furniture, kitchen, door, and other custom-product brands offer 3D product configurators with live pricing, app-free AR viewing, and photoreal 3D models — reducing product returns and closing sales faster.';
 
-export const LEGAL_NAME = 'Aapastech Private Limited';
+export const LEGAL_NAME = '14818032 Canada Inc.';
 
 /** The four canonical Thridify social profiles (sameAs). WhatsApp is a contact
  *  channel, not a profile, so it is deliberately excluded from sameAs. */
