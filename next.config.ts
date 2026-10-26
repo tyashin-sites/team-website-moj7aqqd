@@ -42,6 +42,8 @@ const nextConfig = {
       // --- Core pages (clean 1:1 to existing routes) ---
       { source: "/about-us", destination: "/about", statusCode: 301 },
       { source: "/home", destination: "/", statusCode: 301 },
+      // The App Store rejects listing URLs containing "Shopify" (2026-10-26).
+      { source: "/shopify-privacy", destination: "/app-privacy", statusCode: 301 },
       // NOTE: the legacy WordPress /features → /platform 301 was REMOVED
       // 2026-08-03 — /features is now a real page (the 5-pillar capability
       // reference). Keep it un-redirected so the SSG page serves.

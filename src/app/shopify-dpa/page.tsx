@@ -4,7 +4,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 
 // Data Processing Addendum for merchants using the Thridify app for Shopify.
-// Linked from /shopify-privacy. Draft for the owner's review: publish only
+// Linked from /app-privacy. Draft for the owner's review: publish only
 // after approval. Sections 9-10: recommend counsel review.
 
 const CANONICAL = '/shopify-dpa';
@@ -83,7 +83,7 @@ export default function ShopifyDpaPage() {
             <li>
               <strong>Duration:</strong> while the app is installed, plus the retention
               periods in our{' '}
-              <a href="/shopify-privacy" className="text-primary underline underline-offset-4">
+              <a href="/app-privacy" className="text-primary underline underline-offset-4">
                 Shopify app privacy policy
               </a>
               .

@@ -8,7 +8,7 @@ import { pageMetadata } from '@/lib/seo';
 // 2026-10-26; the site-wide /privacy still covers visits to thridify.com.
 // Draft for the owner's review: publish only after approval.
 
-const CANONICAL = '/shopify-privacy';
+const CANONICAL = '/app-privacy';
 const MAIL = 'contact@thridify.com';
 
 export const metadata = pageMetadata({

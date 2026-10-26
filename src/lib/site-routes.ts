@@ -84,7 +84,7 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/security", priority: 0.3, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
-  { path: "/shopify-privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/app-privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/shopify-dpa", priority: 0.2, changeFrequency: "yearly" },
   { path: "/legal/public-material-contribution-agreement", priority: 0.3, changeFrequency: "yearly" },
 ];
