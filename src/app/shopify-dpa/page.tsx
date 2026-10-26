@@ -169,8 +169,8 @@ export default function ShopifyDpaPage() {
             <li>
               <strong>Cap.</strong> Each party&rsquo;s total liability arising out of or in
               connection with this DPA is limited to the fees the merchant paid to Thridify in
-              the 12 months before the event that gave rise to the claim, or US$100 if that
-              amount is lower (for example, for merchants on the free plan).
+              the 12 months before the event that gave rise to the claim, or US$100, whichever
+              is greater (so merchants on the free plan are covered too).
             </li>
             <li>
               <strong>Excluded losses.</strong> Neither party is liable for indirect,
