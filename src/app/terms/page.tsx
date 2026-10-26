@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/seo';
 
 // Phase-4 terms of use — an honest, reviewable baseline reflecting how this
 // marketing website is actually used (browse + contact us; interactive 3D/AR
-// demos are illustrative, not offers). Governing law: India. Written to be
+// demos are illustrative, not offers). Governing law: Ontario, Canada. Written to be
 // reviewed by a lawyer before Phase-7 launch; open items in docs/ASSET-DEBT.md.
 // Per-page metadata + canonical; preview noindex inherits from src/middleware.ts.
 
@@ -15,7 +15,7 @@ const MAIL = 'contact@thridify.com';
 export const metadata = pageMetadata({
   title: 'Terms of Use',
   description:
-    'The terms that govern your use of the Thridify (Aapastech Private Limited) website — acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
+    'The terms that govern your use of the Thridify website — acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Terms of Use — Thridify',
@@ -45,11 +45,12 @@ export default function TermsPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
 
-      <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate="19 October 2026">
+      <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate="26 October 2026">
         <LegalSection title="Acceptance of these terms">
           <p>
-            This website is operated by <strong>Aapastech Private Limited</strong>, a
-            company incorporated in India (&ldquo;Thridify&rdquo;, &ldquo;we&rdquo;,
+            This website is operated by{' '}
+            <strong>14818032 Canada Inc., operating as Thridify</strong>, of Burlington,
+            Ontario, Canada (&ldquo;Thridify&rdquo;, &ldquo;we&rdquo;,
             &ldquo;us&rdquo;, &ldquo;our&rdquo;). By accessing or using this website you
             agree to these Terms of Use. If you do not agree, please do not use the site.
             These terms may be updated from time to time (see &ldquo;Changes&rdquo; below);
@@ -98,7 +99,7 @@ export default function TermsPage() {
         <LegalSection title="Intellectual property">
           <p>
             The Thridify name, logo, website content, design, and the 3D and AR experiences
-            are owned by Aapastech Private Limited or its licensors and are protected by
+            are owned by Thridify or its licensors and are protected by
             applicable intellectual-property laws. You may not copy, reproduce, distribute
             or create derivative works from them without our written permission.
             Third-party brand names and logos shown as client references remain the
@@ -128,7 +129,7 @@ export default function TermsPage() {
 
         <LegalSection title="Limitation of liability">
           <p>
-            To the fullest extent permitted by law, Aapastech Private Limited and its
+            To the fullest extent permitted by law, Thridify and its
             personnel are not liable for any indirect, incidental, special or consequential
             loss, or loss of profits, data or goodwill, arising from your use of, or
             inability to use, this website. Nothing in these terms limits or excludes any
@@ -138,12 +139,10 @@ export default function TermsPage() {
 
         <LegalSection title="Governing law and disputes">
           <p>
-            These terms are governed by the laws of India. Any dispute arising out of or in
-            connection with this website or the Thridify platform will be finally settled by
-            arbitration administered by the Delhi International Arbitration Centre (DIAC)
-            under its rules, before a sole arbitrator, seated in New Delhi and conducted in
-            English. Either party may seek urgent interim relief from any competent court;
-            subject to arbitration, the courts at New Delhi have exclusive jurisdiction.
+            These terms are governed by the laws of the Province of Ontario and the federal
+            laws of Canada that apply there. The courts of Ontario have jurisdiction over any
+            dispute arising out of or in connection with this website or the Thridify
+            platform.
           </p>
           <p>
             This does not affect any mandatory consumer or data-protection rights you may

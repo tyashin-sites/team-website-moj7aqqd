@@ -17,7 +17,7 @@ const MAIL = 'contact@thridify.com';
 export const metadata = pageMetadata({
   title: 'Privacy Policy',
   description:
-    'How Thridify (Aapastech Private Limited) collects, uses, shares and protects personal information through this website — with GDPR, India DPDP Act 2023 and PIPEDA data-subject rights.',
+    'How Thridify collects, uses, shares and protects personal information through this website — with GDPR, India DPDP Act 2023 and PIPEDA data-subject rights.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Privacy Policy — Thridify',
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
 
-      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate="3 August 2026">
+      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate="26 October 2026">
         <LegalSection title="Summary">
           <p>
             This website is a marketing site for Thridify, our 3D and augmented-reality
@@ -63,13 +63,12 @@ export default function PrivacyPage() {
 
         <LegalSection title="Who we are (data controller)">
           <p>
-            This website is operated by <strong>Aapastech Private Limited</strong>, a
-            company incorporated in India, which builds and operates the Thridify
-            platform (&ldquo;Thridify&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;,
-            &ldquo;our&rdquo;). For personal information collected through this website,
-            Aapastech Private Limited is the data controller (the &ldquo;Data
-            Fiduciary&rdquo; under India&rsquo;s DPDP Act). You can reach us about any
-            privacy matter at <Mail />.
+            This website and the Thridify platform are operated by{' '}
+            <strong>14818032 Canada Inc., operating as Thridify</strong>, of Burlington,
+            Ontario, Canada (&ldquo;Thridify&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;,
+            &ldquo;our&rdquo;). We are the data controller for personal information
+            collected through this website (the &ldquo;Data Fiduciary&rdquo; under
+            India&rsquo;s DPDP Act). You can reach us about any privacy matter at <Mail />.
           </p>
         </LegalSection>
 
@@ -280,7 +279,7 @@ export default function PrivacyPage() {
 
         <LegalSection title="Contact">
           <p>
-            Aapastech Private Limited (Data Controller / Data Fiduciary)
+            14818032 Canada Inc., operating as Thridify (Data Controller / Data Fiduciary)
             <br />
             Email: <Mail />
           </p>

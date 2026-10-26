@@ -52,7 +52,7 @@ export default function ShopifyPrivacyPage() {
       <LegalDocument
         eyebrow="Legal"
         title="Thridify for Shopify: Privacy Policy"
-        effectiveDate="[DATE OF PUBLICATION]"
+        effectiveDate="26 October 2026"
       >
         <LegalSection title="Summary">
           <p>

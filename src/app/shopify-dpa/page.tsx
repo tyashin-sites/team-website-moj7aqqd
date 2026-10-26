@@ -50,7 +50,7 @@ export default function ShopifyDpaPage() {
       <LegalDocument
         eyebrow="Legal"
         title="Thridify for Shopify: Data Processing Addendum"
-        effectiveDate="[DATE OF PUBLICATION]"
+        effectiveDate="26 October 2026"
       >
         <LegalSection title="1. Parties and scope">
           <p>
