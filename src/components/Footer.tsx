@@ -108,13 +108,14 @@ export async function Footer() {
 
         <div className="mt-16 pt-8 border-t border-paper/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-sm text-muted-dark">
           <p>{f.copyright}</p>
-          <div className="flex gap-6">
+          {/* Legal links wrap on narrow screens (five links incl. Grievance Officer). */}
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-6 gap-y-2">
             {f.legal.map((l) => (
               <Link key={l.href} href={l.href} className="hover:text-paper transition-colors">
                 {l.label}
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
 
         {/* Tyashin attribution — addendum §3f: the footer's last row, centred,

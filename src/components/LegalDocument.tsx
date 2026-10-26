@@ -18,6 +18,8 @@ export function LegalDocument({
   title,
   effectiveDate,
   breadcrumbLabel,
+  lang,
+  labels,
   children,
 }: {
   eyebrow: string;
@@ -25,16 +27,20 @@ export function LegalDocument({
   effectiveDate: string;
   /** Short label for the visible breadcrumb trail (defaults to the title). */
   breadcrumbLabel?: string;
+  /** Language of the document when it is not English (e.g. 'hi' for /grievance/hi). */
+  lang?: string;
+  /** Translated chrome labels for a non-English document. */
+  labels?: { home?: string; effectiveDate?: string };
   children: ReactNode;
 }) {
   return (
-    <>
+    <div lang={lang}>
       {/* Visible breadcrumb (JSON-LD BreadcrumbList lives in the page). */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">
         <ol className="flex flex-wrap items-center gap-2 text-sm text-foreground/70">
           <li>
             <Link href="/" className="hover:text-primary">
-              Home
+              {labels?.home ?? 'Home'}
             </Link>
           </li>
           <li aria-hidden>/</li>
@@ -50,7 +56,9 @@ export function LegalDocument({
           <div className="max-w-3xl">
             <p className="eyebrow">{eyebrow}</p>
             <h1 className="tt-display text-foreground">{title}</h1>
-            <p className="text-sm text-foreground/70">Effective date: {effectiveDate}</p>
+            <p className="text-sm text-foreground/70">
+              {labels?.effectiveDate ?? 'Effective date:'} {effectiveDate}
+            </p>
           </div>
         </div>
       </section>
@@ -63,14 +71,23 @@ export function LegalDocument({
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
 /** A titled section within a legal document (tt-2 heading + body). */
-export function LegalSection({ title, children }: { title: string; children: ReactNode }) {
+export function LegalSection({
+  title,
+  id,
+  children,
+}: {
+  title: string;
+  /** Optional anchor so other pages can link to this section. */
+  id?: string;
+  children: ReactNode;
+}) {
   return (
-    <section className="mt-12 first:mt-0">
+    <section id={id} className="mt-12 first:mt-0 scroll-mt-24">
       <h2 className="tt-2 text-foreground">{title}</h2>
       <div className="space-y-4">{children}</div>
     </section>

@@ -87,6 +87,10 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/app-privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/shopify-dpa", priority: 0.2, changeFrequency: "yearly" },
   { path: "/legal/public-material-contribution-agreement", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/platform-terms", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/dpa", priority: 0.2, changeFrequency: "yearly" },
+  { path: "/grievance", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/grievance/hi", priority: 0.2, changeFrequency: "yearly" },
 ];
 
 const GLOSSARY_ROUTES: SiteRoute[] = GLOSSARY_SLUGS.map((slug) => ({

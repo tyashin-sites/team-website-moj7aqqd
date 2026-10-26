@@ -150,7 +150,14 @@ const nextConfig = {
         destination: "/terms",
         statusCode: 301,
       },
-      { source: "/terms-of-service", destination: "/terms", statusCode: 301 },
+      // The Thridify admin sign-up form links "Terms of Service" to
+      // thridify.com/terms-of-service/, so this lands on the customer agreement
+      // (Thridify Platform Terms), not the website Terms of Use (26 Oct 2026).
+      {
+        source: "/terms-of-service",
+        destination: "/legal/platform-terms",
+        statusCode: 301,
+      },
 
       // --- Blog (RESOLVED 2026-08-03: 37 WP posts migrated 1:1 into the Blog/CMS
       //     plugin at MATCHING slugs; served live at /blog/<slug> by the platform

@@ -590,8 +590,16 @@
         "href": "/terms"
       },
       {
+        "label": "Platform Terms",
+        "href": "/legal/platform-terms"
+      },
+      {
         "label": "Security",
         "href": "/security"
+      },
+      {
+        "label": "Grievance Officer",
+        "href": "/grievance"
       }
     ]
   }

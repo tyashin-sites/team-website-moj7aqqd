@@ -141,7 +141,7 @@ their own history with no redirect hop. Neither may be redirected again.
 |---|---|---|
 | `/privacy-policy/` | 301 | `/privacy` |
 | `/terms-condition-policy/` | 301 | `/terms` |
-| `/terms-of-service/` | 301 | `/terms` |
+| `/terms-of-service/` | 301 | `/legal/platform-terms` (was `/terms` until 2026-10-26: the admin sign-up links here) |
 
 ### F. Help center — GAP
 

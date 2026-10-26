@@ -2,14 +2,19 @@ import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { LegalLink, RegionalEntityBlock } from '@/components/LegalEntity';
+import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, OFFICER } from '@/content/legal/group';
 
 // Privacy policy for the Thridify app for Shopify (the App Store listing's
 // privacy policy URL). Facts match thridify-be / shopify-extension as of
 // 2026-10-26; the site-wide /privacy still covers visits to thridify.com.
 // Draft for the owner's review: publish only after approval.
+// 26 October 2026: entity statement is regional (publish kit K1); officer and
+// legal mailbox per COUNSEL-DETERMINATIONS.md section 1. This URL is the App
+// Store listing's privacy policy URL: never change it.
 
 const CANONICAL = '/app-privacy';
-const MAIL = 'contact@thridify.com';
+const MAIL = LEGAL_EMAIL;
 
 export const metadata = pageMetadata({
   title: 'Thridify for Shopify: Privacy Policy',
@@ -70,10 +75,12 @@ export default function ShopifyPrivacyPage() {
         </LegalSection>
 
         <LegalSection title="Who we are">
+          <RegionalEntityBlock />
           <p>
-            The app is provided by <strong>14818032 Canada Inc., operating as Thridify</strong>,
-            Burlington, Ontario, Canada (&ldquo;Thridify&rdquo;, &ldquo;we&rdquo;,
-            &ldquo;us&rdquo;). Contact us about any privacy matter at <Mail />.
+            The app is provided by Thridify. Contact us about any privacy matter at <Mail />.{' '}
+            {OFFICER.name} is our Grievance Officer for India and the Privacy Officer of{' '}
+            {CANADA_ENTITY.name}; our <LegalLink href="/grievance">grievance page</LegalLink>{' '}
+            explains how to complain.
           </p>
         </LegalSection>
 
@@ -211,8 +218,10 @@ export default function ShopifyPrivacyPage() {
               analytics service, on its global network.
             </li>
             <li>
-              <strong>Aapastech Private Limited</strong> (India): operates YOM analytics and
-              helps build and support Thridify.
+              <strong>{INDIA_ENTITY.name}</strong> (India) and{' '}
+              <strong>{CANADA_ENTITY.name}</strong> (Canada): the two companies that run
+              Thridify each process data for the other (engineering, hosting and support) under
+              a written intra-group agreement. {INDIA_ENTITY.name} also operates YOM analytics.
             </li>
             <li>
               <strong>Shopify:</strong> the platform that runs your store and bills your

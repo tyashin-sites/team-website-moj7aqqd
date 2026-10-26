@@ -2,23 +2,25 @@ import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { LegalLink } from '@/components/LegalEntity';
+import { LEGAL_EMAIL } from '@/content/legal/group';
 
-// Phase-4 terms of use — an honest, reviewable baseline reflecting how this
-// marketing website is actually used (browse + contact us; interactive 3D/AR
-// demos are illustrative, not offers). Governing law: Ontario, Canada. Written to be
-// reviewed by a lawyer before Phase-7 launch; open items in docs/ASSET-DEBT.md.
+// Terms of use for this marketing website (browse + contact us; interactive
+// 3D/AR demos are illustrative, not offers). Governing law: Ontario, Canada.
+// Thridify accounts, plans and services are governed by the Thridify Platform
+// Terms (/legal/platform-terms), linked from "What this website is" (26 Oct 2026).
 // Per-page metadata + canonical; preview noindex inherits from src/middleware.ts.
 
 const CANONICAL = '/terms';
-const MAIL = 'contact@thridify.com';
+const MAIL = LEGAL_EMAIL;
 
 export const metadata = pageMetadata({
   title: 'Terms of Use',
   description:
-    'The terms that govern your use of the Thridify website — acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
+    'The terms that govern your use of the Thridify website: acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
   path: CANONICAL,
   image: '/og/default.png',
-  ogTitle: 'Terms of Use — Thridify',
+  ogTitle: 'Terms of Use | Thridify',
   ogDescription:
     'The terms that govern your use of the Thridify website.',
 });
@@ -62,9 +64,11 @@ export default function TermsPage() {
           <p>
             This is a marketing website for Thridify, our 3D and augmented-reality commerce
             platform and 3D modelling service. It lets you learn about the platform, view
-            interactive 3D and AR demonstrations, and contact us to arrange a demo. Any
-            paid Thridify product or service is governed by a separate written agreement,
-            not by these terms.
+            interactive 3D and AR demonstrations, and contact us to arrange a demo.
+            Thridify accounts, paid plans and services are governed by a separate
+            agreement, the{' '}
+            <LegalLink href="/legal/platform-terms">Thridify Platform Terms</LegalLink>, not
+            by these terms.
           </p>
         </LegalSection>
 
@@ -121,7 +125,7 @@ export default function TermsPage() {
             This website is provided on an &ldquo;as is&rdquo; and &ldquo;as
             available&rdquo; basis. We work to keep the information accurate and the site
             available, but, to the fullest extent permitted by law, we make no warranties
-            of any kind — express or implied — that the site will be error-free,
+            of any kind, express or implied, that the site will be error-free,
             uninterrupted, secure, or fit for a particular purpose. Nothing on this site is
             a binding commitment or professional advice.
           </p>
@@ -141,8 +145,10 @@ export default function TermsPage() {
           <p>
             These terms are governed by the laws of the Province of Ontario and the federal
             laws of Canada that apply there. The courts of Ontario have jurisdiction over any
-            dispute arising out of or in connection with this website or the Thridify
-            platform.
+            dispute arising out of or in connection with this website. Disputes about the
+            Thridify platform follow the{' '}
+            <LegalLink href="/legal/platform-terms#governing-law">Thridify Platform Terms</LegalLink>
+            .
           </p>
           <p>
             This does not affect any mandatory consumer or data-protection rights you may

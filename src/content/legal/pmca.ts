@@ -196,7 +196,7 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
           },
           {
             "type": "p",
-            "text": "8.4 **Infringement notices (India).** Notices go to the Grievance Officer: **Shikha Gupta, contact@thridify.com**. Aapastech will act on them under the Information Technology Act, 2000 and the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021."
+            "text": "8.4 **Infringement notices (India).** Notices go to the Grievance Officer: **Shikha Gupta, contact@aapastech.com**. Aapastech will act on them under the Information Technology Act, 2000 and the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021."
           },
           {
             "type": "p",

@@ -2,13 +2,18 @@ import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { RegionalEntityBlock } from '@/components/LegalEntity';
+import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, OFFICER } from '@/content/legal/group';
 
 // Data Processing Addendum for merchants using the Thridify app for Shopify.
 // Linked from /app-privacy. Draft for the owner's review: publish only
 // after approval. Sections 9-10: recommend counsel review.
+// 26 October 2026: entity statement is regional (publish kit K1); officer,
+// legal mailbox and the affiliate sub-processor per COUNSEL-DETERMINATIONS.md
+// section 1 and A1. Shopify-specific terms unchanged. Non-Shopify channels: /dpa.
 
 const CANONICAL = '/shopify-dpa';
-const MAIL = 'contact@thridify.com';
+const MAIL = LEGAL_EMAIL;
 
 export const metadata = pageMetadata({
   title: 'Thridify for Shopify: Data Processing Addendum',
@@ -53,10 +58,10 @@ export default function ShopifyDpaPage() {
         effectiveDate="26 October 2026"
       >
         <LegalSection title="1. Parties and scope">
+          <RegionalEntityBlock />
           <p>
-            This Data Processing Addendum (&ldquo;DPA&rdquo;) is between{' '}
-            <strong>14818032 Canada Inc., operating as Thridify</strong>, Burlington, Ontario,
-            Canada (&ldquo;Processor&rdquo;), and the merchant that installs the Thridify
+            This Data Processing Addendum (&ldquo;DPA&rdquo;) is between Thridify
+            (&ldquo;Processor&rdquo;) and the merchant that installs the Thridify
             3D-AR-Configurator app on a Shopify store (&ldquo;Controller&rdquo;). It applies
             to personal data about the Controller&rsquo;s store visitors and customers that
             the app processes for the Controller. It forms part of the agreement under which
@@ -123,7 +128,7 @@ export default function ShopifyDpaPage() {
             The Processor answers Shopify&rsquo;s privacy requests (customer data request,
             customer deletion, store deletion) automatically, and helps the Controller with any
             other data subject request, data protection impact assessment or regulator enquiry
-            about the app. Write to <Mail />.
+            about the app. Write to our Privacy Officer, {OFFICER.name}, at <Mail />.
           </p>
         </LegalSection>
 
@@ -229,8 +234,10 @@ export default function ShopifyDpaPage() {
               <strong>Cloudflare</strong>: content delivery and analytics edge (global).
             </li>
             <li>
-              <strong>Aapastech Private Limited</strong> (India): YOM analytics, engineering
-              and support.
+              <strong>{INDIA_ENTITY.name}</strong> (India) and{' '}
+              <strong>{CANADA_ENTITY.name}</strong> (Canada): whichever of the two is not the
+              Processor, for engineering, hosting and support, under a written intra-group
+              agreement. {INDIA_ENTITY.name} also runs YOM analytics.
             </li>
           </ul>
         </LegalSection>
