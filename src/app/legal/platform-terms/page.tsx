@@ -17,7 +17,7 @@ import {
 // sign-up link (thridify.com/terms-of-service) redirects here (next.config.ts).
 // Positions: yom-legal-pack/COUNSEL-DETERMINATIONS.md v2.0 A1, A5, C13, G35
 // (revised), G41, section 1 (three entities, billing and collection agency).
-// Shared wording, verbatim: PUBLISH-KIT.md v2.0 K1 (entity, billing agent,
+// Shared wording, verbatim: PUBLISH-KIT.md v2.1 K1 (entity, billing,
 // governing law for EU/UK), K4 (user rules),
 // K5 (AI content), K7 (changes), K8 / 04-aggregate-data-clause.md (statistics),
 // K10 (liability). Drafted positions accepted by counsel on 26 October 2026.
@@ -170,8 +170,9 @@ export default function PlatformTermsPage() {
         <LegalSection title="5. Fees, billing, trials, renewals, taxes and refunds" id="fees">
           <p>
             <strong>Paying us directly.</strong> If you buy a Plan, credits or services from us
-            directly, you pay at checkout through Razorpay, our payment processor, in the
-            currency shown there. Razorpay handles your payment details under its own terms.
+            directly, you pay at checkout through the payment processor shown there (Razorpay
+            in India), in the currency shown there. The processor handles your payment details
+            under its own terms.
             Your Order Form may set other payment terms, such as payment against an invoice.{' '}
             {BILLING_AGENCY_SENTENCE}
           </p>

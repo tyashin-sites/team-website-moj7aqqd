@@ -28,12 +28,11 @@ export const ESTONIA_ENTITY = {
 } as const;
 
 /**
- * Publish kit v2.0 K1, Thridify billing agent sentence: Aapastech Private
- * Limited invoices and collects every Thridify direct purchase; outside India
- * it does so as agent of the regional company (intra-group agreement s.8).
+ * Publish kit v2.1: each regional company bills and collects payment from its
+ * own customers (owner statement, 27 Oct 2026). Name kept for import stability.
  */
 export const BILLING_AGENCY_SENTENCE =
-  'Direct purchases are currently invoiced and collected by Aapastech Private Limited. For customers outside India it acts as billing and collection agent for the company you contract with. This does not change who your contract is with.';
+  'Each company bills and collects payment from its own customers: Aapastech Private Limited in India, Aapastech OÜ in the European Union and the United Kingdom, and 14818032 Canada Inc. everywhere else.';
 
 export const CANADA_ENTITY = {
   name: '14818032 Canada Inc.',
