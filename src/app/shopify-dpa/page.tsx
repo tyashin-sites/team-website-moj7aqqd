@@ -165,6 +165,11 @@ export default function ShopifyDpaPage() {
               domain is kept only to offer the free trial once per store.
             </li>
             <li>
+              <strong>Return:</strong> before uninstalling, the Controller can ask us at
+              contact@aapastech.com for a copy of its store&rsquo;s data in a common format,
+              and we will provide it within 30 days.
+            </li>
+            <li>
               <strong>Transfers:</strong> data may be processed outside the Controller&rsquo;s
               country, by the sub-processors in Annex 3. For Controllers in the European Union or the United Kingdom, transfers to{' '}
               {CANADA_ENTITY.name} rely on the adequacy decisions for Canada, and transfers to{' '}
@@ -220,8 +225,10 @@ export default function ShopifyDpaPage() {
             Standard Contractual Clauses, which follow the law and courts they specify).
           </p>
           <p>
-            For merchants in the European Union or the United Kingdom, this DPA is instead
-            governed by Estonian law, and the Harju County Court in Tallinn has jurisdiction.
+            For merchants in India, this DPA is instead governed by the laws of India, and the
+            courts at Delhi have jurisdiction. For merchants in the European Union or the United
+            Kingdom, it is instead governed by Estonian law, and the Harju County Court in
+            Tallinn has jurisdiction.
           </p>
         </LegalSection>
 

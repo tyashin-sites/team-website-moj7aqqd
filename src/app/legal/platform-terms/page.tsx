@@ -77,7 +77,7 @@ export default function PlatformTermsPage() {
             or when you use the Service.
           </p>
           <p>
-            <strong>When they apply.</strong> These terms take effect on 27 October 2026 for new
+            <strong>When they apply.</strong> These terms take effect on 26 October 2026 for new
             customers. If you had a Thridify account before that date, they apply to you 30
             days after we tell you about them, or when you accept them, if that is earlier.
             Until then, the terms you agreed to before continue to apply.
