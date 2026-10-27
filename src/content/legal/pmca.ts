@@ -272,7 +272,7 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
         "blocks": [
           {
             "type": "p",
-            "text": "11.1 Aapastech processes the Signatory's and your personnel's personal data (name, email, role, IP address, user agent, timestamps). It does so to run submissions, moderation, credit and audit records, to send notices, and to protect its legal position. Processing follows the Privacy Policy (https://thridify.com/privacy-policy) and the Digital Personal Data Protection Act, 2023 where it applies."
+            "text": "11.1 Aapastech processes the Signatory's and your personnel's personal data (name, email, role, IP address, user agent, timestamps). It does so to run submissions, moderation, credit and audit records, to send notices, and to protect its legal position. Processing follows the Privacy Policy (https://thridify.com/privacy-policy) and the Digital Personal Data Protection Act, 2023 where it applies. For contributors in the European Union or the United Kingdom, the controller of that personal data is Aapastech OÜ (registry code 16453146; Tornimäe tn 3 // 5 // 7, 10145 Tallinn, Estonia), and Aapastech processes it on Aapastech OÜ's behalf under the GDPR or the UK GDPR."
           },
           {
             "type": "p",

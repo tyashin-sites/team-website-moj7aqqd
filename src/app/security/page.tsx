@@ -4,14 +4,20 @@ import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { RegionalEntityBlock } from '@/components/LegalEntity';
-import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, LEGAL_UPDATE_DATE } from '@/content/legal/group';
+import {
+  CANADA_ENTITY,
+  ESTONIA_ENTITY,
+  INDIA_ENTITY,
+  LEGAL_EMAIL,
+  LEGAL_UPDATE_DATE,
+} from '@/content/legal/group';
 
 // Phase-4 security & practices page: a modest, HONEST description of how this
 // website handles data. NO fabricated compliance badges or certifications
 // (No-Faking): we do not claim SOC 2 / ISO 27001 because we have not earned
 // them. Per-page metadata + canonical + BreadcrumbList JSON-LD. Linked from
 // the footer and included in the sitemap. Preview noindex via src/middleware.ts.
-// 26 October 2026: regional entity (publish kit K1), legal mailbox, and the
+// 26 and 27 October 2026: regional entity (publish kit v2.0 K1), legal mailbox, and the
 // cookies/processor lines corrected to match the live chat and analytics plugins.
 
 const CANONICAL = '/security';
@@ -177,6 +183,10 @@ export default function SecurityPage() {
           <p>
             {INDIA_ENTITY.name} (India), registered office {INDIA_ENTITY.address}; principal
             place of business {INDIA_ENTITY.principalPlace}
+            <br />
+            {ESTONIA_ENTITY.name} (European Union and United Kingdom), registry code{' '}
+            {ESTONIA_ENTITY.registryCode}, VAT {ESTONIA_ENTITY.vat}, {ESTONIA_ENTITY.address},{' '}
+            {ESTONIA_ENTITY.country}
             <br />
             {CANADA_ENTITY.name} (everywhere else), {CANADA_ENTITY.place}, {CANADA_ENTITY.country}
             <br />

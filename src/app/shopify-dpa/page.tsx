@@ -3,7 +3,14 @@ import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { RegionalEntityBlock } from '@/components/LegalEntity';
-import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, OFFICER } from '@/content/legal/group';
+import {
+  CANADA_ENTITY,
+  ESTONIA_ENTITY,
+  INDIA_ENTITY,
+  LEGAL_EMAIL,
+  LEGAL_UPDATE_DATE,
+  OFFICER,
+} from '@/content/legal/group';
 
 // Data Processing Addendum for merchants using the Thridify app for Shopify.
 // Linked from /app-privacy. Draft for the owner's review: publish only
@@ -11,6 +18,9 @@ import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, OFFICER } from '@/content/leg
 // 26 October 2026: entity statement is regional (publish kit K1); officer,
 // legal mailbox and the affiliate sub-processor per COUNSEL-DETERMINATIONS.md
 // section 1 and A1. Shopify-specific terms unchanged. Non-Shopify channels: /dpa.
+// 27 October 2026: three-entity model (kit v2.0 K1); Aapastech OÜ is the
+// processor for EU/UK merchants (Art. 28 contract, Estonian law); transfer
+// lines per COUNSEL-DETERMINATIONS v2.0 E2. Liability and non-EU law unchanged.
 
 const CANONICAL = '/shopify-dpa';
 const MAIL = LEGAL_EMAIL;
@@ -55,7 +65,7 @@ export default function ShopifyDpaPage() {
       <LegalDocument
         eyebrow="Legal"
         title="Thridify for Shopify: Data Processing Addendum"
-        effectiveDate="26 October 2026"
+        effectiveDate={LEGAL_UPDATE_DATE}
       >
         <LegalSection title="1. Parties and scope">
           <RegionalEntityBlock />
@@ -66,6 +76,11 @@ export default function ShopifyDpaPage() {
             to personal data about the Controller&rsquo;s store visitors and customers that
             the app processes for the Controller. It forms part of the agreement under which
             the Controller uses Thridify, and takes effect when the app is installed.
+          </p>
+          <p>
+            For merchants in the European Union or the United Kingdom, the Processor is{' '}
+            {ESTONIA_ENTITY.name} and this DPA is the contract required by Article 28 of the GDPR
+            and of the UK GDPR.
           </p>
         </LegalSection>
 
@@ -151,9 +166,11 @@ export default function ShopifyDpaPage() {
             </li>
             <li>
               <strong>Transfers:</strong> data may be processed outside the Controller&rsquo;s
-              country, by the sub-processors in Annex 3. Where required, transfers rely on the
-              European Commission&rsquo;s Standard Contractual Clauses (modules 2 and 3) and the
-              UK addendum.
+              country, by the sub-processors in Annex 3. For Controllers in the European Union or the United Kingdom, transfers to{' '}
+              {CANADA_ENTITY.name} rely on the adequacy decisions for Canada, and transfers to{' '}
+              {INDIA_ENTITY.name} in India and to sub-processors in other countries without an
+              adequacy decision rely on the European Commission&rsquo;s Standard Contractual
+              Clauses (Module 3) with the UK International Data Transfer Addendum.
             </li>
             <li>
               <strong>Audits:</strong> on request, the Processor provides the information
@@ -202,6 +219,10 @@ export default function ShopifyDpaPage() {
             where data protection law requires another law or forum (for example, the EU
             Standard Contractual Clauses, which follow the law and courts they specify).
           </p>
+          <p>
+            For merchants in the European Union or the United Kingdom, this DPA is instead
+            governed by Estonian law, and the Harju County Court in Tallinn has jurisdiction.
+          </p>
         </LegalSection>
 
         <LegalSection title="Annex 1: Processing details">
@@ -235,9 +256,9 @@ export default function ShopifyDpaPage() {
             </li>
             <li>
               <strong>{INDIA_ENTITY.name}</strong> (India) and{' '}
-              <strong>{CANADA_ENTITY.name}</strong> (Canada): whichever of the two is not the
-              Processor, for engineering, hosting and support, under a written intra-group
-              agreement. {INDIA_ENTITY.name} also runs YOM analytics.
+              <strong>{CANADA_ENTITY.name}</strong> (Canada): when either is not the Processor,
+              for engineering, hosting and support, under a written intra-group agreement.{' '}
+              {INDIA_ENTITY.name} also runs YOM analytics.
             </li>
           </ul>
         </LegalSection>

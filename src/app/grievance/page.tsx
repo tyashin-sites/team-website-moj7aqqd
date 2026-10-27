@@ -6,8 +6,8 @@ import { SITE_URL } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
 import { INDIA_ENTITY, LEGAL_UPDATE_DATE, OFFICER } from '@/content/legal/group';
 
-// Grievance Officer page (publish kit K2, English, verbatim with the
-// Canada/Quebec line). Required by the IT (Intermediary Guidelines) Rules
+// Grievance Officer page (publish kit v2.0 K2, English, verbatim, with the
+// EU/UK and Canada/Quebec lines). Required by the IT (Intermediary Guidelines) Rules
 // 2021 r.3(2)(a), SPDI Rules r.5(9) and the E-Commerce Rules; linked from the
 // footer on every page. Hindi version: /grievance/hi (K3).
 
@@ -123,6 +123,19 @@ export default function GrievancePage() {
               For personal data, once the relevant parts of the Digital Personal Data Protection
               Act, 2023 apply, you can complain to the Data Protection Board of India after using
               this process.
+            </li>
+            <li>
+              In the European Union you can complain to the Estonian Data Protection Inspectorate
+              (Andmekaitse Inspektsioon,{' '}
+              <a href="https://www.aki.ee" className={LINK} rel="noopener">
+                www.aki.ee
+              </a>
+              ) or to the data protection authority where you live. In the United Kingdom you can
+              complain to the Information Commissioner&rsquo;s Office (
+              <a href="https://ico.org.uk" className={LINK} rel="noopener">
+                ico.org.uk
+              </a>
+              ). {OFFICER.name} is also the privacy contact for Aapastech OÜ.
             </li>
             <li>
               In Canada you can contact the Office of the Privacy Commissioner of Canada, and in

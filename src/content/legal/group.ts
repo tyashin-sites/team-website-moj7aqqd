@@ -1,8 +1,10 @@
 // Group facts shared by every legal page on thridify.com. Single point of
 // change: the privacy policy, the Shopify app pages, the Platform Terms, the
 // DPA and the grievance pages all read these, so they cannot drift.
-// Source: yom-legal-pack/PUBLISH-KIT.md v1.1 ("Facts used") and
-// COUNSEL-DETERMINATIONS.md section 1 (26 October 2026).
+// Source: yom-legal-pack/PUBLISH-KIT.md v2.0 ("Facts used", K1) and
+// COUNSEL-DETERMINATIONS.md v2.0 section 1 (27 October 2026): India ->
+// Aapastech Private Limited; EU and UK -> Aapastech OÜ; everywhere else ->
+// 14818032 Canada Inc. Region = country of a business's billing address.
 
 export const LEGAL_EMAIL = 'contact@aapastech.com';
 
@@ -16,13 +18,22 @@ export const INDIA_ENTITY = {
   country: 'India',
 } as const;
 
+/** EU and UK contracting party and controller (GDPR / UK GDPR). */
+export const ESTONIA_ENTITY = {
+  name: 'Aapastech OÜ',
+  registryCode: '16453146',
+  vat: 'EE102489493',
+  address: 'Tornimäe tn 3 // 5 // 7, 10145 Tallinn',
+  country: 'Estonia',
+} as const;
+
 /**
- * Outside India, Aapastech Private Limited invoices and collects for Thridify
- * direct purchases as agent of 14818032 Canada Inc. (COUNSEL-DETERMINATIONS
- * section 1 "Billing reality"; intra-group agreement section 8).
+ * Publish kit v2.0 K1, Thridify billing agent sentence: Aapastech Private
+ * Limited invoices and collects every Thridify direct purchase; outside India
+ * it does so as agent of the regional company (intra-group agreement s.8).
  */
 export const BILLING_AGENCY_SENTENCE =
-  'Outside India, Aapastech Private Limited issues invoices and collects payment for direct purchases as billing and collection agent for 14818032 Canada Inc. This does not change who your contract is with.';
+  'Direct purchases are currently invoiced and collected by Aapastech Private Limited. For customers outside India it acts as billing and collection agent for the company you contract with. This does not change who your contract is with.';
 
 export const CANADA_ENTITY = {
   name: '14818032 Canada Inc.',
@@ -30,7 +41,7 @@ export const CANADA_ENTITY = {
   country: 'Canada',
 } as const;
 
-/** Grievance Officer (India), Privacy Officer (Canada), person in charge (Quebec). */
+/** Grievance Officer (India), Privacy Officer (Canada), person in charge (Quebec), privacy contact for Aapastech OÜ. */
 export const OFFICER = {
   name: 'Shikha Gupta',
   email: LEGAL_EMAIL,
@@ -40,5 +51,5 @@ export const OFFICER = {
   phoneCanadaHref: 'tel:+14378000190',
 } as const;
 
-/** Effective date of the 26 October 2026 legal update. */
-export const LEGAL_UPDATE_DATE = '26 October 2026';
+/** Effective date of the current legal pages (27 October 2026: three-entity model). */
+export const LEGAL_UPDATE_DATE = '27 October 2026';

@@ -6,12 +6,15 @@ import { pageMetadata } from '@/lib/seo';
 import {
   BILLING_AGENCY_SENTENCE,
   CANADA_ENTITY,
+  ESTONIA_ENTITY,
   INDIA_ENTITY,
   LEGAL_UPDATE_DATE,
   OFFICER,
 } from '@/content/legal/group';
 
-// Privacy policy for thridify.com and Thridify account holders. Updated
+// Privacy policy for thridify.com and Thridify account holders. 27 October
+// 2026: three-entity model (publish kit v2.0 K1) and the GDPR / UK GDPR
+// section (K6-EU v2.0, verbatim; COUNSEL-DETERMINATIONS v2.0 E1). Updated
 // 26 October 2026 to the group's counsel determinations (yom-legal-pack v1.0):
 // regional entity (publish kit K1), India rights, retention, transfers and
 // security (K6 v1.2: future-tense sealed copy, log retention being extended), the Grievance Officer and the
@@ -212,9 +215,9 @@ export default function PrivacyPage() {
               {BILLING_AGENCY_SENTENCE}
             </li>
             <li>
-              <strong>The other company in our group</strong> ({INDIA_ENTITY.name} or{' '}
-              {CANADA_ENTITY.name}): engineering, hosting and support, under a written
-              intra-group agreement.
+              <strong>The other companies in our group</strong> ({INDIA_ENTITY.name},{' '}
+              {ESTONIA_ENTITY.name} and {CANADA_ENTITY.name}): engineering, hosting and support,
+              under a written intra-group agreement.
             </li>
           </ul>
           <p>
@@ -349,6 +352,35 @@ export default function PrivacyPage() {
           </p>
         </LegalSection>
 
+        <LegalSection title="Your rights under the GDPR and the UK GDPR" id="gdpr">
+          <p>
+            <strong>If you are in the European Union or the United Kingdom.</strong> Aapastech OÜ
+            is the controller. We process your account and billing data to perform our contract
+            with you, tax records to meet legal obligations, and security logs, fraud checks and
+            aggregate usage statistics on the basis of our legitimate interest in running a safe
+            and reliable service; you can object to that last use at any time. We send marketing
+            email only with your consent. You can ask for access to your data, correction,
+            deletion, restriction, a portable copy, and you can object or withdraw consent, by
+            emailing <LegalMail />. You can complain to the Estonian Data Protection Inspectorate
+            (Andmekaitse Inspektsioon,{' '}
+            <a href="https://www.aki.ee" className="text-primary underline underline-offset-4" rel="noopener">
+              www.aki.ee
+            </a>
+            ), to the authority where you live, or in the United Kingdom to the Information
+            Commissioner&rsquo;s Office (
+            <a href="https://ico.org.uk" className="text-primary underline underline-offset-4" rel="noopener">
+              ico.org.uk
+            </a>
+            ). Our group companies operate the services for Aapastech OÜ: 14818032 Canada Inc. in
+            Canada, which the European Commission and the United Kingdom recognise as giving
+            adequate protection, and Aapastech Private Limited in India. Some of our service
+            providers are in the United States. Transfers to India and the United States are
+            covered by the European Commission&rsquo;s Standard Contractual Clauses with the UK
+            Addendum, or by the EU-U.S. and UK-U.S. Data Privacy Framework where the provider is
+            certified. You can ask us for a copy.
+          </p>
+        </LegalSection>
+
         <LegalSection title="Your rights in India">
           <p>
             You can ask us for a summary of the personal data we hold about you and what we do
@@ -363,8 +395,8 @@ export default function PrivacyPage() {
         <LegalSection title="Grievance Officer and Privacy Officer">
           <p>
             {OFFICER.name} is our Grievance Officer for India, the Privacy Officer of{' '}
-            {CANADA_ENTITY.name} and the person in charge of the protection of personal
-            information for Quebec. Email <LegalMail />, or call{' '}
+            {CANADA_ENTITY.name}, the person in charge of the protection of personal information
+            for Quebec, and the privacy contact for {ESTONIA_ENTITY.name}. Email <LegalMail />, or call{' '}
             <a href={OFFICER.phoneIndiaHref} className="text-primary underline underline-offset-4">
               {OFFICER.phoneIndia}
             </a>{' '}
@@ -390,8 +422,9 @@ export default function PrivacyPage() {
               DPDP Act apply, after using our grievance process.
             </li>
             <li>
-              <strong>EU / EEA / UK:</strong> your local supervisory authority (for the UK, the
-              Information Commissioner&rsquo;s Office).
+              <strong>EU / EEA / UK:</strong> the Estonian Data Protection Inspectorate
+              (Andmekaitse Inspektsioon), the authority where you live, or in the UK the
+              Information Commissioner&rsquo;s Office (see the GDPR section above).
             </li>
             <li>
               <strong>Canada:</strong> the Office of the Privacy Commissioner of Canada, or your
@@ -423,6 +456,10 @@ export default function PrivacyPage() {
             {INDIA_ENTITY.name} (data fiduciary for India), CIN {INDIA_ENTITY.cin}, registered
             office {INDIA_ENTITY.address}, {INDIA_ENTITY.country}; principal place of business{' '}
             {INDIA_ENTITY.principalPlace}
+            <br />
+            {ESTONIA_ENTITY.name} (data controller for the European Union and the United
+            Kingdom), registry code {ESTONIA_ENTITY.registryCode}, VAT {ESTONIA_ENTITY.vat},{' '}
+            {ESTONIA_ENTITY.address}, {ESTONIA_ENTITY.country}
             <br />
             {CANADA_ENTITY.name} (data controller everywhere else), {CANADA_ENTITY.place},{' '}
             {CANADA_ENTITY.country}

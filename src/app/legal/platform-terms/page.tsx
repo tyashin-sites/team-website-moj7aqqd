@@ -6,6 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 import {
   BILLING_AGENCY_SENTENCE,
   CANADA_ENTITY,
+  ESTONIA_ENTITY,
   INDIA_ENTITY,
   LEGAL_UPDATE_DATE,
   OFFICER,
@@ -14,9 +15,10 @@ import {
 // Thridify Platform Terms: the customer agreement for free and paid Thridify
 // accounts, including accounts created through the Shopify app. The admin
 // sign-up link (thridify.com/terms-of-service) redirects here (next.config.ts).
-// Positions: yom-legal-pack/COUNSEL-DETERMINATIONS.md A1, A5, C13, G35
-// (revised), G41, section 1 "Billing reality" (billing and collection agency).
-// Shared wording, verbatim: PUBLISH-KIT.md v1.2 K1 (entity), K4 (user rules),
+// Positions: yom-legal-pack/COUNSEL-DETERMINATIONS.md v2.0 A1, A5, C13, G35
+// (revised), G41, section 1 (three entities, billing and collection agency).
+// Shared wording, verbatim: PUBLISH-KIT.md v2.0 K1 (entity, billing agent,
+// governing law for EU/UK), K4 (user rules),
 // K5 (AI content), K7 (changes), K8 / 04-aggregate-data-clause.md (statistics),
 // K10 (liability). Drafted positions accepted by counsel on 26 October 2026.
 // Billing facts checked read-only against thridify-be origin/master on
@@ -75,7 +77,7 @@ export default function PlatformTermsPage() {
             or when you use the Service.
           </p>
           <p>
-            <strong>When they apply.</strong> These terms take effect on 26 October 2026 for new
+            <strong>When they apply.</strong> These terms take effect on 27 October 2026 for new
             customers. If you had a Thridify account before that date, they apply to you 30
             days after we tell you about them, or when you accept them, if that is earlier.
             Until then, the terms you agreed to before continue to apply.
@@ -595,6 +597,12 @@ export default function PlatformTermsPage() {
             jurisdiction, including for interim relief.
           </p>
           <p>
+            <strong>Customers in the European Union and the United Kingdom</strong> (your
+            contract is with {ESTONIA_ENTITY.name}). Estonian law governs these terms and the
+            Harju County Court in Tallinn has jurisdiction, but you keep any protection that the
+            mandatory law of the country where you live gives consumers.
+          </p>
+          <p>
             <strong>Customers everywhere else</strong> (your contract is with{' '}
             {CANADA_ENTITY.name}). These terms are governed by the laws of the Province of
             Ontario and the federal laws of Canada that apply there, and the courts of Ontario
@@ -611,8 +619,10 @@ export default function PlatformTermsPage() {
             We send notices by email to the address on your Account or through the Service.
             Send notices to us at <LegalMail />. Notices to {INDIA_ENTITY.name} can also go by
             post to its registered office at {INDIA_ENTITY.address}, {INDIA_ENTITY.country}; its
-            principal place of business is {INDIA_ENTITY.principalPlace}. An email notice
-            counts as received on the next working day after it is sent.
+            principal place of business is {INDIA_ENTITY.principalPlace}. Notices to{' '}
+            {ESTONIA_ENTITY.name} can go by post to {ESTONIA_ENTITY.address},{' '}
+            {ESTONIA_ENTITY.country}. An email notice counts as received on the next working day
+            after it is sent.
           </p>
         </LegalSection>
 

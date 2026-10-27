@@ -3,7 +3,14 @@ import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { LegalLink, RegionalEntityBlock } from '@/components/LegalEntity';
-import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, OFFICER } from '@/content/legal/group';
+import {
+  CANADA_ENTITY,
+  ESTONIA_ENTITY,
+  INDIA_ENTITY,
+  LEGAL_EMAIL,
+  LEGAL_UPDATE_DATE,
+  OFFICER,
+} from '@/content/legal/group';
 
 // Privacy policy for the Thridify app for Shopify (the App Store listing's
 // privacy policy URL). Facts match thridify-be / shopify-extension as of
@@ -11,7 +18,8 @@ import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, OFFICER } from '@/content/leg
 // Draft for the owner's review: publish only after approval.
 // 26 October 2026: entity statement is regional (publish kit K1); officer and
 // legal mailbox per COUNSEL-DETERMINATIONS.md section 1. This URL is the App
-// Store listing's privacy policy URL: never change it.
+// Store listing's privacy policy URL: never change it. 27 October 2026:
+// three-entity model (kit v2.0 K1) via the shared entity block.
 
 const CANONICAL = '/app-privacy';
 const MAIL = LEGAL_EMAIL;
@@ -57,7 +65,7 @@ export default function ShopifyPrivacyPage() {
       <LegalDocument
         eyebrow="Legal"
         title="Thridify for Shopify: Privacy Policy"
-        effectiveDate="26 October 2026"
+        effectiveDate={LEGAL_UPDATE_DATE}
       >
         <LegalSection title="Summary">
           <p>
@@ -78,8 +86,8 @@ export default function ShopifyPrivacyPage() {
           <RegionalEntityBlock />
           <p>
             The app is provided by Thridify. Contact us about any privacy matter at <Mail />.{' '}
-            {OFFICER.name} is our Grievance Officer for India and the Privacy Officer of{' '}
-            {CANADA_ENTITY.name}; our <LegalLink href="/grievance">grievance page</LegalLink>{' '}
+            {OFFICER.name} is our Grievance Officer for India, the Privacy Officer of{' '}
+            {CANADA_ENTITY.name} and the privacy contact for {ESTONIA_ENTITY.name}; our <LegalLink href="/grievance">grievance page</LegalLink>{' '}
             explains how to complain.
           </p>
         </LegalSection>
@@ -219,9 +227,10 @@ export default function ShopifyPrivacyPage() {
             </li>
             <li>
               <strong>{INDIA_ENTITY.name}</strong> (India) and{' '}
-              <strong>{CANADA_ENTITY.name}</strong> (Canada): the two companies that run
-              Thridify each process data for the other (engineering, hosting and support) under
-              a written intra-group agreement. {INDIA_ENTITY.name} also operates YOM analytics.
+              <strong>{CANADA_ENTITY.name}</strong> (Canada): group companies that run
+              Thridify and process data for each other and for {ESTONIA_ENTITY.name}
+              (engineering, hosting and support) under a written intra-group agreement.{' '}
+              {INDIA_ENTITY.name} also operates YOM analytics.
             </li>
             <li>
               <strong>Shopify:</strong> the platform that runs your store and bills your

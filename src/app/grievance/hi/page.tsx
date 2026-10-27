@@ -7,7 +7,8 @@ import { pageMetadata } from '@/lib/seo';
 import { INDIA_ENTITY, OFFICER } from '@/content/legal/group';
 
 // Grievance Officer page in Hindi (publish kit K3 and K3b user rules, verbatim,
-// v1.1). The principal place of business line is given in English. The document is
+// v1.1). The principal place of business line is given in English. The EU/UK and
+// Canada lines (K2 v2.0) have no kit Hindi text: translated here, review owed. The document is
 // marked lang="hi" (LegalDocument wrapper) because the root layout is English.
 // English version: /grievance (K2), which prevails if the two differ.
 
@@ -50,7 +51,7 @@ export default function GrievanceHindiPage() {
       <LegalDocument
         eyebrow="Thridify"
         title="शिकायत अधिकारी"
-        effectiveDate="26 अक्टूबर 2026"
+        effectiveDate="27 अक्टूबर 2026"
         lang="hi"
         labels={{ home: 'होम', effectiveDate: 'प्रभावी तिथि:' }}
       >
@@ -134,6 +135,33 @@ export default function GrievanceHindiPage() {
               निजी डेटा के मामलों में, डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 के संबंधित
               प्रावधान लागू होने के बाद, इस प्रक्रिया का उपयोग करने के बाद आप भारतीय डेटा संरक्षण
               बोर्ड से शिकायत कर सकते हैं।
+            </li>
+            <li>
+              यूरोपीय संघ में आप एस्टोनिया के डेटा संरक्षण निरीक्षणालय (
+              <span lang="en">Andmekaitse Inspektsioon</span>,{' '}
+              <a href="https://www.aki.ee" className={LINK} lang="en">
+                www.aki.ee
+              </a>
+              ) से या जहाँ आप रहते हैं वहाँ के डेटा संरक्षण प्राधिकरण से शिकायत कर सकते हैं।
+              यूनाइटेड किंगडम में आप सूचना आयुक्त कार्यालय (
+              <span lang="en">Information Commissioner&rsquo;s Office</span>,{' '}
+              <a href="https://ico.org.uk" className={LINK} lang="en">
+                ico.org.uk
+              </a>
+              ) से शिकायत कर सकते हैं। शिखा गुप्ता <span lang="en">Aapastech OÜ</span> के लिए
+              निजता संपर्क भी हैं।
+            </li>
+            <li>
+              कनाडा में आप कनाडा के निजता आयुक्त कार्यालय (
+              <span lang="en">Office of the Privacy Commissioner of Canada</span>) से, और क्यूबेक
+              में <span lang="fr">Commission d&rsquo;accès à l&rsquo;information</span> से संपर्क
+              कर सकते हैं। शिखा गुप्ता <span lang="en">14818032 Canada Inc.</span> के लिए हमारी
+              निजता अधिकारी (<span lang="en">Privacy Officer</span>) और क्यूबेक के लिए व्यक्तिगत
+              जानकारी के संरक्षण की प्रभारी भी हैं (<LegalMail />,{' '}
+              <a href={OFFICER.phoneCanadaHref} className={LINK} lang="en">
+                {OFFICER.phoneCanada}
+              </a>
+              )।
             </li>
           </ul>
         </LegalSection>

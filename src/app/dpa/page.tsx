@@ -3,13 +3,22 @@ import { LegalLink, LegalMail, RegionalEntityBlock } from '@/components/LegalEnt
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
-import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_UPDATE_DATE, OFFICER } from '@/content/legal/group';
+import {
+  CANADA_ENTITY,
+  ESTONIA_ENTITY,
+  INDIA_ENTITY,
+  LEGAL_UPDATE_DATE,
+  OFFICER,
+} from '@/content/legal/group';
 
 // Data Processing Addendum for every non-Shopify channel (viewer embeds,
 // viewer.thridify.com links, lead forms, shared configurations and quotes,
 // WooCommerce and other integrations, AI tools). Adapted from /shopify-dpa,
 // which still governs data received through the Shopify app. Forms part of
-// the Thridify Platform Terms (/legal/platform-terms, section 11).
+// the Thridify Platform Terms (/legal/platform-terms, section 11). 27 October
+// 2026: Aapastech OÜ is the processor for EU/UK controllers (Art. 28 contract);
+// transfers per COUNSEL-DETERMINATIONS v2.0 E2 (Canada adequacy; SCCs Module 3
+// + UK Addendum for India and non-adequate sub-processors).
 // Processing facts checked against thridify-be origin/master (shared-config
 // lead fields, Resend, AI providers, Sentry) and thridify-fe origin/master
 // (shopper tracker) on 26 October 2026. Annex 2 lists only the security
@@ -71,6 +80,11 @@ export default function DpaPage() {
             2023. Data we receive through our Shopify app is covered by the{' '}
             <LegalLink href="/shopify-dpa">Thridify for Shopify Data Processing Addendum</LegalLink>{' '}
             instead.
+          </p>
+          <p>
+            For Controllers in the European Union or the United Kingdom, the Processor is{' '}
+            {ESTONIA_ENTITY.name} and this DPA is the contract required by Article 28 of the GDPR
+            and of the UK GDPR.
           </p>
         </LegalSection>
 
@@ -201,9 +215,11 @@ export default function DpaPage() {
               <strong>Transfers:</strong> data may be processed outside the Controller&rsquo;s
               country, by the sub-processors in Annex 3. Transfers out of India follow section
               16 of the Digital Personal Data Protection Act, 2023, and no data goes to a
-              country the Government of India restricts. Where required, other transfers rely
-              on the European Commission&rsquo;s Standard Contractual Clauses (modules 2 and 3)
-              and the UK addendum.
+              country the Government of India restricts. For Controllers in the European Union or the United Kingdom, transfers to{' '}
+              {CANADA_ENTITY.name} rely on the adequacy decisions for Canada, and transfers to{' '}
+              {INDIA_ENTITY.name} in India and to sub-processors in other countries without an
+              adequacy decision rely on the European Commission&rsquo;s Standard Contractual
+              Clauses (Module 3) with the UK International Data Transfer Addendum.
             </li>
             <li>
               <strong>Audits:</strong> on request, the Processor provides the information needed
@@ -267,9 +283,9 @@ export default function DpaPage() {
             </li>
             <li>
               <strong>{INDIA_ENTITY.name}</strong> (India) and{' '}
-              <strong>{CANADA_ENTITY.name}</strong> (Canada): whichever of the two is not the
-              Processor, for engineering, hosting and support, under a written intra-group
-              agreement. {INDIA_ENTITY.name} also runs YOM analytics.
+              <strong>{CANADA_ENTITY.name}</strong> (Canada): when either is not the Processor,
+              for engineering, hosting and support, under a written intra-group agreement.{' '}
+              {INDIA_ENTITY.name} also runs YOM analytics.
             </li>
           </ul>
           <p>

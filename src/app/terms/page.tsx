@@ -2,11 +2,13 @@ import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
-import { LegalLink, RegionalEntityBlock } from '@/components/LegalEntity';
-import { LEGAL_EMAIL } from '@/content/legal/group';
+import { GoverningLawClause, LegalLink, RegionalEntityBlock } from '@/components/LegalEntity';
+import { LEGAL_EMAIL, LEGAL_UPDATE_DATE } from '@/content/legal/group';
 
 // Terms of use for this marketing website (browse + contact us; interactive
-// 3D/AR demos are illustrative, not offers). Governing law: India (courts at Delhi) for visitors in India, Ontario elsewhere.
+// 3D/AR demos are illustrative, not offers). Governing law: publish kit v2.0 K1
+// clause (India: Delhi courts; EU and UK: Estonian law, Harju County Court;
+// elsewhere Ontario).
 // Thridify accounts, plans and services are governed by the Thridify Platform
 // Terms (/legal/platform-terms), linked from "What this website is" (26 Oct 2026).
 // Entity statement is regional (publish kit K1).
@@ -48,7 +50,7 @@ export default function TermsPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
 
-      <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate="26 October 2026">
+      <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate={LEGAL_UPDATE_DATE}>
         <LegalSection title="Acceptance of these terms">
           <RegionalEntityBlock />
           <p>
@@ -140,13 +142,9 @@ export default function TermsPage() {
         </LegalSection>
 
         <LegalSection title="Governing law and disputes">
+          <GoverningLawClause />
           <p>
-            If you are in India, these terms are governed by the laws of India and the courts
-            at Delhi have jurisdiction over any dispute arising out of or in connection with
-            this website. Everywhere else, they are governed by the laws of the Province of
-            Ontario and the federal laws of Canada that apply there, and the courts of Ontario
-            have jurisdiction. Disputes about the
-            Thridify platform follow the{' '}
+            Disputes about the Thridify platform follow the{' '}
             <LegalLink href="/legal/platform-terms#governing-law">Thridify Platform Terms</LegalLink>
             .
           </p>
