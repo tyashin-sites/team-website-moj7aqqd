@@ -1,17 +1,28 @@
 // Group facts shared by every legal page on thridify.com. Single point of
 // change: the privacy policy, the Shopify app pages, the Platform Terms, the
 // DPA and the grievance pages all read these, so they cannot drift.
-// Source: yom-legal-pack/PUBLISH-KIT.md ("Facts used") and
-// COUNSEL-DETERMINATIONS.md section 1 (v1.0, 26 October 2026).
+// Source: yom-legal-pack/PUBLISH-KIT.md v1.1 ("Facts used") and
+// COUNSEL-DETERMINATIONS.md section 1 (26 October 2026).
 
 export const LEGAL_EMAIL = 'contact@aapastech.com';
 
 export const INDIA_ENTITY = {
   name: 'Aapastech Private Limited',
   cin: 'U72900DL2022PTC395508',
+  /** Registered office: legal notices go here. */
   address: '8/3, 2nd Floor, Roop Nagar, Delhi 110007',
+  /** Principal place of business (publish kit v1.1 facts; GSTIN 06AAVCA6693D1ZK). */
+  principalPlace: '1st Floor, 145, Sector 44, Gurugram, Haryana 122003',
   country: 'India',
 } as const;
+
+/**
+ * Outside India, Aapastech Private Limited invoices and collects for Thridify
+ * direct purchases as agent of 14818032 Canada Inc. (COUNSEL-DETERMINATIONS
+ * section 1 "Billing reality"; intra-group agreement section 8).
+ */
+export const BILLING_AGENCY_SENTENCE =
+  'Outside India, Aapastech Private Limited issues invoices and collects payment for direct purchases as billing and collection agent for 14818032 Canada Inc. This does not change who your contract is with.';
 
 export const CANADA_ENTITY = {
   name: '14818032 Canada Inc.',

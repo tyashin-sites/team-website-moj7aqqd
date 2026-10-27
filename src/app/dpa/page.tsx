@@ -12,8 +12,8 @@ import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_UPDATE_DATE, OFFICER } from '@/conte
 // the Thridify Platform Terms (/legal/platform-terms, section 11).
 // Processing facts checked against thridify-be origin/master (shared-config
 // lead fields, Resend, AI providers, Sentry) and thridify-fe origin/master
-// (shopper tracker) on 26 October 2026. Security measures: intra-group
-// agreement Schedule 1 (yom-legal-pack/11).
+// (shopper tracker) on 26 October 2026. Annex 2 lists only the security
+// commitments counsel confirmed as verifiable (26 October 2026).
 
 const CANONICAL = '/dpa';
 
@@ -191,10 +191,11 @@ export default function DpaPage() {
               <strong>Deletion:</strong> the Controller can delete records or ask us to delete
               them at any time. When the Platform Terms end, the Processor deletes the
               Controller&rsquo;s personal data as their section on ending the terms describes.
-              It keeps only what the law requires. For personal data of people in India, that
-              means the data is deleted from our systems and a sealed copy is kept for up to one
-              year where Indian law requires it, used only to meet that legal duty and then
-              destroyed.
+              It keeps only what the law requires. From 13 May 2027 Indian law will also
+              require us to keep personal data, related traffic data and processing logs for one
+              year from processing. From then, when we delete data from our systems we will keep
+              a sealed copy for the rest of that year, which nobody uses except to meet that
+              legal duty, and then destroy it.
             </li>
             <li>
               <strong>Transfers:</strong> data may be processed outside the Controller&rsquo;s
@@ -216,8 +217,8 @@ export default function DpaPage() {
           <p>
             Each party&rsquo;s liability under this DPA is governed by the liability section of
             the <LegalLink href="/legal/platform-terms#liability">Platform Terms</LegalLink>,
-            under which a party&rsquo;s breach of its data protection obligations is not
-            subject to the cap. This DPA is governed by the same law, and disputes go to the
+            under which the limit for breaches of data protection obligations is three times
+            the general limit. This DPA is governed by the same law, and disputes go to the
             same forum, as the Platform Terms, except where data protection law requires
             another law or forum (for example, the EU Standard Contractual Clauses, which follow
             the law and courts they specify). If this DPA and the Platform Terms conflict on
@@ -231,22 +232,15 @@ export default function DpaPage() {
 
         <LegalSection title="Annex 2: Security measures" id="annex-2">
           <ul className="list-disc pl-5 space-y-2">
-            <li>
-              Encryption in transit (TLS) on every public endpoint, and encryption at rest where
-              the provider supports it.
-            </li>
-            <li>Role-based access, with multi-factor authentication for administrative accounts.</li>
+            <li>TLS on every public endpoint.</li>
+            <li>Encryption at rest provided by our hosting and database providers.</li>
+            <li>Access to production systems limited to staff who need it.</li>
             <li>Secrets kept in managed secret stores, never in source code.</li>
-            <li>Least-privilege service accounts for each environment.</li>
-            <li>Logging of administrative and security events, kept for at least 180 days.</li>
-            <li>Clocks synchronised to NIC/NPL-traceable time.</li>
-            <li>
-              Documented incident response, with the 6-hour CERT-In and 72-hour Data Protection
-              Board timelines.
-            </li>
-            <li>Backups with tested restore.</li>
-            <li>Analytics stores no IP addresses.</li>
+            <li>Logging of security and administrative events.</li>
+            <li>Incident response with the notification times in this addendum.</li>
+            <li>Backups provided by our database providers.</li>
           </ul>
+          <p>We are extending log retention to 180 days across all systems by 31 December 2026.</p>
         </LegalSection>
 
         <LegalSection title="Annex 3: Sub-processors" id="annex-3">

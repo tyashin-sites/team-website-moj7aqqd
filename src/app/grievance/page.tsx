@@ -61,6 +61,8 @@ export default function GrievancePage() {
           <br />
           {INDIA_ENTITY.address}, {INDIA_ENTITY.country}
           <br />
+          Principal place of business: {INDIA_ENTITY.principalPlace}
+          <br />
           Email: <LegalMail />
           <br />
           Phone:{' '}

@@ -3,23 +3,27 @@ import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { RegionalEntityBlock } from '@/components/LegalEntity';
+import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_EMAIL, LEGAL_UPDATE_DATE } from '@/content/legal/group';
 
-// Phase-4 security & practices page — a modest, HONEST description of how this
+// Phase-4 security & practices page: a modest, HONEST description of how this
 // website handles data. NO fabricated compliance badges or certifications
 // (No-Faking): we do not claim SOC 2 / ISO 27001 because we have not earned
 // them. Per-page metadata + canonical + BreadcrumbList JSON-LD. Linked from
 // the footer and included in the sitemap. Preview noindex via src/middleware.ts.
+// 26 October 2026: regional entity (publish kit K1), legal mailbox, and the
+// cookies/processor lines corrected to match the live chat and analytics plugins.
 
 const CANONICAL = '/security';
-const MAIL = 'contact@thridify.com';
+const MAIL = LEGAL_EMAIL;
 
 export const metadata = pageMetadata({
   title: 'Security & Data Practices',
   description:
-    'How Thridify (Aapastech Private Limited) protects information on this website — encryption in transit, access controls, our processor list, data-region note and responsible-disclosure contact.',
+    'How Thridify protects information on this website: encryption in transit, access controls, our processor list, data-region note and responsible-disclosure contact.',
   path: CANONICAL,
   image: '/og/default.png',
-  ogTitle: 'Security & Data Practices — Thridify',
+  ogTitle: 'Security & Data Practices | Thridify',
   ogDescription:
     'How we protect information on this website: HTTPS everywhere, access controls, our processors, and how to report a security issue.',
 });
@@ -50,8 +54,12 @@ export default function SecurityPage() {
         eyebrow="Trust"
         title="Security & Data Practices"
         breadcrumbLabel="Security"
-        effectiveDate="3 August 2026"
+        effectiveDate={LEGAL_UPDATE_DATE}
       >
+        <LegalSection title="Who we are">
+          <RegionalEntityBlock />
+        </LegalSection>
+
         <LegalSection title="Our approach">
           <p>
             We take a straightforward, honest approach to security: collect only what we
@@ -93,15 +101,22 @@ export default function SecurityPage() {
           </p>
           <ul className="list-disc pl-5 space-y-2">
             <li>
-              <strong>Cloudflare</strong> — hosting, content delivery, TLS and network
+              <strong>Cloudflare:</strong> hosting, content delivery, TLS and network
               security.
             </li>
             <li>
-              <strong>Tyashin platform</strong> (Aapastech Private Limited) — receives and
-              stores contact-form leads so our team can respond.
+              <strong>Tyashin platform</strong> ({INDIA_ENTITY.name}): receives and stores
+              contact-form leads so our team can respond, and runs our chat assistant and site
+              analytics.
             </li>
             <li>
-              <strong>Calendly</strong> — used only when you choose to book a demo through
+              <strong>OpenAI:</strong> generates the chat assistant&rsquo;s replies.
+            </li>
+            <li>
+              <strong>YOM</strong> ({INDIA_ENTITY.name}): our analytics service.
+            </li>
+            <li>
+              <strong>Calendly:</strong> used only when you choose to book a demo through
               the scheduling link.
             </li>
           </ul>
@@ -126,13 +141,18 @@ export default function SecurityPage() {
 
         <LegalSection title="Cookies and tracking">
           <p>
-            This website sets only strictly necessary cookies and does not run advertising
-            or cross-site tracking. Any analytics we add in future will be consent-gated.
-            See the Privacy Policy for details.
+            This website does not set advertising or cross-site tracking cookies; Cloudflare
+            may set strictly necessary security cookies. Our chat assistant and site analytics
+            keep random IDs in your browser&rsquo;s local and session storage, and the 3D demos
+            do so only with your consent. The{' '}
+            <Link href="/privacy#cookies" className="text-primary underline underline-offset-4">
+              Privacy Policy
+            </Link>{' '}
+            lists each item.
           </p>
         </LegalSection>
 
-        <LegalSection title="Certifications — an honest note">
+        <LegalSection title="Certifications: an honest note">
           <p>
             We do <strong>not</strong> currently claim formal third-party certifications
             such as SOC 2 or ISO 27001 for this marketing website, and we will not display
@@ -155,7 +175,10 @@ export default function SecurityPage() {
 
         <LegalSection title="Contact">
           <p>
-            Aapastech Private Limited
+            {INDIA_ENTITY.name} (India), registered office {INDIA_ENTITY.address}; principal
+            place of business {INDIA_ENTITY.principalPlace}
+            <br />
+            {CANADA_ENTITY.name} (everywhere else), {CANADA_ENTITY.place}, {CANADA_ENTITY.country}
             <br />
             Security &amp; privacy: <Mail />
           </p>

@@ -27,13 +27,14 @@ export function LegalLink({ href, children }: { href: string; children: ReactNod
   );
 }
 
-/** Publish kit K1 (Thridify, regional), verbatim. */
+/** Publish kit K1 (Thridify, regional), verbatim, plus the principal place of business (v1.1 facts). */
 export function RegionalEntityBlock() {
   return (
     <p>
       Thridify is run by two companies in the same group. If you are in India, your
-      contract is with <strong>{INDIA_ENTITY.name}</strong> (CIN {INDIA_ENTITY.cin},{' '}
-      {INDIA_ENTITY.address}), which is also the data fiduciary for your personal data.
+      contract is with <strong>{INDIA_ENTITY.name}</strong> (CIN {INDIA_ENTITY.cin},
+      registered office {INDIA_ENTITY.address}; principal place of business{' '}
+      {INDIA_ENTITY.principalPlace}), which is also the data fiduciary for your personal data.
       Everywhere else, your contract is with <strong>{CANADA_ENTITY.name}</strong> of{' '}
       {CANADA_ENTITY.place}, which is the controller of your personal data. The two
       companies share engineering, hosting and support, and each processes data for the

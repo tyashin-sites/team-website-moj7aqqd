@@ -25,7 +25,7 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
           },
           {
             "type": "p",
-            "text": "**(1) Aapastech Private Limited**, a company incorporated under the Companies Act, 2013, CIN U72900DL2022PTC395508, registered office at 8/3, 2nd Floor, Roop Nagar, Delhi 110007, India, which owns and operates the Thridify platform (**\"Aapastech\"**, \"we\", \"us\"); and"
+            "text": "**(1) Aapastech Private Limited**, a company incorporated under the Companies Act, 2013, CIN U72900DL2022PTC395508, registered office at 8/3, 2nd Floor, Roop Nagar, Delhi 110007, India, principal place of business at 1st Floor, 145, Sector 44, Gurugram, Haryana 122003, which owns and operates the Thridify platform (**\"Aapastech\"**, \"we\", \"us\"); and"
           },
           {
             "type": "p",
@@ -200,7 +200,7 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
           },
           {
             "type": "p",
-            "text": "8.5 **Infringement notices (United States).** Notices under 17 U.S.C. §512 go to Aapastech's designated agent, **Shikha Gupta, contact@thridify.com**. A notice must include the elements required by §512(c)(3), and counter-notices must meet §512(g)(3). Aapastech will remove or disable access to the material identified, notify the affected parties, and may restore it as §512(g) allows. Aapastech ends the access of repeat infringers where appropriate."
+            "text": "8.5 **Infringement notices (United States).** Notices under 17 U.S.C. §512 go to Aapastech's designated agent, **Shikha Gupta, contact@aapastech.com**. A notice must include the elements required by §512(c)(3), and counter-notices must meet §512(g)(3). Aapastech will remove or disable access to the material identified, notify the affected parties, and may restore it as §512(g) allows. Aapastech ends the access of repeat infringers where appropriate."
           }
         ]
       },
@@ -335,7 +335,7 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
           },
           {
             "type": "p",
-            "text": "13.7 **Notices.** Aapastech may give notice by email to the account owner or through the Platform. You must send notices to contact@thridify.com."
+            "text": "13.7 **Notices.** Aapastech may give notice by email to the account owner or through the Platform. You must send notices to contact@aapastech.com."
           },
           {
             "type": "p",

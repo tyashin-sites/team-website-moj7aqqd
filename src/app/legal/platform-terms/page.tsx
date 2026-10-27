@@ -3,14 +3,22 @@ import { LegalLink, LegalMail, RegionalEntityBlock } from '@/components/LegalEnt
 import { JsonLd } from '@/components/JsonLd';
 import { SITE_URL } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
-import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_UPDATE_DATE, OFFICER } from '@/content/legal/group';
+import {
+  BILLING_AGENCY_SENTENCE,
+  CANADA_ENTITY,
+  INDIA_ENTITY,
+  LEGAL_UPDATE_DATE,
+  OFFICER,
+} from '@/content/legal/group';
 
 // Thridify Platform Terms: the customer agreement for free and paid Thridify
 // accounts, including accounts created through the Shopify app. The admin
 // sign-up link (thridify.com/terms-of-service) redirects here (next.config.ts).
-// Positions: yom-legal-pack/COUNSEL-DETERMINATIONS.md A1, A5, C13, G35, G41.
-// Shared wording, verbatim: PUBLISH-KIT.md K1 (entity), K4 (user rules),
-// K5 (AI content), K7 (changes), K8 / 04-aggregate-data-clause.md (statistics).
+// Positions: yom-legal-pack/COUNSEL-DETERMINATIONS.md A1, A5, C13, G35
+// (revised), G41, section 1 "Billing reality" (billing and collection agency).
+// Shared wording, verbatim: PUBLISH-KIT.md v1.2 K1 (entity), K4 (user rules),
+// K5 (AI content), K7 (changes), K8 / 04-aggregate-data-clause.md (statistics),
+// K10 (liability). Drafted positions accepted by counsel on 26 October 2026.
 // Billing facts checked read-only against thridify-be origin/master on
 // 26 October 2026: Razorpay orders (Controller/Orders), Shopify Billing
 // subscriptions and one-time purchases (Controller/Shopify/billing.ts),
@@ -162,7 +170,8 @@ export default function PlatformTermsPage() {
             <strong>Paying us directly.</strong> If you buy a Plan, credits or services from us
             directly, you pay at checkout through Razorpay, our payment processor, in the
             currency shown there. Razorpay handles your payment details under its own terms.
-            Your Order Form may set other payment terms, such as payment against an invoice.
+            Your Order Form may set other payment terms, such as payment against an invoice.{' '}
+            {BILLING_AGENCY_SENTENCE}
           </p>
           <p>
             <strong>Shopify Billing.</strong> If you use Thridify through our Shopify app,
@@ -231,8 +240,11 @@ export default function PlatformTermsPage() {
           <p>
             <strong>Models we make for you.</strong> If we build 3D models for you under an Order
             Form, they become your Customer Content once you have paid for them, unless the
-            Order Form says otherwise. We keep ownership of our tools, templates, our own
-            material libraries and our general know-how.
+            Order Form says otherwise. We keep ownership of our pre-existing tools and
+            templates, generic components, the materials in our libraries and our general
+            know-how. Where any of them is part of a model we deliver, you may use it as part
+            of that model. The licence in this section lets us host and display the models to
+            provide the Service.
           </p>
           <p>
             <strong>Your promise.</strong> You confirm that you have the rights you need in your
@@ -488,9 +500,12 @@ export default function PlatformTermsPage() {
             ends, you can ask us for a copy of your Customer Content, and we will send it in the
             formats we hold it in. After that we delete your Customer Content and Shopper Data
             from our systems. We keep only what the law requires: invoices and tax records for
-            8 years, security logs for at least 180 days, and, for personal data of people in
-            India, a sealed copy for up to one year where Indian law requires it, which nobody
-            uses except to meet that legal duty and which is then destroyed. Copies in backups
+            8 years, and security logs for 180 days under Indian cyber security rules (we are
+            extending this to every system by 31 December 2026). From 13 May 2027 Indian law will also require us to keep
+            personal data, related traffic data and processing logs for one year from
+            processing. From then, when we delete your data from our systems we will keep a
+            sealed copy for the rest of that year, which nobody uses except to meet that legal
+            duty, and then destroy it. Copies in backups
             stay protected by these terms until they are deleted. If you uninstall our Shopify
             app, our <LegalLink href="/app-privacy">app privacy policy</LegalLink> explains what
             is deleted and when.
@@ -519,31 +534,19 @@ export default function PlatformTermsPage() {
 
         <LegalSection title="17. Liability" id="liability">
           <p>
-            <strong>Cap.</strong> Each party&rsquo;s total liability arising out of or in
-            connection with these terms is limited to the Fees you paid for the Service in the
-            12 months before the event that gave rise to the claim.
+            Each party&rsquo;s total liability under these terms is limited to the fees you paid
+            in the 12 months before the event giving rise to the claim. For breaches of data
+            protection or confidentiality obligations the limit is three times that amount.
+            These limits do not apply to fraud, wilful misconduct, your obligation to pay fees,
+            or your responsibility for your own content and for personal data you had no right
+            to give us. Neither party is liable for indirect or consequential loss, or for lost
+            profits, except in case of fraud. Nothing in these terms limits liability that the
+            law does not allow to be limited.
           </p>
           <p>
-            <strong>Not capped.</strong> The cap does not apply to:
-          </p>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>
-              a party&rsquo;s breach of its data protection obligations under these terms or the
-              Data Processing Addendum;
-            </li>
-            <li>breach of section 13 (confidentiality);</li>
-            <li>infringement of the other party&rsquo;s intellectual property rights;</li>
-            <li>amounts payable under section 18 (indemnities); or</li>
-            <li>fraud.</li>
-          </ul>
-          <p>
-            <strong>Excluded losses.</strong> Neither party is liable for indirect or
-            consequential loss, or for loss of profit, revenue, goodwill or data. This exclusion
-            does not apply to amounts payable to a third party under section 18, or to fraud.
-          </p>
-          <p>
-            Nothing in these terms limits or excludes liability that the law does not allow to
-            be limited or excluded.
+            If you use Thridify through the Shopify app, the limits in our{' '}
+            <LegalLink href="/shopify-dpa">Shopify Data Processing Addendum</LegalLink> apply to
+            data protection claims.
           </p>
         </LegalSection>
 
@@ -607,8 +610,9 @@ export default function PlatformTermsPage() {
           <p>
             We send notices by email to the address on your Account or through the Service.
             Send notices to us at <LegalMail />. Notices to {INDIA_ENTITY.name} can also go by
-            post to its registered office at {INDIA_ENTITY.address}, {INDIA_ENTITY.country}. An
-            email notice counts as received on the next working day after it is sent.
+            post to its registered office at {INDIA_ENTITY.address}, {INDIA_ENTITY.country}; its
+            principal place of business is {INDIA_ENTITY.principalPlace}. An email notice
+            counts as received on the next working day after it is sent.
           </p>
         </LegalSection>
 

@@ -3,12 +3,23 @@ import { LegalLink, LegalMail, RegionalEntityBlock } from '@/components/LegalEnt
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
-import { CANADA_ENTITY, INDIA_ENTITY, LEGAL_UPDATE_DATE, OFFICER } from '@/content/legal/group';
+import {
+  BILLING_AGENCY_SENTENCE,
+  CANADA_ENTITY,
+  INDIA_ENTITY,
+  LEGAL_UPDATE_DATE,
+  OFFICER,
+} from '@/content/legal/group';
 
 // Privacy policy for thridify.com and Thridify account holders. Updated
 // 26 October 2026 to the group's counsel determinations (yom-legal-pack v1.0):
 // regional entity (publish kit K1), India rights, retention, transfers and
-// security (K6), the Grievance Officer and the Quebec person in charge.
+// security (K6 v1.2: future-tense sealed copy, log retention being extended), the Grievance Officer and the
+// Quebec person in charge. Chat assistant, site analytics and demo viewer
+// storage checked on 26 October 2026 against the live plugin scripts
+// (website-api.tyashin.com/api/v1/public/plugins/*.js), tyashin-platform
+// origin/main (public-chat-d1.ts, public-analytics.ts, scheduled.ts) and
+// thridify-fe origin/master (shopper tracker).
 // Shopify app data: /app-privacy. Shopper data we process for customers: /dpa.
 // Per-page metadata + canonical; noindex on the workers.dev / sites.tyashin.com
 // preview inherits from src/middleware.ts (host-conditional).
@@ -45,9 +56,10 @@ export default function PrivacyPage() {
           <p>
             This website is a marketing site for Thridify, our 3D and augmented-reality
             commerce platform and 3D modelling service. We collect the details you send
-            through our contact form so we can reply and set up a demo, and the details you
-            give us when you open a Thridify account. We do not run third-party advertising
-            trackers, and we do not sell your personal information. This policy explains, in
+            through our contact form or our chat assistant so we can reply and set up a demo,
+            the details you give us when you open a Thridify account, and basic information
+            about how the site and its 3D demos are used. We do not run advertising trackers,
+            and we do not sell your personal information. This policy explains, in
             plain terms, what we collect, why, how long we keep it, who we share it with, and
             the rights you have, including under the EU/UK GDPR, India&rsquo;s Digital
             Personal Data Protection Act 2023 (DPDP Act) and Canada&rsquo;s PIPEDA.
@@ -93,11 +105,23 @@ export default function PrivacyPage() {
               website.
             </li>
             <li>
-              <strong>Analytics (not active yet):</strong> privacy-conscious, aggregated usage
-              analytics may be added later. If and when analytics is enabled it will be{' '}
-              <strong>consent-gated</strong> (see &ldquo;Cookies and similar
-              technologies&rdquo; below). No analytics or advertising trackers run on this site
-              today.
+              <strong>Chat assistant:</strong> if you use the chat on this site, the messages
+              you send and any file you attach, the page you were on, the page that referred
+              you, your browser&rsquo;s user agent, your country (as reported by Cloudflare) and
+              random visitor, session and conversation IDs. If you type your email address, or
+              leave a message for our team when no one is available, we may save it as an
+              enquiry so we can reply.
+            </li>
+            <li>
+              <strong>Site analytics:</strong> for each page you view, the page address and
+              title, the page that referred you, your browser&rsquo;s user agent, screen size and
+              language, a session ID and a random visitor ID stored in your browser.
+            </li>
+            <li>
+              <strong>3D demos:</strong> the Thridify viewer in our demos records how they are
+              used (the product and experience, the features used, the page address and
+              referrer, and the device type). Without your consent it keeps its session ID only
+              in memory.
             </li>
           </ul>
           <p>
@@ -128,6 +152,17 @@ export default function PrivacyPage() {
               for which you gave us the data; under PIPEDA, your consent.
             </li>
             <li>
+              <strong>To answer questions through our chat assistant</strong>, and to pass the
+              conversation to our team when you ask. Legal basis: your consent when you choose
+              to start a chat (GDPR Art. 6(1)(a); under the DPDP Act, consent for that purpose;
+              under PIPEDA, your express consent).
+            </li>
+            <li>
+              <strong>To understand how the site and our demos are used</strong> and improve
+              them (site analytics and demo events). Legal basis: legitimate interest in
+              understanding how our website is used.
+            </li>
+            <li>
               <strong>To operate, secure and improve the site</strong> (server and security
               logs). Legal basis: legitimate interest in a safe, functioning website.
             </li>
@@ -151,7 +186,17 @@ export default function PrivacyPage() {
               <strong>The Tyashin platform</strong> (operated by {INDIA_ENTITY.name}):
               contact-form submissions are forwarded to, and stored in, our own
               lead-management system on this platform so our team can respond, and to the
-              email inbox that receives new enquiries.
+              email inbox that receives new enquiries. The platform also runs our chat
+              assistant and site analytics.
+            </li>
+            <li>
+              <strong>OpenAI:</strong> generates the chat assistant&rsquo;s replies, so the
+              messages you send in the chat are passed to it.
+            </li>
+            <li>
+              <strong>YOM (Your Own Metrics)</strong>, our analytics service, operated by{' '}
+              {INDIA_ENTITY.name}: processes site analytics and demo events. YOM does not store
+              IP addresses.
             </li>
             <li>
               <strong>Google Cloud and MongoDB Atlas:</strong> hosting and database for the
@@ -163,16 +208,13 @@ export default function PrivacyPage() {
             </li>
             <li>
               <strong>Razorpay:</strong> processes payments for plans and services you buy from
-              us directly. If you use our Shopify app, Shopify bills you instead.
+              us directly. If you use our Shopify app, Shopify bills you instead.{' '}
+              {BILLING_AGENCY_SENTENCE}
             </li>
             <li>
               <strong>The other company in our group</strong> ({INDIA_ENTITY.name} or{' '}
               {CANADA_ENTITY.name}): engineering, hosting and support, under a written
               intra-group agreement.
-            </li>
-            <li>
-              <strong>Analytics provider:</strong> only if analytics is enabled in future, and
-              only after consent, as described below.
             </li>
           </ul>
           <p>
@@ -202,17 +244,20 @@ export default function PrivacyPage() {
           <p>
             We keep personal data while your account is active and as long as we need it for
             the purpose you gave it for, then delete it. Some records stay longer because the
-            law requires it: invoices and tax records for 8 years, and security logs for at
-            least 180 days. Indian law also requires us to keep personal data, related traffic
-            data and processing logs for one year from processing; when we delete your data
-            from our systems we keep a sealed copy for the rest of that year, which nobody uses
-            except to meet that legal duty, and then destroy it.
+            law requires it: invoices and tax records for 8 years, and security logs for 180
+            days under Indian cyber security rules (we are extending this to every system by 31
+            December 2026). From 13 May 2027 Indian law will also require us to keep personal
+            data, related traffic data and processing logs for one year from processing. From
+            then, when we delete your data from our systems we will keep a sealed copy for the
+            rest of that year, which nobody uses except to meet that legal duty, and then
+            destroy it.
           </p>
           <p>
             Enquiries you send through our contact form are kept while we handle your request
             and any business relationship that follows, and for a reasonable period afterwards
-            for our records, then deleted or anonymised. You can ask us to delete your details
-            sooner at any time, subject to the legal duties above.
+            for our records, then deleted or anonymised. Chat conversations are deleted
+            automatically after about 90 days. You can ask us to delete your details sooner at
+            any time, subject to the legal duties above.
           </p>
         </LegalSection>
 
@@ -225,19 +270,38 @@ export default function PrivacyPage() {
           </p>
         </LegalSection>
 
-        <LegalSection title="Cookies and similar technologies">
+        <LegalSection title="Cookies and similar technologies" id="cookies">
           <p>
-            <strong>Today this site sets only strictly necessary cookies:</strong> those
-            required to serve the site securely and reliably (for example, Cloudflare security
-            cookies). We do <strong>not</strong> run advertising, marketing or cross-site
-            tracking cookies, and no analytics is wired into the site at present.
+            This site does not set advertising or cross-site tracking cookies. Cloudflare, which
+            hosts the site, may set strictly necessary security cookies. Some features keep
+            small items in your browser&rsquo;s local storage or session storage instead of
+            cookies:
           </p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Chat assistant:</strong> a random visitor ID (<code>aapas_chat_vid</code>),
+              your current conversation (<code>aapas_chat_cid</code>) and two items that decide
+              when to show the chat button (<code>aapas_chat_revealed</code>,{' '}
+              <code>aapas_visit_count</code>) in local storage; a session ID (
+              <code>aapas_chat_sid</code>) and two display settings (<code>aapas_chat_open</code>
+              , <code>aapas_nav_count</code>) in session storage. These let a conversation carry
+              on from page to page.
+            </li>
+            <li>
+              <strong>Site analytics:</strong> a random visitor ID (<code>aapas_vid</code>) in
+              local storage.
+            </li>
+            <li>
+              <strong>3D demos:</strong> only if you give consent where the viewer asks for it,
+              the Thridify viewer stores a session ID, a visitor ID and your choice (
+              <code>thridify_session</code>, <code>thridify_visitor</code>,{' '}
+              <code>thridify_consent_v2</code>) in local storage.
+            </li>
+          </ul>
           <p>
-            If we introduce analytics or any non-essential cookies in future, they will be{' '}
-            <strong>off by default and loaded only after you consent</strong> through a
-            cookie or consent banner, and you will be able to withdraw consent at any time.
-            Strictly necessary cookies do not require consent. We will update this section and
-            list the specific technologies before any such change goes live.
+            You can clear these items at any time in your browser settings. If we add
+            advertising or other non-essential cookies, they will be off by default and loaded
+            only after you consent, and we will list them here first.
           </p>
         </LegalSection>
 
@@ -356,8 +420,9 @@ export default function PrivacyPage() {
 
         <LegalSection title="Contact">
           <p>
-            {INDIA_ENTITY.name} (data fiduciary for India), CIN {INDIA_ENTITY.cin},{' '}
-            {INDIA_ENTITY.address}, {INDIA_ENTITY.country}
+            {INDIA_ENTITY.name} (data fiduciary for India), CIN {INDIA_ENTITY.cin}, registered
+            office {INDIA_ENTITY.address}, {INDIA_ENTITY.country}; principal place of business{' '}
+            {INDIA_ENTITY.principalPlace}
             <br />
             {CANADA_ENTITY.name} (data controller everywhere else), {CANADA_ENTITY.place},{' '}
             {CANADA_ENTITY.country}

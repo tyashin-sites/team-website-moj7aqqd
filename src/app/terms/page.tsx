@@ -2,13 +2,14 @@ import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
-import { LegalLink } from '@/components/LegalEntity';
+import { LegalLink, RegionalEntityBlock } from '@/components/LegalEntity';
 import { LEGAL_EMAIL } from '@/content/legal/group';
 
 // Terms of use for this marketing website (browse + contact us; interactive
 // 3D/AR demos are illustrative, not offers). Governing law: Ontario, Canada.
 // Thridify accounts, plans and services are governed by the Thridify Platform
 // Terms (/legal/platform-terms), linked from "What this website is" (26 Oct 2026).
+// Entity statement is regional (publish kit K1).
 // Per-page metadata + canonical; preview noindex inherits from src/middleware.ts.
 
 const CANONICAL = '/terms';
@@ -49,12 +50,9 @@ export default function TermsPage() {
 
       <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate="26 October 2026">
         <LegalSection title="Acceptance of these terms">
+          <RegionalEntityBlock />
           <p>
-            This website is operated by{' '}
-            <strong>14818032 Canada Inc., operating as Thridify</strong>, of Burlington,
-            Ontario, Canada (&ldquo;Thridify&rdquo;, &ldquo;we&rdquo;,
-            &ldquo;us&rdquo;, &ldquo;our&rdquo;). By accessing or using this website you
-            agree to these Terms of Use. If you do not agree, please do not use the site.
+            By accessing or using this website you agree to these Terms of Use. If you do not agree, please do not use the site.
             These terms may be updated from time to time (see &ldquo;Changes&rdquo; below);
             continued use after an update means you accept the revised terms.
           </p>
