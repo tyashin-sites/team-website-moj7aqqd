@@ -6,7 +6,7 @@ import { LegalLink, RegionalEntityBlock } from '@/components/LegalEntity';
 import { LEGAL_EMAIL } from '@/content/legal/group';
 
 // Terms of use for this marketing website (browse + contact us; interactive
-// 3D/AR demos are illustrative, not offers). Governing law: Ontario, Canada.
+// 3D/AR demos are illustrative, not offers). Governing law: India (courts at Delhi) for visitors in India, Ontario elsewhere.
 // Thridify accounts, plans and services are governed by the Thridify Platform
 // Terms (/legal/platform-terms), linked from "What this website is" (26 Oct 2026).
 // Entity statement is regional (publish kit K1).
@@ -141,9 +141,11 @@ export default function TermsPage() {
 
         <LegalSection title="Governing law and disputes">
           <p>
-            These terms are governed by the laws of the Province of Ontario and the federal
-            laws of Canada that apply there. The courts of Ontario have jurisdiction over any
-            dispute arising out of or in connection with this website. Disputes about the
+            If you are in India, these terms are governed by the laws of India and the courts
+            at Delhi have jurisdiction over any dispute arising out of or in connection with
+            this website. Everywhere else, they are governed by the laws of the Province of
+            Ontario and the federal laws of Canada that apply there, and the courts of Ontario
+            have jurisdiction. Disputes about the
             Thridify platform follow the{' '}
             <LegalLink href="/legal/platform-terms#governing-law">Thridify Platform Terms</LegalLink>
             .
