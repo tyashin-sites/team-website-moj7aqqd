@@ -156,6 +156,13 @@ export default function PlatformTermsPage() {
             Shopify, WooCommerce, web browsers and the AR features of phones. Changes they make
             can affect how the Service works.
           </p>
+          <p>
+            How 3D and AR behave on different devices and platforms is described on our{' '}
+            <LegalLink href="/device-compatibility">Device compatibility</LegalLink> and{' '}
+            <LegalLink href="/3d-ar-platform-guide">3D &amp; AR, platform by platform</LegalLink>{' '}
+            pages. Those pages are general information, are updated as platforms change, and are
+            not part of these terms.
+          </p>
         </LegalSection>
 
         <LegalSection title="4. Your Account" id="account">

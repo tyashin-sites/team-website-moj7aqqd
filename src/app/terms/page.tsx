@@ -81,6 +81,17 @@ export default function TermsPage() {
             outcomes reported for our platform and are not a guarantee of results for your
             business.
           </p>
+          <p>
+            How 3D and AR behave on different devices is described on our{' '}
+            <a href="/device-compatibility" className="text-primary underline underline-offset-4">
+              Device compatibility
+            </a>{' '}
+            and{' '}
+            <a href="/3d-ar-platform-guide" className="text-primary underline underline-offset-4">
+              3D &amp; AR, platform by platform
+            </a>{' '}
+            pages, which are general information and not part of these terms.
+          </p>
         </LegalSection>
 
         <LegalSection title="Acceptable use">

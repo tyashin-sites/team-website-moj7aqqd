@@ -78,6 +78,7 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/industries", priority: 0.8, changeFrequency: "monthly" },
   { path: "/integrations", priority: 0.8, changeFrequency: "monthly" },
   { path: "/device-compatibility", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/3d-ar-platform-guide", priority: 0.6, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/contact", priority: 0.6, changeFrequency: "monthly" },
