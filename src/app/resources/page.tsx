@@ -11,6 +11,7 @@ const ITEMS = [
   { href: '/faq', kicker: 'FAQ', t: 'Every question, answered straight', b: 'Fifty-plus answers on the platform, modelling, AR and devices, integrations, plans and the company.' },
   { href: '/glossary', kicker: 'Glossary', t: 'The vocabulary of 3D and AR commerce', b: 'Quotable definitions of configurators, WebAR, glTF, USDZ, Draco, KTX2, PBR and more.' },
   { href: '/device-compatibility', kicker: 'Reference', t: 'Device compatibility for 3D and AR', b: 'Which phones, tablets and computers get which experience — automatically.' },
+  { href: '/3d-ar-platform-guide', kicker: 'Reference', t: '3D & AR, platform by platform', b: 'What travels into AR on iPhone and Android, how materials and light behave, and how placement works, with sources.' },
   { href: '/blog', kicker: 'Blog', t: 'Insights on 3D and AR commerce', b: 'Guides, case notes and updates from the Thridify team.' },
 ];
 

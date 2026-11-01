@@ -518,6 +518,10 @@
           {
             "label": "Device compatibility",
             "href": "/device-compatibility"
+          },
+          {
+            "label": "3D & AR platform guide",
+            "href": "/3d-ar-platform-guide"
           }
         ]
       },

@@ -418,6 +418,13 @@ export default function DeviceCompatibilityPage() {
           </a>
           . Coverage evolves with each release — this page reflects the current platform.
         </p>
+        <p className="mt-2 text-sm text-foreground/70">
+          How configuration, animation, lighting and materials behave in each AR viewer:{' '}
+          <a href="/3d-ar-platform-guide" className="text-primary underline underline-offset-4">
+            3D &amp; AR, platform by platform
+          </a>
+          .
+        </p>
       </section>
     </>
   );
