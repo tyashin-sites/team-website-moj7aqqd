@@ -39,9 +39,8 @@ export function RegionalEntityBlock() {
       <ul className="list-disc pl-5 space-y-2">
         <li>
           <strong>India:</strong> {INDIA_ENTITY.name} (CIN {INDIA_ENTITY.cin}; registered
-          office {INDIA_ENTITY.address}; principal place of business{' '}
-          {INDIA_ENTITY.principalPlace}). It is the data fiduciary for your personal data under
-          Indian law.
+          office {INDIA_ENTITY.address}, {INDIA_ENTITY.country}). It is the data fiduciary for
+          your personal data under Indian law.
         </li>
         <li>
           <strong>European Union and United Kingdom:</strong> {ESTONIA_ENTITY.name} (registry
