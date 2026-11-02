@@ -52,3 +52,6 @@ export const OFFICER = {
 
 /** Effective date of the current legal pages (27 October 2026: three-entity model). */
 export const LEGAL_UPDATE_DATE = '27 October 2026';
+
+/** The privacy policy alone changed on 2 November 2026 (publish kit K6-CA: rights in Canada and Quebec). */
+export const PRIVACY_UPDATE_DATE = '2 November 2026';

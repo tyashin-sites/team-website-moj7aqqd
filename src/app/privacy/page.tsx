@@ -8,11 +8,12 @@ import {
   CANADA_ENTITY,
   ESTONIA_ENTITY,
   INDIA_ENTITY,
-  LEGAL_UPDATE_DATE,
   OFFICER,
+  PRIVACY_UPDATE_DATE,
 } from '@/content/legal/group';
 
-// Privacy policy for thridify.com and Thridify account holders. 27 October
+// Privacy policy for thridify.com and Thridify account holders. 2 November
+// 2026: rights in Canada and Quebec (publish kit K6-CA v1.0). 27 October
 // 2026: three-entity model (publish kit v2.0 K1) and the GDPR / UK GDPR
 // section (K6-EU v2.0, verbatim; COUNSEL-DETERMINATIONS v2.0 E1). Updated
 // 26 October 2026 to the group's counsel determinations (yom-legal-pack v1.0):
@@ -54,7 +55,7 @@ export default function PrivacyPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
 
-      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={LEGAL_UPDATE_DATE}>
+      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={PRIVACY_UPDATE_DATE}>
         <LegalSection title="Summary">
           <p>
             This website is a marketing site for Thridify, our 3D and augmented-reality
@@ -389,6 +390,40 @@ export default function PrivacyPage() {
             become unable to act. Email <LegalMail />. We answer within one month, and never
             later than the law allows. We may ask you to confirm your identity, but only with
             information we already hold.
+          </p>
+        </LegalSection>
+
+        <LegalSection title="Your rights in Canada" id="canada">
+          <p>
+            <strong>If you are in Canada.</strong> {CANADA_ENTITY.name} is the controller. Under
+            the Personal Information Protection and Electronic Documents Act (PIPEDA) you can ask
+            for access to the personal information we hold about you and ask us to correct it. You
+            can withdraw your consent at any time, subject to legal or contractual limits and
+            reasonable notice, and we will tell you what that means for the service. You can also
+            challenge how we comply with PIPEDA. Write to our Privacy Officer at <LegalMail />. If
+            you are not satisfied with our answer, you can complain to the Office of the Privacy
+            Commissioner of Canada (
+            <a href="https://www.priv.gc.ca" className="text-primary underline underline-offset-4" rel="noopener">
+              priv.gc.ca
+            </a>
+            ).
+          </p>
+          <p>
+            <strong>If you are in Quebec.</strong> Quebec&rsquo;s Act respecting the protection of
+            personal information in the private sector, as amended by Law 25, gives you the same
+            rights of access and correction. You can also ask us to stop disseminating your
+            personal information, or to de-index a link attached to your name that gives access to
+            it, where the law allows. You can ask to receive the computerized personal information
+            we collected from you in a structured, commonly used technological format. If we make a
+            decision about you based exclusively on automated processing of your personal
+            information, we will tell you, and you can submit your observations to a member of our
+            staff who can review the decision. You can reach the person in charge of the protection
+            of personal information at <LegalMail />. You can complain to the Commission
+            d&rsquo;accès à l&rsquo;information du Québec (
+            <a href="https://www.cai.gouv.qc.ca" className="text-primary underline underline-offset-4" rel="noopener">
+              cai.gouv.qc.ca
+            </a>
+            ).
           </p>
         </LegalSection>
 
