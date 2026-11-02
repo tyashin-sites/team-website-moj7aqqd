@@ -25,7 +25,7 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
           },
           {
             "type": "p",
-            "text": "**(1) Aapastech Private Limited**, a company incorporated under the Companies Act, 2013, CIN U72900DL2022PTC395508, registered office at 8/3, 2nd Floor, Roop Nagar, Delhi 110007, India, principal place of business at 1st Floor, 145, Sector 44, Gurugram, Haryana 122003, which owns and operates the Thridify platform (**\"Aapastech\"**, \"we\", \"us\"); and"
+            "text": "**(1) Aapastech Private Limited**, a company incorporated under the Companies Act, 2013, CIN U72900DL2022PTC395508, registered office at 8/3, 2nd Floor, Roop Nagar, Delhi 110007, India, which owns and operates the Thridify platform (**\"Aapastech\"**, \"we\", \"us\"); and"
           },
           {
             "type": "p",
