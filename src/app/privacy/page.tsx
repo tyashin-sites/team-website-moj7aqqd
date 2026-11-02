@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { LegalLink, LegalMail, RegionalEntityBlock } from '@/components/LegalEntity';
 import { SITE_URL } from '@/lib/schema';
@@ -30,7 +31,7 @@ import {
 
 const CANONICAL = '/privacy';
 
-export const metadata = pageMetadata({
+const base = pageMetadata({
   title: 'Privacy Policy',
   description:
     'How Thridify collects, uses, shares and protects personal information, your rights under GDPR, India’s DPDP Act 2023 and PIPEDA, and how to reach our Grievance Officer.',
@@ -40,6 +41,14 @@ export const metadata = pageMetadata({
   ogDescription:
     'What Thridify collects, why, how long we keep it, who we share it with, and your rights under GDPR, the DPDP Act and PIPEDA.',
 });
+
+export const metadata: Metadata = {
+  ...base,
+  alternates: {
+    canonical: CANONICAL,
+    languages: { en: '/privacy', hi: '/privacy/hi' },
+  },
+};
 
 export default function PrivacyPage() {
   const breadcrumbLd = {
@@ -56,6 +65,12 @@ export default function PrivacyPage() {
       <JsonLd nodes={[breadcrumbLd]} />
 
       <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={PRIVACY_UPDATE_DATE}>
+        <p lang="hi" className="text-sm">
+          <LegalLink href="/privacy/hi" hrefLang="hi">
+            हिन्दी में पढ़ें
+          </LegalLink>
+        </p>
+
         <LegalSection title="Summary">
           <p>
             This website is a marketing site for Thridify, our 3D and augmented-reality

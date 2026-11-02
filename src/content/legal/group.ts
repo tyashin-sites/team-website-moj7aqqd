@@ -32,6 +32,10 @@ export const ESTONIA_ENTITY = {
 export const BILLING_AGENCY_SENTENCE =
   'Each company bills and collects payment from its own customers: Aapastech Private Limited in India, Aapastech OÜ in the European Union and the United Kingdom, and 14818032 Canada Inc. everywhere else.';
 
+/** Hindi translation of BILLING_AGENCY_SENTENCE for the Hindi privacy policy (the English prevails). */
+export const BILLING_AGENCY_SENTENCE_HI =
+  'हर कंपनी अपने ग्राहकों को स्वयं बिल भेजती है और उनसे भुगतान लेती है: भारत में Aapastech Private Limited, यूरोपीय संघ और यूनाइटेड किंगडम में Aapastech OÜ, और बाकी सभी जगह 14818032 Canada Inc.।';
+
 export const CANADA_ENTITY = {
   name: '14818032 Canada Inc.',
   place: 'Burlington, Ontario',

@@ -19,9 +19,18 @@ export function LegalMail({ email = LEGAL_EMAIL }: { email?: string }) {
 }
 
 /** Styled internal link for legal prose. */
-export function LegalLink({ href, children }: { href: string; children: ReactNode }) {
+export function LegalLink({
+  href,
+  hrefLang,
+  children,
+}: {
+  href: string;
+  /** Language of the linked page when it differs (e.g. 'hi' for a Hindi version). */
+  hrefLang?: string;
+  children: ReactNode;
+}) {
   return (
-    <Link href={href} className={LINK_CLASS}>
+    <Link href={href} hrefLang={hrefLang} className={LINK_CLASS}>
       {children}
     </Link>
   );
@@ -73,6 +82,69 @@ export function GoverningLawClause() {
       that the mandatory law of the country where you live gives consumers. Everywhere else, the
       laws of the Province of Ontario and the federal laws of Canada that apply there govern
       them, and the courts of Ontario have jurisdiction.
+    </p>
+  );
+}
+
+/**
+ * Hindi translation of RegionalEntityBlock (publish kit K1) for the Hindi
+ * privacy policy and terms. Names, numbers and addresses stay in English.
+ * The English K1 prevails if the two differ.
+ */
+export function RegionalEntityBlockHindi() {
+  return (
+    <>
+      <p>
+        Thridify को एक ही समूह की तीन कंपनियाँ चलाती हैं। आप किस कंपनी से जुड़े हैं, यह इस पर
+        निर्भर करता है कि आप कहाँ हैं। व्यावसायिक खाते के लिए यह व्यवसाय के बिलिंग पते का देश है।
+      </p>
+      <ul className="list-disc pl-5 space-y-2">
+        <li>
+          <strong>भारत:</strong> <span lang="en">{INDIA_ENTITY.name}</span> (CIN{' '}
+          <span lang="en">{INDIA_ENTITY.cin}</span>; पंजीकृत कार्यालय{' '}
+          <span lang="en">
+            {INDIA_ENTITY.address}, {INDIA_ENTITY.country}
+          </span>
+          )। भारतीय कानून के तहत यह आपके व्यक्तिगत डेटा की डेटा न्यासी (data fiduciary) है।
+        </li>
+        <li>
+          <strong>यूरोपीय संघ और यूनाइटेड किंगडम:</strong>{' '}
+          <span lang="en">{ESTONIA_ENTITY.name}</span> (रजिस्ट्री कोड{' '}
+          <span lang="en">{ESTONIA_ENTITY.registryCode}</span>, VAT{' '}
+          <span lang="en">{ESTONIA_ENTITY.vat}</span>,{' '}
+          <span lang="en">
+            {ESTONIA_ENTITY.address}, {ESTONIA_ENTITY.country}
+          </span>
+          )। GDPR और UK GDPR के तहत यह आपके व्यक्तिगत डेटा की नियंत्रक (controller) है।
+        </li>
+        <li>
+          <strong>बाकी सभी जगह:</strong> <span lang="en">{CANADA_ENTITY.name}</span> (
+          <span lang="en">
+            {CANADA_ENTITY.place}, {CANADA_ENTITY.country}
+          </span>
+          )। यह आपके व्यक्तिगत डेटा की नियंत्रक है।
+        </li>
+      </ul>
+      <p>
+        तीनों कंपनियाँ इंजीनियरिंग, होस्टिंग और सहायता साझा करती हैं, और हर कंपनी समूह के भीतर के
+        एक लिखित समझौते के तहत बाकी कंपनियों के लिए व्यक्तिगत डेटा प्रोसेस करती है। इस दस्तावेज़ में
+        &ldquo;Thridify&rdquo;, &ldquo;हम&rdquo; और &ldquo;हमें&rdquo; का अर्थ इनमें से वह कंपनी है
+        जिससे आप जुड़े हैं।
+      </p>
+    </>
+  );
+}
+
+/** Hindi translation of GoverningLawClause (publish kit K1). The English clause prevails. */
+export function GoverningLawClauseHindi() {
+  return (
+    <p>
+      अगर आप भारत में हैं, तो ये शर्तें भारतीय कानून के अधीन हैं और दिल्ली की अदालतों को
+      क्षेत्राधिकार है। अगर आप यूरोपीय संघ या यूनाइटेड किंगडम में हैं, तो ये शर्तें एस्टोनिया के
+      कानून के अधीन हैं और तालिन की हार्जु काउंटी कोर्ट (<span lang="en">Harju County Court</span>)
+      को क्षेत्राधिकार है, लेकिन जिस देश में आप रहते हैं, उसका अनिवार्य कानून उपभोक्ताओं को जो
+      सुरक्षा देता है, वह आपको मिलती रहेगी। बाकी सभी जगह, ये शर्तें ओंटारियो प्रांत के कानूनों और
+      वहाँ लागू कनाडा के संघीय कानूनों के अधीन हैं, और ओंटारियो की अदालतों को क्षेत्राधिकार है।
     </p>
   );
 }
