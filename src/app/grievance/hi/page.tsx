@@ -4,6 +4,7 @@ import { LegalLink, LegalMail } from '@/components/LegalEntity';
 import { JsonLd } from '@/components/JsonLd';
 import { SITE_URL } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
+import { GrievanceForm } from '@/components/GrievanceForm';
 import { INDIA_ENTITY, OFFICER } from '@/content/legal/group';
 
 // Grievance Officer page in Hindi (publish kit K3 and K3b user rules, verbatim,
@@ -92,6 +93,7 @@ export default function GrievanceHindiPage() {
             तो बताएँ कि आप कौन सा उत्पाद इस्तेमाल करते हैं और हमारे साथ कौन सा ईमेल पता इस्तेमाल
             करते हैं।
           </p>
+          <GrievanceForm lang="hi" />
         </LegalSection>
 
         <LegalSection title="आगे क्या होगा" id="what-happens-next">
