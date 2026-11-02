@@ -9,8 +9,8 @@ import {
   CANADA_ENTITY,
   ESTONIA_ENTITY,
   INDIA_ENTITY,
+  LEGAL_UPDATE_DATE,
   OFFICER,
-  PRIVACY_UPDATE_DATE,
 } from '@/content/legal/group';
 
 // Privacy policy for thridify.com and Thridify account holders. 2 November
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
 
-      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={PRIVACY_UPDATE_DATE}>
+      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={LEGAL_UPDATE_DATE}>
         <p lang="hi" className="text-sm">
           <LegalLink href="/privacy/hi" hrefLang="hi">
             हिन्दी में पढ़ें

@@ -51,7 +51,7 @@ export default function GrievanceHindiPage() {
       <LegalDocument
         eyebrow="Thridify"
         title="शिकायत अधिकारी"
-        effectiveDate="27 अक्टूबर 2026"
+        effectiveDate="2 नवंबर 2026"
         lang="hi"
         labels={{ home: 'होम', effectiveDate: 'प्रभावी तिथि:' }}
       >

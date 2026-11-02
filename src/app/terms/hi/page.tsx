@@ -65,7 +65,7 @@ export default function TermsHindiPage() {
       <LegalDocument
         eyebrow="Thridify"
         title="उपयोग की शर्तें"
-        effectiveDate="27 अक्टूबर 2026"
+        effectiveDate="2 नवंबर 2026"
         lang="hi"
         labels={{ home: 'होम', effectiveDate: 'प्रभावी तिथि:' }}
       >

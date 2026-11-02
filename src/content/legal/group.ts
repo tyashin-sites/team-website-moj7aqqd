@@ -52,8 +52,10 @@ export const OFFICER = {
   phoneCanadaHref: 'tel:+14378000190',
 } as const;
 
-/** Effective date of the current legal pages (27 October 2026: three-entity model). */
-export const LEGAL_UPDATE_DATE = '27 October 2026';
-
-/** The privacy policy alone changed on 2 November 2026 (publish kit K6-CA: rights in Canada and Quebec). */
-export const PRIVACY_UPDATE_DATE = '2 November 2026';
+/**
+ * Effective date of the current legal pages. 2 November 2026: rights in Canada and Quebec (publish kit
+ * K6-CA), Hindi privacy policy and terms, and the India entity shown with its registered office only,
+ * which changed the text of every page that uses this date. (27 October 2026: three-entity model.)
+ * The PMCA keeps its own date (PMCA_EFFECTIVE_DATE).
+ */
+export const LEGAL_UPDATE_DATE = '2 November 2026';
