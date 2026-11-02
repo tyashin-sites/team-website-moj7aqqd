@@ -11,10 +11,8 @@ export const LEGAL_EMAIL = 'contact@aapastech.com';
 export const INDIA_ENTITY = {
   name: 'Aapastech Private Limited',
   cin: 'U72900DL2022PTC395508',
-  /** Registered office: legal notices go here. */
+  /** Registered office (the only address we publish for this company). */
   address: '8/3, 2nd Floor, Roop Nagar, Delhi 110007',
-  /** Principal place of business (publish kit v1.1 facts; GSTIN 06AAVCA6693D1ZK). */
-  principalPlace: '1st Floor, 145, Sector 44, Gurugram, Haryana 122003',
   country: 'India',
 } as const;
 
