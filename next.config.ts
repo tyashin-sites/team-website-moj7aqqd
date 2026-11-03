@@ -3,7 +3,14 @@ initOpenNextCloudflareForDev();
 
 const nextConfig = {
   images: {
-    remotePatterns: [{ protocol: "https" as const, hostname: "**" }],
+    remotePatterns: [
+      // Allowlist, never '**': with a wildcard /_next/image fetched and re-served
+      // ANY https image from this domain (open proxy; VAPT 2026-10-27). First-party
+      // hosts only: shared hosts (r2.dev, public CDNs) would keep the proxy open.
+      { protocol: "https" as const, hostname: "website-api.tyashin.com" },
+      { protocol: "https" as const, hostname: "*.tyashin.com" },
+      { protocol: "https" as const, hostname: "*.thridify.com" },
+    ],
   },
   // Type errors FAIL the build on purpose — the typed content contract in
   // src/lib/content.ts only protects against site.json drift if drift can
