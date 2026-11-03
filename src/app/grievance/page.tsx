@@ -4,6 +4,7 @@ import { LegalLink, LegalMail } from '@/components/LegalEntity';
 import { JsonLd } from '@/components/JsonLd';
 import { SITE_URL } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
+import { GrievanceForm } from '@/components/GrievanceForm';
 import { INDIA_ENTITY, LEGAL_UPDATE_DATE, OFFICER } from '@/content/legal/group';
 
 // Grievance Officer page (publish kit v2.0 K2, English, verbatim, with the
@@ -78,6 +79,7 @@ export default function GrievancePage() {
             address you use with us, so we can find your records without asking for more than
             we need.
           </p>
+          <GrievanceForm lang="en" />
         </LegalSection>
 
         <LegalSection title="What happens next" id="what-happens-next">
