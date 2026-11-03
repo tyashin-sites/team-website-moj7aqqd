@@ -8,7 +8,7 @@ import { GrievanceForm } from '@/components/GrievanceForm';
 import { INDIA_ENTITY, OFFICER } from '@/content/legal/group';
 
 // Grievance Officer page in Hindi (publish kit K3 and K3b user rules, verbatim,
-// v1.1). The principal place of business line is given in English. The EU/UK and
+// v1.1). The EU/UK and
 // Canada lines (K2 v2.0) have no kit Hindi text: translated here, review owed. The document is
 // marked lang="hi" (LegalDocument wrapper) because the root layout is English.
 // English version: /grievance (K2), which prevails if the two differ.
@@ -74,8 +74,6 @@ export default function GrievanceHindiPage() {
           आपसटेक प्राइवेट लिमिटेड (<span lang="en">Aapastech Private Limited</span>)
           <br />
           8/3, दूसरी मंज़िल, रूप नगर, दिल्ली 110007, भारत
-          <br />
-          <span lang="en">Principal place of business: {INDIA_ENTITY.principalPlace}</span>
           <br />
           ईमेल: <LegalMail />
           <br />

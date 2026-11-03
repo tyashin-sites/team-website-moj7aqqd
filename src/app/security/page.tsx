@@ -181,8 +181,8 @@ export default function SecurityPage() {
 
         <LegalSection title="Contact">
           <p>
-            {INDIA_ENTITY.name} (India), registered office {INDIA_ENTITY.address}; principal
-            place of business {INDIA_ENTITY.principalPlace}
+            {INDIA_ENTITY.name} (India), registered office {INDIA_ENTITY.address},{' '}
+            {INDIA_ENTITY.country}
             <br />
             {ESTONIA_ENTITY.name} (European Union and United Kingdom), registry code{' '}
             {ESTONIA_ENTITY.registryCode}, VAT {ESTONIA_ENTITY.vat}, {ESTONIA_ENTITY.address},{' '}
