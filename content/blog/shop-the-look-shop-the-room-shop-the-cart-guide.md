@@ -40,7 +40,7 @@ Keep it. It answers "what goes with this", which is a real question. It does not
 
 ## Shop the room: the home version, and why it is harder
 
-*Shop the room*, *shop this room*, *shop the scene* and *shop the space* are what furniture, lighting, rug, décor and kitchen brands mean when they say shop the look. The product is a composition, and the composition is what the shopper is trying to buy. Ethan Allen's site, for one, runs [more than a hundred interactive room displays](https://getfastr.com/blog/shop-the-room-ethan-allen) built on exactly this idea.
+*Shop the room*, *shop this room*, *shop the scene* and *shop the space* are what furniture, lighting, rug, décor and kitchen brands mean when they say shop the look. The product is a composition, and the composition is what the shopper is trying to buy, which is why the large furniture retailers have been publishing shoppable room displays on their sites for years.
 
 Home is harder than fashion for three reasons.
 
