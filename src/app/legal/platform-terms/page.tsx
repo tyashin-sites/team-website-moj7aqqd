@@ -626,8 +626,8 @@ export default function PlatformTermsPage() {
           <p>
             We send notices by email to the address on your Account or through the Service.
             Send notices to us at <LegalMail />. Notices to {INDIA_ENTITY.name} can also go by
-            post to its registered office at {INDIA_ENTITY.address}, {INDIA_ENTITY.country}; its
-            principal place of business is {INDIA_ENTITY.principalPlace}. Notices to{' '}
+            post to its registered office at {INDIA_ENTITY.address}, {INDIA_ENTITY.country}.
+            Notices to{' '}
             {ESTONIA_ENTITY.name} can go by post to {ESTONIA_ENTITY.address},{' '}
             {ESTONIA_ENTITY.country}. An email notice counts as received on the next working day
             after it is sent.

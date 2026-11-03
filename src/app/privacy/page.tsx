@@ -454,8 +454,7 @@ export default function PrivacyPage() {
         <LegalSection title="Contact">
           <p>
             {INDIA_ENTITY.name} (data fiduciary for India), CIN {INDIA_ENTITY.cin}, registered
-            office {INDIA_ENTITY.address}, {INDIA_ENTITY.country}; principal place of business{' '}
-            {INDIA_ENTITY.principalPlace}
+            office {INDIA_ENTITY.address}, {INDIA_ENTITY.country}
             <br />
             {ESTONIA_ENTITY.name} (data controller for the European Union and the United
             Kingdom), registry code {ESTONIA_ENTITY.registryCode}, VAT {ESTONIA_ENTITY.vat},{' '}
