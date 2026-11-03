@@ -1,20 +1,24 @@
 // GENERATED from THRIDIFY-PUBLIC-MATERIAL-CONTRIBUTION-AGREEMENT-DRAFT.md (v0.2,
-// approved 2026-10-19) — Part A (PMCA-1.0) and Part B (PML-1.0) only; the draft
+// approved 2026-10-19): Part A (PMCA) and Part B (PML-1.0) only; the draft
 // banner and notes for counsel are excluded. Edit the source and regenerate,
 // and bump the version labels for any change in meaning (accepted versions are
 // recorded per submission).
+// PMCA-1.1 (2 November 2026): clause 11.1 names the controller of contributors'
+// personal data by region (India, EU and UK, everywhere else). It is a
+// clarification: PMCA-1.0 acceptances stay valid and nobody has to accept again.
+// Keep PMCA_VERSION equal to the app's CONTRIBUTION_AGREEMENT_VERSION.
 
 export type TLegalBlock = { type: 'p'; text: string } | { type: 'ul'; items: string[] };
 export type TLegalSection = { title: string; blocks: TLegalBlock[] };
 export type TLegalPart = { title: string; sections: TLegalSection[] };
 
-export const PMCA_VERSION = 'PMCA-1.0';
+export const PMCA_VERSION = 'PMCA-1.1';
 export const PML_VERSION = 'PML-1.0';
-export const PMCA_EFFECTIVE_DATE = '19 October 2026';
+export const PMCA_EFFECTIVE_DATE = '2 November 2026';
 
 export const PMCA_DOCUMENT: TLegalPart[] = [
   {
-    "title": "PART A — PUBLIC MATERIAL CONTRIBUTION AGREEMENT (PMCA-1.0)",
+    "title": "PART A — PUBLIC MATERIAL CONTRIBUTION AGREEMENT (PMCA-1.1)",
     "sections": [
       {
         "title": "Parties",
@@ -272,7 +276,7 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
         "blocks": [
           {
             "type": "p",
-            "text": "11.1 Aapastech processes the Signatory's and your personnel's personal data (name, email, role, IP address, user agent, timestamps). It does so to run submissions, moderation, credit and audit records, to send notices, and to protect its legal position. Processing follows the Privacy Policy (https://thridify.com/privacy-policy) and the Digital Personal Data Protection Act, 2023 where it applies. For contributors in the European Union or the United Kingdom, the controller of that personal data is Aapastech OÜ (registry code 16453146; Tornimäe tn 3 // 5 // 7, 10145 Tallinn, Estonia), and Aapastech processes it on Aapastech OÜ's behalf under the GDPR or the UK GDPR."
+            "text": "11.1 Aapastech processes the Signatory's and your personnel's personal data (name, email, role, IP address, user agent, timestamps). It does so to run submissions, moderation, credit and audit records, to send notices, and to protect its legal position. Processing follows the Privacy Policy (https://thridify.com/privacy-policy) and the Digital Personal Data Protection Act, 2023 where it applies. The controller of that personal data depends on where you are based: Aapastech Private Limited (the data fiduciary under that Act) for contributors in India; Aapastech OÜ (registry code 16453146; Tornimäe tn 3 // 5 // 7, 10145 Tallinn, Estonia) for contributors in the European Union or the United Kingdom, under the GDPR or the UK GDPR; and 14818032 Canada Inc. for contributors everywhere else. Where the controller is not Aapastech, Aapastech processes the data on the controller's behalf. Privacy questions go to contact@aapastech.com."
           },
           {
             "type": "p",
