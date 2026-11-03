@@ -5,14 +5,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       // Allowlist, never '**': with a wildcard /_next/image fetched and re-served
-      // ANY https image from this domain (open proxy; VAPT 2026-10-27).
+      // ANY https image from this domain (open proxy; VAPT 2026-10-27). First-party
+      // hosts only: shared hosts (r2.dev, public CDNs) would keep the proxy open.
       { protocol: "https" as const, hostname: "website-api.tyashin.com" },
       { protocol: "https" as const, hostname: "*.tyashin.com" },
       { protocol: "https" as const, hostname: "*.thridify.com" },
-      { protocol: "https" as const, hostname: "*.r2.dev" },
-      { protocol: "https" as const, hostname: "cdn.shopify.com" },
-      { protocol: "https" as const, hostname: "images.unsplash.com" },
-      { protocol: "https" as const, hostname: "images.pexels.com" },
     ],
   },
   // Type errors FAIL the build on purpose — the typed content contract in
