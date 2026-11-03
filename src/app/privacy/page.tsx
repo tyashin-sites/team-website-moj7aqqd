@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { LegalLink, LegalMail, RegionalEntityBlock } from '@/components/LegalEntity';
 import { SITE_URL } from '@/lib/schema';
@@ -12,7 +13,8 @@ import {
   OFFICER,
 } from '@/content/legal/group';
 
-// Privacy policy for thridify.com and Thridify account holders. 27 October
+// Privacy policy for thridify.com and Thridify account holders. 2 November
+// 2026: rights in Canada and Quebec (publish kit K6-CA v1.0). 27 October
 // 2026: three-entity model (publish kit v2.0 K1) and the GDPR / UK GDPR
 // section (K6-EU v2.0, verbatim; COUNSEL-DETERMINATIONS v2.0 E1). Updated
 // 26 October 2026 to the group's counsel determinations (yom-legal-pack v1.0):
@@ -29,7 +31,7 @@ import {
 
 const CANONICAL = '/privacy';
 
-export const metadata = pageMetadata({
+const base = pageMetadata({
   title: 'Privacy Policy',
   description:
     'How Thridify collects, uses, shares and protects personal information, your rights under GDPR, India’s DPDP Act 2023 and PIPEDA, and how to reach our Grievance Officer.',
@@ -39,6 +41,14 @@ export const metadata = pageMetadata({
   ogDescription:
     'What Thridify collects, why, how long we keep it, who we share it with, and your rights under GDPR, the DPDP Act and PIPEDA.',
 });
+
+export const metadata: Metadata = {
+  ...base,
+  alternates: {
+    canonical: CANONICAL,
+    languages: { en: '/privacy', hi: '/privacy/hi' },
+  },
+};
 
 export default function PrivacyPage() {
   const breadcrumbLd = {
@@ -55,6 +65,12 @@ export default function PrivacyPage() {
       <JsonLd nodes={[breadcrumbLd]} />
 
       <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={LEGAL_UPDATE_DATE}>
+        <p lang="hi" className="text-sm">
+          <LegalLink href="/privacy/hi" hrefLang="hi">
+            हिन्दी में पढ़ें
+          </LegalLink>
+        </p>
+
         <LegalSection title="Summary">
           <p>
             This website is a marketing site for Thridify, our 3D and augmented-reality
@@ -392,6 +408,40 @@ export default function PrivacyPage() {
           </p>
         </LegalSection>
 
+        <LegalSection title="Your rights in Canada" id="canada">
+          <p>
+            <strong>If you are in Canada.</strong> {CANADA_ENTITY.name} is the controller. Under
+            the Personal Information Protection and Electronic Documents Act (PIPEDA) you can ask
+            for access to the personal information we hold about you and ask us to correct it. You
+            can withdraw your consent at any time, subject to legal or contractual limits and
+            reasonable notice, and we will tell you what that means for the service. You can also
+            challenge how we comply with PIPEDA. Write to our Privacy Officer at <LegalMail />. If
+            you are not satisfied with our answer, you can complain to the Office of the Privacy
+            Commissioner of Canada (
+            <a href="https://www.priv.gc.ca" className="text-primary underline underline-offset-4" rel="noopener">
+              priv.gc.ca
+            </a>
+            ).
+          </p>
+          <p>
+            <strong>If you are in Quebec.</strong> Quebec&rsquo;s Act respecting the protection of
+            personal information in the private sector, as amended by Law 25, gives you the same
+            rights of access and correction. You can also ask us to stop disseminating your
+            personal information, or to de-index a link attached to your name that gives access to
+            it, where the law allows. You can ask to receive the computerized personal information
+            we collected from you in a structured, commonly used technological format. If we make a
+            decision about you based exclusively on automated processing of your personal
+            information, we will tell you, and you can submit your observations to a member of our
+            staff who can review the decision. You can reach the person in charge of the protection
+            of personal information at <LegalMail />. You can complain to the Commission
+            d&rsquo;accès à l&rsquo;information du Québec (
+            <a href="https://www.cai.gouv.qc.ca" className="text-primary underline underline-offset-4" rel="noopener">
+              cai.gouv.qc.ca
+            </a>
+            ).
+          </p>
+        </LegalSection>
+
         <LegalSection title="Grievance Officer and Privacy Officer">
           <p>
             {OFFICER.name} is our Grievance Officer for India, the Privacy Officer of{' '}
@@ -454,8 +504,7 @@ export default function PrivacyPage() {
         <LegalSection title="Contact">
           <p>
             {INDIA_ENTITY.name} (data fiduciary for India), CIN {INDIA_ENTITY.cin}, registered
-            office {INDIA_ENTITY.address}, {INDIA_ENTITY.country}; principal place of business{' '}
-            {INDIA_ENTITY.principalPlace}
+            office {INDIA_ENTITY.address}, {INDIA_ENTITY.country}
             <br />
             {ESTONIA_ENTITY.name} (data controller for the European Union and the United
             Kingdom), registry code {ESTONIA_ENTITY.registryCode}, VAT {ESTONIA_ENTITY.vat},{' '}

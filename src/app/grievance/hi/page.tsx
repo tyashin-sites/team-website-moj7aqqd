@@ -4,10 +4,11 @@ import { LegalLink, LegalMail } from '@/components/LegalEntity';
 import { JsonLd } from '@/components/JsonLd';
 import { SITE_URL } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
+import { GrievanceForm } from '@/components/GrievanceForm';
 import { INDIA_ENTITY, OFFICER } from '@/content/legal/group';
 
 // Grievance Officer page in Hindi (publish kit K3 and K3b user rules, verbatim,
-// v1.1). The principal place of business line is given in English. The EU/UK and
+// v1.1). The EU/UK and
 // Canada lines (K2 v2.0) have no kit Hindi text: translated here, review owed. The document is
 // marked lang="hi" (LegalDocument wrapper) because the root layout is English.
 // English version: /grievance (K2), which prevails if the two differ.
@@ -51,7 +52,7 @@ export default function GrievanceHindiPage() {
       <LegalDocument
         eyebrow="Thridify"
         title="शिकायत अधिकारी"
-        effectiveDate="27 अक्टूबर 2026"
+        effectiveDate="2 नवंबर 2026"
         lang="hi"
         labels={{ home: 'होम', effectiveDate: 'प्रभावी तिथि:' }}
       >
@@ -74,8 +75,6 @@ export default function GrievanceHindiPage() {
           <br />
           8/3, दूसरी मंज़िल, रूप नगर, दिल्ली 110007, भारत
           <br />
-          <span lang="en">Principal place of business: {INDIA_ENTITY.principalPlace}</span>
-          <br />
           ईमेल: <LegalMail />
           <br />
           फ़ोन:{' '}
@@ -92,6 +91,7 @@ export default function GrievanceHindiPage() {
             तो बताएँ कि आप कौन सा उत्पाद इस्तेमाल करते हैं और हमारे साथ कौन सा ईमेल पता इस्तेमाल
             करते हैं।
           </p>
+          <GrievanceForm lang="hi" />
         </LegalSection>
 
         <LegalSection title="आगे क्या होगा" id="what-happens-next">

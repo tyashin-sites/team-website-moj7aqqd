@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { LegalDocument, LegalSection } from '@/components/LegalDocument';
 import { SITE_URL } from '@/lib/schema';
 import { JsonLd } from '@/components/JsonLd';
@@ -17,7 +18,7 @@ import { LEGAL_EMAIL, LEGAL_UPDATE_DATE } from '@/content/legal/group';
 const CANONICAL = '/terms';
 const MAIL = LEGAL_EMAIL;
 
-export const metadata = pageMetadata({
+const base = pageMetadata({
   title: 'Terms of Use',
   description:
     'The terms that govern your use of the Thridify website: acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
@@ -27,6 +28,14 @@ export const metadata = pageMetadata({
   ogDescription:
     'The terms that govern your use of the Thridify website.',
 });
+
+export const metadata: Metadata = {
+  ...base,
+  alternates: {
+    canonical: CANONICAL,
+    languages: { en: '/terms', hi: '/terms/hi' },
+  },
+};
 
 function Mail() {
   return (
@@ -51,6 +60,12 @@ export default function TermsPage() {
       <JsonLd nodes={[breadcrumbLd]} />
 
       <LegalDocument eyebrow="Legal" title="Terms of Use" effectiveDate={LEGAL_UPDATE_DATE}>
+        <p lang="hi" className="text-sm">
+          <LegalLink href="/terms/hi" hrefLang="hi">
+            हिन्दी में पढ़ें
+          </LegalLink>
+        </p>
+
         <LegalSection title="Acceptance of these terms">
           <RegionalEntityBlock />
           <p>

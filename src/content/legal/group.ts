@@ -11,10 +11,8 @@ export const LEGAL_EMAIL = 'contact@aapastech.com';
 export const INDIA_ENTITY = {
   name: 'Aapastech Private Limited',
   cin: 'U72900DL2022PTC395508',
-  /** Registered office: legal notices go here. */
+  /** Registered office (the only address we publish for this company). */
   address: '8/3, 2nd Floor, Roop Nagar, Delhi 110007',
-  /** Principal place of business (publish kit v1.1 facts; GSTIN 06AAVCA6693D1ZK). */
-  principalPlace: '1st Floor, 145, Sector 44, Gurugram, Haryana 122003',
   country: 'India',
 } as const;
 
@@ -34,6 +32,10 @@ export const ESTONIA_ENTITY = {
 export const BILLING_AGENCY_SENTENCE =
   'Each company bills and collects payment from its own customers: Aapastech Private Limited in India, Aapastech OÜ in the European Union and the United Kingdom, and 14818032 Canada Inc. everywhere else.';
 
+/** Hindi translation of BILLING_AGENCY_SENTENCE for the Hindi privacy policy (the English prevails). */
+export const BILLING_AGENCY_SENTENCE_HI =
+  'हर कंपनी अपने ग्राहकों को स्वयं बिल भेजती है और उनसे भुगतान लेती है: भारत में Aapastech Private Limited, यूरोपीय संघ और यूनाइटेड किंगडम में Aapastech OÜ, और बाकी सभी जगह 14818032 Canada Inc.।';
+
 export const CANADA_ENTITY = {
   name: '14818032 Canada Inc.',
   place: 'Burlington, Ontario',
@@ -50,5 +52,10 @@ export const OFFICER = {
   phoneCanadaHref: 'tel:+14378000190',
 } as const;
 
-/** Effective date of the current legal pages (27 October 2026: three-entity model). */
-export const LEGAL_UPDATE_DATE = '27 October 2026';
+/**
+ * Effective date of the current legal pages. 2 November 2026: rights in Canada and Quebec (publish kit
+ * K6-CA), Hindi privacy policy and terms, and the India entity shown with its registered office only,
+ * which changed the text of every page that uses this date. (27 October 2026: three-entity model.)
+ * The PMCA keeps its own date (PMCA_EFFECTIVE_DATE).
+ */
+export const LEGAL_UPDATE_DATE = '2 November 2026';
