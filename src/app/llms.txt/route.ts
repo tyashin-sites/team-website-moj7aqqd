@@ -96,6 +96,16 @@ ${compareList}
 - About: ${SITE_URL}/about
 - Contact: ${SITE_URL}/contact
 
+## Contact
+- Email: contact@thridify.com
+- Phone (Canada): +1 437 800 0190 (tel:+14378000190)
+- Phone (India): +91 96677 47082 (tel:+919667747082)
+
+## Locations
+- Headquarters: Burlington, Ontario, Canada (Greater Toronto Area). Replies within one business day (ET).
+- Engineering, 3D studio and operations: Delhi, India. Replies within one business day (IST).
+- Europe: no European office; EU clients are served by the Canada and Delhi team.
+
 ## Company
 ${LEGAL_NAME} — parent company of Thridify. Contact: contact@thridify.com
 LinkedIn: https://linkedin.com/company/thridify
