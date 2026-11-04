@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ShopifyAppNote } from '@/components/ShopifyAppNote';
+import { WooCommercePluginNote } from '@/components/WooCommercePluginNote';
 import { homeContent } from '@/lib/content';
 import { INDUSTRIES } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
@@ -199,7 +200,10 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <ShopifyAppNote className="mt-10" />
+          <div className="mt-10 flex flex-wrap gap-3">
+            <ShopifyAppNote />
+            <WooCommercePluginNote />
+          </div>
         </div>
       </section>
 

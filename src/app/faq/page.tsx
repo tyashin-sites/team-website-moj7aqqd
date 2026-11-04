@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ShopifyAppNote } from "@/components/ShopifyAppNote";
+import { WooCommercePluginNote } from "@/components/WooCommercePluginNote";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 import { breadcrumbLd, webPageLd, type LdNode } from "@/lib/knowledge-graph";
 import { JsonLd } from "@/components/JsonLd";
@@ -104,7 +105,10 @@ export default function FaqPage() {
             </p>
           </Reveal>
           <Reveal delay={0.24}>
-            <ShopifyAppNote className="mt-6" />
+            <div className="mt-6 flex flex-wrap gap-3">
+              <ShopifyAppNote />
+              <WooCommercePluginNote />
+            </div>
           </Reveal>
         </div>
       </section>

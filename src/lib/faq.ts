@@ -256,8 +256,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "woocommerce-wordpress",
         q: "How does it work on WooCommerce or WordPress?",
-        a: "As a plugin or lightweight embed that sits alongside your existing product gallery — no re-platforming and no developer needed. Products and variants are mapped by ID so every variant shows the right configuration.",
-        links: [{ label: "WooCommerce", href: "/integrations/woocommerce" }],
+        a: "On WooCommerce, install the free Thridify plugin from WordPress.org, activate it and click Connect with Thridify under WooCommerce, Thridify 3D & AR. The catalog syncs and matches by SKU, slug, name or ID, variations sync both ways with the 3D configurator, and shoppers get AR on iPhone and Android. A Thridify account is required, and you can create one while connecting. On a WordPress site without WooCommerce, use the lightweight embed.",
+        links: [
+          { label: "Thridify for WooCommerce", href: "/integrations/woocommerce" },
+          { label: "Plugin on WordPress.org", href: "https://wordpress.org/plugins/thridify/" },
+          { label: "WordPress", href: "/integrations/wordpress" },
+        ],
       },
       {
         id: "custom-storefront",
