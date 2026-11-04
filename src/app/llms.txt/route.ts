@@ -98,7 +98,8 @@ ${compareList}
 
 ## Contact
 - Email: contact@thridify.com
-- Phone: +1-437-800-0190 (Canada), +91-966-774-7082 (India)
+- Phone (Canada): +1 437 800 0190 (tel:+14378000190)
+- Phone (India): +91 96677 47082 (tel:+919667747082)
 
 ## Locations
 - Headquarters: Burlington, Ontario, Canada (Greater Toronto Area). Replies within one business day (ET).
