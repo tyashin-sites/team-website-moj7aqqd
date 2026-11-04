@@ -43,6 +43,7 @@ const PATH = WOO_PAGE_PATH;
 const CALENDLY = 'https://calendly.com/hello-thridify/30min';
 const UPDATED = '2026-11-04';
 const BLOG_HOWTO = '/blog/how-to-add-a-3d-product-configurator-to-woocommerce';
+const BLOG_SETUP = '/blog/how-to-add-3d-and-ar-to-woocommerce-product-pages';
 
 const TITLE = 'WooCommerce 3D Product Viewer, Configurator & AR Plugin';
 const DESCRIPTION =
@@ -297,6 +298,10 @@ export default function WooCommercePluginPage() {
               3D modelling service
             </Link>{' '}
             builds them from your photos and dimensions. For a longer walkthrough, read{' '}
+            <Link href={BLOG_SETUP} className="font-semibold text-primary hover:underline">
+              how to add a 3D product viewer and AR to WooCommerce
+            </Link>{' '}
+            or{' '}
             <Link href={BLOG_HOWTO} className="font-semibold text-primary hover:underline">
               how to add a 3D product configurator to WooCommerce
             </Link>
