@@ -134,7 +134,7 @@ export const SHOPIFY_FAQS: ShopifyFaq[] = [
   },
   {
     q: 'Do I need 3D models already?',
-    a: 'No. If you have GLB or USDZ files, you can use them. If you don’t, Thridify’s 3D modelling team builds the models from your product photos and dimensions, and the files are yours.',
+    a: 'No. If you have GLB or USDZ files, you can use them. If you don’t, Thridify’s 3D modelling team builds the models from your product photos and dimensions.',
   },
   {
     q: 'Will it slow down my Shopify store?',
