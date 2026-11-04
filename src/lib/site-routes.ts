@@ -110,8 +110,9 @@ const INDUSTRY_ROUTES: SiteRoute[] = INDUSTRY_SLUGS.map((slug) => ({
 
 const INTEGRATION_ROUTES: SiteRoute[] = INTEGRATION_SLUGS.map((slug) => ({
   path: `/integrations/${slug}`,
-  priority: 0.8,
-  changeFrequency: "monthly" as const,
+  // Shopify is the canonical page for the live Shopify App Store app.
+  priority: slug === "shopify" ? 0.9 : 0.8,
+  changeFrequency: slug === "shopify" ? ("weekly" as const) : ("monthly" as const),
 }));
 
 const COMPARE_ROUTES: SiteRoute[] = COMPETITOR_SLUGS.map((slug) => ({

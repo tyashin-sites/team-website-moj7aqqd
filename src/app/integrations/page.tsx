@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ShopifyAppNote } from '@/components/ShopifyAppNote';
 import {
   Plug,
   ShoppingBag,
@@ -132,6 +133,7 @@ export default function IntegrationsIndexPage() {
               </a>
               <Link href="/#demo" className="btn btn-ghost">Try the live demo</Link>
             </div>
+            <ShopifyAppNote className="mt-6" text="New: Thridify is live on the Shopify App Store." />
           </div>
 
           {/* Quick links to each integration page */}

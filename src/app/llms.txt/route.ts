@@ -2,6 +2,13 @@ import { SITE_URL, CANONICAL_DESCRIPTION, LEGAL_NAME } from '@/lib/schema';
 import { INDUSTRIES } from '@/lib/industries';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { COMPETITORS } from '@/lib/comparisons';
+import {
+  SHOPIFY_APP_URL,
+  SHOPIFY_APP_NAME,
+  SHOPIFY_APP_SUMMARY,
+  SHOPIFY_PAGE_PATH,
+  SHOPIFY_FEATURES,
+} from '@/lib/shopify-app';
 
 /**
  * /llms.txt — a machine-first, declarative summary of Thridify for LLMs and
@@ -21,6 +28,7 @@ export function GET() {
   const compareList = COMPETITORS.map(
     (c) => `- Thridify vs ${c.name}: ${SITE_URL}/compare/${c.slug}`,
   ).join('\n');
+  const shopifyFeatureList = SHOPIFY_FEATURES.map((f) => `- ${f.title}`).join('\n');
   const integrationList = INTEGRATIONS.map(
     (i) => `- ${i.name}: ${SITE_URL}/integrations/${i.slug}`,
   ).join('\n');
@@ -46,6 +54,17 @@ ${industryList}
 Thridify runs on the store you already have — via a plugin or a lightweight embed, no re-platforming. Nine supported paths: WooCommerce, Shopify, Wix, BigCommerce, Magento, commercetools, Canva, WordPress and any custom storefront (JS SDK + API).
 Index: ${SITE_URL}/integrations
 ${integrationList}
+
+## Shopify app
+${SHOPIFY_APP_SUMMARY}
+- App: ${SHOPIFY_APP_NAME}
+- Shopify App Store: ${SHOPIFY_APP_URL}
+- Page on thridify.com: ${SITE_URL}${SHOPIFY_PAGE_PATH}
+- Pricing: free plan available on the Shopify App Store; see the listing for current plans.
+- Suits: furniture, kitchens, doors and windows, bathroom fittings, tiles, lighting.
+What the app does on a Shopify store today:
+${shopifyFeatureList}
+Not in the Shopify app yet: Shop the Look, Shop the Room and multi-product room scenes. Those run on Thridify's own platform.
 
 ## Model formats
 glTF, GLB and USDZ — photoreal and AR-ready.
@@ -73,6 +92,7 @@ ${compareList}
 - 3D Modelling Service: ${SITE_URL}/services/3d-modelling
 - Industries: ${SITE_URL}/industries
 - Integrations: ${SITE_URL}/integrations
+- Shopify app (3D configurator and AR for Shopify): ${SITE_URL}${SHOPIFY_PAGE_PATH}
 - About: ${SITE_URL}/about
 - Contact: ${SITE_URL}/contact
 
