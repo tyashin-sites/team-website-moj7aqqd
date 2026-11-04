@@ -40,7 +40,7 @@ That separation is deliberate and it matters more on Shopify than elsewhere, bec
 
 ## Step 3 — Install the app and place the block
 
-Install the Thridify app from your store admin. It registers a theme app extension, so in the theme editor you get a block you can drag into the product template — no Liquid editing, and no risk of your changes being wiped by a theme update.
+Install the [Thridify app from the Shopify App Store](https://apps.shopify.com/thridify-3d-ar-configurator). It registers a theme app extension, so in the theme editor you get a block you can drag into the product template — no Liquid editing, and no risk of your changes being wiped by a theme update.
 
 Place it **in the gallery area**, as part of the media the customer is already swiping through.
 
@@ -84,6 +84,8 @@ Do not report "3D interactions" as the success metric. That number proves the fe
 ## Related reading
 
 - [Thridify for Shopify](/integrations/shopify) — the integration in detail
+- [Thridify 3D & AR Configurator on the Shopify App Store](https://apps.shopify.com/thridify-3d-ar-configurator)
+- [How to add a 3D product configurator and AR to your Shopify store](/blog/how-to-add-a-3d-product-configurator-and-ar-to-your-shopify-store) — step-by-step app setup, by industry
 - [3D product configurator](/3d-product-configurator)
 - [How to add a configurator to WooCommerce](/blog/how-to-add-a-3d-product-configurator-to-woocommerce) — the same job on the other platform
 - [AR product viewer](/ar-viewer)
