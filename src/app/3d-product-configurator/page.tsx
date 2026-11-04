@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ShopifyAppNote } from '@/components/ShopifyAppNote';
 import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
@@ -228,6 +229,10 @@ export default function ConfiguratorPage() {
                 What it costs
               </Link>
             </div>
+            <ShopifyAppNote
+              className="mt-6"
+              text="On Shopify? Add the 3D configurator from the App Store."
+            />
           </Reveal>
         </div>
       </section>

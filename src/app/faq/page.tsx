@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ShopifyAppNote } from "@/components/ShopifyAppNote";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 import { breadcrumbLd, webPageLd, type LdNode } from "@/lib/knowledge-graph";
 import { JsonLd } from "@/components/JsonLd";
@@ -101,6 +102,9 @@ export default function FaqPage() {
               knowledge our on-page assistant is trained on. Search it, filter
               it, or share a link to any single answer.
             </p>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <ShopifyAppNote className="mt-6" />
           </Reveal>
         </div>
       </section>

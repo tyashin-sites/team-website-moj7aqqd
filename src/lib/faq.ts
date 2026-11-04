@@ -247,8 +247,11 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "shopify",
         q: "How does the Shopify integration work?",
-        a: "Thridify ships a Shopify Theme App Extension: install the app, then add the Thridify App Block to your product or collection template — no code. It auto-detects major themes, auto-links your shop, matches products and variants by ID, measures via Web Pixel and is GDPR-ready.",
-        links: [{ label: "Shopify", href: "/integrations/shopify" }],
+        a: "Install Thridify 3D-AR-Configurator from the Shopify App Store, connect a Thridify account and turn on the app embed in your theme editor, or add the product and collection blocks where you want them. Your theme code stays untouched. Products match by SKU, handle, product ID or title, and shoppers get a 3D viewer, a live configurator and AR on iPhone and Android. There is a free plan on the App Store.",
+        links: [
+          { label: "Thridify for Shopify", href: "/integrations/shopify" },
+          { label: "Shopify App Store listing", href: "https://apps.shopify.com/thridify-3d-ar-configurator" },
+        ],
       },
       {
         id: "woocommerce-wordpress",

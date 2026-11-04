@@ -256,9 +256,11 @@ export const INTEGRATIONS: Integration[] = [
       "add 3D to Shopify",
       "Shopify product AR no app",
     ],
-    seoTitle: "Shopify 3D Product Viewer & AR App",
+    // The live page is the static route src/app/integrations/shopify/page.tsx
+    // (content in src/lib/shopify-app.ts). This entry feeds the hub card only.
+    seoTitle: "Shopify 3D Product Configurator & AR App",
     seoDescription:
-      "Add a 3D product viewer, configurator and app-free AR to Shopify with a no-code Theme App Extension. Thridify installs as an App Block on product and collection pages — no re-platforming.",
+      "Thridify adds a 3D product viewer, a live 3D configurator and AR view in your room to Shopify product pages. Install from the Shopify App Store, no theme code. Free plan available.",
     hero: {
       eyebrow: "Shopify Integration",
       h1: "Shopify 3D Product Viewer & AR App",
@@ -266,7 +268,7 @@ export const INTEGRATIONS: Integration[] = [
         "Add a no-code Shopify App Block for 3D, configuration and app-free AR to product and collection pages — theme auto-detected, Web Pixel measured, GDPR-ready.",
     },
     tagline:
-      "A no-code App Block for 3D, configuration and web AR on your Shopify product pages.",
+      "On the Shopify App Store: 3D viewer, live configurator and AR view in your room.",
     integrationIntro:
       "Thridify ships a Shopify Theme App Extension: install the app, then drop the Thridify App Block onto your product or collection template — no code. It auto-detects major themes (with a custom CSS selector fallback), auto-links your shop and matches products and variants by ID. AR runs in the browser — no app for your shoppers.",
     installLabel: "Install: Shopify Theme App Extension — no-code App Blocks",
@@ -300,7 +302,7 @@ export const INTEGRATIONS: Integration[] = [
       {
         capability: "configurator",
         heading: "Configure options live",
-        body: "Shoppers swap finishes and options in real time with live pricing, mapped to your Shopify variants.",
+        body: "Shoppers swap finishes, materials and variants and watch the 3D model change while they choose.",
       },
     ],
     outcomes: [
@@ -323,7 +325,7 @@ export const INTEGRATIONS: Integration[] = [
     faqs: [
       {
         q: "How do I add a 3D configurator to Shopify?",
-        a: "Publish the experience in Thridify, then paste the lightweight embed into your Shopify product template and map it to the product or variant by ID. The JS SDK renders it live.",
+        a: "Install Thridify 3D-AR-Configurator from the Shopify App Store, connect a Thridify account and turn on the app embed in your theme editor. Published products then show the configurator on their Shopify product page, with no theme code edits.",
       },
       {
         q: "Does Thridify add AR to Shopify without an app?",
@@ -331,11 +333,11 @@ export const INTEGRATIONS: Integration[] = [
       },
       {
         q: "Does it work with my existing Shopify theme?",
-        a: "Yes. The embed drops into your product template alongside your current gallery, so it fits your existing Shopify theme without re-platforming.",
+        a: "Yes. You add it with the app embed or theme blocks in the theme editor, so your theme code stays untouched.",
       },
       {
-        q: "Can each Shopify variant map to the 3D experience?",
-        a: "Yes. One configurable model carries every option as swappable materials and maps to your Shopify variants by ID, so each variant shows the right configuration.",
+        q: "How are Shopify products matched to 3D models?",
+        a: "By SKU, handle, Shopify product ID or title, so nothing has to be renamed. Matches resync when products change.",
       },
     ],
     related: ["woocommerce", "wix", "custom-integration"],

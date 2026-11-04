@@ -86,7 +86,9 @@ const CAPABILITY_META: Record<DemoMode, { label: string; icon: LucideIcon }> = {
 export function generateStaticParams() {
   // From the single site-routes list (see src/lib/site-routes.ts) so the
   // prerendered set and /sitemap-pages.xml can never diverge.
-  return integrationStaticParams();
+  // Shopify has its own static route (/integrations/shopify/page.tsx), the
+  // canonical page for the Shopify App Store app, so it is skipped here.
+  return integrationStaticParams().filter((p) => p.slug !== "shopify");
 }
 export const dynamicParams = false;
 

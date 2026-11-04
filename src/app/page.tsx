@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ShopifyAppNote } from '@/components/ShopifyAppNote';
 import { homeContent } from '@/lib/content';
 import { INDUSTRIES } from '@/lib/industries';
 import { ctaLabel } from '@/lib/cta';
@@ -198,6 +199,7 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+          <ShopifyAppNote className="mt-10" />
         </div>
       </section>
 
