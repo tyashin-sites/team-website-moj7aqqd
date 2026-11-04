@@ -152,7 +152,7 @@ const mark = (size = 44) => ({
 });
 
 // ── Layout ──────────────────────────────────────────────────────────────
-function layout({ kicker, title, sub, poster }, posterUri) {
+function layout({ kicker, title, sub, poster, tagline }, posterUri) {
   const hasPoster = Boolean(posterUri);
   const titleSize = title.length > 44 ? 58 : title.length > 30 ? 66 : 80;
   return {
@@ -252,7 +252,7 @@ function layout({ kicker, title, sub, poster }, posterUri) {
           props: {
             style: { position: 'absolute', left: 72, right: 72, bottom: 58, display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: `1px solid ${PAPER}22`, paddingTop: 22 },
             children: [
-              { type: 'div', props: { style: { fontFamily: 'IBM Plex Mono', fontSize: 19, letterSpacing: 1, color: MUTED }, children: 'No code · No app · No friction' } },
+              { type: 'div', props: { style: { fontFamily: 'IBM Plex Mono', fontSize: 19, letterSpacing: 1, color: MUTED }, children: tagline || 'No code · No app · No friction' } },
               { type: 'div', props: { style: { fontFamily: 'IBM Plex Mono', fontSize: 19, letterSpacing: 1, color: MUTED }, children: 'thridify.com' } },
             ],
           },

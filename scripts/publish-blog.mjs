@@ -176,6 +176,35 @@ function toHtml(md) {
   return out.join('\n');
 }
 
+/**
+ * FAQPage JSON-LD, opt-in with `faqSchema: true` in front matter.
+ *
+ * The platform emits BlogPosting for every post but nothing for FAQs, so the
+ * "## Frequently asked questions" section (each `### Question?` followed by
+ * its answer paragraphs) is turned into a JSON-LD block appended to the body.
+ * Answers are plain text: links and emphasis are stripped, not rendered.
+ */
+function faqJsonLd(md) {
+  const sec = /^##\s+(?:Frequently asked questions|FAQs?)\s*$([\s\S]*?)(?=^##\s|(?![\s\S]))/im.exec(md);
+  if (!sec) throw new Error('faqSchema: true but no "## Frequently asked questions" section');
+  const plain = (t) =>
+    t
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[*`]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  const items = [];
+  for (const block of sec[1].split(/^###\s+/m).slice(1)) {
+    const [q, ...rest] = block.split('\n');
+    const a = plain(rest.join(' '));
+    if (q.trim() && a) items.push({ '@type': 'Question', name: plain(q), acceptedAnswer: { '@type': 'Answer', text: a } });
+  }
+  if (!items.length) throw new Error('faqSchema: FAQ section has no ### questions');
+  const json = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items });
+  // `<` escaped so an answer can never close the script element early.
+  return `<script type="application/ld+json">${json.replace(/</g, '\\u003c')}</script>`;
+}
+
 // -- validation: fail loudly rather than publishing something malformed ----
 function validate(slug, meta, html) {
   const errs = [];
@@ -262,8 +291,9 @@ function resolveCover(slug, meta) {
 const prepared = files.map((f) => {
   const slug = basename(f, '.md');
   const { meta, body } = parseFrontMatter(readFileSync(join(DIR, f), 'utf8'));
-  const html = toHtml(body);
+  let html = toHtml(body);
   const words = validate(slug, meta, html);
+  if (meta.faqSchema === 'true') html += `\n${faqJsonLd(body)}`;
   return { slug, meta, html, words, coverUrl: resolveCover(slug, meta) };
 });
 
