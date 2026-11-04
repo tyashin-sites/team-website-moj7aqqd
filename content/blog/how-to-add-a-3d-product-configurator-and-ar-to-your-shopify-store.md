@@ -4,6 +4,7 @@ metaTitle: "How to Add a 3D Product Configurator and AR to Shopify"
 metaDescription: "Install a Shopify app, match your 3D models to products, switch on the app embed. A step-by-step guide to 3D viewers, configurators and AR on Shopify."
 excerpt: "You can add a 3D viewer, a live configurator and view-in-your-room AR to a Shopify store without editing theme code. Here is the whole setup, what you need before you start, and how it plays out for furniture, kitchens, doors, bathrooms, tiles and lighting."
 tags: [shopify, 3d-configurator, ar, how-to, shopify-app]
+image: "https://website-api.tyashin.com/api/v1/public/media/ecommerce/69f1354e7766b41fbc101ded/media/1793755953379-blog-how-to-add-a-3d-product-configurator-and-ar-to-your-shopify-store.png"
 faqSchema: true
 ---
 
