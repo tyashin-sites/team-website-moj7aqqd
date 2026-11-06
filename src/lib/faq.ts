@@ -1,3 +1,4 @@
+
 /**
  * CANONICAL FAQ CATALOG — the single content source for the /faq page and its
  * FAQPage JSON-LD. Curated 2026-09-11 from the same knowledge set that trains
@@ -13,6 +14,8 @@
  *  - Answers are plain text (rendered verbatim + serialized to JSON-LD);
  *    related pages go in `links`, not inline markdown.
  */
+
+import { calendlyHref } from "@/lib/calendly";
 
 export type FaqLink = { label: string; href: string };
 
@@ -33,7 +36,7 @@ export type FaqCategory = {
   faqs: Faq[];
 };
 
-export const CALENDLY_URL = "https://calendly.com/hello-thridify/30min";
+export const CALENDLY_URL = calendlyHref("faq");
 
 export const FAQ_CATEGORIES: FaqCategory[] = [
   {

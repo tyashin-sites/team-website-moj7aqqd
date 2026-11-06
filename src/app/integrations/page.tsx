@@ -24,6 +24,7 @@ import {
 import { homeContent } from '@/lib/content';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { calendlyHref } from '@/lib/calendly';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
@@ -124,7 +125,7 @@ export default function IntegrationsIndexPage() {
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <a
-                href="https://calendly.com/hello-thridify/30min"
+                href={calendlyHref('integrations')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -241,7 +242,7 @@ export default function IntegrationsIndexPage() {
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a
-                  href="https://calendly.com/hello-thridify/30min"
+                  href={calendlyHref('integrations')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-paper text-ink font-semibold hover:bg-primary hover:text-primary-contrast transition-colors"

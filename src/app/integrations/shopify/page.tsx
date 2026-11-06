@@ -7,6 +7,7 @@ import { Reveal } from '@/components/Reveal';
 import { HeroArt } from '@/components/HeroArt';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { EXP } from '@/lib/thridify';
+import { calendlyHref } from '@/lib/calendly';
 import {
   SHOPIFY_APP_URL,
   SHOPIFY_APP_NAME,
@@ -38,7 +39,7 @@ import {
  */
 
 const PATH = SHOPIFY_PAGE_PATH;
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('integrations-shopify');
 const UPDATED = '2026-11-03';
 const BLOG_HOWTO = '/blog/how-to-add-3d-and-ar-to-a-shopify-product-page';
 

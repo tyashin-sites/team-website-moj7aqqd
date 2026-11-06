@@ -5,6 +5,7 @@ import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /3d-product-visualization — owns the VISUALIZATION cluster, which Search
@@ -20,7 +21,7 @@ import { CANONICAL_METRICS } from '@/lib/industries';
  */
 
 const PATH = '/3d-product-visualization';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('3d-product-visualization');
 const UPDATED = '2026-09-19';
 
 const OUTPUTS = [

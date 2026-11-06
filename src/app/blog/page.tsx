@@ -5,6 +5,7 @@ import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbLd } from '@/lib/knowledge-graph';
 import { PostCardMedia } from '@/components/PostCardMedia';
+import { NewsletterForm } from '@/components/NewsletterForm';
 
 export const metadata = pageMetadata({
   title: 'Blog — Insights on 3D & AR Commerce',
@@ -261,22 +262,7 @@ export default async function BlogPage({
               <p className="mt-5 text-muted-dark text-lg leading-relaxed">
                 Join operators and product teams from leading brands. No fluff, unsubscribe anytime.
               </p>
-              <form data-aapas-newsletter className="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg">
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="you@brand.com"
-                  className="flex-1 px-5 py-4 rounded-full bg-paper/10 border border-paper/20 text-paper placeholder:text-paper/50 focus:outline-none focus:border-paper/60"
-                />
-                <button
-                  type="submit"
-                  className="btn bg-paper text-ink hover:bg-paper/90"
-                >
-                  Subscribe
-                </button>
-                <div data-aapas-message className="sr-only" />
-              </form>
+              <NewsletterForm />
             </div>
           </div>
         </div>
