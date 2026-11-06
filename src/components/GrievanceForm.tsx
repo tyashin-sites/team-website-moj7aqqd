@@ -60,7 +60,7 @@ export function GrievanceForm({ lang = 'en' }: { lang?: GrievanceLang }) {
   }
 
   return (
-    <form onSubmit={onSubmit} lang={lang} className="relative mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+    <form method="post" action="/api/grievance" onSubmit={onSubmit} lang={lang} className="relative mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
       <p className="text-sm text-foreground/70 md:col-span-2">{t.intro}</p>
       <FormField label={t.name} htmlFor="g-name">
         <input id="g-name" name="name" required maxLength={100} autoComplete="name" placeholder=" " className={inputClass} />

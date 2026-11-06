@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { ReturnsCalculator } from '@/components/ReturnsCalculator';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /resources/roi-of-3d-and-ar-commerce — the data-backed ROI guide.
@@ -17,7 +18,7 @@ import { CANONICAL_METRICS } from '@/lib/industries';
  */
 
 const PATH = '/resources/roi-of-3d-and-ar-commerce';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('resources-roi-of-3d-and-ar-commerce');
 const PUBLISHED = '2026-09-11';
 
 const SOURCES = [

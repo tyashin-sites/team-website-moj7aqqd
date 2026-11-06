@@ -4,6 +4,7 @@ import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /resources/3d-configurator-cost — owns the "how much does it cost" intent.
@@ -13,7 +14,7 @@ import { Reveal } from '@/components/Reveal';
  */
 
 const PATH = '/resources/3d-configurator-cost';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('resources-3d-configurator-cost');
 const PUBLISHED = '2026-09-11';
 
 const DRIVERS = [

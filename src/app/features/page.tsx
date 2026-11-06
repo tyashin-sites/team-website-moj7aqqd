@@ -14,8 +14,9 @@ import { SectionIndex } from "@/components/SectionIndex";
 import { SITE_URL, ORG_ID } from "@/lib/schema";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
+import { calendlyHref } from '@/lib/calendly';
 
-const CALENDLY = "https://calendly.com/hello-thridify/30min";
+const CALENDLY = calendlyHref('features');
 
 // lucide export-name → component (features.ts stays server-safe).
 const PILLAR_ICON: Record<Pillar["icon"], LucideIcon> = {

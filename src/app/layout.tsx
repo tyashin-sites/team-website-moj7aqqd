@@ -9,6 +9,7 @@ import { ScrollToTop } from '@/components/ScrollToTop';
 import { PrintFX } from '@/components/PrintFX';
 import { HashScroll } from '@/components/HashScroll';
 import { EntitySchema } from '@/components/SiteSchema';
+import { AttributionCapture } from '@/components/AttributionCapture';
 import './globals.css';
 
 // Absolute base for OG/Twitter URLs. While previewed on workers.dev this
@@ -180,6 +181,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PrintFX />
         {/* Reliable #anchor deep links (e.g. /platform#analytics from the footer). */}
         <HashScroll />
+        {/* First-touch UTM/referrer capture + Calendly link tagging,
+            consent-gated (src/lib/consent.ts). */}
+        <AttributionCapture />
         {/* Sitewide declarative scroll effects (data-parallax / data-fx) —
             wires GSAP ScrollTriggers to server-rendered markup. */}
         <ScrollFX />

@@ -3,8 +3,9 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { RotateCcw, ArrowLeft } from 'lucide-react';
+import { calendlyHref } from '@/lib/calendly';
 
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('error');
 
 /**
  * Route-segment error boundary. Renders INSIDE the root layout (Header/Footer

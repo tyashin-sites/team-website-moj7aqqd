@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { RoomCapture, RoomRecording } from '@/components/RoomCapture';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /room-visualizer — the money page for "3D room visualizer" / "room planner
@@ -24,7 +25,7 @@ import { CANONICAL_METRICS } from '@/lib/industries';
  */
 
 const PATH = '/room-visualizer';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('room-visualizer');
 const UPDATED = '2026-10-11';
 
 const STEPS = [

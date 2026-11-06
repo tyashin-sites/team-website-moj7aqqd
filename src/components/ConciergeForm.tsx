@@ -12,14 +12,36 @@
 import { useState } from 'react';
 import { FormField, inputClass } from './FormField';
 import { homeContent } from '@/lib/content';
+import { getAttribution } from '@/lib/attribution';
+import { calendlyHref } from '@/lib/calendly';
 
-const CALENDLY_URL = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY_URL = calendlyHref('contact');
 
 // Product categories come from the same content source as the home
 // verticals grid — one list, no drift.
 const CATEGORIES = [
   ...homeContent.verticals.items.map((v) => v.name),
   'Other',
+];
+
+// Attribution policy §9: the same question and options on Calendly, this
+// form and admin onboarding. Optional — a required field costs leads. The
+// answer is sent verbatim; the mapping to a source happens downstream.
+const HOW_HEARD_OTHER = 'Other';
+const HOW_HEARD = [
+  'LinkedIn',
+  'Instagram',
+  'Facebook',
+  'Quora',
+  'Google or another search engine',
+  'An AI assistant (ChatGPT, Perplexity, …)',
+  'An email from us',
+  'WhatsApp',
+  'Shopify / BigCommerce / WordPress app store',
+  'A partner or agency',
+  'A friend or colleague',
+  'A design school, event or competition',
+  HOW_HEARD_OTHER,
 ];
 
 type Status = 'idle' | 'sending' | 'error';
@@ -29,6 +51,7 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
   const [done, setDone] = useState(false);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
+  const [howHeard, setHowHeard] = useState('');
 
   function handleContinue(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,12 +74,16 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
           company: fd.get('company'),
           category: fd.get('category'),
           message: fd.get('message'),
+          howHeard: fd.get('howHeard') || undefined,
+          howHeardOther: howHeard === HOW_HEARD_OTHER ? fd.get('howHeardOther') || undefined : undefined,
+          attribution: getAttribution() ?? undefined,
         }),
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong');
       setDone(true);
       setStatus('idle');
+      setHowHeard('');
     } catch (err) {
       setStatus('error');
       setError(err instanceof Error ? err.message : 'Something went wrong');
@@ -97,6 +124,8 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
 
   return (
     <form
+      method="post"
+      action="/api/contact"
       onSubmit={expanded ? handleSubmit : handleContinue}
       autoComplete="on"
       className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5"
@@ -157,6 +186,39 @@ export function ConciergeForm({ fallbackEmail }: { fallbackEmail: string }) {
               placeholder=" "
             />
           </FormField>
+          <FormField
+            label="How did you first hear about Thridify? (optional)"
+            htmlFor="contact-how-heard"
+            className={howHeard === HOW_HEARD_OTHER ? 'md:col-span-1' : 'md:col-span-2'}
+            raised
+          >
+            <select
+              id="contact-how-heard"
+              name="howHeard"
+              value={howHeard}
+              onChange={(e) => setHowHeard(e.target.value)}
+              className={inputClass}
+            >
+              <option value="">Prefer not to say</option>
+              {HOW_HEARD.map((h) => (
+                <option key={h} value={h}>
+                  {h}
+                </option>
+              ))}
+            </select>
+          </FormField>
+          {howHeard === HOW_HEARD_OTHER && (
+            <FormField label="Where did you hear about us?" htmlFor="contact-how-heard-other" className="md:col-span-1">
+              <input
+                id="contact-how-heard-other"
+                name="howHeardOther"
+                type="text"
+                maxLength={200}
+                className={inputClass}
+                placeholder=" "
+              />
+            </FormField>
+          )}
           <FormField label="Anything we should know?" htmlFor="contact-message" className="md:col-span-2">
             <textarea
               id="contact-message"

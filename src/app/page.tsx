@@ -25,6 +25,7 @@ import { VerticalCard } from '@/components/signature/VerticalCard';
 import { CTABand } from '@/components/signature/CTABand';
 import { SITE_URL } from '@/lib/schema';
 import { pageMetadata } from '@/lib/seo';
+import { calendlyHref } from '@/lib/calendly';
 
 export const metadata = pageMetadata({
   title: 'Thridify — Reimagine how the world experiences your products',
@@ -71,7 +72,7 @@ export default function HomePage() {
             <p data-hero="lead" className="lead max-w-xl">{home.hero.subtitle}</p>
             <div data-hero="ctas" className="mt-10 flex flex-wrap gap-4">
               <a
-                href={home.hero.primaryCta?.href ?? 'https://calendly.com/hello-thridify/30min'}
+                href={home.hero.primaryCta?.href ?? calendlyHref('home')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary px-7 py-4 text-base"

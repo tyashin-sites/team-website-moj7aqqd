@@ -11,8 +11,9 @@ import { SITE_URL } from '@/lib/schema';
 import { compareStaticParams } from '@/lib/site-routes';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { calendlyHref } from '@/lib/calendly';
 
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('compare');
 
 // FULLY STATIC — build-time content only (see industries/[slug] rationale for
 // why dynamicParams:false + generateStaticParams + no revalidate avoids the

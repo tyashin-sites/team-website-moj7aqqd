@@ -6,6 +6,7 @@ import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /3d-product-configurator — the money page for the head term.
@@ -22,7 +23,7 @@ import { CANONICAL_METRICS } from '@/lib/industries';
  */
 
 const PATH = '/3d-product-configurator';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('3d-product-configurator');
 const UPDATED = '2026-09-19';
 
 /** What the thing actually does, in the order a buyer evaluates it. */

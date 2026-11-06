@@ -6,8 +6,9 @@ import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { GLOSSARY, GLOSSARY_SLUGS, getTerm } from '@/lib/glossary';
+import { calendlyHref } from '@/lib/calendly';
 
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('glossary');
 
 export function generateStaticParams() {
   return GLOSSARY_SLUGS.map((slug) => ({ slug }));

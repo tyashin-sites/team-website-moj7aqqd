@@ -5,6 +5,7 @@ import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { RoomCapture, RoomRecording } from '@/components/RoomCapture';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /shop-the-look — the brand-facing explanation of the hosted shopper page.
@@ -21,7 +22,7 @@ import { RoomCapture, RoomRecording } from '@/components/RoomCapture';
  */
 
 const PATH = '/shop-the-look';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('shop-the-look');
 const UPDATED = '2026-10-11';
 
 const LOOP = [
