@@ -87,9 +87,12 @@ const CAPABILITY_META: Record<DemoMode, { label: string; icon: LucideIcon }> = {
 export function generateStaticParams() {
   // From the single site-routes list (see src/lib/site-routes.ts) so the
   // prerendered set and /sitemap-pages.xml can never diverge.
-  // Shopify has its own static route (/integrations/shopify/page.tsx), the
-  // canonical page for the Shopify App Store app, so it is skipped here.
-  return integrationStaticParams().filter((p) => p.slug !== "shopify");
+  // Shopify and WooCommerce have their own static routes
+  // (/integrations/shopify/page.tsx, /integrations/woocommerce/page.tsx), the
+  // canonical pages for the Shopify App Store app and the WordPress.org
+  // plugin, so they are skipped here.
+  const STATIC_ROUTES = new Set(["shopify", "woocommerce"]);
+  return integrationStaticParams().filter((p) => !STATIC_ROUTES.has(p.slug));
 }
 export const dynamicParams = false;
 
