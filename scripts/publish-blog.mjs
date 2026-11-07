@@ -29,6 +29,8 @@ const SITE_ORIGIN = process.env.THRIDIFY_SITE_ORIGIN || 'https://thridify.com';
  * Byline for every post. Sent explicitly because the API otherwise takes the
  * author from whoever owns the JWT, and a superadmin session published posts
  * as the wrong person. Only Shikha is the public face of Thridify.
+ * Front matter `author:` overrides it per post, e.g. "Team Thridify" for a
+ * post that invites readers to meet Shikha (she can't invite people to herself).
  */
 const AUTHOR_NAME = 'Shikha Gupta';
 const DIR = join(process.cwd(), 'content', 'blog');
@@ -300,7 +302,7 @@ function payloadFor(p) {
     status: scheduled ? 'scheduled' : 'published',
     ...(scheduled ? { scheduledAt: new Date(p.meta.publishAt).toISOString() } : {}),
     tags: Array.isArray(p.meta.tags) ? p.meta.tags : [],
-    authorName: AUTHOR_NAME,
+    authorName: p.meta.author || AUTHOR_NAME,
     ...(p.coverUrl ? { featuredImage: p.coverUrl } : {}),
     seo: {
       metaTitle: p.meta.metaTitle || p.meta.title,
@@ -332,7 +334,7 @@ for (const p of prepared) {
     status: scheduled ? 'scheduled' : 'published',
     ...(scheduled ? { scheduledAt: new Date(p.meta.publishAt).toISOString() } : {}),
     tags: Array.isArray(p.meta.tags) ? p.meta.tags : [],
-    authorName: AUTHOR_NAME,
+    authorName: p.meta.author || AUTHOR_NAME,
     ...(p.coverUrl ? { featuredImage: p.coverUrl } : {}),
     seo: {
       metaTitle: p.meta.metaTitle || p.meta.title,

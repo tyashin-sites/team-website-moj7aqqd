@@ -2,15 +2,16 @@
 title: "KBC Expo 2026: Meet Thridify's CEO at Kitchen + Bath Canada in Toronto"
 metaTitle: "KBC Expo 2026 Toronto: Meet Thridify at Kitchen + Bath Canada"
 metaDescription: "Shikha Gupta, CEO of Thridify, is at Kitchen + Bath Canada, Nov 11–12, 2026 at the Toronto Congress Centre. Book 30 minutes on 3D configurators, AR and quoting."
-excerpt: "Kitchen + Bath Canada runs November 11 and 12 at the Toronto Congress Centre. I'll be there both days, meeting kitchen and bath brands, showrooms and dealers about 3D configurators, AR and faster quoting. Here's what to talk about, and how to book a slot."
+excerpt: "Kitchen + Bath Canada runs November 11 and 12 at the Toronto Congress Centre. Thridify CEO Shikha Gupta will be there both days, meeting kitchen and bath brands, showrooms and dealers about 3D configurators, AR and faster quoting. Here's what to talk about, and how to book a slot."
+author: "Team Thridify"
 tags: [kbc-expo-2026, kitchen-and-bath, trade-shows, 3d-configurator, ar, toronto]
 ---
 
-Kitchen + Bath Canada, the KBC Expo, opens at the Toronto Congress Centre on Wednesday, November 11, 2026, and runs through Thursday, November 12, 9:00 a.m. to 5:00 p.m. ET both days. I'll be there for both days, and I've set aside time for meetings.
+Kitchen + Bath Canada, the KBC Expo, opens at the Toronto Congress Centre on Wednesday, November 11, 2026, and runs through Thursday, November 12, 9:00 a.m. to 5:00 p.m. ET both days. Thridify's co-founder and CEO, Shikha Gupta, will be there both days, and she has set aside time for meetings.
 
-If you make, sell or specify cabinets, vanities, countertops, tile, faucets or fixtures, and your customers keep asking "what would mine look like?", I'd like to hear how you're answering that today.
+If you make, sell or specify cabinets, vanities, countertops, tile, faucets or fixtures, and your customers keep asking "what would mine look like?", she'd like to hear how you're answering that today.
 
-**[Book a 30-minute meeting with me at KBC Expo](https://calendly.com/shikha-thridify/30min)**. The calendar only shows slots on the two show days.
+**[Book a 30-minute meeting with Shikha at KBC Expo](https://calendly.com/shikha-thridify/30min)**. The calendar only shows slots on the two show days.
 
 ## What KBC Expo 2026 is, in case it's new to you
 
@@ -25,7 +26,7 @@ A few details from the organisers that are worth knowing before you go:
 - **Who goes:** designers, architects, builders, showrooms, distributors and manufacturers from across Canada.
 - **Early exhibitors named so far:** Artika, Daltile of Canada, Häfele Canada, Karran, Richelieu, Classic Brand Cabinetry and Aline International.
 
-Registration is on the official site, [kbcexpo.com](https://kbcexpo.com). To be clear about my role: I'm attending, not exhibiting, and Thridify isn't affiliated with Emerald or the NKBA. So don't look for a booth. Book a time and we'll find a quiet corner of the hall.
+Registration is on the official site, [kbcexpo.com](https://kbcexpo.com). To be clear: Shikha is attending, not exhibiting, and Thridify isn't affiliated with Emerald or the NKBA. So there's no Thridify booth to look for. Book a time and she'll meet you in a quiet corner of the hall.
 
 ## Why kitchen and bath is a 3D problem
 
@@ -40,9 +41,9 @@ That gap shows up in places every showroom and dealer will recognise:
 
 None of these are solved by better photography. They're solved by letting the customer build the thing and see it, at true scale, before anyone writes up an order.
 
-## What I want to talk about at KBC Expo
+## What Shikha wants to talk about at KBC Expo
 
-The meeting is 30 minutes and we'll shape it around your products. These are the three conversations I expect to have most.
+The meeting is 30 minutes and it's shaped around your products. These are the three conversations she expects to have most.
 
 ### 1. A 3D configurator for cabinets, vanities and countertops
 
@@ -58,7 +59,7 @@ For full rooms rather than single products, the [Room Visualizer](/room-visualiz
 
 ### 3. Quoting and lead follow-up
 
-A lot of the time in a kitchen or bath sale goes into the back-and-forth before a customer sees a number. I'm happy to talk through where configurator data and AI can shorten that: quote requests that arrive already specified, faster first responses to leads, and follow-ups that don't slip when the team is busy with installs.
+A lot of the time in a kitchen or bath sale goes into the back-and-forth before a customer sees a number. Shikha is happy to talk through where configurator data and AI can shorten that: quote requests that arrive already specified, faster first responses to leads, and follow-ups that don't slip when the team is busy with installs.
 
 ## Who this meeting is useful for
 
@@ -67,7 +68,7 @@ A lot of the time in a kitchen or bath sale goes into the back-and-forth before 
 - Showrooms and dealers who carry more SKUs than they can display.
 - Kitchen and bath designers who spend hours rendering options for a client to compare.
 
-If you're exhibiting at KBC Expo yourself, I'm glad to come to your booth during a quieter hour. Pick a slot and say so in the booking notes.
+If you're exhibiting at KBC Expo yourself, Shikha is glad to come to your booth during a quieter hour. Pick a slot and say so in the booking notes.
 
 ## How to book
 
@@ -86,10 +87,10 @@ November 11–12, 2026, at the Toronto Congress Centre in Toronto, Ontario, from
 Emerald, the producer of KBIS, in partnership with the National Kitchen & Bath Association and its Canadian chapters.
 
 **Does Thridify have a booth at KBC Expo?**
-No. I'm attending both days and taking meetings, booked through the calendar link above.
+No. Shikha is attending both days and taking meetings, booked through the calendar link above.
 
 **Do I need to be a Thridify customer to book?**
-No. Most of the people I'm meeting haven't used 3D or AR yet, or have tried it on part of their catalogue and want to go further.
+No. Most of the people she's meeting haven't used 3D or AR yet, or have tried it on part of their catalogue and want to go further.
 
 **What should I bring?**
 Nothing formal. A product line you'd like to show online, or a sales problem you're trying to fix, is enough to make the 30 minutes useful.
