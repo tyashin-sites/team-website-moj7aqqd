@@ -7,6 +7,7 @@ import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { GLOSSARY, GLOSSARY_SLUGS, getTerm } from '@/lib/glossary';
 import { calendlyHref } from '@/lib/calendly';
+import { getGlossaryDepth } from '@/lib/glossary-depth';
 
 const CALENDLY = calendlyHref('glossary');
 
@@ -33,6 +34,7 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ s
   if (!t) notFound();
   const related = t.related.map(getTerm).filter((x): x is NonNullable<typeof x> => Boolean(x));
   const path = `/glossary/${t.slug}`;
+  const depth = getGlossaryDepth(t.slug);
 
   const termLd: LdNode = {
     '@type': 'DefinedTerm',
@@ -50,6 +52,19 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ s
         nodes={[
           webPageLd({ path, name: `${t.term} — definition`, description: t.short }),
           termLd,
+          ...(depth?.faqs.length
+            ? [
+                {
+                  '@type': 'FAQPage',
+                  '@id': `${siteUrl(path)}#faq`,
+                  mainEntity: depth.faqs.map((f) => ({
+                    '@type': 'Question',
+                    name: f.q,
+                    acceptedAnswer: { '@type': 'Answer', text: f.a },
+                  })),
+                } as LdNode,
+              ]
+            : []),
           breadcrumbLd(path, [
             { name: 'Home', path: '/' },
             { name: 'Glossary', path: '/glossary' },
@@ -86,10 +101,31 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ s
             {t.body.map((p) => (
               <p key={p.slice(0, 40)} className="text-foreground/75 leading-relaxed mb-5">{p}</p>
             ))}
-            <div className="card p-6 md:p-7 mt-8 border-l-4 border-l-primary">
+            {depth?.sections.map((sec) => (
+              <section key={sec.heading} className="mt-10">
+                <h2 className="font-heading text-2xl font-semibold tracking-tight">{sec.heading}</h2>
+                {sec.paragraphs.map((p) => (
+                  <p key={p.slice(0, 40)} className="mt-4 text-foreground/75 leading-relaxed">{p}</p>
+                ))}
+              </section>
+            ))}
+            <div className="card p-6 md:p-7 mt-10 border-l-4 border-l-primary">
               <p className="eyebrow">Why it matters</p>
               <p className="mt-3 text-foreground/80 leading-relaxed">{t.whyItMatters}</p>
             </div>
+            {depth?.faqs.length ? (
+              <section className="mt-12" aria-labelledby="term-faq">
+                <h2 id="term-faq" className="font-heading text-2xl font-semibold tracking-tight">Questions about {t.term}</h2>
+                <dl className="mt-5 divide-y divide-foreground/10 border-y border-foreground/10">
+                  {depth.faqs.map((f) => (
+                    <div key={f.q} className="py-5">
+                      <dt className="font-semibold">{f.q}</dt>
+                      <dd className="mt-2 text-foreground/75 leading-relaxed">{f.a}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            ) : null}
             {t.seeAlso?.length ? (
               <div className="mt-8 flex flex-wrap gap-2">
                 {t.seeAlso.map((l) => (
