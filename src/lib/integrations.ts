@@ -152,9 +152,11 @@ export const INTEGRATIONS: Integration[] = [
       "add 3D to WooCommerce",
       "WooCommerce product customizer 3D",
     ],
-    seoTitle: "3D Product Configurator for WooCommerce",
+    // The live page is the static route src/app/integrations/woocommerce/page.tsx
+    // (content in src/lib/woocommerce-plugin.ts). This entry feeds the hub card only.
+    seoTitle: "WooCommerce 3D Product Viewer, Configurator & AR Plugin",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to your WooCommerce store. Thridify installs via a WordPress plugin or a lightweight embed — no re-platforming.",
+      "Free WordPress plugin that adds a 3D product viewer, 3D configurator with variation sync and AR view in your room to WooCommerce product pages and shop grids.",
     hero: {
       eyebrow: "WooCommerce Integration",
       h1: "3D Product Configurator for WooCommerce",
@@ -162,10 +164,10 @@ export const INTEGRATIONS: Integration[] = [
         "Add an interactive 3D configurator, 360° viewer and app-free AR to your WooCommerce product pages — installed with a plugin or a lightweight embed.",
     },
     tagline:
-      "A 3D configurator, 360° viewer and web AR for your WooCommerce product pages.",
+      "Free on WordPress.org: 3D viewer, configurator with variation sync and AR view in your room.",
     integrationIntro:
-      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. Add it to any WooCommerce product page with the Thridify WordPress plugin or a lightweight embed snippet; the Thridify JS SDK renders the published experience and matches each product and variant by ID. AR runs in the browser — your shoppers never install an app.",
-    installLabel: "Install: WordPress/WooCommerce plugin or embed snippet",
+      "Install the free Thridify plugin from WordPress.org and connect a Thridify account. The catalog syncs in the background and each product matches its 3D experience by SKU, slug, name or ID. Variations sync both ways with the 3D configurator, and AR runs in the browser, so shoppers never install an app.",
+    installLabel: "Install: free Thridify plugin from WordPress.org",
     steps: [
       {
         heading: "Publish an experience in Thridify",
@@ -173,11 +175,11 @@ export const INTEGRATIONS: Integration[] = [
       },
       {
         heading: "Add it to your WooCommerce product",
-        body: "Install the Thridify plugin or paste the embed on the product template, then map it to the product or variant by ID.",
+        body: "Install the Thridify plugin from WordPress.org and connect your account. Products match by SKU, slug, name or ID.",
       },
       {
         heading: "Shoppers configure, spin and place in AR",
-        body: "The JS SDK renders the live experience on the product page — customers configure options and view the item in their room, app-free.",
+        body: "The viewer appears on matched product pages. Customers configure options, add to cart from 3D and view the item in their room, app-free.",
       },
     ],
     helpsIntro:
@@ -186,7 +188,7 @@ export const INTEGRATIONS: Integration[] = [
       {
         capability: "configurator",
         heading: "A 3D configurator on the product page",
-        body: "Shoppers swap finishes, materials and options in real time with live pricing — mapped to your WooCommerce variants.",
+        body: "Shoppers swap finishes and options in 3D, and the matching WooCommerce variation is selected on the page.",
       },
       {
         capability: "ar",
@@ -219,11 +221,11 @@ export const INTEGRATIONS: Integration[] = [
     faqs: [
       {
         q: "Does Thridify work with WooCommerce?",
-        a: "Yes. Thridify adds a 3D configurator, 360° viewer and app-free AR to WooCommerce product pages via a WordPress plugin or a lightweight embed snippet — no re-platforming.",
+        a: "Yes. The free Thridify plugin on WordPress.org adds a 3D viewer, a 3D configurator and app-free AR to WooCommerce product pages and shop grids.",
       },
       {
         q: "How do I add a 3D product configurator to WooCommerce?",
-        a: "Publish the experience in Thridify, then install the plugin or paste the embed on your product template and map it to the product or variant by ID. The JS SDK renders it live.",
+        a: "Install the Thridify plugin from WordPress.org, open WooCommerce, Thridify 3D & AR and click Connect with Thridify. The catalog syncs and matched products show the configurator.",
       },
       {
         q: "Do my customers need an app for AR?",
@@ -231,7 +233,7 @@ export const INTEGRATIONS: Integration[] = [
       },
       {
         q: "Do I need a separate 3D model for every variant?",
-        a: "No. One configurable 3D model carries every finish and option as swappable materials, mapped to your WooCommerce variants — build once, sell every version.",
+        a: "No. One configurable 3D model carries every finish and option, and the plugin keeps it in sync with your WooCommerce variations in both directions.",
       },
       {
         q: "Will it slow down my WooCommerce store?",
@@ -945,9 +947,9 @@ export const INTEGRATIONS: Integration[] = [
         "Add an interactive 3D configurator, 360° viewer and app-free AR to WordPress, with the WooCommerce plugin or a two-line embed on any other site.",
     },
     tagline:
-      "A 3D configurator, 360° viewer and web AR for any WordPress site.",
+      "Web 3D and AR for WordPress sites. WooCommerce stores get the free plugin.",
     integrationIntro:
-      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. If your WordPress site runs WooCommerce, the Thridify for WooCommerce plugin connects the store and places the viewer on matching products. Any other WordPress site (a brand site, a dealer catalogue, a landing page) adds a short script once and marks each product with a one-line Custom HTML block. AR runs in the browser, with no app for your visitors.",
+      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. If your WordPress site runs WooCommerce, the free Thridify for WooCommerce plugin from WordPress.org connects the store and places the viewer on matching products. Any other WordPress site (a brand site, a dealer catalogue, a landing page) adds a short script once and marks each product with a one-line Custom HTML block. AR runs in the browser, with no app for your visitors.",
     installLabel:
       "Install: WooCommerce plugin, or embed snippet on any WordPress site",
     steps: [
@@ -961,7 +963,7 @@ export const INTEGRATIONS: Integration[] = [
       },
       {
         heading: "Visitors configure, spin and place in AR",
-        body: "The JS SDK renders the live experience on the page — visitors configure options and view the item in their room, app-free.",
+        body: "The live experience renders on the page. Visitors configure options and view the item in their room, app-free.",
       },
     ],
     helpsIntro:

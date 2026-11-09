@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ShopifyAppNote } from '@/components/ShopifyAppNote';
+import { WooCommercePluginNote } from '@/components/WooCommercePluginNote';
 import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
@@ -185,6 +186,10 @@ export default function ArViewerPage() {
             <ShopifyAppNote
               className="mt-6"
               text="On Shopify? AR view in your room comes with the Thridify app."
+            />
+            <WooCommercePluginNote
+              className="mt-3"
+              text="On WooCommerce? AR comes with the free Thridify plugin."
             />
           </Reveal>
         </div>

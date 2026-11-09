@@ -9,6 +9,18 @@ import {
   SHOPIFY_PAGE_PATH,
   SHOPIFY_FEATURES,
 } from '@/lib/shopify-app';
+import {
+  WOO_PLUGIN_URL,
+  WOO_PLUGIN_NAME,
+  WOO_PLUGIN_VERSION,
+  WOO_PLUGIN_SUMMARY,
+  WOO_PAGE_PATH,
+  WOO_DEMO_STORE_URL,
+  WOO_REQUIREMENTS,
+  WOO_PRICING_NOTE,
+  WOO_FEATURES,
+  WOO_INDUSTRIES,
+} from '@/lib/woocommerce-plugin';
 
 /**
  * /llms.txt — a machine-first, declarative summary of Thridify for LLMs and
@@ -29,6 +41,8 @@ export function GET() {
     (c) => `- Thridify vs ${c.name}: ${SITE_URL}/compare/${c.slug}`,
   ).join('\n');
   const shopifyFeatureList = SHOPIFY_FEATURES.map((f) => `- ${f.title}`).join('\n');
+  const wooFeatureList = WOO_FEATURES.map((f) => `- ${f.title}`).join('\n');
+  const wooIndustries = WOO_INDUSTRIES.map((i) => i.name.toLowerCase()).join(', ');
   const integrationList = INTEGRATIONS.map(
     (i) => `- ${i.name}: ${SITE_URL}/integrations/${i.slug}`,
   ).join('\n');
@@ -66,6 +80,20 @@ What the app does on a Shopify store today:
 ${shopifyFeatureList}
 Not in the Shopify app yet: Shop the Look, Shop the Room and multi-product room scenes. Those run on Thridify's own platform.
 
+## WooCommerce plugin
+${WOO_PLUGIN_SUMMARY}
+- Plugin: ${WOO_PLUGIN_NAME} (slug: thridify, version ${WOO_PLUGIN_VERSION})
+- WordPress.org: ${WOO_PLUGIN_URL}
+- Page on thridify.com: ${SITE_URL}${WOO_PAGE_PATH}
+- Live WooCommerce demo store: ${WOO_DEMO_STORE_URL}
+- Requires: WordPress ${WOO_REQUIREMENTS.wordpress}+, PHP ${WOO_REQUIREMENTS.php}+, WooCommerce ${WOO_REQUIREMENTS.woocommerce}+
+- Pricing: ${WOO_PRICING_NOTE}
+- Install: Plugins > Add New, search "Thridify", activate, then WooCommerce > Thridify 3D & AR > Connect with Thridify. The catalog syncs and matches by SKU, slug, name or product ID.
+- Suits: ${wooIndustries}.
+What the plugin does on a WooCommerce store today:
+${wooFeatureList}
+Not in the WooCommerce plugin yet: Shop the Look, Shop the Room, the 3D room visualizer and multi-product room scenes. Those run on Thridify's own platform.
+
 ## Model formats
 glTF, GLB and USDZ — photoreal and AR-ready.
 
@@ -93,6 +121,7 @@ ${compareList}
 - Industries: ${SITE_URL}/industries
 - Integrations: ${SITE_URL}/integrations
 - Shopify app (3D configurator and AR for Shopify): ${SITE_URL}${SHOPIFY_PAGE_PATH}
+- WooCommerce plugin (3D viewer, configurator and AR for WooCommerce): ${SITE_URL}${WOO_PAGE_PATH}
 - About: ${SITE_URL}/about
 - Contact: ${SITE_URL}/contact
 
