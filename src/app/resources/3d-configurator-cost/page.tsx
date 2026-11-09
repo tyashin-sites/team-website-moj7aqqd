@@ -29,14 +29,14 @@ const DRIVERS = [
 const FAQS = [
   {
     q: 'How much does a 3D product configurator cost?',
-    a: 'It depends on catalogue size, product complexity, the number of variants and which experiences you need. Thridify runs on a monthly platform subscription plus a one-time setup that covers integration and your first experiences, with optional managed services and the done-for-you modelling service on top. The exact figure is scoped on a short call.',
+    a: 'It depends on catalogue size, product complexity, the number of variants and which experiences you need, plus whether you want the done-for-you modelling service or managed services. The exact figure is scoped on a short call, once the team has seen your products.',
   },
   {
     q: 'Why doesn’t Thridify publish a price list?',
     a: 'Two catalogues of the same size can differ hugely in geometry, materials and variant count, so a public number would be wrong for most readers. A 15–30 minute scoping call gives you an accurate figure instead of a misleading one.',
   },
   {
-    q: 'What does the one-time setup cover?',
+    q: 'What happens at the start of a project?',
     a: 'Website integration, creation of your first experiences and hand-over to your team so you can publish and manage products yourself in the no-code Studio.',
   },
   {
@@ -52,12 +52,11 @@ const FAQS = [
 export const metadata = pageMetadata({
   title: 'How Much Does a 3D Product Configurator Cost? — Cost Drivers Explained',
   description:
-    'What drives the cost of a 3D product configurator and AR experience: catalogue size, model complexity, variants, integrations and managed services — plus how Thridify’s pricing is structured and what is free.',
+    'What drives the cost of a 3D product configurator and AR experience: catalogue size, model complexity, variants, integrations and managed services, and what is always free.',
   keywords: [
     '3D product configurator cost',
     'how much does a 3D configurator cost',
     '3D model cost for ecommerce',
-    'Thridify pricing',
     'AR product viewer pricing',
   ],
   path: PATH,
@@ -113,8 +112,8 @@ export default function CostGuide() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 lead max-w-2xl">
-              Six things set the number. Here is what they are, how Thridify’s pricing is structured,
-              and what is always free — so you arrive at the call knowing what you are buying.
+              Six things set the number. Here is what they are, what you are paying for,
+              and what is always free, so you arrive at the call knowing what to ask.
             </p>
           </Reveal>
         </div>
@@ -141,15 +140,15 @@ export default function CostGuide() {
       <section className="section bg-surface">
         <div className="container-x grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
-            <p className="eyebrow">How Thridify prices</p>
-            <h2 className="tt-2">Subscription, setup, and the services you choose.</h2>
+            <p className="eyebrow">What you are paying for</p>
+            <h2 className="tt-2">The platform, getting started, and the services you choose.</h2>
           </div>
           <div className="lg:col-span-8 max-w-2xl space-y-5 text-foreground/75 leading-relaxed">
-            <p><strong>Platform subscription</strong> — monthly (quarterly and annual plans are available), sized to your catalogue and the experiences you switch on.</p>
-            <p><strong>One-time setup</strong> — website integration, creation of your first experiences and hand-over to your team.</p>
-            <p><strong>3D Modelling Service</strong> — per-SKU, scoped on your references and complexity; delivered as glTF/GLB/USDZ you own outright.</p>
-            <p><strong>Managed services (optional)</strong> — Thridify creates new experiences and makes changes for you instead of your team using the Studio.</p>
-            <p><strong>Always free</strong> — the 15-day platform trial and the 30-minute industry demo.</p>
+            <p><strong>The platform</strong>: the viewer, configurator, AR and the no-code Studio, sized to your catalogue and the experiences you switch on.</p>
+            <p><strong>Getting started</strong>: website integration, creation of your first experiences and hand-over to your team.</p>
+            <p><strong>3D Modelling Service</strong>: per product, scoped on your references and complexity; delivered as glTF/GLB/USDZ you own outright.</p>
+            <p><strong>Managed services (optional)</strong>: Thridify creates new experiences and makes changes for you instead of your team using the Studio.</p>
+            <p><strong>Always free</strong>: the 15-day platform trial and the 30-minute industry demo.</p>
             <p className="text-sm text-foreground/60">Exact figures are confirmed on the scoping call, because the drivers above change them materially from one catalogue to the next.</p>
           </div>
         </div>

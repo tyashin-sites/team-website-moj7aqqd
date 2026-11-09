@@ -71,7 +71,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "get-on-my-website",
         q: "How do I get Thridify on my website?",
-        a: "Three steps. First, book a demo or send your details through the contact page. Second, the team sets up your account and first experiences — the one-time setup covers integration and hand-over. Third, add Thridify to your site with the plugin for your platform, or the lightweight embed and JS SDK for a custom site. No re-platforming.",
+        a: "Three steps. First, book a demo or send your details through the contact page. Second, the team sets up your account and first experiences, including integration and hand-over. Third, add Thridify to your site with the plugin for your platform, or the lightweight embed and JS SDK for a custom site. No re-platforming.",
         links: [{ label: "Integrations", href: "/integrations" }],
       },
       {
@@ -286,13 +286,13 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
   },
   {
     id: "pricing",
-    label: "Plans & pricing",
-    blurb: "How pricing works, and what's always free.",
+    label: "Cost & what's free",
+    blurb: "What sets the cost, and what's always free.",
     faqs: [
       {
         id: "how-pricing-works",
-        q: "How does Thridify pricing work?",
-        a: "Thridify runs on a monthly SaaS subscription with a one-time setup that covers website integration, creation of your first experiences and hand-over to your team. Optional managed services and the done-for-you modelling service sit on top. The right plan depends on catalogue size, customisation and the experiences you need — a short call gets you an exact number.",
+        q: "How is the cost of Thridify worked out?",
+        a: "It depends on your catalogue: how many products, how complex they are, how many options each has, and which experiences you want on the site. Getting started covers website integration, your first experiences and hand-over to your team. Managed services and the done-for-you modelling service are optional. A short call gets you an exact number for your products.",
         links: [{ label: "Get a tailored quote", href: CALENDLY_URL }],
       },
       {
@@ -310,7 +310,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "managed-services",
         q: "Do you offer managed services?",
-        a: "Yes. If you'd rather not run the platform yourself, Thridify can manage your account — creating new experiences and making changes to existing ones — as an add-on to the subscription. Scope is agreed on the call.",
+        a: "Yes. If you'd rather not run the platform yourself, Thridify can manage your account, creating new experiences and making changes to existing ones. Scope is agreed on the call.",
       },
       {
         id: "roi",
