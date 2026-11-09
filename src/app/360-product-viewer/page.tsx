@@ -5,6 +5,7 @@ import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /360-product-viewer — owns the viewer cluster: "360 product viewer",
@@ -16,7 +17,7 @@ import { CANONICAL_METRICS } from '@/lib/industries';
  */
 
 const PATH = '/360-product-viewer';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('360-product-viewer');
 const UPDATED = '2026-09-19';
 
 /** The three things people mean when they say "360 viewer" — named honestly. */

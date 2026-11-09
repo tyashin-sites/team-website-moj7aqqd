@@ -11,8 +11,9 @@ import { EXP } from '@/lib/thridify';
 import { SectionIndex } from '@/components/SectionIndex';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { calendlyHref } from '@/lib/calendly';
 
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('what-is-thridify');
 const CANONICAL = '/what-is-thridify';
 
 // FULLY STATIC — declarative, build-time content only.

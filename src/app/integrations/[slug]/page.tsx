@@ -42,6 +42,8 @@ import { HeroArt } from "@/components/HeroArt";
 import { JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { ORG_ID } from "@/lib/schema";
+import { calendlyHref } from '@/lib/calendly';
+import { getInstallGuide } from '@/lib/integration-install-guides';
 
 // Pillar icons for the rich capability groups (Shopify).
 const PILLAR_ICON: Record<PillarId, LucideIcon> = {
@@ -54,7 +56,7 @@ const PILLAR_ICON: Record<PillarId, LucideIcon> = {
 
 const SITE_URL =
   process.env.SITE_URL ?? "https://team-website-moj7aqqd.sites.tyashin.com";
-const CALENDLY = "https://calendly.com/hello-thridify/30min";
+const CALENDLY = calendlyHref('integrations');
 
 const INTEGRATION_ICON: Record<Integration["icon"], LucideIcon> = {
   plugin: Plug,
@@ -123,6 +125,7 @@ export default async function IntegrationPage({
   const { slug } = await params;
   const it = getIntegration(slug);
   if (!it) notFound();
+  const guide = getInstallGuide(it.slug);
 
   const canonicalUrl = `${SITE_URL}/integrations/${it.slug}`;
   const HeroIcon = INTEGRATION_ICON[it.icon];
@@ -241,6 +244,7 @@ export default async function IntegrationPage({
       <SectionIndex
         items={[
           { id: "how-it-integrates", label: "How it integrates" },
+          ...(guide ? [{ id: "install-guide", label: "Install guide" }] : []),
           { id: "what-you-get", label: "What you get" },
           ...(it.rich
             ? [
@@ -281,6 +285,45 @@ export default async function IntegrationPage({
           </ol>
         </div>
       </section>
+
+      {/* INSTALL GUIDE — platform-specific steps for the embed pages */}
+      {guide && (
+        <section id="install-guide" className="section pt-0 scroll-mt-20">
+          <div className="container-x grid lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-8">
+              <p className="eyebrow">Install guide</p>
+              <h2 className="tt-2">{guide.heading}</h2>
+              <p className="mt-4 lead">{guide.intro}</p>
+              <ol className="mt-10 space-y-10">
+                {guide.steps.map((step, idx) => (
+                  <li key={step.heading}>
+                    <h3 className="font-heading text-lg font-semibold tracking-tight">
+                      <span className="font-mono tabular-nums text-sm text-primary mr-3">{`0${idx + 1}`}</span>
+                      {step.heading}
+                    </h3>
+                    <p className="mt-3 text-foreground/75 leading-relaxed">{step.body}</p>
+                    {step.code ? (
+                      <pre className="mt-4 overflow-x-auto rounded-xl bg-ink text-paper p-5 text-[13px] leading-relaxed">
+                        <code data-lang={step.codeLang}>{step.code}</code>
+                      </pre>
+                    ) : null}
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <aside className="lg:col-span-4">
+              <div className="card p-6 lg:sticky lg:top-28">
+                <p className="eyebrow">{guide.gotchasHeading}</p>
+                <ul className="mt-4 space-y-4">
+                  {guide.gotchas.map((g) => (
+                    <li key={g.slice(0, 40)} className="text-sm text-foreground/75 leading-relaxed">{g}</li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </section>
+      )}
 
       {/* WHAT YOU GET — capabilities framed for this platform's merchants */}
       <section id="what-you-get" className="section pt-0 scroll-mt-20">

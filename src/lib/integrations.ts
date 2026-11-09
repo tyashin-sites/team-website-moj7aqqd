@@ -926,7 +926,7 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "wordpress",
     name: "WordPress",
-    group: "native",
+    group: "embed",
     icon: "wordpress",
     heroDemo: "configurator",
     primaryKeyword: "3D product configurator for WordPress",
@@ -939,19 +939,19 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D Product Configurator & AR for WordPress",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to a WordPress site. WooCommerce stores use the free Thridify plugin; other WordPress sites use a lightweight embed.",
+      "Add a 3D product configurator, 360° viewer and app-free AR to a WordPress site. WooCommerce stores use the Thridify plugin; any other WordPress site uses a two-line embed.",
     hero: {
       eyebrow: "WordPress Integration",
       h1: "3D Product Configurator & AR for WordPress",
       subtitle:
-        "Add an interactive 3D configurator, 360° viewer and app-free AR to WordPress. Running WooCommerce? Use the free Thridify plugin from WordPress.org.",
+        "Add an interactive 3D configurator, 360° viewer and app-free AR to WordPress, with the WooCommerce plugin or a two-line embed on any other site.",
     },
     tagline:
       "Web 3D and AR for WordPress sites. WooCommerce stores get the free plugin.",
     integrationIntro:
-      "If you sell with WooCommerce, install the free Thridify plugin from WordPress.org: it syncs your catalog, adds the viewer to product pages and shop grids, and gives you a View in 3D block and shortcode (see the WooCommerce plugin page). The plugin needs WooCommerce. On a WordPress site without WooCommerce, publish the experience in Thridify and paste the lightweight embed snippet on any page. AR runs in the browser, so visitors never install an app.",
+      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. If your WordPress site runs WooCommerce, the free Thridify for WooCommerce plugin from WordPress.org connects the store and places the viewer on matching products. Any other WordPress site (a brand site, a dealer catalogue, a landing page) adds a short script once and marks each product with a one-line Custom HTML block. AR runs in the browser, with no app for your visitors.",
     installLabel:
-      "Install: Thridify plugin (WooCommerce stores) or embed snippet (any WordPress page)",
+      "Install: WooCommerce plugin, or embed snippet on any WordPress site",
     steps: [
       {
         heading: "Publish an experience in Thridify",
@@ -959,7 +959,7 @@ export const INTEGRATIONS: Integration[] = [
       },
       {
         heading: "Add it to a WordPress page",
-        body: "On WooCommerce, install the Thridify plugin and connect. On any other WordPress page, paste the embed snippet for the experience.",
+        body: "On WooCommerce, install the plugin and connect your store. On any other WordPress site, add the script once and a Custom HTML block where the product should appear.",
       },
       {
         heading: "Visitors configure, spin and place in AR",
@@ -972,7 +972,7 @@ export const INTEGRATIONS: Integration[] = [
       {
         capability: "configurator",
         heading: "A 3D configurator via plugin or embed",
-        body: "WooCommerce stores add it with the plugin, other sites with a snippet. Shoppers swap finishes and options in 3D.",
+        body: "Add the configurator with the WooCommerce plugin or a snippet, and visitors swap finishes and options live.",
       },
       {
         capability: "ar",
@@ -1005,15 +1005,15 @@ export const INTEGRATIONS: Integration[] = [
     faqs: [
       {
         q: "Does Thridify work with WordPress?",
-        a: "Yes. WooCommerce stores install the free Thridify plugin from WordPress.org. WordPress sites without WooCommerce add a 3D configurator, 360° viewer and app-free AR with a lightweight embed snippet.",
+        a: "Yes. WooCommerce stores use the Thridify for WooCommerce plugin. Any other WordPress site adds Thridify with a short embed: one script for the site and a Custom HTML block per product.",
       },
       {
         q: "How do I add a 3D configurator to WordPress?",
-        a: "On WooCommerce, install the Thridify plugin, connect your account and the catalog matches itself. On a plain WordPress site, publish the experience in Thridify and paste its embed snippet on the page.",
+        a: "Publish the experience in Thridify. On WooCommerce, install and connect the plugin. Otherwise, add the Thridify script to your footer and a Custom HTML block with the product’s Thridify ID where it should appear.",
       },
       {
         q: "Do I need WooCommerce to use Thridify on WordPress?",
-        a: "Not for the embed, which works on any WordPress page. The Thridify plugin itself needs WooCommerce 8.5 or later, because it syncs your products and variations.",
+        a: "Not for the embed, which works on any WordPress page. The Thridify plugin does require WooCommerce, because it syncs your product catalogue and adds variation sync and add to cart from the viewer.",
       },
       {
         q: "Do my visitors need an app for AR?",

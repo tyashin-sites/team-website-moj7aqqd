@@ -1,9 +1,11 @@
+
+import { calendlyHref } from '@/lib/calendly';
 /**
  * CTABand — DESIGN-SPEC §7.7. Dark ink section, subtle teal→pink aurora
  * at ~20% opacity, headline ≤10 words, single Calendly CTA.
  */
 
-const CALENDLY_URL = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY_URL = calendlyHref('cta-band');
 
 export function CTABand({
   headline = 'See your own product in 3D — live.',

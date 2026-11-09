@@ -8,8 +8,9 @@
  */
 
 import { useEffect, useState } from 'react';
+import { calendlyHref } from '@/lib/calendly';
 
-const CALENDLY_URL = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY_URL = calendlyHref('mobile-cta-bar');
 
 export function MobileCtaBar() {
   const [show, setShow] = useState(false);

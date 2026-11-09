@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRight, ArrowLeft } from 'lucide-react';
+import { calendlyHref } from '@/lib/calendly';
 
 export const metadata: Metadata = {
   title: 'Page not found',
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('not-found');
 
 // Key destinations for a lost visitor — the same spine as the primary nav,
 // plus the two highest-intent SEO surfaces (no ghost links, addendum §3d).

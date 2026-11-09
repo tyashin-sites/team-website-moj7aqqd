@@ -6,6 +6,7 @@ import { VerticalCard } from '@/components/signature/VerticalCard';
 import { ctaLabel } from '@/lib/cta';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
+import { calendlyHref } from '@/lib/calendly';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
@@ -58,7 +59,7 @@ export default function IndustriesPage() {
             <p className="mt-7 lead max-w-2xl">{page.hero.subtitle}</p>
             <div className="mt-10 flex flex-wrap gap-3">
               <a
-                href="https://calendly.com/hello-thridify/30min"
+                href={calendlyHref('industries')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"

@@ -33,10 +33,11 @@ import { HeroArt } from '@/components/HeroArt';
 import { JsonLd } from '@/components/JsonLd';
 import { pageMetadata } from '@/lib/seo';
 import { ORG_ID } from '@/lib/schema';
+import { calendlyHref } from '@/lib/calendly';
 
 const SITE_URL =
   process.env.SITE_URL ?? 'https://team-website-moj7aqqd.sites.tyashin.com';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('industries');
 
 // Real quote only (No-Faking) — verbatim from production thridify.com.
 const GUNTIER_QUOTE =

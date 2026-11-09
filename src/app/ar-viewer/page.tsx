@@ -7,6 +7,7 @@ import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
 import { CANONICAL_METRICS } from '@/lib/industries';
+import { calendlyHref } from '@/lib/calendly';
 
 /**
  * /ar-viewer — owns "AR viewer", "3D AR viewer", "WebAR",
@@ -18,7 +19,7 @@ import { CANONICAL_METRICS } from '@/lib/industries';
  */
 
 const PATH = '/ar-viewer';
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('ar-viewer');
 const UPDATED = '2026-09-19';
 
 const STEPS = [

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCloudflareContext } from '@opennextjs/cloudflare';
+import { tyashinApi, visitorContext } from '@/lib/tyashin-api';
 
 /**
  * Contact-form lead pipeline (BUILD-PLAN Phase 0).
@@ -18,6 +18,11 @@ import { getCloudflareContext } from '@opennextjs/cloudflare';
  *      sent as FIRST-CLASS fields so the plugin can qualify/segment/route by
  *      them — not just buried in the message body.
  *   4. Always responds fast — forwarding never blocks the response.
+ *   5. Attribution (policy §3/§9): the optional `howHeard` answer (verbatim)
+ *      and the first/last-touch `attribution` captured client-side go into
+ *      the submission's `metadata`, with the visitor's real IP and country in
+ *      `metadata.visitor` (the platform's own columns see this Worker, not the
+ *      visitor). The visitor's User-Agent and page are forwarded as headers.
  *
  * Slack / CRM / auto-reply destinations now live in the plugin's Settings
  * (admin.tyashin.com → project → Contact Form & Lead Capture), so this route
@@ -33,7 +38,24 @@ type LeadPayload = {
   /** Legacy alias for `category` — kept for back-compat. */
   industry?: unknown;
   message?: unknown;
+  /** "How did you first hear about Thridify?" — policy §9 option, verbatim. */
+  howHeard?: unknown;
+  /** Free text when howHeard is "Other". */
+  howHeardOther?: unknown;
+  /** First/last touch from src/lib/attribution.ts. Re-validated here. */
+  attribution?: unknown;
 };
+
+type CleanTouch = {
+  utm: Record<string, string>;
+  gclid?: string;
+  fbclid?: string;
+  referrer?: string;
+  landingPath?: string;
+  at?: string;
+};
+
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -41,15 +63,54 @@ function str(v: unknown, max: number): string {
   return typeof v === 'string' ? v.trim().slice(0, max) : '';
 }
 
+// The client value is untrusted: keep only known keys, as short strings.
+function cleanTouch(v: unknown): CleanTouch | undefined {
+  if (!v || typeof v !== 'object') return undefined;
+  const o = v as Record<string, unknown>;
+  const utmIn = (o.utm && typeof o.utm === 'object' ? o.utm : {}) as Record<string, unknown>;
+  const utm: Record<string, string> = {};
+  for (const k of UTM_KEYS) {
+    const s = str(utmIn[k], 200);
+    if (s) utm[k] = s;
+  }
+  const t: CleanTouch = {
+    utm,
+    gclid: str(o.gclid, 200) || undefined,
+    fbclid: str(o.fbclid, 200) || undefined,
+    referrer: str(o.referrer, 300) || undefined,
+    landingPath: str(o.landingPath, 200) || undefined,
+    at: str(o.at, 40) || undefined,
+  };
+  return t.landingPath || Object.keys(utm).length || t.referrer ? t : undefined;
+}
+
+function cleanAttribution(v: unknown): { first?: CleanTouch; last?: CleanTouch } | undefined {
+  if (!v || typeof v !== 'object') return undefined;
+  const o = v as Record<string, unknown>;
+  const first = cleanTouch(o.first);
+  const last = cleanTouch(o.last);
+  return first || last ? { first, last } : undefined;
+}
+
+// A form submitted before hydration arrives form-encoded (ConciergeForm is
+// method="post" so it can never fall back to a GET that puts the email in
+// the URL). Those callers get a 303 back to /contact with no personal data.
+function reply(native: boolean, request: Request, body: { ok: boolean; error?: string }, status: number) {
+  if (native) {
+    return NextResponse.redirect(new URL(`/contact?sent=${body.ok ? 1 : 0}`, request.url), 303);
+  }
+  return NextResponse.json(body, { status });
+}
+
 export async function POST(request: Request) {
+  const native = !(request.headers.get('content-type') || '').includes('application/json');
   let body: LeadPayload;
   try {
-    body = (await request.json()) as LeadPayload;
+    body = native
+      ? (Object.fromEntries(await request.formData()) as LeadPayload)
+      : ((await request.json()) as LeadPayload);
   } catch {
-    return NextResponse.json(
-      { ok: false, error: 'Invalid JSON body' },
-      { status: 400 }
-    );
+    return reply(native, request, { ok: false, error: 'Invalid request body' }, 400);
   }
 
   const name = str(body.name, 100);
@@ -58,18 +119,16 @@ export async function POST(request: Request) {
   // The concierge form sends `category`; older callers sent `industry`.
   const category = str(body.category, 100) || str(body.industry, 100);
   const message = str(body.message, 5000);
+  const howHeard = str(body.howHeard, 120);
+  const howHeardOther = str(body.howHeardOther, 200);
+  const attribution = cleanAttribution(body.attribution);
+  const visitor = visitorContext(request);
 
   if (!name) {
-    return NextResponse.json(
-      { ok: false, error: 'Name is required' },
-      { status: 400 }
-    );
+    return reply(native, request, { ok: false, error: 'Name is required' }, 400);
   }
   if (!email || !EMAIL_RE.test(email)) {
-    return NextResponse.json(
-      { ok: false, error: 'A valid email is required' },
-      { status: 400 }
-    );
+    return reply(native, request, { ok: false, error: 'A valid email is required' }, 400);
   }
 
   const lead = {
@@ -78,6 +137,9 @@ export async function POST(request: Request) {
     company: company || undefined,
     category: category || undefined,
     message: message || undefined,
+    howHeard: howHeard || undefined,
+    howHeardOther: howHeardOther || undefined,
+    utm: attribution?.first?.utm,
     submittedAt: new Date().toISOString(),
   };
 
@@ -86,58 +148,57 @@ export async function POST(request: Request) {
   console.log('LEAD:', JSON.stringify(lead));
 
   // Best-effort background forward to the Tyashin platform CRM inbox.
-  try {
-    const { env, ctx } = getCloudflareContext();
-    const apiKey =
-      (env as Record<string, unknown>).TYASHIN_API_KEY ??
-      process.env.TYASHIN_API_KEY;
-    const apiUrl =
-      (env as Record<string, unknown>).TYASHIN_API_URL ??
-      process.env.TYASHIN_API_URL ??
-      'https://website-api.tyashin.com';
-
-    if (typeof apiKey === 'string' && apiKey.length > 0) {
-      const forward = fetch(`${apiUrl}/api/v1/contact/public/submit`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-API-Key': apiKey,
+  const { apiKey, apiUrl, waitUntil } = tyashinApi();
+  if (apiKey) {
+    const referer = request.headers.get('referer') || undefined;
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'X-API-Key': apiKey,
+    };
+    // The platform records these two from its request headers.
+    if (visitor.userAgent) headers['User-Agent'] = visitor.userAgent;
+    if (referer) headers['Referer'] = referer;
+    const forward = fetch(`${apiUrl}/api/v1/contact/public/submit`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        name,
+        email,
+        // First-class qualification fields the plugin filters/routes on.
+        company: company || undefined,
+        category: category || undefined,
+        subject: category
+          ? `Website demo request — ${category}`
+          : 'Website demo request',
+        message: message || undefined,
+        source: 'thridify-website-contact',
+        pageUrl: referer,
+        metadata: {
+          company,
+          category,
+          howHeard: howHeard || undefined,
+          howHeardOther: howHeardOther || undefined,
+          attribution,
+          visitor: { ip: visitor.ip, country: visitor.country },
         },
-        body: JSON.stringify({
-          name,
-          email,
-          // First-class qualification fields the plugin filters/routes on.
-          company: company || undefined,
-          category: category || undefined,
-          subject: category
-            ? `Website demo request — ${category}`
-            : 'Website demo request',
-          message: message || undefined,
-          source: 'thridify-website-contact',
-          pageUrl: request.headers.get('referer') || undefined,
-          metadata: { company, category },
-        }),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            console.log(
-              `LEAD: platform forward failed with status ${res.status} — lead preserved in log above`
-            );
-          }
-        })
-        .catch((err) => {
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
           console.log(
-            `LEAD: platform forward errored (${String(err)}) — lead preserved in log above`
+            `LEAD: platform forward failed with status ${res.status} — lead preserved in log above`
           );
-        });
-      ctx.waitUntil(forward);
-    } else {
-      console.log('LEAD: no TYASHIN_API_KEY binding — log-only fallback used');
-    }
-  } catch {
-    // getCloudflareContext unavailable (e.g. local next dev) — log-only.
-    console.log('LEAD: no Cloudflare context — log-only fallback used');
+        }
+      })
+      .catch((err) => {
+        console.log(
+          `LEAD: platform forward errored (${String(err)}) — lead preserved in log above`
+        );
+      });
+    waitUntil(forward);
+  } else {
+    console.log('LEAD: no TYASHIN_API_KEY binding — log-only fallback used');
   }
 
-  return NextResponse.json({ ok: true });
+  return reply(native, request, { ok: true }, 200);
 }

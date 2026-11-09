@@ -7,6 +7,7 @@ import { Reveal } from '@/components/Reveal';
 import { HeroArt } from '@/components/HeroArt';
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
 import { EXP } from '@/lib/thridify';
+import { calendlyHref } from '@/lib/calendly';
 import {
   WOO_PLUGIN_URL,
   WOO_PLUGIN_NAME,
@@ -40,7 +41,7 @@ import {
  */
 
 const PATH = WOO_PAGE_PATH;
-const CALENDLY = 'https://calendly.com/hello-thridify/30min';
+const CALENDLY = calendlyHref('integrations-woocommerce');
 const UPDATED = '2026-11-04';
 const BLOG_HOWTO = '/blog/how-to-add-a-3d-product-configurator-to-woocommerce';
 const BLOG_SETUP = '/blog/how-to-add-3d-and-ar-to-woocommerce-product-pages';
