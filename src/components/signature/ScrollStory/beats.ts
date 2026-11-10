@@ -98,9 +98,9 @@ export const BEATS: Beat[] = [
   {
     id: 'bom',
     step: '04',
-    title: 'BOM to factory',
-    copy: 'Production specs flow straight through.',
-    detail: 'Every part, code and quantity lands on the factory floor as-configured.',
+    title: 'Spec to your team',
+    copy: 'The exact build travels with the quote.',
+    detail: 'Every option the buyer picked arrives with the order, so nobody rebuilds it from a screenshot.',
     camera: { from: P3, to: P4 },
     state: { variant: FINISHES[1].variant, price: FINISHES[1].price, callouts: true },
   },
@@ -117,12 +117,14 @@ export const QUOTE = {
   total: '$1,349',
 } as const;
 
-/** Bill of materials (beat 04). Codes map 1:1 to the part callouts. */
+/** Selected options (beat 04). Codes map 1:1 to the part callouts. Shown as
+ *  the spec that travels with the quote, not as a bill of materials: BOM
+ *  export is unconfirmed (WCR-024), so the site does not claim it. */
 export const BOM = [
-  { code: 'FAB-PCK-01', part: 'Peacock velvet', qty: '2.4 m' },
-  { code: 'FRM-ASH-02', part: 'Black ash frame', qty: '× 1' },
-  { code: 'HW-STL-14', part: 'Steel fasteners', qty: '× 12' },
-  { code: 'LBL-CARE-01', part: 'Care label', qty: '× 1' },
+  { code: 'FAB-PCK-01', part: 'Peacock velvet', qty: 'Fabric' },
+  { code: 'FRM-ASH-02', part: 'Black ash', qty: 'Frame' },
+  { code: 'HW-STL-14', part: 'Brushed steel', qty: 'Hardware' },
+  { code: 'LBL-CARE-01', part: 'Standard', qty: 'Size' },
 ] as const;
 
 /** Part callouts anchored on the model (beat 04). Positions are in model

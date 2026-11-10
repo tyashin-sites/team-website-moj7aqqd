@@ -210,7 +210,7 @@ export const INDUSTRIES: Industry[] = [
       eyebrow: 'Modular Kitchens & Wardrobes',
       h1: 'A modular kitchen 3D design tool that quotes instantly.',
       subtitle:
-        'Buyers configure layout, finishes and hardware in 3D and get a live price and BOM — instead of waiting days for a hand-built quote.',
+        'Buyers configure layout, finishes and hardware in 3D and get a live price and quote instead of waiting days for a hand-built one.',
     },
     pain: 'Hand-built quotes for layouts, finishes and hardware keep serious buyers waiting for days.',
     helpsIntro:
@@ -219,7 +219,7 @@ export const INDUSTRIES: Industry[] = [
       {
         capability: 'configurator',
         heading: 'Configure layout, finish & hardware',
-        body: 'Buyers assemble modules, swap finishes and pick hardware in 3D; every change reprices live and exports a production-ready BOM.',
+        body: 'Buyers assemble modules, swap finishes and pick hardware in 3D; every change reprices live, and the quote lists every choice.',
       },
       {
         capability: 'viewer',
@@ -241,11 +241,11 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       {
         q: 'Can buyers design a modular kitchen online in 3D?',
-        a: 'Yes. Thridify’s configurator lets buyers assemble modules, choose finishes and hardware in real-time 3D, then receive an instant price and BOM from the same tool.',
+        a: 'Yes. Thridify’s configurator lets buyers assemble modules, choose finishes and hardware in real-time 3D, then receive an instant price and quote from the same tool.',
       },
       {
-        q: 'Does the kitchen configurator generate a quote and BOM?',
-        a: 'Every configuration reprices live and exports a production-ready bill of materials straight to manufacturing, so quoting is instant instead of taking days.',
+        q: 'Does the kitchen configurator generate a quote?',
+        a: 'Yes. Every configuration reprices live and produces a quote with each module, finish and hardware choice, so quoting takes minutes instead of days.',
       },
       {
         q: 'Can I use the same tool for wardrobes and storage?',

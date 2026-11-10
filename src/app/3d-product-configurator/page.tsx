@@ -42,8 +42,8 @@ const CAPABILITIES = [
     b: 'The configured build — their finish, their size — opens in the phone camera. Android goes through Scene Viewer, iOS through AR Quick Look. No app install, no download step.',
   },
   {
-    t: 'Quote and BOM out the other end',
-    b: 'The configuration leaves as a structured bill of materials rather than a screenshot and a phone call, so the factory builds what the customer actually picked.',
+    t: 'A priced quote out the other end',
+    b: 'The configuration leaves with its price and every option the customer picked, not as a screenshot and a phone call, so your team quotes and builds from the real spec.',
   },
   {
     t: 'Variant-level analytics',

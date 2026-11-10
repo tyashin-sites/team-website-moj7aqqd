@@ -43,6 +43,33 @@ function effectiveHost(request: NextRequest): string {
   ).toLowerCase();
 }
 
+/**
+ * WCR-011: Content-Security-Policy in REPORT-ONLY mode (VP decision 9 Nov
+ * 2026: 7-day soak, then enforce if the 3D viewer reports no violations).
+ * Report-Only never blocks anything; browsers POST violations to
+ * /api/csp-report, which logs one line per report (`csp_violation`). Read
+ * them in the site Worker's logs before switching the header name to
+ * `Content-Security-Policy`. Platform-served paths (/blog, /robots.txt,
+ * /sitemap.xml, checkout…) don't pass through this middleware and need a
+ * platform-side header of their own.
+ */
+const CSP_REPORT_ONLY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' blob: https://thridify.com https://*.thridify.com https://website-api.tyashin.com https://www.googletagmanager.com https://www.gstatic.com https://ajax.googleapis.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "img-src 'self' data: blob: https:",
+  "media-src 'self' blob: https:",
+  "connect-src 'self' https: wss:",
+  "worker-src 'self' blob:",
+  "frame-src 'self' https:",
+  "frame-ancestors 'self'",
+  "form-action 'self' https://website-api.tyashin.com",
+  "base-uri 'self'",
+  "object-src 'none'",
+  'report-uri /api/csp-report',
+].join('; ');
+
 export function middleware(request: NextRequest) {
   const host = effectiveHost(request);
 
@@ -57,6 +84,7 @@ export function middleware(request: NextRequest) {
   }
 
   const response = NextResponse.next();
+  response.headers.set('Content-Security-Policy-Report-Only', CSP_REPORT_ONLY);
   const isProduction = host === PRODUCTION_HOST;
   if (!isProduction && PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix))) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow');

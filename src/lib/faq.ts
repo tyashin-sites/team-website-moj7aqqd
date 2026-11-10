@@ -111,12 +111,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "configurator",
         q: "What does the 3D Configurator do?",
-        a: "Buyers customise colours, materials, modules and parts in real time. Every change reprices live, generates an instant quote, and can export a production-ready bill of materials (BOM) straight to manufacturing. Node-level controls allow fine-grain part customisation.",
+        a: "Buyers customise colours, materials, modules and parts in real time. Every change reprices live and generates an instant quote that carries every option the buyer chose. Node-level controls allow fine-grain part customisation.",
       },
       {
         id: "sales-to-production",
         q: "What does “sales-to-production automation” mean?",
-        a: "The configurator doesn't stop at a pretty render. Each configuration carries live cost, produces an instant quotation and exports a BOM to manufacturing — so what the buyer configured is exactly what gets built. That removes screenshot-based interpretation and the rework it causes.",
+        a: "The configurator doesn't stop at a pretty render. Each configuration carries live cost and produces an instant quotation with every option the buyer chose, so your team works from what the buyer actually configured. That removes screenshot-based interpretation and the rework it causes.",
       },
       {
         id: "analytics",
@@ -136,7 +136,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "trade-shows",
         q: "Can sales teams use it at trade shows and in showrooms?",
-        a: "Yes. Reps configure a product live with the buyer on a tablet or the visitor's own phone, quote instantly and place it in the space with AR — no app to install and no samples to ship. B2B teams use the same flow for instant quoting and BOM hand-off.",
+        a: "Yes. Reps configure a product live with the buyer on a tablet or the visitor's own phone, quote instantly and place it in the space with AR — no app to install and no samples to ship. B2B teams use the same flow for instant quoting.",
       },
       {
         id: "results",

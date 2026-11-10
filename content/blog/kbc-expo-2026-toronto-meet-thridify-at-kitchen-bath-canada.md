@@ -47,7 +47,7 @@ The meeting is 30 minutes and it's shaped around your products. These are the th
 
 ### 1. A 3D configurator for cabinets, vanities and countertops
 
-A [3D product configurator](/3d-product-configurator) lets a customer pick door style, finish, width, top and hardware, and see the result update live in 3D. For made-to-order kitchen and bath brands, the configuration can carry straight through to a price, a quote request and a bill of materials, so the sales team starts from a spec instead of a phone call.
+A [3D product configurator](/3d-product-configurator) lets a customer pick door style, finish, width, top and hardware, and see the result update live in 3D. For made-to-order kitchen and bath brands, the configuration can carry straight through to a price and a quote request, so the sales team starts from a spec instead of a phone call.
 
 If you sell modular kitchens or wardrobes, our [modular kitchens page](/industries/modular-kitchens) walks through how this works for that category. We've also written about [reducing buyer confusion in modular kitchens with 3D configurators](/blog/reducing-buyer-confusion-in-modular-kitchens-with-3d-configurators).
 
