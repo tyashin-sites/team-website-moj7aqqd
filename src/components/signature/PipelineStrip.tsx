@@ -89,7 +89,7 @@ export function PipelineStrip() {
   return (
     <section ref={sectionRef} className="on-dark section bg-ink text-paper relative overflow-hidden">
       <div className="container-x relative">
-        <p className="eyebrow">From click to factory floor</p>
+        <p className="eyebrow">From click to confirmed quote</p>
         <h2 className="tt-1 text-paper">One continuous pipeline.</h2>
 
         <div className="relative mt-12">

@@ -228,7 +228,7 @@ export default function RoiGuide() {
           <div className="lg:col-span-8 grid md:grid-cols-3 gap-5">
             {[
               { t: 'Content cost', b: 'One 3D model renders every colourway, angle and lifestyle scene. A new finish stops needing a new shoot.' },
-              { t: 'Sales-cycle time', b: 'For configurable products, live pricing and instant quotes replace days of back-and-forth; the configuration exports straight to production, so what was sold is what gets built.' },
+              { t: 'Sales-cycle time', b: 'For configurable products, live pricing and instant quotes replace days of back-and-forth, and the quote carries every option the buyer chose, so your team builds from the real spec.' },
               { t: 'Inventory', b: 'Selling variants from the model before committing stock to every shade means you stock what people actually order.' },
             ].map((c) => (
               <div key={c.t} className="card p-6">

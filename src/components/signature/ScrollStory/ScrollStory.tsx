@@ -209,7 +209,7 @@ export function ScrollStory({ backend = 'model-viewer' }: { backend?: BackendKin
     >
       <div className="story-frame container-x">
         <div className="story-head">
-          <p className="eyebrow">From click to factory floor</p>
+          <p className="eyebrow">From click to confirmed quote</p>
           <h2 id="scroll-story-title" className="tt-1 text-paper">
             One continuous pipeline.
           </h2>
