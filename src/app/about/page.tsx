@@ -48,6 +48,7 @@ export default function AboutPage() {
               <Image
                 src="/brand/logo-mark.png"
                 alt=""
+                aria-hidden
                 width={600}
                 height={600}
                 unoptimized
@@ -105,6 +106,7 @@ export default function AboutPage() {
               <Image
                 src="/brand/logo-mark.png"
                 alt=""
+                aria-hidden
                 width={600}
                 height={600}
                 unoptimized
