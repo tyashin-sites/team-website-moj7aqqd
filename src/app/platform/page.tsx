@@ -27,10 +27,10 @@ import { EXP } from "@/lib/thridify";
 // Platform Experience-pillar deep-dives → one live experience per capability.
 const PILLAR_EXPERIENCE: Record<string, string> = { viewer: EXP.baxterLounge, configurator: EXP.diningTable, ar: EXP.armChair };
 import { CTABand } from "@/components/signature/CTABand";
-import { SITE_URL } from "@/lib/schema";
 import { PILLARS, getPillar, topFeatures, type Pillar } from "@/lib/features";
 import { pageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
+import { SITE_URL, CANONICAL_DESCRIPTION, ORG_ID } from "@/lib/schema";
 import { breadcrumbLd } from "@/lib/knowledge-graph";
 
 // The three product capabilities that CAN be shown as a live interactive
@@ -174,7 +174,23 @@ export default function PlatformPage() {
     <>
       {/* WebPage + BreadcrumbList for this route (addendum §3b; the WebPage
           node is derived from the breadcrumb in graphJson). */}
-      <JsonLd nodes={[breadcrumbLd("/platform", [{ name: "Home", path: "/" }, { name: "Platform", path: "/platform" }])]} />
+      <JsonLd
+        nodes={[
+          breadcrumbLd("/platform", [{ name: "Home", path: "/" }, { name: "Platform", path: "/platform" }]),
+          // WCR-011: the platform page describes a service, so it says so.
+          // Offers carry no price (no public pricing on thridify.com).
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/platform#service`,
+            name: "Thridify 3D and AR commerce platform",
+            serviceType: "3D product configurator, 3D viewer and app-free AR for e-commerce",
+            description: CANONICAL_DESCRIPTION,
+            url: `${SITE_URL}/platform`,
+            provider: { "@id": ORG_ID },
+            audience: { "@type": "BusinessAudience", audienceType: "Furniture, kitchen, door, window and other custom-product brands" },
+          },
+        ]}
+      />
       <SectionIndex items={INDEX} />
 
       {/* HERO — headline 6 words (≤12); subline 14 words (≤24). */}

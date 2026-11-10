@@ -43,6 +43,9 @@ export function GET() {
   const shopifyFeatureList = SHOPIFY_FEATURES.map((f) => `- ${f.title}`).join('\n');
   const wooFeatureList = WOO_FEATURES.map((f) => `- ${f.title}`).join('\n');
   const wooIndustries = WOO_INDUSTRIES.map((i) => i.name.toLowerCase()).join(', ');
+  // Counted from the list it introduces, so the number can never drift from
+  // the URLs below it again (WCR-006: the line said "Nine" above 12 URLs).
+  const integrationNames = INTEGRATIONS.map((i) => i.name).join(', ');
   const integrationList = INTEGRATIONS.map(
     (i) => `- ${i.name}: ${SITE_URL}/integrations/${i.slug}`,
   ).join('\n');
@@ -51,7 +54,7 @@ export function GET() {
 
 > ${CANONICAL_DESCRIPTION}
 
-Thridify is built and operated by ${LEGAL_NAME}. Founders: Shikha Gupta (CEO) and Aditya Gupta (CTO). Founded in Delhi, India; North American expansion from the Greater Toronto Area.
+Thridify is built and operated by ${LEGAL_NAME}. Led by Shikha Gupta, Co-Founder and CEO. Founded in Delhi, India; North American expansion from the Greater Toronto Area.
 
 ## What Thridify offers
 Five products, one no-code layer:
@@ -65,7 +68,7 @@ Five products, one no-code layer:
 ${industryList}
 
 ## Integrations
-Thridify runs on the store you already have — via a plugin or a lightweight embed, no re-platforming. Nine supported paths: WooCommerce, Shopify, Wix, BigCommerce, Magento, commercetools, Canva, WordPress and any custom storefront (JS SDK + API).
+Thridify runs on the store you already have — via a plugin or a lightweight embed, no re-platforming. ${INTEGRATIONS.length} supported integrations: ${integrationNames}. Custom storefronts use the JS SDK and API.
 Index: ${SITE_URL}/integrations
 ${integrationList}
 
@@ -97,19 +100,17 @@ Not in the WooCommerce plugin yet: Shop the Look, Shop the Room, the 3D room vis
 ## Model formats
 glTF, GLB and USDZ — photoreal and AR-ready.
 
-## Impact metrics (the only figures Thridify claims)
-- 75% lower product returns
-- 3× higher conversion rates
-- 100% more engagement
-- 70% lower photography cost
-- 100% higher click-through rate
-- 40% lower inventory cost
-
 ## Comparisons
 ${compareList}
 
 ## Key pages
 - What is Thridify: ${SITE_URL}/what-is-thridify
+- 3D product configurator: ${SITE_URL}/3d-product-configurator
+- AR viewer (app-free view in your room): ${SITE_URL}/ar-viewer
+- 360° product viewer: ${SITE_URL}/360-product-viewer
+- 3D product visualization: ${SITE_URL}/3d-product-visualization
+- Blog: ${SITE_URL}/blog
+- Device compatibility (which phones and browsers run 3D and AR): ${SITE_URL}/device-compatibility
 - FAQ (all questions answered): ${SITE_URL}/faq
 - ROI of 3D & AR (sourced data + calculator): ${SITE_URL}/resources/roi-of-3d-and-ar-commerce
 - 3D configurator cost guide: ${SITE_URL}/resources/3d-configurator-cost
@@ -141,6 +142,8 @@ LinkedIn: https://linkedin.com/company/thridify
 Instagram: https://instagram.com/thridify
 Facebook: https://facebook.com/thridify
 YouTube: https://youtube.com/@thridify
+WordPress.org plugin: ${WOO_PLUGIN_URL}
+Shopify App Store: ${SHOPIFY_APP_URL}
 `;
 
   return new Response(body, {
