@@ -213,7 +213,7 @@ export default function IntegrationsIndexPage() {
         </div>
       </section>
 
-      {/* PROOF — permitted platform metrics only (No-Faking rule). */}
+      {/* WHAT CHANGES — no performance figures without a source (WCR-026). */}
       <section className="section bg-surface">
         <div className="container-x">
           <div className="max-w-3xl mb-14">
@@ -223,7 +223,7 @@ export default function IntegrationsIndexPage() {
           <dl className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {proof.metrics.map((m) => (
               <div key={m.label} className="card p-8">
-                <dd className="font-mono tabular-nums text-4xl md:text-5xl font-medium text-foreground">
+                <dd className="text-2xl md:text-3xl font-semibold text-foreground">
                   {m.value}
                 </dd>
                 <dt className="mt-3 text-foreground/65">{m.label}</dt>

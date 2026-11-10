@@ -468,7 +468,7 @@ export default async function IntegrationPage({
               return (
                 <div key={o.metric} className="glass-card p-8">
                   <dd
-                    className={`font-mono tabular-nums text-4xl md:text-5xl font-medium ${idx === 0 ? "text-accent" : "text-paper"}`}
+                    className={`text-2xl md:text-3xl font-semibold ${idx === 0 ? "text-accent" : "text-paper"}`}
                   >
                     {m.value}
                   </dd>

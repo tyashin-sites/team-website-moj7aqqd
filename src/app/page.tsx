@@ -18,7 +18,6 @@ const TRIO_EXPERIENCE: Record<string, string> = {
   configurator: EXP.nasherLuggage,
   ar: EXP.loungeChair,
 };
-import { MetricBar } from '@/components/signature/MetricBar';
 import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { PipelineStrip } from '@/components/signature/PipelineStrip';
 import { ScrollStory, SCROLL_STORY_ENABLED } from '@/components/signature/ScrollStory';
@@ -113,11 +112,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* 2. METRIC BAR — directly under hero (DESIGN-SPEC §7.2; the 4
-          strongest canonical impact stats from thridify.com production:
-          75% returns / 3× conversion / 100% engagement / 70% photo cost). */}
-      <MetricBar />
 
       {/* 3. LOGO MARQUEE — real client logos only. */}
       <LogoMarquee eyebrow={home.clients.eyebrow} logos={home.clients.logos} />

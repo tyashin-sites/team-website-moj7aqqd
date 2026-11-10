@@ -12,9 +12,9 @@ import { calendlyHref } from '@/lib/calendly';
  * /resources/roi-of-3d-and-ar-commerce — the data-backed ROI guide.
  *
  * Provenance discipline (No-Faking): every external number links to its
- * primary source and is labelled as such; Thridify's own six metrics are
- * labelled as Thridify's published outcomes from client deployments; the
- * calculator runs only on the reader's inputs.
+ * primary source and is labelled as such. Thridify states no performance
+ * figure of its own until one has a citable source (WCR-026); the calculator
+ * runs only on the reader's inputs.
  */
 
 const PATH = '/resources/roi-of-3d-and-ar-commerce';
@@ -42,7 +42,7 @@ const SOURCES = [
 const FAQS = [
   {
     q: 'What is the ROI of 3D and AR in ecommerce?',
-    a: 'It comes from four lines: fewer returns, higher conversion, lower content cost (one 3D model replaces per-variant photoshoots) and faster quoting for configurable products. Thridify’s published client outcomes are 75% lower returns, 3× conversion, 70% lower photography cost and 40% lower inventory cost; the calculator above lets you model your own numbers conservatively.',
+    a: 'It comes from four lines: fewer returns, higher conversion, lower content cost (one 3D model replaces per-variant photoshoots) and faster quoting for configurable products. The calculator above lets you model those lines on your own numbers.',
   },
   {
     q: 'How much do product returns cost retailers?',
@@ -50,18 +50,18 @@ const FAQS = [
   },
   {
     q: 'Does 3D and AR actually lift conversion?',
-    a: 'Shopify’s published merchant case studies report that shoppers who viewed a product as a 3D model were 44% more likely to add it to cart and those who viewed it in AR 65% more likely to purchase (Rebecca Minkoff). Thridify’s own published outcome across client deployments is 3× higher conversion.',
+    a: 'Shopify’s published merchant case studies report that shoppers who viewed a product as a 3D model were 44% more likely to add it to cart and those who viewed it in AR 65% more likely to purchase (Rebecca Minkoff).',
   },
   {
     q: 'How fast does a 3D commerce deployment pay back?',
-    a: 'Thridify customers typically break even in 4–6 weeks and see 300%+ ROI by month six, driven by returns, conversion and content savings. Results depend on catalogue, traffic and price point — start with one hero product and measure.',
+    a: 'It depends on catalogue, traffic and price point, so start with one hero product and measure returns and conversion against the same product without 3D.',
   },
 ];
 
 export const metadata = pageMetadata({
   title: 'The ROI of 3D & AR Commerce — Returns, Conversion, Content Cost',
   description:
-    'A data-backed guide to the return on 3D product viewers, configurators and app-free AR: NRF returns data, Shopify case studies, Thridify’s six published outcomes, and a calculator for your own numbers.',
+    'A data-backed guide to the return on 3D product viewers, configurators and app-free AR: NRF returns data, Shopify case studies, and a calculator for your own numbers.',
   keywords: [
     'ROI of 3D product visualization',
     'does AR reduce returns',
@@ -181,21 +181,21 @@ export default function RoiGuide() {
         </div>
       </section>
 
-      {/* 3. Thridify's published outcomes */}
+      {/* 3. What changes (no Thridify figures without a source, WCR-026) */}
       <section className="section">
         <div className="container-x">
           <div className="max-w-3xl mb-10">
-            <p className="eyebrow">Thridify’s published outcomes</p>
-            <h2 className="tt-2">Six numbers from client deployments.</h2>
+            <p className="eyebrow">What changes</p>
+            <h2 className="tt-2">Where the return comes from.</h2>
             <p className="mt-4 text-foreground/70 max-w-2xl">
-              These are the only figures Thridify claims, measured across brands using the viewer,
-              configurator, AR and modelling service. Your results depend on catalogue, traffic and price point.
+              These are the mechanisms behind the numbers above. How much each one moves depends on
+              your catalogue, traffic and price point, which is why the calculator below runs on yours.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
             {Object.values(CANONICAL_METRICS).map((m) => (
               <div key={m.label} className="card p-6">
-                <p className="font-heading text-3xl font-semibold tracking-tight text-primary">{m.value}</p>
+                <p className="font-heading text-xl font-semibold tracking-tight text-primary">{m.value}</p>
                 <p className="mt-2 text-sm text-foreground/70">{m.label}</p>
               </div>
             ))}
@@ -211,7 +211,7 @@ export default function RoiGuide() {
             <h2 className="tt-2">Run it on your numbers.</h2>
             <p className="mt-4 text-foreground/70 max-w-2xl">
               Enter your monthly orders, order value and return rate. The two sliders are the only
-              assumptions, and both default to conservative values below Thridify’s published outcomes.
+              assumptions. Their defaults are only a starting point; set them to what you expect.
             </p>
           </div>
           <ReturnsCalculator />
@@ -227,9 +227,9 @@ export default function RoiGuide() {
           </div>
           <div className="lg:col-span-8 grid md:grid-cols-3 gap-5">
             {[
-              { t: 'Content cost', b: 'One 3D model renders every colourway, angle and lifestyle scene. A new finish stops needing a new shoot — the source of the 70% photography-cost reduction.' },
+              { t: 'Content cost', b: 'One 3D model renders every colourway, angle and lifestyle scene. A new finish stops needing a new shoot.' },
               { t: 'Sales-cycle time', b: 'For configurable products, live pricing and instant quotes replace days of back-and-forth; the configuration exports straight to production, so what was sold is what gets built.' },
-              { t: 'Inventory', b: 'Selling variants from the model before committing stock to every shade is how brands cut inventory cost by 40% in Thridify’s published outcomes.' },
+              { t: 'Inventory', b: 'Selling variants from the model before committing stock to every shade means you stock what people actually order.' },
             ].map((c) => (
               <div key={c.t} className="card p-6">
                 <h3 className="font-heading text-lg font-semibold tracking-tight">{c.t}</h3>

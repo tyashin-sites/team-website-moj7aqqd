@@ -40,7 +40,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       'Configurators matter most for products that vary by size, finish or material — furniture, kitchens, doors and windows, luggage, lighting — where a photo per combination is impossible.',
     ],
     whyItMatters:
-      'Configuration replaces guesswork: the buyer sees exactly what they are ordering, which is why Thridify’s published outcomes include 3× higher conversion and 75% lower returns.',
+      'Configuration replaces guesswork: the buyer sees exactly what they are ordering, so fewer orders come back as not what they expected.',
     related: ['3d-product-viewer', 'variant-mapping', 'webar', 'pbr-materials'],
     seeAlso: [
       { label: '3D Configurator', href: '/platform#configurator' },
@@ -58,7 +58,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       'Modern viewers run on WebGL in any browser without plug-ins, and the same model can power augmented reality and configuration.',
     ],
     whyItMatters:
-      'Inspection builds confidence. Interactive listings hold attention longer than flat photos, which Thridify sees as 100% more engagement and a 100% higher click-through rate.',
+      'Inspection builds confidence. A shopper who can turn the product over and zoom in on the finish has fewer reasons to guess.',
     related: ['3d-product-configurator', 'hotspots', 'webgl', 'gltf-glb'],
     seeAlso: [{ label: '3D 360° Viewer', href: '/platform#viewer' }],
   },

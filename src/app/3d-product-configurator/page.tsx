@@ -272,7 +272,7 @@ export default function ConfiguratorPage() {
           <div className="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl">
             {(['returns', 'conversion', 'engagement'] as const).map((k) => (
               <div key={k} className="card p-6">
-                <p className="tt-mono text-3xl text-primary">{CANONICAL_METRICS[k].value}</p>
+                <p className="text-xl font-semibold text-primary">{CANONICAL_METRICS[k].value}</p>
                 <p className="mt-2 text-sm text-foreground/70">{CANONICAL_METRICS[k].label}</p>
               </div>
             ))}

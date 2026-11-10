@@ -5,10 +5,9 @@
  *
  * The visitor supplies THEIR numbers (orders, order value, return rate, cost
  * per return, conversion). The only assumptions are the two sliders, both
- * labelled with their provenance: the returns reduction defaults to a
- * conservative 40% (Thridify's published client outcome is 75%; the slider
- * lets the reader pick anything from 10% to 75%), and the conversion uplift
- * defaults to +50% (Thridify's published outcome is 3× = +200%).
+ * labelled as the reader's own assumptions: the returns reduction defaults
+ * to 40% (slider 10–75%) and the conversion uplift to +50%. No Thridify
+ * performance figure is cited (WCR-026: none has a citable source).
  * Nothing here is presented as a guarantee — see the copy around it.
  */
 
@@ -149,7 +148,7 @@ export function ReturnsCalculator() {
           </Field>
           <Field
             label={`Expected returns reduction: ${reduction}%`}
-            hint="Default 40% is conservative. Thridify's published client outcome is 75%."
+            hint="Your assumption. 40% is only a starting point."
           >
             <input
               type="range"
@@ -163,7 +162,7 @@ export function ReturnsCalculator() {
           </Field>
           <Field
             label={`Expected conversion uplift: +${convUplift}%`}
-            hint="Default +50%. Thridify's published outcome is 3× (+200%)."
+            hint="Your assumption. +50% is only a starting point."
           >
             <input
               type="range"
