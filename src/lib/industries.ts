@@ -28,7 +28,16 @@ export type IndustryMetricKey =
   | 'ctr'
   | 'inventory';
 
-/** Canonical impact metrics (DESIGN-SPEC §7.2) — the ONLY permitted stats. */
+/**
+ * Thridify's own performance figures may appear on the site only once each has
+ * a ratified, citable source carried in the registry (content policy C1 /
+ * WCR-026, 9 Nov 2026). Until then every block that renders CANONICAL_METRICS
+ * is gated on this flag, and llms.txt, the FAQ and the glossary state none of
+ * them. Flip it only together with the source for each figure.
+ */
+export const METRICS_RATIFIED = false;
+
+/** Impact metrics (DESIGN-SPEC §7.2). Not rendered while METRICS_RATIFIED is false. */
 export const CANONICAL_METRICS: Record<IndustryMetricKey, { value: string; label: string }> = {
   returns: { value: '75%', label: 'lower product returns' },
   conversion: { value: '3×', label: 'higher conversion rates' },
@@ -120,7 +129,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: '3D Furniture Configurator & AR Viewer',
     seoDescription:
-      'Let shoppers configure fabrics and finishes and view furniture in their room with app-free AR. A 3D furniture configurator that cuts returns and lifts conversion.',
+      'Let shoppers configure fabrics and finishes and see furniture in their own room with app-free AR. A 3D furniture configurator built for your catalogue.',
     hero: {
       eyebrow: 'Furniture & Home Decor',
       h1: 'A 3D furniture configurator that ends returns from guesswork.',
@@ -196,7 +205,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: 'Modular Kitchen 3D Design Tool & Configurator',
     seoDescription:
-      'A modular kitchen 3D design tool that lets buyers configure layouts, finishes and hardware online and get an instant quote. 3D kitchen visualizer that shortens the sales cycle.',
+      'A modular kitchen 3D design tool: buyers configure layouts, finishes and hardware online and get an instant quote from a 3D kitchen visualizer.',
     hero: {
       eyebrow: 'Modular Kitchens & Wardrobes',
       h1: 'A modular kitchen 3D design tool that quotes instantly.',
@@ -272,7 +281,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: 'Door & Window Configurator | Custom 3D Visualizer',
     seoDescription:
-      'A door and window configurator that lets buyers customise profiles, finishes and glazing in 3D and picture them on a real facade with AR. Custom door 3D visualizer that reduces site visits.',
+      'A door and window configurator: buyers customise profiles, finishes and glazing in 3D and see them on a real facade in AR before a site visit.',
     hero: {
       eyebrow: 'Doors & Windows',
       h1: 'A door and window configurator buyers picture on their facade.',
@@ -346,7 +355,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: 'Prefab 3D Configurator & Modular Building Visualizer',
     seoDescription:
-      'A prefab 3D configurator and modular building visualizer that lets buyers explore layouts, cladding and space in interactive 3D — selling high-ticket structures before they are built.',
+      'A prefab 3D configurator and modular building visualizer: buyers explore layouts, cladding and space in 3D before the structure is built.',
     hero: {
       eyebrow: 'Prefab & Modular Structures',
       h1: 'A prefab 3D configurator that sells before you build.',
@@ -422,7 +431,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: '3D Product Viewer for Machinery & Equipment',
     seoDescription:
-      'A 3D product viewer for machinery that shows motion, internals and true scale with interactive equipment models — built for B2B sales enablement and product portals.',
+      'A 3D product viewer for machinery that shows motion, internals and true scale, built for B2B sales teams and product portals.',
     hero: {
       eyebrow: 'Industrial Machinery',
       h1: 'A 3D product viewer for machinery — motion, internals, true scale.',
@@ -569,7 +578,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: 'Sanitaryware 3D Configurator & Bathroom AR Viewer',
     seoDescription:
-      'A sanitaryware 3D configurator and app-free AR viewer: buyers switch faucet and fitting finishes in real time and place basins, WCs and taps in their own bathroom before ordering.',
+      'A sanitaryware 3D configurator and AR viewer: buyers switch faucet and fitting finishes live and place basins, WCs and taps in their own bathroom.',
     hero: {
       eyebrow: 'Luxury Sanitaryware & Bath',
       h1: 'A sanitaryware configurator that shows every finish in the buyer’s bathroom.',
@@ -639,7 +648,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: '3D Product Viewer & AR for Electronics and Audio',
     seoDescription:
-      'A 3D product viewer, colourway configurator and app-free AR for electronics and audio brands: buyers inspect every port and finish, then place speakers and screens at true scale in their room.',
+      'A 3D viewer, colourway configurator and app-free AR for electronics and audio brands. Buyers inspect every port and finish, then place it at home.',
     hero: {
       eyebrow: 'Electronics & Audio',
       h1: 'A 3D product viewer that lets buyers inspect every port and finish.',
@@ -709,7 +718,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     seoTitle: 'Luggage 3D Configurator & AR Viewer for Bags',
     seoDescription:
-      'A luggage 3D configurator and app-free AR viewer: sell every colourway, trim and size from one 3D model, and let buyers check a suitcase at true scale before they order.',
+      'A luggage 3D configurator and app-free AR viewer: sell every colourway, trim and size from one model and let buyers check a case at true scale.',
     hero: {
       eyebrow: 'Luggage & Bags',
       h1: 'A luggage configurator that sells every colourway from one 3D model.',

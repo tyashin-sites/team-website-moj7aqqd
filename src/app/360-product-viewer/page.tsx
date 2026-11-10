@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
@@ -93,7 +94,7 @@ const FAQS = [
 export const metadata = pageMetadata({
   title: '360° Product Viewer & 3D Viewer for Websites',
   description:
-    'Add a 360° product viewer to your store: free-orbit real-time 3D, geometry hotspots, compressed assets that load on mobile data, and the same model feeding AR. No app, no plugin for the shopper.',
+    'Add a 360° product viewer to your store: real-time 3D with hotspots, compressed models that load on mobile data, and the same model in AR. No app needed.',
   keywords: [
     '360 product viewer',
     '360 viewer',
@@ -228,6 +229,7 @@ export default function ViewerPage() {
               </li>
             ))}
           </ul>
+          {METRICS_RATIFIED && (
           <div className="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl">
             {(['engagement', 'ctr', 'photography'] as const).map((k) => (
               <div key={k} className="card p-6">
@@ -236,6 +238,7 @@ export default function ViewerPage() {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

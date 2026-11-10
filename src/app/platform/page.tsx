@@ -31,6 +31,24 @@ import { SITE_URL } from "@/lib/schema";
 import { PILLARS, getPillar, topFeatures, type Pillar } from "@/lib/features";
 import { pageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
+import { ORG_ID } from "@/lib/knowledge-graph";
+
+/**
+ * Service node for /platform (WCR-011). Describes only what the page sells
+ * and links the provider to the site-wide Organization by @id. No offers or
+ * prices: Thridify publishes none (user rule 2026-10-27).
+ */
+const PLATFORM_SERVICE_LD = {
+  "@type": "Service",
+  "@id": `${SITE_URL}/platform#service`,
+  name: "Thridify 3D and AR commerce platform",
+  serviceType: "3D product configurator, 3D product viewer and app-free AR",
+  description:
+    "No-code 3D publishing, an interactive 3D viewer and configurator, app-free AR, storefront plugins and embeds, and variant-level analytics.",
+  url: `${SITE_URL}/platform`,
+  provider: { "@id": ORG_ID },
+  areaServed: ["IN", "CA", "US", "GB", "EU"],
+};
 import { breadcrumbLd } from "@/lib/knowledge-graph";
 
 // The three product capabilities that CAN be shown as a live interactive
@@ -49,7 +67,7 @@ const PILLAR_ICON: Record<Pillar["icon"], LucideIcon> = {
 export const metadata = pageMetadata({
   title: "Platform — 3D & AR Commerce, Five Pillars",
   description:
-    "The Thridify platform across five pillars: Studio (no-code 3D publishing), Experience (3D viewer, configurator, app-free AR), Distribute (one-click Shopify plus embeddable everywhere), Measure (variant-level analytics) and Operate (enterprise-ready teams and compliance).",
+    "The Thridify platform in five parts: Studio for no-code 3D publishing, the 3D and AR experience, distribution, variant-level analytics and team operations.",
   path: "/platform",
   image: "/og/platform.png",
   ogTitle: "The Thridify Platform — Studio · Experience · Distribute · Measure · Operate",
@@ -174,7 +192,7 @@ export default function PlatformPage() {
     <>
       {/* WebPage + BreadcrumbList for this route (addendum §3b; the WebPage
           node is derived from the breadcrumb in graphJson). */}
-      <JsonLd nodes={[breadcrumbLd("/platform", [{ name: "Home", path: "/" }, { name: "Platform", path: "/platform" }])]} />
+      <JsonLd nodes={[breadcrumbLd("/platform", [{ name: "Home", path: "/" }, { name: "Platform", path: "/platform" }]), PLATFORM_SERVICE_LD]} />
       <SectionIndex items={INDEX} />
 
       {/* HERO — headline 6 words (≤12); subline 14 words (≤24). */}

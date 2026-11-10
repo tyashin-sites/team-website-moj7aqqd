@@ -46,12 +46,18 @@ export function GET() {
   const integrationList = INTEGRATIONS.map(
     (i) => `- ${i.name}: ${SITE_URL}/integrations/${i.slug}`,
   ).join('\n');
+  // The count and the names come from the same list as the URLs below, so the
+  // summary line can never disagree with them again (WCR-006).
+  const integrationNames = INTEGRATIONS.map((i) => i.name);
+  const integrationSummary = `${integrationNames.length} supported paths: ${integrationNames
+    .slice(0, -1)
+    .join(', ')} and ${integrationNames[integrationNames.length - 1]}.`;
 
   const body = `# Thridify
 
 > ${CANONICAL_DESCRIPTION}
 
-Thridify is built and operated by ${LEGAL_NAME}. Founders: Shikha Gupta (CEO) and Aditya Gupta (CTO). Founded in Delhi, India; North American expansion from the Greater Toronto Area.
+Thridify is built and operated by ${LEGAL_NAME}. Co-Founder and CEO: Shikha Gupta. Founded in Delhi, India; North American expansion from the Greater Toronto Area.
 
 ## What Thridify offers
 Five products, one no-code layer:
@@ -65,7 +71,7 @@ Five products, one no-code layer:
 ${industryList}
 
 ## Integrations
-Thridify runs on the store you already have — via a plugin or a lightweight embed, no re-platforming. Nine supported paths: WooCommerce, Shopify, Wix, BigCommerce, Magento, commercetools, Canva, WordPress and any custom storefront (JS SDK + API).
+Thridify runs on the store you already have — via a plugin or a lightweight embed, no re-platforming. ${integrationSummary}
 Index: ${SITE_URL}/integrations
 ${integrationList}
 
@@ -74,7 +80,7 @@ ${SHOPIFY_APP_SUMMARY}
 - App: ${SHOPIFY_APP_NAME}
 - Shopify App Store: ${SHOPIFY_APP_URL}
 - Page on thridify.com: ${SITE_URL}${SHOPIFY_PAGE_PATH}
-- Pricing: free plan available on the Shopify App Store; see the listing for current plans.
+- Install: from the Shopify App Store listing above.
 - Suits: furniture, kitchens, doors and windows, bathroom fittings, tiles, lighting.
 What the app does on a Shopify store today:
 ${shopifyFeatureList}
@@ -87,7 +93,7 @@ ${WOO_PLUGIN_SUMMARY}
 - Page on thridify.com: ${SITE_URL}${WOO_PAGE_PATH}
 - Live WooCommerce demo store: ${WOO_DEMO_STORE_URL}
 - Requires: WordPress ${WOO_REQUIREMENTS.wordpress}+, PHP ${WOO_REQUIREMENTS.php}+, WooCommerce ${WOO_REQUIREMENTS.woocommerce}+
-- Pricing: ${WOO_PRICING_NOTE}
+- Account: ${WOO_PRICING_NOTE}
 - Install: Plugins > Add New, search "Thridify", activate, then WooCommerce > Thridify 3D & AR > Connect with Thridify. The catalog syncs and matches by SKU, slug, name or product ID.
 - Suits: ${wooIndustries}.
 What the plugin does on a WooCommerce store today:
@@ -97,19 +103,19 @@ Not in the WooCommerce plugin yet: Shop the Look, Shop the Room, the 3D room vis
 ## Model formats
 glTF, GLB and USDZ — photoreal and AR-ready.
 
-## Impact metrics (the only figures Thridify claims)
-- 75% lower product returns
-- 3× higher conversion rates
-- 100% more engagement
-- 70% lower photography cost
-- 100% higher click-through rate
-- 40% lower inventory cost
-
 ## Comparisons
 ${compareList}
 
 ## Key pages
 - What is Thridify: ${SITE_URL}/what-is-thridify
+- 3D product configurator: ${SITE_URL}/3d-product-configurator
+- 360° product viewer: ${SITE_URL}/360-product-viewer
+- AR viewer (app-free, in the browser): ${SITE_URL}/ar-viewer
+- 3D product visualization (renders, lifestyle scenes, video from one model): ${SITE_URL}/3d-product-visualization
+- Device compatibility (which phones, tablets and browsers run 3D and AR): ${SITE_URL}/device-compatibility
+- 3D and AR platform guide (Quick Look, Scene Viewer, WebXR): ${SITE_URL}/3d-ar-platform-guide
+- Resources hub: ${SITE_URL}/resources
+- Blog: ${SITE_URL}/blog
 - FAQ (all questions answered): ${SITE_URL}/faq
 - ROI of 3D & AR (sourced data + calculator): ${SITE_URL}/resources/roi-of-3d-and-ar-commerce
 - 3D configurator cost guide: ${SITE_URL}/resources/3d-configurator-cost

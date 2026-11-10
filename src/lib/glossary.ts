@@ -33,14 +33,14 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: '3D product configurator',
     aka: ['product configurator', 'visual configurator'],
     short:
-      'A 3D product configurator lets a shopper change a product’s options — colour, material, size, parts — on an interactive 3D model and see the result and price instantly.',
+      'A 3D product configurator lets a shopper change colour, material, size or parts on an interactive 3D model and see the result and price instantly.',
     body: [
       'Instead of a static gallery, the product page shows a live 3D model. Every option the brand sells — fabric, finish, hardware, modules — is a control the buyer can change, and the model updates in real time.',
       'A commerce-grade configurator is tied to real business rules: each configuration has a price, maps to the store’s variants, and can generate an instant quotation for the sales team.',
       'Configurators matter most for products that vary by size, finish or material — furniture, kitchens, doors and windows, luggage, lighting — where a photo per combination is impossible.',
     ],
     whyItMatters:
-      'Configuration replaces guesswork: the buyer sees exactly what they are ordering, which is why Thridify’s published outcomes include 3× higher conversion and 75% lower returns.',
+      'Configuration replaces guesswork: the buyer sees exactly what they are ordering before they pay, which is the case for fewer returns and fewer quote revisions.',
     related: ['3d-product-viewer', 'variant-mapping', 'webar', 'pbr-materials'],
     seeAlso: [
       { label: '3D Configurator', href: '/platform#configurator' },
@@ -58,7 +58,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       'Modern viewers run on WebGL in any browser without plug-ins, and the same model can power augmented reality and configuration.',
     ],
     whyItMatters:
-      'Inspection builds confidence. Interactive listings hold attention longer than flat photos, which Thridify sees as 100% more engagement and a 100% higher click-through rate.',
+      'Inspection builds confidence: a buyer who can turn the product and check the details has fewer questions left before buying.',
     related: ['3d-product-configurator', 'hotspots', 'webgl', 'gltf-glb'],
     seeAlso: [{ label: '3D 360° Viewer', href: '/platform#viewer' }],
   },
@@ -67,7 +67,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'WebAR (app-free AR)',
     aka: ['web-based augmented reality', 'browser AR', 'app-free AR'],
     short:
-      'WebAR is augmented reality that runs in a phone’s web browser, so a shopper can place a product in their real space from a product page without installing an app.',
+      'WebAR is augmented reality that runs in a phone\'s browser, so a shopper can place a product in their own space from a product page with no app.',
     body: [
       'On iPhone and iPad, WebAR hands the 3D model to Apple’s built-in AR Quick Look; on Android it uses Google’s Scene Viewer. Both are part of the operating system, so nothing is downloaded.',
       'The shopper taps “View in your space”, points the camera at the floor or wall, and the product appears at true scale, anchored in place, so they can walk around it and judge fit.',
@@ -131,7 +131,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'USDZ',
     aka: ['Universal Scene Description (zip)'],
     short:
-      'USDZ is Apple’s packaged 3D file format, based on Pixar’s Universal Scene Description, used by AR Quick Look to show a model in augmented reality on iPhone and iPad.',
+      'USDZ is Apple\'s packaged 3D format, based on Pixar\'s Universal Scene Description, that AR Quick Look uses to show a model in AR on iPhone and iPad.',
     body: [
       'A USDZ file is a zip archive containing the scene, textures and materials in USD form. Safari recognises it and opens AR Quick Look directly.',
       'Because web viewers use glTF/GLB, an AR-ready product needs both: Thridify exports USDZ automatically from the same source model so iOS shoppers get the same product in AR.',
@@ -159,7 +159,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'KTX2 / GPU texture compression',
     aka: ['Basis Universal', 'GPU-compressed textures'],
     short:
-      'KTX2 is a container for GPU-compressed textures (Basis Universal) that stay compressed in graphics memory, cutting the memory a 3D scene needs by a large multiple.',
+      'KTX2 is a container for GPU-compressed textures (Basis Universal) that stay compressed in graphics memory, so a 3D scene needs far less of it.',
     body: [
       'Ordinary JPEG or PNG textures are decompressed into raw pixels on the GPU, so a scene with many high-resolution finishes can exhaust a phone’s graphics memory. KTX2 textures are transcoded to a format the GPU reads natively, using a fraction of that memory.',
       'Thridify delivers materials and finishes as GPU-compressed textures on supported devices, with automatic fallback to standard images elsewhere, which is what keeps large configurators stable on older phones.',
@@ -174,7 +174,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'PBR materials',
     aka: ['physically based rendering', 'physically based materials'],
     short:
-      'PBR (physically based rendering) materials describe a surface by real-world properties — base colour, roughness, metalness, normal detail — so it looks correct under any lighting.',
+      'PBR (physically based rendering) materials describe a surface by base colour, roughness, metalness and normal detail, so it looks right under any light.',
     body: [
       'A PBR material is a set of texture maps: base colour, metallic, roughness, normal (surface detail) and sometimes ambient occlusion. Because the renderer simulates how light actually behaves, a walnut veneer or brushed brass looks right in the viewer, in AR and in a rendered lifestyle scene alike.',
       'This is what separates photoreal product models from “rough approximations”: correct materials at the correct scale, built from real references.',
@@ -189,7 +189,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'LiDAR placement vs guided placement',
     aka: ['instant AR placement', 'camera-guided AR'],
     short:
-      'LiDAR placement uses the depth scanner on Pro iPhones and iPads to place an AR product almost instantly; guided placement, on other phones, finds the floor from camera motion in a few seconds.',
+      'LiDAR placement uses the depth scanner on Pro iPhones and iPads to place an AR product almost instantly; other phones find the floor from camera motion.',
     body: [
       'A LiDAR scanner measures the room directly, so the product appears on the floor the moment the camera opens. Devices without LiDAR watch how the image shifts as the phone moves to work out where the floor is — that is a property of camera-based AR on every platform, not a vendor limitation.',
       'Guided placement typically takes 5–15 seconds in good light on a textured floor. Dim rooms, plain or glossy floors and standing still make it slower. After placement both behave identically.',
@@ -204,7 +204,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'WebGL',
     aka: ['Web Graphics Library'],
     short:
-      'WebGL is the browser API that renders hardware-accelerated 3D graphics inside a web page, and is what makes 3D product viewers and configurators possible without plug-ins.',
+      'WebGL is the browser API that renders hardware-accelerated 3D inside a web page. It is what lets 3D viewers and configurators run without plug-ins.',
     body: [
       'Every modern browser on desktop and mobile supports WebGL. A 3D viewer uses it to draw the model, lighting and materials at interactive frame rates.',
       'Its successor, WebGPU, is arriving in browsers, but WebGL remains the compatibility baseline for commerce experiences today.',
@@ -232,7 +232,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'Visual commerce (3D & AR commerce)',
     aka: ['immersive commerce', '3D commerce', 'AR commerce'],
     short:
-      'Visual commerce is selling through interactive product experiences — 3D viewers, configurators and augmented reality — instead of static photos, so buyers can explore, customise and place a product before purchase.',
+      'Visual commerce means selling through 3D viewers, configurators and AR instead of static photos, so buyers can explore and place a product first.',
     body: [
       'The term covers the experience layer (3D and AR on the product page), the content layer (photoreal 3D models replacing photoshoots) and the data layer (what shoppers configure and how that converts).',
       'For custom and high-consideration products it changes the sales process itself: instant configuration and quotes shorten the cycle from enquiry to order.',
@@ -250,7 +250,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'Variant mapping',
     aka: ['SKU mapping', 'option-to-model mapping'],
     short:
-      'Variant mapping links each option in a 3D configurator to the matching variant or SKU in the store, so the cart, price and stock reflect exactly what the shopper configured.',
+      'Variant mapping links each configurator option to the matching store variant or SKU, so cart, price and stock match what the shopper configured.',
     body: [
       'A store already knows its variants — “Sofa, Velvet, Forest Green, 3-seat” — by ID. Mapping ties each configurator control to those IDs, so choosing a finish in 3D selects the right variant, shows its price and adds the correct item to the cart.',
       'Thridify matches products and variants by ID on Shopify, WooCommerce and the other supported platforms, and exposes the same mapping through its SDK for custom stores.',
@@ -265,7 +265,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'Hotspots and annotations',
     aka: ['3D annotations', 'callouts'],
     short:
-      'Hotspots are clickable markers pinned to points on a 3D model that reveal notes, images or videos — used to explain materials, joinery, features and care on the product itself.',
+      'Hotspots are clickable markers pinned to a 3D model that open notes, images or video, used to explain materials, joinery, features and care.',
     body: [
       'Because a hotspot is anchored to the model’s surface, it stays attached as the shopper rotates and zooms. Brands use them for craftsmanship stories, dimensions, care instructions and upsell prompts.',
       'Thridify’s viewer supports hotspots with brand-matched theming and embedded media.',
@@ -280,7 +280,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'Progressive loading (poster-first)',
     aka: ['poster image', 'lazy 3D loading'],
     short:
-      'Progressive loading shows a lightweight poster image of the product first and streams the interactive 3D scene behind it, so the page paints instantly and the model appears when ready.',
+      'Progressive loading shows a light poster image first and streams the 3D scene behind it, so the page paints at once and the model appears when ready.',
     body: [
       'The poster is a real render of the product’s default state, so nothing shifts when the 3D takes over. Finishes can apply at low resolution first and sharpen in place.',
       'This is how a 3D product page stays Core Web Vitals-friendly: no layout shift, no blocking download, and the heavy work only starts when the shopper is there to see it.',
@@ -294,7 +294,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'Lite mode (adaptive quality)',
     aka: ['adaptive 3D quality', 'device tiers'],
     short:
-      'Lite mode is an adaptive setting where a 3D viewer serves reduced-resolution textures and trims extras on low-memory devices so the experience stays smooth instead of crashing.',
+      'Lite mode is an adaptive setting where a 3D viewer serves lighter textures and trims extras on low-memory devices, so the experience stays smooth.',
     body: [
       'Thridify sorts every device into a tier automatically — full quality, guided AR, lite 3D, or 3D-only with AR handed to the phone by QR code — based on graphics memory and AR support. Shoppers never configure anything.',
       'On devices with 2 GB of memory or less, Lite mode keeps browsing stable through long sessions and many finish switches.',
@@ -309,7 +309,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: 'Plugin vs embed vs SDK',
     aka: ['App Block', 'embed snippet', 'JS SDK'],
     short:
-      'A plugin installs 3D and AR into a commerce platform with no code; an embed is a lightweight snippet for any site; an SDK and API give developers full control on custom storefronts.',
+      'A plugin adds 3D and AR to a commerce platform with no code; an embed is a snippet for any site; an SDK and API give developers full control.',
     body: [
       'Plugins (for example a Shopify Theme App Extension or a WordPress plugin) add the experience to product and collection templates from the platform’s own admin. Embeds are a script tag plus a product reference that drop into any page. The SDK exposes the viewer, configurator and events to code.',
       'All three render the same experiences from the same published products, so a brand can start with a plugin and move to the SDK without rebuilding content.',
@@ -327,7 +327,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     term: '3D room visualizer',
     aka: ['room planner', '3D room planner', 'room visualiser'],
     short:
-      'A 3D room visualizer lets a shopper place a brand’s real products in a 3D room at true scale, dress the room around them, and view the composed result from any angle or in AR.',
+      'A 3D room visualizer lets a shopper place a brand\'s real products in a 3D room at true scale, dress the room, and view it from any angle or in AR.',
     body: [
       'Where a product-page viewer shows one product, a room visualizer composes many: the sofa, the rug under it, the lamp beside it and the art above it, arranged in a room whose floor, walls, lighting and dimensions the shopper can change.',
       'A commerce-grade room visualizer is populated from the brand’s own published catalogue, runs the product configurator inside the room so the placed product is the exact configuration the shopper chose, keeps every model at its real size, and offers orbit, plan (top-down) and walk-through (eye-height) views.',

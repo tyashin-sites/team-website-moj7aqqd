@@ -14,7 +14,7 @@ import { GLOSSARY } from '@/lib/glossary';
 export const metadata = pageMetadata({
   title: 'Glossary — 3D & AR Commerce Terms Explained',
   description:
-    'Plain-English definitions of the terms behind 3D and AR commerce: configurators, WebAR, AR Quick Look, glTF/GLB, USDZ, Draco, KTX2, PBR materials, variant mapping and more.',
+    'Plain-English definitions of 3D and AR commerce terms: configurators, WebAR, AR Quick Look, glTF/GLB, USDZ, Draco, KTX2, PBR materials and more.',
   keywords: [
     '3D commerce glossary',
     'what is WebAR',

@@ -34,7 +34,7 @@ const CANONICAL = '/privacy';
 const base = pageMetadata({
   title: 'Privacy Policy',
   description:
-    'How Thridify collects, uses, shares and protects personal information, your rights under GDPR, India’s DPDP Act 2023 and PIPEDA, and how to reach our Grievance Officer.',
+    'How Thridify collects, uses, shares and protects personal information, your rights under GDPR, DPDP and PIPEDA, and how to reach our Grievance Officer.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Privacy Policy | Thridify',

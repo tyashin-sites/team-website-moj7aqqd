@@ -14,7 +14,7 @@ const DEMO_STORE = 'https://demo.thridify.com';
 export const metadata = pageMetadata({
   title: 'No website yet? Get a Thridify-powered storefront',
   description:
-    "Thridify brings your products to life in 3D and AR — but it needs a storefront to live on. No website yet? Our platform partner Tyashin builds you a fast, SEO-ready store with Thridify's 3D & AR built in from day one.",
+    "No website yet? Tyashin, Thridify's platform partner, builds a fast, search-ready store with Thridify 3D and AR built in from day one.",
   keywords: [
     'get a website with 3D',
     'Thridify website',

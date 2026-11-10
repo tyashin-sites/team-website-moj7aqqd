@@ -124,7 +124,7 @@ const FAQS = [
 export const metadata = pageMetadata({
   title: 'Shop the Look Pages — Shoppable 3D Rooms for Your Brand',
   description:
-    'Publish rooms your team styled as curated looks on a brand-hosted 3D page. Shoppers open them, swap the fabric, add the rug, and view the whole room in AR. No app, no code, switched on per account.',
+    'Publish rooms your team styled as shoppable looks on a 3D page. Shoppers swap the fabric, add the rug and view the whole room in AR. No app, no code.',
   keywords: [
     'shop the look page',
     'shoppable room',

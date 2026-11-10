@@ -9,13 +9,15 @@ import { pageMetadata } from '@/lib/seo';
 // behaviour (viewer WebGL2 floor, Quick Look / Scene Viewer AR paths, automatic
 // Lite mode) — keep in sync with thridify-fe when device handling changes.
 // Linked from the footer Platform column and listed in site-routes.ts.
+// Device names last checked 9 Nov 2026 (iPhone 17 line, iPhone Air, iPad Pro M5).
+// Name a new device only when it meets the requirements below; LiDAR = Pro only.
 
 const CANONICAL = '/device-compatibility';
 
 export const metadata = pageMetadata({
-  title: 'Device Compatibility — 3D & AR on every shopper device',
+  title: 'Device Compatibility: 3D and AR on Shopper Devices',
   description:
-    'Which phones, tablets and computers run Thridify 3D and AR experiences: iPhone and iPad tiers, Android ARCore support, desktop behaviour, connection guidance and troubleshooting.',
+    'Which phones, tablets and computers run Thridify 3D and AR: iPhone and iPad tiers, Android ARCore support, desktop browsers and troubleshooting.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Thridify Device Compatibility',
@@ -52,21 +54,21 @@ const TIERS = [
 const IOS_ROWS = [
   {
     device: 'iPhone 12 Pro & later Pro models',
-    note: 'iPhone 12 Pro through 16 Pro and Pro Max — all carry LiDAR',
+    note: 'iPhone 12 Pro through iPhone 17 Pro and Pro Max, all with a LiDAR scanner',
     viewer: 'Full quality',
     ar: 'Instant placement (LiDAR)',
     tier: 'Full',
   },
   {
     device: 'iPad Pro (2020) & later',
-    note: 'All iPad Pro models with LiDAR',
+    note: 'Every iPad Pro since 2020 has LiDAR, including the M4 and M5 models',
     viewer: 'Full quality',
     ar: 'Instant placement (LiDAR)',
     tier: 'Full',
   },
   {
     device: 'iPhone 13 & later (non‑Pro)',
-    note: 'iPhone 13/14/15/16 and SE (2022), plus iPad (2022+), iPad Air (2022+) and iPad mini (2021+) — the recommended floor for full-quality scenes',
+    note: 'iPhone 13 through iPhone 17, iPhone Air, iPhone 16e and SE (2022), plus iPad (2022+), iPad Air (2022+) and iPad mini (2021+). The recommended floor for full-quality scenes',
     viewer: 'Full quality',
     ar: 'Guided placement',
     tier: 'Guided AR',

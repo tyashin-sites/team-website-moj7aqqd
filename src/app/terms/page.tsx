@@ -21,7 +21,7 @@ const MAIL = LEGAL_EMAIL;
 const base = pageMetadata({
   title: 'Terms of Use',
   description:
-    'The terms that govern your use of the Thridify website: acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
+    'The terms for using the Thridify website: acceptance, permitted use, intellectual property, disclaimers, limitation of liability and governing law.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Terms of Use | Thridify',

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import {
   Boxes,
   Upload,
@@ -32,7 +33,7 @@ export const dynamicParams = false;
 export const metadata = pageMetadata({
   title: '3D Product Modelling Service | glTF, GLB & USDZ',
   description:
-    'Outsource 3D product modelling to Thridify. We build photoreal, AR-ready 3D models (glTF/GLB/USDZ) from your catalog — fast turnaround, no in-house 3D team required.',
+    'Outsource 3D product modelling to Thridify. We build photoreal, AR-ready glTF, GLB and USDZ models from your catalogue, no in-house 3D team needed.',
   keywords: [
     '3D product modelling service',
     '3D model creation for ecommerce',
@@ -313,6 +314,7 @@ export default function ThreeDModellingServicePage() {
       </section>
 
       {/* OUTCOMES — canonical metric set ONLY (§7.2) */}
+      {METRICS_RATIFIED && (
       <section className="section on-dark bg-ink text-paper">
         <div className="container-x">
           <div className="max-w-3xl mb-12">
@@ -335,6 +337,7 @@ export default function ThreeDModellingServicePage() {
           </dl>
         </div>
       </section>
+      )}
 
       {/* FAQ — FAQPage schema above */}
       <section className="section">

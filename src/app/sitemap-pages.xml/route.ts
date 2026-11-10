@@ -30,6 +30,9 @@ export const dynamic = "force-static";
 // Normalise to a bare origin (no trailing slash) so `${ORIGIN}${path}` is clean.
 const ORIGIN = SITE_URL.replace(/\/+$/, "");
 
+/** Paths the platform's content sitemap already lists. */
+const PLATFORM_LISTED_PATHS = new Set(["/blog"]);
+
 function escapeXml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -44,6 +47,10 @@ export function GET(): Response {
   // would tell Google every page changed on every deploy.
 
   const urls = getSiteRoutes()
+    // /blog is served by the Tyashin platform's blog plugin, which lists it in
+    // /sitemap-content.xml. Listing it here too made it the one URL in both
+    // sitemaps (WCR-023).
+    .filter((route) => !PLATFORM_LISTED_PATHS.has(route.path))
     .map((route) => {
       const loc = escapeXml(`${ORIGIN}${route.path}`);
       return [

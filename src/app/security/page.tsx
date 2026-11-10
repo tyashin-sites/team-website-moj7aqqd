@@ -26,7 +26,7 @@ const MAIL = LEGAL_EMAIL;
 export const metadata = pageMetadata({
   title: 'Security & Data Practices',
   description:
-    'How Thridify protects information on this website: encryption in transit, access controls, our processor list, data-region note and responsible-disclosure contact.',
+    'How Thridify protects information on this website: encryption in transit, access controls, our processor list, data region and disclosure contact.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Security & Data Practices | Thridify',

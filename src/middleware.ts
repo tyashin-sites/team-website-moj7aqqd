@@ -57,6 +57,12 @@ export function middleware(request: NextRequest) {
   }
 
   const response = NextResponse.next();
+  // Baseline CSP (WCR-011). Deliberately limited to directives that cannot
+  // touch the 3D viewer: it loads scripts, workers, WASM decoders, models and
+  // textures from several origins, and blob: URLs, so script-src/connect-src/
+  // worker-src are NOT set here. Tighten only after testing the viewer, AR and
+  // the room visualizer on iOS and Android.
+  response.headers.set('Content-Security-Policy', "base-uri 'self'; object-src 'none'");
   const isProduction = host === PRODUCTION_HOST;
   if (!isProduction && PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix))) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow');

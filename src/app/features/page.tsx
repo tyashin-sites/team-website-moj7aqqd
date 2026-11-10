@@ -104,7 +104,7 @@ const FAQS: { q: string; a: string }[] = [
 export const metadata = pageMetadata({
   title: "Features — Everything Thridify Does",
   description:
-    "The full Thridify capability reference: no-code 3D publishing, an interactive 3D viewer and app-free AR, one-click plugins plus embeddable distribution for any storefront, variant-level analytics and enterprise-ready operations.",
+    "Everything Thridify does: no-code 3D publishing, a 3D viewer and app-free AR, plugins and embeds for any store, variant-level analytics and team controls.",
   keywords: [
     "3D configurator material library",
     "one-click 3D commerce plugins",

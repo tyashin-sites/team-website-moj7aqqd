@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
@@ -145,7 +146,7 @@ const VERTICALS = [
 export const metadata = pageMetadata({
   title: '3D Room Visualizer for Furniture & Décor Brands',
   description:
-    'A 3D room visualizer your shoppers never install. They compose a whole room from your real, configurable catalogue at true scale, dress it, walk through it, and view the room in AR. Hosted per account, themed to your brand.',
+    'A 3D room visualizer shoppers never install. They build a room from your real catalogue at true scale, walk through it and view it in AR.',
   keywords: [
     '3D room visualizer',
     'room visualizer',
@@ -282,6 +283,7 @@ export default function RoomVisualizerPage() {
               room, and sees them together before they order.
             </p>
           </div>
+          {METRICS_RATIFIED && (
           <div className="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl">
             {(['returns', 'conversion', 'engagement'] as const).map((k) => (
               <div key={k} className="card p-6">
@@ -290,6 +292,7 @@ export default function RoomVisualizerPage() {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

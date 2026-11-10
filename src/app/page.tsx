@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ShopifyAppNote } from '@/components/ShopifyAppNote';
 import { WooCommercePluginNote } from '@/components/WooCommercePluginNote';
 import { homeContent } from '@/lib/content';
@@ -117,7 +118,7 @@ export default function HomePage() {
       {/* 2. METRIC BAR — directly under hero (DESIGN-SPEC §7.2; the 4
           strongest canonical impact stats from thridify.com production:
           75% returns / 3× conversion / 100% engagement / 70% photo cost). */}
-      <MetricBar />
+      {METRICS_RATIFIED && <MetricBar />}
 
       {/* 3. LOGO MARQUEE — real client logos only. */}
       <LogoMarquee eyebrow={home.clients.eyebrow} logos={home.clients.logos} />

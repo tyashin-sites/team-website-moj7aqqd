@@ -50,9 +50,9 @@ const FAQS = [
 ];
 
 export const metadata = pageMetadata({
-  title: 'How Much Does a 3D Product Configurator Cost? — Cost Drivers Explained',
+  title: 'How Much Does a 3D Product Configurator Cost?',
   description:
-    'What drives the cost of a 3D product configurator and AR experience: catalogue size, model complexity, variants, integrations and managed services, and what is always free.',
+    'What drives the cost of a 3D product configurator and AR: catalogue size, model complexity, variants, integrations and managed services.',
   keywords: [
     '3D product configurator cost',
     'how much does a 3D configurator cost',

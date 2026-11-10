@@ -41,13 +41,27 @@ export type PageMeta = {
   extra?: Metadata;
 };
 
+/** The layout's title template appends this to every page title. */
+const TITLE_SUFFIX = ` | ${SITE.name}`;
+/** Search results cut titles past ~60 characters. */
+export const TITLE_MAX = 60;
+
+/**
+ * The layout template adds " | Thridify". When that would push the title past
+ * TITLE_MAX, the page title stands alone instead (same rule as the platform's
+ * composePageTitle), so long page titles never get their ending cut in search.
+ */
+function resolveTitle(title: string): Metadata['title'] {
+  return title.length + TITLE_SUFFIX.length <= TITLE_MAX ? title : { absolute: title };
+}
+
 export function pageMetadata(opts: PageMeta): Metadata {
   const url = siteUrl(opts.path);
   const image = opts.image || SITE.defaultOgImage;
   const ogTitle = opts.ogTitle || opts.title;
   const ogDescription = opts.ogDescription || opts.description;
   return {
-    title: opts.title,
+    title: resolveTitle(opts.title),
     description: opts.description,
     ...(opts.keywords ? { keywords: opts.keywords } : {}),
     alternates: { canonical: opts.path },

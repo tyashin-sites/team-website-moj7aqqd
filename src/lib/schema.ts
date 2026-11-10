@@ -38,6 +38,18 @@ export const CANONICAL_SOCIALS = [
   'https://youtube.com/@thridify',
 ];
 
+/**
+ * Third-party product profiles that are live and belong to Thridify, for
+ * Organization.sameAs (WCR-025). Add one only after opening it and seeing
+ * Thridify's own listing (checked 9 Nov 2026: WordPress.org plugin page 200,
+ * Slashdot listing 200; G2 read in a browser 8 Nov, claimed by Aapastech).
+ */
+export const PRODUCT_PROFILES = [
+  'https://wordpress.org/plugins/thridify/',
+  'https://www.g2.com/products/thridify',
+  'https://slashdot.org/software/p/Thridify/',
+];
+
 /** Absolute logo URL for schema (Organization.logo / image). */
 const LOGO_URL = `${SITE_URL}/brand/logo-favicon.png`;
 
@@ -58,9 +70,8 @@ export function organizationLd() {
     email: 'contact@thridify.com',
     founder: [
       { '@type': 'Person', name: 'Shikha Gupta', jobTitle: 'CEO' },
-      { '@type': 'Person', name: 'Aditya Gupta', jobTitle: 'CTO' },
     ],
-    sameAs: CANONICAL_SOCIALS,
+    sameAs: [...CANONICAL_SOCIALS, ...PRODUCT_PROFILES],
   };
 }
 

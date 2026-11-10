@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
@@ -12,9 +13,9 @@ import { calendlyHref } from '@/lib/calendly';
  * /resources/roi-of-3d-and-ar-commerce — the data-backed ROI guide.
  *
  * Provenance discipline (No-Faking): every external number links to its
- * primary source and is labelled as such; Thridify's own six metrics are
- * labelled as Thridify's published outcomes from client deployments; the
- * calculator runs only on the reader's inputs.
+ * primary source and is labelled as such; Thridify's own figures are not shown
+ * until each has a ratified source (METRICS_RATIFIED); the calculator runs
+ * only on the reader's inputs.
  */
 
 const PATH = '/resources/roi-of-3d-and-ar-commerce';
@@ -42,7 +43,7 @@ const SOURCES = [
 const FAQS = [
   {
     q: 'What is the ROI of 3D and AR in ecommerce?',
-    a: 'It comes from four lines: fewer returns, higher conversion, lower content cost (one 3D model replaces per-variant photoshoots) and faster quoting for configurable products. Thridify’s published client outcomes are 75% lower returns, 3× conversion, 70% lower photography cost and 40% lower inventory cost; the calculator above lets you model your own numbers conservatively.',
+    a: 'It comes from four lines: fewer returns, higher conversion, lower content cost (one 3D model replaces per-variant photoshoots) and faster quoting for configurable products. The calculator above lets you model your own numbers conservatively.',
   },
   {
     q: 'How much do product returns cost retailers?',
@@ -50,18 +51,18 @@ const FAQS = [
   },
   {
     q: 'Does 3D and AR actually lift conversion?',
-    a: 'Shopify’s published merchant case studies report that shoppers who viewed a product as a 3D model were 44% more likely to add it to cart and those who viewed it in AR 65% more likely to purchase (Rebecca Minkoff). Thridify’s own published outcome across client deployments is 3× higher conversion.',
+    a: 'Shopify’s published merchant case studies report that shoppers who viewed a product as a 3D model were 44% more likely to add it to cart and those who viewed it in AR 65% more likely to purchase (Rebecca Minkoff).',
   },
   {
     q: 'How fast does a 3D commerce deployment pay back?',
-    a: 'Thridify customers typically break even in 4–6 weeks and see 300%+ ROI by month six, driven by returns, conversion and content savings. Results depend on catalogue, traffic and price point — start with one hero product and measure.',
+    a: 'It depends on catalogue, traffic and price point, so start with one hero product and measure returns, conversion and content cost against the same product before 3D.',
   },
 ];
 
 export const metadata = pageMetadata({
-  title: 'The ROI of 3D & AR Commerce — Returns, Conversion, Content Cost',
+  title: 'The ROI of 3D and AR Commerce: Returns, Conversion, Cost',
   description:
-    'A data-backed guide to the return on 3D product viewers, configurators and app-free AR: NRF returns data, Shopify case studies, Thridify’s six published outcomes, and a calculator for your own numbers.',
+    'A sourced guide to the return on 3D product viewers, configurators and app-free AR: NRF returns data, Shopify case studies and a calculator.',
   keywords: [
     'ROI of 3D product visualization',
     'does AR reduce returns',
@@ -182,6 +183,7 @@ export default function RoiGuide() {
       </section>
 
       {/* 3. Thridify's published outcomes */}
+      {METRICS_RATIFIED && (
       <section className="section">
         <div className="container-x">
           <div className="max-w-3xl mb-10">
@@ -202,6 +204,7 @@ export default function RoiGuide() {
           </div>
         </div>
       </section>
+      )}
 
       {/* 4. Calculator */}
       <section id="calculator" className="section bg-surface scroll-mt-20">
@@ -211,7 +214,7 @@ export default function RoiGuide() {
             <h2 className="tt-2">Run it on your numbers.</h2>
             <p className="mt-4 text-foreground/70 max-w-2xl">
               Enter your monthly orders, order value and return rate. The two sliders are the only
-              assumptions, and both default to conservative values below Thridify’s published outcomes.
+              assumptions, and both start at conservative values. Change them to match your own data.
             </p>
           </div>
           <ReturnsCalculator />
@@ -227,9 +230,9 @@ export default function RoiGuide() {
           </div>
           <div className="lg:col-span-8 grid md:grid-cols-3 gap-5">
             {[
-              { t: 'Content cost', b: 'One 3D model renders every colourway, angle and lifestyle scene. A new finish stops needing a new shoot — the source of the 70% photography-cost reduction.' },
+              { t: 'Content cost', b: 'One 3D model renders every colourway, angle and lifestyle scene. A new finish stops needing a new shoot.' },
               { t: 'Sales-cycle time', b: 'For configurable products, live pricing and instant quotes replace days of back-and-forth; the configuration exports straight to production, so what was sold is what gets built.' },
-              { t: 'Inventory', b: 'Selling variants from the model before committing stock to every shade is how brands cut inventory cost by 40% in Thridify’s published outcomes.' },
+              { t: 'Inventory', b: 'Selling variants from the model before committing stock to every shade means less stock tied up in colours that don’t sell.' },
             ].map((c) => (
               <div key={c.t} className="card p-6">
                 <h3 className="font-heading text-lg font-semibold tracking-tight">{c.t}</h3>
@@ -272,9 +275,6 @@ export default function RoiGuide() {
               </li>
             ))}
           </ol>
-          <p className="mt-4 text-xs text-foreground/50">
-            Thridify’s six outcome metrics are the company’s published figures from client deployments and are not attributed to the external sources above.
-          </p>
         </div>
       </section>
 

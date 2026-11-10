@@ -1,4 +1,5 @@
 import { INDUSTRY_EXPERIENCE } from '@/lib/thridify';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -230,6 +231,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* OUTCOMES — canonical metric set ONLY (§7.2), industry-framed */}
+      {METRICS_RATIFIED && (
       <section id="impact" className="section on-dark bg-ink text-paper scroll-mt-20">
         <div className="container-x">
           <div className="max-w-3xl mb-12">
@@ -257,6 +259,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
           )}
         </div>
       </section>
+      )}
 
       {/* FAQ — real questions the industry Googles (FAQPage schema above) */}
       <section id="faq" className="section scroll-mt-20">

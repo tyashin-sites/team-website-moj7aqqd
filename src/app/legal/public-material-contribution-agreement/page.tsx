@@ -21,7 +21,7 @@ const CANONICAL = '/legal/public-material-contribution-agreement';
 export const metadata = pageMetadata({
   title: 'Public Material Contribution Agreement',
   description:
-    'The agreement brands accept when they publish materials to the Thridify Public Material Library, and the licence under which every Thridify account may use them.',
+    'The agreement brands accept when they publish materials to the Thridify Public Material Library, and the licence every Thridify account uses them under.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Public Material Contribution Agreement — Thridify',

@@ -16,9 +16,9 @@ import { pageMetadata } from '@/lib/seo';
 const CANONICAL = '/3d-ar-platform-guide';
 
 export const metadata = pageMetadata({
-  title: '3D & AR, platform by platform — what to expect on iPhone, Android and the web',
+  title: '3D and AR on iPhone, Android and the Web: What to Expect',
   description:
-    'How 3D and augmented reality behave on Apple AR Quick Look, Google Scene Viewer, Chrome WebXR and the web: configuration, animation, lighting, materials, placement and file size, with sources from Apple, Google and the open standards.',
+    'How 3D and AR behave on AR Quick Look, Scene Viewer, WebXR and the web: configuration, animation, lighting, materials, placement and file size.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: '3D & AR, platform by platform',

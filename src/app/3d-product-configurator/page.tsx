@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ShopifyAppNote } from '@/components/ShopifyAppNote';
 import { WooCommercePluginNote } from '@/components/WooCommercePluginNote';
 import { ArrowRight } from 'lucide-react';
@@ -131,7 +132,7 @@ const VERTICALS = [
 export const metadata = pageMetadata({
   title: '3D Product Configurator for E-Commerce',
   description:
-    'A no-code 3D product configurator that lets shoppers change finish, size and modules in real time, see live pricing, and place the exact build in their room with app-free AR. Installs on Shopify, WooCommerce and WordPress.',
+    'A no-code 3D product configurator: shoppers change finish, size and modules live, see the price, and place the build in their room with app-free AR.',
   keywords: [
     '3D product configurator',
     'product configurator',
@@ -269,6 +270,7 @@ export default function ConfiguratorPage() {
               they commit, and the build leaves as structured data rather than a description.
             </p>
           </div>
+          {METRICS_RATIFIED && (
           <div className="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl">
             {(['returns', 'conversion', 'engagement'] as const).map((k) => (
               <div key={k} className="card p-6">
@@ -277,6 +279,7 @@ export default function ConfiguratorPage() {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

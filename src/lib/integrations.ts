@@ -428,7 +428,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D Product Viewer & AR for Wix",
     seoDescription:
-      "Add a 3D product viewer, configurator and app-free AR to your Wix store. Thridify embeds on your Wix product page with a lightweight snippet — no re-platforming.",
+      "Add a 3D product viewer, configurator and app-free AR to your Wix store with a lightweight snippet on the product page. No re-platforming.",
     hero: {
       eyebrow: "Wix Integration",
       h1: "3D Product Viewer & AR for Wix",
@@ -527,7 +527,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D Product Configurator for BigCommerce",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to your BigCommerce store. Thridify embeds on your product template with a lightweight snippet — no re-platforming.",
+      "Add a 3D configurator, 360° viewer and app-free AR to your BigCommerce store with a lightweight snippet on your product template. No re-platforming.",
     hero: {
       eyebrow: "BigCommerce Integration",
       h1: "3D Product Configurator for BigCommerce",
@@ -632,7 +632,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "Adobe Commerce & Magento 3D Configurator & AR",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to your Adobe Commerce (Magento) store. Thridify embeds on your product template with a lightweight snippet.",
+      "Add a 3D configurator, 360° viewer and app-free AR to your Adobe Commerce (Magento) store with a lightweight snippet on your product template.",
     hero: {
       eyebrow: "Adobe Commerce (Magento) Integration",
       h1: "Adobe Commerce & Magento 3D Configurator & AR",
@@ -736,7 +736,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D & AR Product Viewer for commercetools",
     seoDescription:
-      "Add a 3D viewer, configurator and app-free AR to your commercetools storefront. Thridify’s JS SDK renders published experiences in your headless frontend by product ID.",
+      "Add a 3D viewer, configurator and app-free AR to your commercetools storefront. The Thridify JS SDK renders experiences in your headless frontend.",
     hero: {
       eyebrow: "commercetools Integration",
       h1: "3D & AR Product Viewer for commercetools",
@@ -939,7 +939,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D Product Configurator & AR for WordPress",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to a WordPress site. WooCommerce stores use the Thridify plugin; any other WordPress site uses a two-line embed.",
+      "Add a 3D configurator, 360° viewer and app-free AR to WordPress. WooCommerce stores use the Thridify plugin; other WordPress sites use a short embed.",
     hero: {
       eyebrow: "WordPress Integration",
       h1: "3D Product Configurator & AR for WordPress",
@@ -1039,7 +1039,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D & AR Product Viewer for Drupal Commerce",
     seoDescription:
-      "Add a 3D viewer, configurator and app-free AR to your Drupal Commerce store. Thridify embeds on your Drupal product page with a lightweight snippet — no re-platforming.",
+      "Add a 3D viewer, configurator and app-free AR to your Drupal Commerce store with a lightweight snippet on the product page. No re-platforming.",
     hero: {
       eyebrow: "Drupal Integration",
       h1: "3D & AR Product Viewer for Drupal Commerce",
@@ -1138,7 +1138,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D & AR Product Viewer for Squarespace",
     seoDescription:
-      "Add a 3D viewer, configurator and app-free AR to your Squarespace store. Thridify embeds on your Squarespace product page with a lightweight code block — no re-platforming.",
+      "Add a 3D viewer, configurator and app-free AR to your Squarespace store with a lightweight code block on the product page. No re-platforming.",
     hero: {
       eyebrow: "Squarespace Integration",
       h1: "3D & AR Product Viewer for Squarespace",
@@ -1237,7 +1237,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D Product Configurator & AR for PrestaShop",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to your PrestaShop store. Thridify embeds on your PrestaShop product template with a lightweight snippet — no re-platforming.",
+      "Add a 3D configurator, 360° viewer and app-free AR to your PrestaShop store with a lightweight snippet on the product template. No re-platforming.",
     hero: {
       eyebrow: "PrestaShop Integration",
       h1: "3D Product Configurator & AR for PrestaShop",
@@ -1336,7 +1336,7 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "Custom 3D & AR Integration via API & SDK",
     seoDescription:
-      "Add a 3D viewer, configurator and app-free AR to any custom site or app with the Thridify JS SDK, embed code and API — pass a product, variant or account ID and render.",
+      "Add a 3D viewer, configurator and app-free AR to any custom site or app with the Thridify JS SDK, embed code and API. Pass a product ID and render.",
     hero: {
       eyebrow: "Custom Integration",
       h1: "Custom 3D & AR Integration via API & SDK",

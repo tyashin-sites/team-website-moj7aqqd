@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ShopifyAppNote } from '@/components/ShopifyAppNote';
 import { WooCommercePluginNote } from '@/components/WooCommercePluginNote';
 import { ArrowRight } from 'lucide-react';
@@ -90,7 +91,7 @@ const FAQS = [
 export const metadata = pageMetadata({
   title: 'AR Product Viewer — App-Free 3D AR for Your Store',
   description:
-    'Let shoppers place your products in their own room at true scale, straight from the product page. App-free WebAR through AR Quick Look on iOS and Scene Viewer on Android, from one source model.',
+    'Let shoppers place your products in their room at true scale from the product page. App-free AR through Quick Look on iOS and Scene Viewer on Android.',
   keywords: [
     'AR product viewer',
     '3D AR viewer',
@@ -212,6 +213,7 @@ export default function ArViewerPage() {
               </li>
             ))}
           </ol>
+          {METRICS_RATIFIED && (
           <div className="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl">
             {(['returns', 'conversion', 'inventory'] as const).map((k) => (
               <div key={k} className="card p-6">
@@ -220,6 +222,7 @@ export default function ArViewerPage() {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

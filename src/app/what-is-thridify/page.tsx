@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ArrowRight } from 'lucide-react';
 import {
   SITE_URL,
@@ -22,7 +23,7 @@ export const dynamicParams = false;
 export const metadata = pageMetadata({
   title: 'What is Thridify? No-code 3D & AR commerce platform',
   description:
-    'Thridify is a no-code 3D and AR commerce platform and 3D modelling service for furniture, kitchen, door and custom-product brands — 3D configurators, app-free AR and photoreal 3D models.',
+    'Thridify is a no-code 3D and AR commerce platform and 3D modelling service for furniture, kitchen, door and custom-product brands.',
   keywords: [
     'what is Thridify',
     'no-code 3D commerce platform',
@@ -101,7 +102,7 @@ const FACTS: { label: string; value: string }[] = [
   { label: 'Integrations', value: 'Shopify, WooCommerce, WordPress, custom storefronts' },
   { label: 'Model formats', value: 'glTF, GLB, USDZ (photoreal, AR-ready)' },
   { label: 'Company', value: `${LEGAL_NAME} (parent company)` },
-  { label: 'Founders', value: 'Shikha Gupta (CEO), Aditya Gupta (CTO)' },
+  { label: 'Co-Founder & CEO', value: 'Shikha Gupta' },
   { label: 'Geography', value: 'Founded in Delhi, India; North American expansion from the Greater Toronto Area' },
 ];
 
@@ -124,7 +125,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: 'Who is behind Thridify?',
-    a: 'Thridify is built by Aapastech Private Limited, founded by Shikha Gupta (CEO) and Aditya Gupta (CTO). It was founded in Delhi, India, with North American expansion from the Greater Toronto Area.',
+    a: 'Thridify is built by Aapastech Private Limited, led by Co-Founder and CEO Shikha Gupta. It was founded in Delhi, India, with North American expansion from the Greater Toronto Area.',
   },
 ];
 
@@ -235,6 +236,7 @@ export default function WhatIsThridifyPage() {
       </section>
 
       {/* PROOF — canonical metrics only (§7.2). */}
+      {METRICS_RATIFIED && (
       <section id="impact" className="section on-dark bg-ink text-paper scroll-mt-20">
         <div className="container-x">
           <p className="eyebrow">The impact</p>
@@ -254,6 +256,7 @@ export default function WhatIsThridifyPage() {
           </dl>
         </div>
       </section>
+      )}
 
       {/* FAQ — FAQPage schema above. */}
       <section id="faq" className="container-x section scroll-mt-20">

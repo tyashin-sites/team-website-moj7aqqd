@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ShopifyAppNote } from '@/components/ShopifyAppNote';
 import { WooCommercePluginNote } from '@/components/WooCommercePluginNote';
 import {
@@ -33,7 +34,7 @@ const SITE_URL =
 export const metadata = pageMetadata({
   title: 'Integrations — 3D & AR for Every Store',
   description:
-    'Add a 3D configurator, 360° viewer and app-free AR to Shopify, WooCommerce, WordPress, Adobe Commerce (Magento), BigCommerce, Wix, commercetools, Squarespace, PrestaShop, Drupal, Canva or any custom site — via a native plugin or a lightweight embed.',
+    'Add a 3D configurator, 360° viewer and app-free AR to Shopify, WooCommerce, Magento, BigCommerce, Wix and more with a native plugin or a light embed.',
   path: '/integrations',
   image: '/og/integrations.png',
   ogDescription:
@@ -214,6 +215,7 @@ export default function IntegrationsIndexPage() {
       </section>
 
       {/* PROOF — permitted platform metrics only (No-Faking rule). */}
+      {METRICS_RATIFIED && (
       <section className="section bg-surface">
         <div className="container-x">
           <div className="max-w-3xl mb-14">
@@ -232,6 +234,7 @@ export default function IntegrationsIndexPage() {
           </dl>
         </div>
       </section>
+      )}
 
       {/* CTA */}
       <section className="section">

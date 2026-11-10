@@ -8,7 +8,7 @@ import { INTEGRATIONS } from '@/lib/integrations';
 import { INDUSTRIES } from '@/lib/industries';
 
 const ITEMS = [
-  { href: '/resources/roi-of-3d-and-ar-commerce', kicker: 'ROI guide', t: 'The ROI of 3D and AR: returns, conversion, content cost', b: 'Public returns data, Shopify case studies, Thridify’s six published outcomes and a calculator that runs on your numbers.' },
+  { href: '/resources/roi-of-3d-and-ar-commerce', kicker: 'ROI guide', t: 'The ROI of 3D and AR: returns, conversion, content cost', b: 'Public returns data, Shopify case studies and a calculator that runs on your own numbers.' },
   { href: '/resources/3d-configurator-cost', kicker: 'Cost guide', t: 'How much does a 3D product configurator cost?', b: 'The six things that set the cost of a 3D and AR project, and what is always free.' },
   { href: '/faq', kicker: 'FAQ', t: 'Every question, answered straight', b: 'Fifty-plus answers on the platform, modelling, AR and devices, integrations and the company.' },
   { href: '/glossary', kicker: 'Glossary', t: 'The vocabulary of 3D and AR commerce', b: 'Plain definitions of configurators, WebAR, glTF, USDZ, Draco, KTX2, PBR and more.' },
@@ -66,7 +66,7 @@ const CHECKLIST = [
 
 export const metadata = pageMetadata({
   title: 'Resources — Guides, Data and References for 3D & AR Commerce',
-  description: 'ROI and cost guides, per-platform install guides, the glossary and device references: what a team needs to evaluate 3D product viewers, configurators and app-free AR.',
+  description: 'ROI and cost guides, install guides, the glossary and device references for teams weighing 3D product viewers, configurators and app-free AR.',
   path: '/resources',
   image: '/og/resources.png',
 });

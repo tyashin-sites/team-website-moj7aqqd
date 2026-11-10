@@ -141,7 +141,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "results",
         q: "What results do Thridify customers see?",
-        a: "The outcomes Thridify claims: 75% lower product returns, 3× higher conversion rates, 100% more engagement, 70% lower photography cost, 100% higher click-through rate and 40% lower inventory cost. Sales cycles compress with instant cost clarity, and BOM automation sharply reduces manufacturing rework.",
+        a: "Results depend on the catalogue, traffic and price point, so we don't publish a single headline figure. Buyers see exactly what they are ordering, including the price as they configure, which is what drives fewer returns and faster quotes. For independent data on 3D and AR, see our ROI guide, which cites its sources.",
       },
     ],
   },
@@ -189,7 +189,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "photoshoots",
         q: "Can 3D models replace product photoshoots?",
-        a: "Largely, yes. One 3D model renders every angle, finish and lifestyle scene — which is where the 70% photography-cost reduction comes from. New colourways stop needing a new shoot.",
+        a: "Largely, yes. One 3D model renders every angle, finish and lifestyle scene, so new colourways stop needing a new shoot.",
       },
     ],
   },
@@ -315,7 +315,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "roi",
         q: "How quickly does it pay for itself?",
-        a: "Customers typically break even in 4–6 weeks and see 300%+ ROI by month six, driven by higher conversion, fewer returns and faster quoting. Results vary by catalogue and traffic — the demo call covers what to expect for your products.",
+        a: "It varies by catalogue, traffic and price point, so we don't quote a payback period up front. The demo call covers what to measure for your products, and the ROI guide has a calculator that runs on your own numbers.",
       },
       {
         id: "start-small",

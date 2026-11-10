@@ -12,7 +12,7 @@ import { breadcrumbLd } from '@/lib/knowledge-graph';
 export const metadata = pageMetadata({
   title: 'About Thridify — The team behind 3D & AR commerce',
   description:
-    'Thridify, by Aapastech Private Limited, was founded in Delhi in 2022. Co-Founder & CEO Shikha Gupta leads 3D and AR commerce for North American retail from the Greater Toronto Area.',
+    'Thridify is built by Aapastech Private Limited, founded in Delhi in 2022. Co-Founder and CEO Shikha Gupta works from the Greater Toronto Area.',
   path: '/about',
   image: '/og/about.png',
   ogTitle: 'About Thridify',
@@ -48,6 +48,7 @@ export default function AboutPage() {
               <Image
                 src="/brand/logo-mark.png"
                 alt=""
+                aria-hidden
                 width={600}
                 height={600}
                 unoptimized
@@ -61,9 +62,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* FOUNDER STORY — Shikha-fronted per brand rules; Aditya named in
-          company context only. Founders are based in Canada — never imply
-          physical presence in India. */}
+      {/* FOUNDER STORY — Shikha is the only person named on any public
+          Thridify surface (user rule 2026-09-10); other team members are
+          never named or described. */}
       <section className="section">
         <div className="container-x grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
@@ -80,9 +81,6 @@ export default function AboutPage() {
             <div className="mt-10 flex flex-wrap gap-3">
               <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
                 Shikha Gupta — Co-Founder &amp; CEO
-              </span>
-              <span className="px-4 py-2 rounded-full bg-surface text-foreground/70 text-sm font-medium border border-foreground/10">
-                Aditya Gupta — Co-Founder &amp; CTO
               </span>
             </div>
           </div>
@@ -109,6 +107,7 @@ export default function AboutPage() {
               <Image
                 src="/brand/logo-mark.png"
                 alt=""
+                aria-hidden
                 width={600}
                 height={600}
                 unoptimized

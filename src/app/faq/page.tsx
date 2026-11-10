@@ -23,7 +23,7 @@ const TOTAL = ALL_FAQS.length;
 
 export const metadata = pageMetadata({
   title: "FAQ — Thridify Questions, Answered",
-  description: `${TOTAL} straight answers about Thridify: 3D product configurators, app-free AR, the done-for-you 3D modelling service, integrations, plans, device support and getting started.`,
+  description: 'Straight answers about Thridify: 3D product configurators, app-free AR, the 3D modelling service, integrations, device support and getting started.',
   keywords: [
     "Thridify FAQ",
     "3D product configurator questions",

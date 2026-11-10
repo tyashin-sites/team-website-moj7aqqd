@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { Sofa, ChefHat, Wrench } from 'lucide-react';
 import { SectionHeading } from '@/components/SectionHeading';
 import { FormField, inputClass } from '@/components/FormField';
@@ -26,6 +27,7 @@ import { ProofCard } from '@/components/signature/ProofCard';
 export const metadata: Metadata = {
   title: 'Component Gallery (internal QA)',
   robots: { index: false, follow: false },
+  alternates: { canonical: '/gallery' },
 };
 
 function Swatch({ name, hex, border = false }: { name: string; hex: string; border?: boolean }) {
@@ -44,6 +46,7 @@ function Swatch({ name, hex, border = false }: { name: string; hex: string; bord
 export default function GalleryPage() {
   return (
     <>
+      <h1 className="sr-only">Component gallery (internal QA)</h1>
       {/* ── Intro ─────────────────────────────────────────────────────── */}
       <section className="section">
         <div className="container-x">
@@ -164,7 +167,7 @@ export default function GalleryPage() {
         <div className="container-x">
           <h2 className="tt-2">VerticalCard</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <VerticalCard icon={Sofa} name="Furniture" pain="Shoppers can’t judge scale or fabric from flat photos." metric="75% lower product returns" />
+            <VerticalCard icon={Sofa} name="Furniture" pain="Shoppers can’t judge scale or fabric from flat photos." />
             <VerticalCard icon={ChefHat} name="Modular Kitchens" pain="Quotes stall while layouts bounce between sales and design." />
             <VerticalCard icon={Wrench} name="Industrial Machinery" pain="Internals and motion are invisible in a brochure PDF." />
           </div>
@@ -183,7 +186,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <MetricBar />
+      {METRICS_RATIFIED && <MetricBar />}
 
       {/* ── ProofCard ─────────────────────────────────────────────────── */}
       <section className="section">

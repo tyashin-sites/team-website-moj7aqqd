@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ArrowRight } from 'lucide-react';
 import { industriesContent, homeContent } from '@/lib/content';
 import { INDUSTRIES } from '@/lib/industries';
@@ -14,7 +15,7 @@ const SITE_URL =
 export const metadata = pageMetadata({
   title: 'Industries — 3D & AR Commerce for Every Sector',
   description:
-    'Thridify powers immersive 3D and AR product experiences across furniture, modular kitchens, doors & windows, prefab structures, industrial machinery and laminates & surfaces.',
+    '3D and AR product experiences for furniture, kitchens, doors and windows, prefab, machinery, surfaces, sanitaryware, electronics and luggage brands.',
   path: '/industries',
   image: '/og/industries.png',
   ogDescription:
@@ -112,6 +113,7 @@ export default function IndustriesPage() {
       </section>
 
       {/* PROOF — permitted platform metrics only (No-Faking rule). */}
+      {METRICS_RATIFIED && (
       <section className="section bg-surface">
         <div className="container-x">
           <div className="max-w-3xl mb-14">
@@ -130,6 +132,7 @@ export default function IndustriesPage() {
           </dl>
         </div>
       </section>
+      )}
 
       {/* CTA */}
       <section className="section">

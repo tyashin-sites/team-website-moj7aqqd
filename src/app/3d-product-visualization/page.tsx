@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { METRICS_RATIFIED } from '@/lib/industries';
 import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
@@ -100,7 +101,7 @@ const FAQS = [
 export const metadata = pageMetadata({
   title: '3D Product Visualization & Photoreal Furniture Rendering',
   description:
-    'Model a product once and get everything you used to photograph: an interactive 3D viewer, app-free AR, photoreal stills, lifestyle scenes and video — every finish and size, without a reshoot.',
+    'Model a product once and get an interactive 3D viewer, app-free AR, photoreal stills, lifestyle scenes and video for every finish, without a reshoot.',
   keywords: [
     '3D product visualization',
     'furniture visualization',
@@ -221,6 +222,7 @@ export default function VisualizationPage() {
               and stand in their own room.
             </p>
           </div>
+          {METRICS_RATIFIED && (
           <div className="mt-10 grid sm:grid-cols-3 gap-5 max-w-3xl">
             {(['photography', 'conversion', 'inventory'] as const).map((k) => (
               <div key={k} className="card p-6">
@@ -229,6 +231,7 @@ export default function VisualizationPage() {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

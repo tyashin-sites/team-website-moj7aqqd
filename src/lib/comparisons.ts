@@ -47,7 +47,7 @@ export const COMPETITORS: Competitor[] = [
     category: 'enterprise 3D configuration and virtual-photography platform',
     seoTitle: 'Thridify vs Threekit / Threekit Alternative',
     seoDescription:
-      'Thridify vs Threekit: an honest comparison of 3D configurator, app-free AR and done-for-you 3D modelling. A no-code Threekit alternative for custom-product brands.',
+      'Thridify vs Threekit: an honest comparison of 3D configurators, app-free AR and done-for-you 3D modelling for custom-product brands.',
     keywords: [
       'Threekit alternative',
       'Thridify vs Threekit',
