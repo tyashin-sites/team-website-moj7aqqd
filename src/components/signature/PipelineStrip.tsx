@@ -3,8 +3,8 @@
 /**
  * PipelineStrip — DESIGN-SPEC §7.4, GSAP edition (luxury pass). Dark ink
  * section with one continuous SVG line drawing itself as the section scrolls
- * through the viewport: Configure → Live price → Instant quote → BOM to
- * factory. Each node is a glass card (icon + ≤10 words).
+ * through the viewport: Configure → Live price → Instant quote → Spec to
+ * your team. Each node is a glass card (icon + ≤10 words).
  *
  * The draw is a ScrollTrigger-SCRUBBED timeline (smoothed, scrub: 0.6) —
  * the line advances with the reader and each node wakes (opacity 0.75 → 1,
@@ -23,7 +23,7 @@ const NODES = [
   { icon: Sliders, title: 'Configure', copy: 'Buyers build their exact product.' },
   { icon: BadgeDollarSign, title: 'Live price', copy: 'Every change reprices instantly.' },
   { icon: FileText, title: 'Instant quote', copy: 'A ready-to-sign quote, no waiting.' },
-  { icon: Factory, title: 'BOM to factory', copy: 'Production specs flow straight through.' },
+  { icon: Factory, title: 'Spec to your team', copy: 'Every option the buyer picked comes with it.' },
 ];
 
 const PATH_LENGTH = 1000;

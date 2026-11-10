@@ -210,7 +210,7 @@
             "id": "configurator",
             "name": "3D Configurator",
             "tagline": "Customise before you buy.",
-            "description": "Buyers customise colours, materials and modules in real time. Every change reprices live, generates an instant quote, and exports a production-ready BOM straight to manufacturing."
+            "description": "Buyers customise colours, materials and modules in real time. Every change reprices live and generates an instant quote with every option the buyer chose."
           },
           {
             "id": "ar",
@@ -393,7 +393,7 @@
           },
           {
             "name": "Modular Kitchens & Wardrobes",
-            "description": "Real-time layout, finish and hardware configuration with live pricing and production-ready BOM export."
+            "description": "Real-time layout, finish and hardware configuration with live pricing and an instant quote."
           },
           {
             "name": "Doors & Windows",

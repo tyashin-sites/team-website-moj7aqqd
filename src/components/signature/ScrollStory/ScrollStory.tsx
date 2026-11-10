@@ -313,8 +313,8 @@ function renderWidget(beat: Beat) {
       return (
         <div className="glass-card p-5 max-w-sm">
           <div className="flex items-center justify-between mb-3">
-            <span className="tt-mono text-primary-soft">BOM · {QUOTE.ref}</span>
-            <span className="tt-mono text-muted-dark">→ factory</span>
+            <span className="tt-mono text-primary-soft">Spec · {QUOTE.ref}</span>
+            <span className="tt-mono text-muted-dark">→ your team</span>
           </div>
           <ul className="divide-y divide-paper/10">
             {BOM.map((row) => {

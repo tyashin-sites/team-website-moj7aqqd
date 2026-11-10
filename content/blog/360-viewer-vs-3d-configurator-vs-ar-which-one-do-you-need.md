@@ -49,7 +49,7 @@ Where it disappoints: on a product whose options are the whole conversation. Sho
 
 The right answer when **options are the friction**. Furniture, kitchens, doors, windows, machinery, custom luggage — anywhere a dropdown is asking the customer to imagine something you have not shown them.
 
-Two effects, and the second is usually the underrated one. On the front end, the buyer sees their build rather than a representative build. On the back end, the configuration leaves as structured data — a specification, a quote, a bill of materials — instead of as a screenshot and a phone call, which removes a whole class of manufacturing rework.
+Two effects, and the second is usually the underrated one. On the front end, the buyer sees their build rather than a representative build. On the back end, the configuration leaves as structured data (the chosen options and a quote) instead of as a screenshot and a phone call, which removes a whole class of manufacturing rework.
 
 Where it disappoints: when it is installed as a visual toy with no connection to the cart or the quote. A configurator that changes the picture but not the order is a demo you are paying for monthly.
 

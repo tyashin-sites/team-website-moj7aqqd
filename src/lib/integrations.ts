@@ -1373,7 +1373,7 @@ export const INTEGRATIONS: Integration[] = [
       {
         capability: "configurator",
         heading: "Configurator wired to your backend",
-        body: "Shoppers configure options live; the events API syncs the selection, price and BOM with your own systems.",
+        body: "Shoppers configure options live; the events API syncs the selection and price with your own systems.",
       },
       {
         capability: "ar",
