@@ -25,7 +25,8 @@ import { GLOSSARY_SLUGS } from "@/lib/glossary";
  *    Disallow. It is not part of the public site.
  *  - `/blog/[slug]` — blog POSTS are platform-owned data and belong in the
  *    platform's own content sitemap, NOT this page sitemap. `/blog` (the
- *    index) IS included.
+ *    index) is platform-served too and the platform's content sitemap lists
+ *    it, so it is left out here (WCR-023: it was the one URL in both).
  *  - route-group-only / utility routes (`/api/*`, `robots.txt`, `llms.txt`,
  *    this sitemap route itself).
  *
@@ -80,7 +81,6 @@ const STATIC_ROUTES: SiteRoute[] = [
   { path: "/device-compatibility", priority: 0.6, changeFrequency: "monthly" },
   { path: "/3d-ar-platform-guide", priority: 0.6, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/contact", priority: 0.6, changeFrequency: "monthly" },
   { path: "/security", priority: 0.3, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },

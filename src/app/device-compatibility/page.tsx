@@ -52,7 +52,7 @@ const TIERS = [
 const IOS_ROWS = [
   {
     device: 'iPhone 12 Pro & later Pro models',
-    note: 'iPhone 12 Pro through 16 Pro and Pro Max — all carry LiDAR',
+    note: 'iPhone 12 Pro through iPhone 17 Pro and Pro Max, and every later Pro model. All carry LiDAR',
     viewer: 'Full quality',
     ar: 'Instant placement (LiDAR)',
     tier: 'Full',
@@ -66,7 +66,7 @@ const IOS_ROWS = [
   },
   {
     device: 'iPhone 13 & later (non‑Pro)',
-    note: 'iPhone 13/14/15/16 and SE (2022), plus iPad (2022+), iPad Air (2022+) and iPad mini (2021+) — the recommended floor for full-quality scenes',
+    note: 'iPhone 13, 14, 15, 16, 16e, 17 and iPhone Air, plus SE (2022), iPad (2022+), iPad Air (2022+) and iPad mini (2021+). The recommended floor for full-quality scenes',
     viewer: 'Full quality',
     ar: 'Guided placement',
     tier: 'Guided AR',

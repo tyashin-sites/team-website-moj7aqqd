@@ -101,7 +101,7 @@ const FACTS: { label: string; value: string }[] = [
   { label: 'Integrations', value: 'Shopify, WooCommerce, WordPress, custom storefronts' },
   { label: 'Model formats', value: 'glTF, GLB, USDZ (photoreal, AR-ready)' },
   { label: 'Company', value: `${LEGAL_NAME} (parent company)` },
-  { label: 'Founders', value: 'Shikha Gupta (CEO), Aditya Gupta (CTO)' },
+  { label: 'Leadership', value: 'Shikha Gupta, Co-Founder and CEO' },
   { label: 'Geography', value: 'Founded in Delhi, India; North American expansion from the Greater Toronto Area' },
 ];
 
@@ -124,7 +124,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: 'Who is behind Thridify?',
-    a: 'Thridify is built by Aapastech Private Limited, founded by Shikha Gupta (CEO) and Aditya Gupta (CTO). It was founded in Delhi, India, with North American expansion from the Greater Toronto Area.',
+    a: `Thridify is built and operated by ${LEGAL_NAME} and led by Shikha Gupta, Co-Founder and CEO. It was founded in Delhi, India, and expands into North America from the Greater Toronto Area.`,
   },
 ];
 

@@ -41,14 +41,53 @@ export type PageMeta = {
   extra?: Metadata;
 };
 
+/** Search-result limits the discover audit holds us to (WCR-005/015). */
+export const TITLE_MAX = 60;
+export const DESCRIPTION_MAX = 160;
+const TITLE_SUFFIX = ' | Thridify';
+
+/**
+ * Fit a meta description into DESCRIPTION_MAX: whole sentences first, so the
+ * snippet ends on a full stop; a single over-long sentence is cut on a word.
+ */
+export function fitDescription(text: string, max = DESCRIPTION_MAX): string {
+  const t = text.replace(/\s+/g, ' ').trim();
+  if (t.length <= max) return t;
+  const sentences = t.match(/[^.!?]+[.!?]+(?=\s|$)/g) ?? [];
+  let out = '';
+  for (const s of sentences) {
+    const next = `${out} ${s.trim()}`.trim();
+    if (next.length > max) break;
+    out = next;
+  }
+  if (out.length >= 60) return out;
+  const cut = t.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:—–-]+$/, '')}…`;
+}
+
+/**
+ * The <title> as Google will show it. The layout template adds " | Thridify";
+ * when that would push past TITLE_MAX the page title goes out bare, and a page
+ * title that is itself too long keeps its head up to the first " — " or ":".
+ */
+export function fitTitle(title: string): Metadata['title'] {
+  const t = title.trim();
+  if (t.length + TITLE_SUFFIX.length <= TITLE_MAX) return t;
+  if (t.length <= TITLE_MAX) return { absolute: t };
+  const head = t.split(/\s[—–|]\s|:\s/)[0].trim();
+  if (head.length >= 20 && head.length <= TITLE_MAX) return { absolute: head };
+  const cut = t.slice(0, TITLE_MAX);
+  return { absolute: cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:—–&-]+$/, '') };
+}
+
 export function pageMetadata(opts: PageMeta): Metadata {
   const url = siteUrl(opts.path);
   const image = opts.image || SITE.defaultOgImage;
   const ogTitle = opts.ogTitle || opts.title;
   const ogDescription = opts.ogDescription || opts.description;
   return {
-    title: opts.title,
-    description: opts.description,
+    title: fitTitle(opts.title),
+    description: fitDescription(opts.description),
     ...(opts.keywords ? { keywords: opts.keywords } : {}),
     alternates: { canonical: opts.path },
     openGraph: {

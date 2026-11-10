@@ -58,11 +58,20 @@ export function organizationLd() {
     email: 'contact@thridify.com',
     founder: [
       { '@type': 'Person', name: 'Shikha Gupta', jobTitle: 'CEO' },
-      { '@type': 'Person', name: 'Aditya Gupta', jobTitle: 'CTO' },
     ],
-    sameAs: CANONICAL_SOCIALS,
+    sameAs: [...CANONICAL_SOCIALS, ...PRODUCT_PROFILES],
   };
 }
+
+/**
+ * Live third-party product profiles (WCR-025), verified 200 on 9 Nov 2026.
+ * They let AI engines tie the plugin/app listings to this entity. G2 is held
+ * back until decision D-1108-01 (its listing publishes plan prices) closes.
+ */
+export const PRODUCT_PROFILES = [
+  'https://wordpress.org/plugins/thridify/',
+  'https://apps.shopify.com/thridify-3d-ar-configurator',
+];
 
 export function softwareApplicationLd() {
   return {
