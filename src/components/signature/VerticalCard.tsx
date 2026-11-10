@@ -48,7 +48,7 @@ export type VerticalCardProps = {
   name: string;
   /** 1-line pain, in the vertical's vocabulary (DESIGN-SPEC §7.5). */
   pain: string;
-  /** One REAL metric, e.g. "75% lower product returns". Optional until sourced. */
+  /** One REAL, sourced metric. Optional; render nothing until a source exists. */
   metric?: string;
   /** The vertical's real product render (Industry.hubArt). */
   art?: Industry['hubArt'];

@@ -88,8 +88,8 @@ const HOW_IT_WORKS: { icon: LucideIcon; step: string; title: string; body: strin
   },
 ];
 
-// Canonical impact metrics ONLY (DESIGN-SPEC §7.2) — the ones that honestly
-// follow from having real 3D models. No invented numbers.
+// Outcome cards that honestly follow from having real 3D models. No figures
+// without a citable source (WCR-026).
 const OUTCOMES: { key: keyof typeof CANONICAL_METRICS; context: string }[] = [
   { key: 'photography', context: 'One 3D model renders every angle, finish and scene — no photoshoot per variant.' },
   { key: 'returns', context: 'Buyers who see accurate scale, material and finish send back fewer "not as pictured" orders.' },
@@ -324,7 +324,7 @@ export default function ThreeDModellingServicePage() {
               const m = CANONICAL_METRICS[o.key];
               return (
                 <div key={o.key} className="glass-card p-8">
-                  <dd className={`font-mono tabular-nums text-4xl md:text-5xl font-medium ${idx === 0 ? 'text-accent' : 'text-paper'}`}>
+                  <dd className={`text-2xl md:text-3xl font-semibold ${idx === 0 ? 'text-accent' : 'text-paper'}`}>
                     {m.value}
                   </dd>
                   <dt className="mt-2 text-muted-dark">{m.label}</dt>

@@ -121,7 +121,7 @@ export default function IndustriesPage() {
           <dl className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {proof.metrics.map((m) => (
               <div key={m.label} className="card p-8">
-                <dd className="font-mono tabular-nums text-4xl md:text-5xl font-medium text-foreground">
+                <dd className="text-2xl md:text-3xl font-semibold text-foreground">
                   {m.value}
                 </dd>
                 <dt className="mt-3 text-foreground/65">{m.label}</dt>

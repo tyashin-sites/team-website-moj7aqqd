@@ -84,7 +84,7 @@ const SECTIONS: { id: string; q: string; answer: string; more?: string[] }[] = [
   },
 ];
 
-// Canonical impact metrics ONLY (DESIGN-SPEC §7.2). No other numbers on-site.
+// The six outcome cards (no figures, WCR-026). No other claims on-site.
 const PROOF_KEYS: (keyof typeof CANONICAL_METRICS)[] = [
   'returns',
   'conversion',
@@ -244,7 +244,7 @@ export default function WhatIsThridifyPage() {
               const m = CANONICAL_METRICS[k];
               return (
                 <div key={k} className="glass-card p-6">
-                  <dd className={`font-mono tabular-nums text-3xl md:text-4xl font-medium ${idx === 0 ? 'text-accent' : 'text-paper'}`}>
+                  <dd className={`text-xl md:text-2xl font-semibold ${idx === 0 ? 'text-accent' : 'text-paper'}`}>
                     {m.value}
                   </dd>
                   <dt className="mt-2 text-sm text-muted-dark">{m.label}</dt>

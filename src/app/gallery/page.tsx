@@ -5,7 +5,6 @@ import { FormField, inputClass } from '@/components/FormField';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { HeroObject } from '@/components/signature/HeroObject';
-import { MetricBar } from '@/components/signature/MetricBar';
 import { PipelineStrip } from '@/components/signature/PipelineStrip';
 import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { CTABand } from '@/components/signature/CTABand';
@@ -164,7 +163,7 @@ export default function GalleryPage() {
         <div className="container-x">
           <h2 className="tt-2">VerticalCard</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <VerticalCard icon={Sofa} name="Furniture" pain="Shoppers can’t judge scale or fabric from flat photos." metric="75% lower product returns" />
+            <VerticalCard icon={Sofa} name="Furniture" pain="Shoppers can’t judge scale or fabric from flat photos." />
             <VerticalCard icon={ChefHat} name="Modular Kitchens" pain="Quotes stall while layouts bounce between sales and design." />
             <VerticalCard icon={Wrench} name="Industrial Machinery" pain="Internals and motion are invisible in a brochure PDF." />
           </div>
@@ -182,8 +181,6 @@ export default function GalleryPage() {
           <HeroObject />
         </div>
       </section>
-
-      <MetricBar />
 
       {/* ── ProofCard ─────────────────────────────────────────────────── */}
       <section className="section">

@@ -8,8 +8,10 @@
  *     + Breadcrumb JSON-LD).
  *
  * RULES baked in here:
- *   - Canonical metric set ONLY (DESIGN-SPEC §7.2) — no invented per-industry
- *     numbers. `outcomes` reference the six permitted stats verbatim.
+ *   - No Thridify performance figures (WCR-026, 9 Nov 2026): the old
+ *     75%/3×/100%/70%/100%/40% set had no citable source, so the six outcome
+ *     keys now carry plain statements of what the product does. A number
+ *     comes back only with a named, citable source in the registry.
  *   - No-Faking: the ONLY real client quote used is Guntier's (verbatim from
  *     production thridify.com), shown where it honestly maps (modular
  *     kitchens, doors & windows). Every other page is metric-only proof.
@@ -28,14 +30,21 @@ export type IndustryMetricKey =
   | 'ctr'
   | 'inventory';
 
-/** Canonical impact metrics (DESIGN-SPEC §7.2) — the ONLY permitted stats. */
+/**
+ * The six outcome cards. Deliberately NON-numeric (WCR-026): each says what the
+ * product does, not a percentage nobody can cite. Add a figure only with a
+ * named source (policies/content.md, constitution C1).
+ */
 export const CANONICAL_METRICS: Record<IndustryMetricKey, { value: string; label: string }> = {
-  returns: { value: '75%', label: 'lower product returns' },
-  conversion: { value: '3×', label: 'higher conversion rates' },
-  engagement: { value: '100%', label: 'more engagement' },
-  photography: { value: '70%', label: 'lower photography cost' },
-  ctr: { value: '100%', label: 'higher click-through rate' },
-  inventory: { value: '40%', label: 'lower inventory cost' },
+  returns: { value: 'Fewer surprises', label: 'Buyers see true scale, finish and fit before they order.' },
+  conversion: { value: 'Clearer choices', label: 'Shoppers build the exact product and see its price as they go.' },
+  engagement: { value: 'Hands-on pages', label: 'Shoppers spin, zoom and configure instead of scrolling past photos.' },
+  photography: {
+    value: 'One model, every variant',
+    label: 'A single 3D asset renders each colour, finish and angle. A new variant needs no new shoot.',
+  },
+  ctr: { value: '3D on every listing', label: 'Each product page carries a 3D view shoppers can open, spin and zoom.' },
+  inventory: { value: 'Sell before you stock', label: 'Offer every variant from the model before you stock each one.' },
 };
 
 export type CapabilityMap = {
