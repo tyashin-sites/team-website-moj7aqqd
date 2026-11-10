@@ -39,11 +39,18 @@ function escapeXml(value: string): string {
     .replace(/'/g, "&apos;");
 }
 
+/** Paths the platform's content sitemap already lists. */
+const PLATFORM_LISTED_PATHS = new Set(["/blog"]);
+
 export function GET(): Response {
   // No <lastmod>: the site has no per-page change dates, and the build date
   // would tell Google every page changed on every deploy.
 
   const urls = getSiteRoutes()
+    // /blog is served by the Tyashin platform's blog plugin, which lists it in
+    // /sitemap-content.xml. Listing it here too made it the one URL in both
+    // sitemaps (WCR-023).
+    .filter((route) => !PLATFORM_LISTED_PATHS.has(route.path))
     .map((route) => {
       const loc = escapeXml(`${ORIGIN}${route.path}`);
       return [

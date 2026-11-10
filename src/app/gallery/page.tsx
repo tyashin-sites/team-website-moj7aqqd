@@ -25,6 +25,7 @@ import { ProofCard } from '@/components/signature/ProofCard';
 export const metadata: Metadata = {
   title: 'Component Gallery (internal QA)',
   robots: { index: false, follow: false },
+  alternates: { canonical: '/gallery' },
 };
 
 function Swatch({ name, hex, border = false }: { name: string; hex: string; border?: boolean }) {
@@ -43,6 +44,7 @@ function Swatch({ name, hex, border = false }: { name: string; hex: string; bord
 export default function GalleryPage() {
   return (
     <>
+      <h1 className="sr-only">Component gallery (internal QA)</h1>
       {/* ── Intro ─────────────────────────────────────────────────────── */}
       <section className="section">
         <div className="container-x">
