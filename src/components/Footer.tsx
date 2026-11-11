@@ -115,6 +115,16 @@ export async function Footer() {
                 {l.label}
               </Link>
             ))}
+            {/* Reopens the platform Consent Manager banner (consent.js listens for
+                clicks on data-tyashin-consent-open) so a visitor can change or
+                withdraw their cookie choice as easily as they gave it. */}
+            <button
+              type="button"
+              data-tyashin-consent-open=""
+              className="hover:text-paper transition-colors"
+            >
+              Cookie settings
+            </button>
           </nav>
         </div>
 

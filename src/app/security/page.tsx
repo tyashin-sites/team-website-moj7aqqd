@@ -9,7 +9,7 @@ import {
   ESTONIA_ENTITY,
   INDIA_ENTITY,
   LEGAL_EMAIL,
-  LEGAL_UPDATE_DATE,
+  PRIVACY_UPDATE_DATE,
 } from '@/content/legal/group';
 
 // Phase-4 security & practices page: a modest, HONEST description of how this
@@ -60,7 +60,7 @@ export default function SecurityPage() {
         eyebrow="Trust"
         title="Security & Data Practices"
         breadcrumbLabel="Security"
-        effectiveDate={LEGAL_UPDATE_DATE}
+        effectiveDate={PRIVACY_UPDATE_DATE}
       >
         <LegalSection title="Who we are">
           <RegionalEntityBlock />
@@ -147,8 +147,9 @@ export default function SecurityPage() {
 
         <LegalSection title="Cookies and tracking">
           <p>
-            This website does not set advertising or cross-site tracking cookies; Cloudflare
-            may set strictly necessary security cookies. Our chat assistant and site analytics
+            The only advertising tag on this website is the Meta Pixel, and it loads only after
+            you accept advertising cookies in the cookie banner; Cloudflare may set strictly
+            necessary security cookies. Our chat assistant and site analytics
             keep random IDs in your browser&rsquo;s local and session storage, and the 3D demos
             do so only with your consent. The{' '}
             <Link href="/privacy#cookies" className="text-primary underline underline-offset-4">

@@ -59,3 +59,9 @@ export const OFFICER = {
  * The PMCA keeps its own date (PMCA_EFFECTIVE_DATE).
  */
 export const LEGAL_UPDATE_DATE = '2 November 2026';
+
+/**
+ * Privacy Policy and Security page only. 11 November 2026: the Meta Pixel (consent-gated advertising
+ * tag) and the cookie-settings link. The other legal pages did not change, so they keep LEGAL_UPDATE_DATE.
+ */
+export const PRIVACY_UPDATE_DATE = '11 November 2026';

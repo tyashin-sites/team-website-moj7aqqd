@@ -9,7 +9,7 @@ import {
   CANADA_ENTITY,
   ESTONIA_ENTITY,
   INDIA_ENTITY,
-  LEGAL_UPDATE_DATE,
+  PRIVACY_UPDATE_DATE,
   OFFICER,
 } from '@/content/legal/group';
 
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
 
-      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={LEGAL_UPDATE_DATE}>
+      <LegalDocument eyebrow="Legal" title="Privacy Policy" effectiveDate={PRIVACY_UPDATE_DATE}>
         <p lang="hi" className="text-sm">
           <LegalLink href="/privacy/hi" hrefLang="hi">
             हिन्दी में पढ़ें
@@ -77,8 +77,8 @@ export default function PrivacyPage() {
             commerce platform and 3D modelling service. We collect the details you send
             through our contact form or our chat assistant so we can reply and set up a demo,
             the details you give us when you open a Thridify account, and basic information
-            about how the site and its 3D demos are used. We do not run advertising trackers,
-            and we do not sell your personal information. This policy explains, in
+            about how the site and its 3D demos are used. We use one advertising tool, the
+            Meta Pixel, and only if you agree to it. We do not sell your personal information. This policy explains, in
             plain terms, what we collect, why, how long we keep it, who we share it with, and
             the rights you have, including under the EU/UK GDPR, India&rsquo;s Digital
             Personal Data Protection Act 2023 (DPDP Act) and Canada&rsquo;s PIPEDA.
@@ -137,6 +137,16 @@ export default function PrivacyPage() {
               language, a session ID and a random visitor ID stored in your browser.
             </li>
             <li>
+              <strong>Your cookie choice:</strong> what you chose (<code>aapas_consent</code>) and a
+              random visitor ID (<code>aapas_vid</code>) in local storage, and a record of the
+              choice on the Tyashin platform so we can show what you agreed to.
+            </li>
+            <li>
+              <strong>Meta Pixel (advertising, only after you accept):</strong> Meta&rsquo;s code
+              sets the <code>_fbp</code> cookie, and <code>_fbc</code> when you arrive from a
+              Facebook or Instagram ad. Meta keeps them for up to 90 days.
+            </li>
+            <li>
               <strong>3D demos:</strong> the Thridify viewer in our demos records how they are
               used (the product and experience, the features used, the page address and
               referrer, and the device type). Without your consent it keeps its session ID only
@@ -180,6 +190,14 @@ export default function PrivacyPage() {
               <strong>To understand how the site and our demos are used</strong> and improve
               them (site analytics and demo events). Legal basis: legitimate interest in
               understanding how our website is used.
+            </li>
+            <li>
+              <strong>To show our ads on Facebook and Instagram and measure them</strong> (the
+              Meta Pixel), only if you accept advertising cookies in the cookie banner. Legal
+              basis: your consent (GDPR Art. 6(1)(a) and the ePrivacy rules on cookies; under
+              the DPDP Act, consent for that purpose; under PIPEDA, your express consent). You
+              can withdraw it at any time through the Cookie settings link at the foot of every
+              page.
             </li>
             <li>
               <strong>To operate, secure and improve the site</strong> (server and security
@@ -237,6 +255,16 @@ export default function PrivacyPage() {
             </li>
           </ul>
           <p>
+            <strong>Meta (advertising), only if you accept advertising cookies:</strong> the Meta
+            Pixel sends Meta the pages you visit on this site, your browser and device details,
+            your IP address and Meta&rsquo;s own cookie IDs, so we can show our ads to people
+            who visited and see how they perform. Meta is not our processor here. For collecting
+            and sending this data, Meta and we act as joint controllers (Meta Platforms Ireland
+            Limited in the EU/EEA, Meta Platforms, Inc. elsewhere); what Meta then does with it
+            is covered by Meta&rsquo;s own privacy policy. If you do not accept, the pixel never
+            loads and Meta receives nothing from this site.
+          </p>
+          <p>
             We may also disclose information where required by law, to protect our rights, or
             as part of a business reorganisation, in each case consistent with this policy.
           </p>
@@ -291,8 +319,11 @@ export default function PrivacyPage() {
 
         <LegalSection title="Cookies and similar technologies" id="cookies">
           <p>
-            This site does not set advertising or cross-site tracking cookies. Cloudflare, which
-            hosts the site, may set strictly necessary security cookies. Some features keep
+            When you first visit, a banner asks whether you accept analytics, preference and
+            advertising cookies. Advertising cookies are off until you accept them, and you can
+            change your choice at any time through the Cookie settings link at the foot of every
+            page. Cloudflare, which hosts the site, may set strictly necessary security cookies.
+            Some features keep
             small items in your browser&rsquo;s local storage or session storage instead of
             cookies:
           </p>
@@ -318,9 +349,9 @@ export default function PrivacyPage() {
             </li>
           </ul>
           <p>
-            You can clear these items at any time in your browser settings. If we add
-            advertising or other non-essential cookies, they will be off by default and loaded
-            only after you consent, and we will list them here first.
+            You can clear these items at any time in your browser settings. If we add other
+            advertising or non-essential cookies, they will be off by default and loaded only
+            after you consent, and we will list them here first.
           </p>
         </LegalSection>
 
