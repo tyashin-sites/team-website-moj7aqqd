@@ -26,10 +26,10 @@ export const BLACK_FRIDAY_EXPIRES_AT = Date.parse('2026-11-26T05:00:00Z');
 export const BLACK_FRIDAY_EXPIRED_REDIRECT = '/contact';
 
 /**
- * Production switch. Stays false until the requester confirms the offer terms
- * (aapastech/tyashin-platform issue 53: "terms confirmed").
+ * Production switch. On since 16 Nov 2026: the requester confirmed the offer
+ * terms on aapastech/tyashin-platform issue 53 ("terms confirmed").
  */
-export const BLACK_FRIDAY_LIVE = false;
+export const BLACK_FRIDAY_LIVE = true;
 
 /**
  * The Shopify App Store link is shown only once the campaign pricing is
