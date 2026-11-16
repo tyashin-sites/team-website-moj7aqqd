@@ -195,7 +195,7 @@ export default function WhatIsThridifyPage() {
             <h2 className="tt-2">A Thridify experience, right here</h2>
             <p className="mt-3 text-foreground/70">Spin it, configure it, and place it in your room &mdash; a real, live 3D experience running in your browser.</p>
           </div>
-          <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" experiencePreviewId={EXP.loungeChair} />
+          <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" experiencePreviewId={EXP.deringLounger} />
         </div>
       </section>
 

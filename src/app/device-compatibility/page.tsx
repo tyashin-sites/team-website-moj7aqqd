@@ -222,7 +222,7 @@ export default function DeviceCompatibilityPage() {
               real, live Thridify experience &mdash; the same engine described below.
             </p>
           </div>
-          <CapabilityDemo mode="ar" aspect="aspect-[16/10]" experiencePreviewId={EXP.modernSofa} />
+          <CapabilityDemo mode="ar" aspect="aspect-[16/10]" experiencePreviewId={EXP.veronaSofa} />
         </div>
       </section>
 

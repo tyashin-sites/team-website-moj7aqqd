@@ -1,5 +1,6 @@
 import { getSiteRoutes } from "@/lib/site-routes";
 import { SITE_URL } from "@/lib/schema";
+import { getPageVideo, videoPoster, videoSrc } from "@/lib/page-videos";
 
 /**
  * /sitemap-pages.xml — the SITE'S OWN page sitemap.
@@ -53,18 +54,35 @@ export function GET(): Response {
     .filter((route) => !PLATFORM_LISTED_PATHS.has(route.path))
     .map((route) => {
       const loc = escapeXml(`${ORIGIN}${route.path}`);
+      // Video sitemap entry for pages that carry a product video (same data
+      // as the on-page player and the VideoObject JSON-LD: lib/page-videos.ts).
+      const video = getPageVideo(route.path);
+      const videoLines = video
+        ? [
+            "    <video:video>",
+            `      <video:thumbnail_loc>${escapeXml(`${ORIGIN}${videoPoster(video)}`)}</video:thumbnail_loc>`,
+            `      <video:title>${escapeXml(video.name)}</video:title>`,
+            `      <video:description>${escapeXml(video.description)}</video:description>`,
+            `      <video:content_loc>${escapeXml(`${ORIGIN}${videoSrc(video)}`)}</video:content_loc>`,
+            `      <video:duration>${video.durationSeconds}</video:duration>`,
+            `      <video:publication_date>${video.uploadDate}</video:publication_date>`,
+            "      <video:family_friendly>yes</video:family_friendly>",
+            "    </video:video>",
+          ]
+        : [];
       return [
         "  <url>",
         `    <loc>${loc}</loc>`,
         `    <changefreq>${route.changeFrequency}</changefreq>`,
         `    <priority>${route.priority.toFixed(1)}</priority>`,
+        ...videoLines,
         "  </url>",
       ].join("\n");
     })
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${urls}
 </urlset>
 `;

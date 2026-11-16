@@ -203,7 +203,7 @@ export default function ShopifyAppPage() {
               aspect="aspect-[4/3]"
               modelLabel="Shopify product"
               priority
-              experiencePreviewId={EXP.modernSofa}
+              experiencePreviewId={EXP.arloSofa}
             />
           </div>
         </div>

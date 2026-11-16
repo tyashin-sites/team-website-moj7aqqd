@@ -5,6 +5,8 @@ import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
+import { PageVideo } from '@/components/PageVideo';
+import { getPageVideo, videoObjectLd } from '@/lib/page-videos';
 import { Reveal } from '@/components/Reveal';
 import { CANONICAL_METRICS } from '@/lib/industries';
 import { calendlyHref } from '@/lib/calendly';
@@ -19,6 +21,7 @@ import { calendlyHref } from '@/lib/calendly';
  */
 
 const PATH = '/ar-viewer';
+const pageVideo = getPageVideo(PATH);
 const CALENDLY = calendlyHref('ar-viewer');
 const UPDATED = '2026-09-19';
 
@@ -135,6 +138,7 @@ export default function ArViewerPage() {
           }),
           serviceLd,
           faqLd,
+          ...(pageVideo ? [videoObjectLd(pageVideo)] : []),
           breadcrumbLd(PATH, [
             { name: 'Home', path: '/' },
             { name: 'AR product viewer', path: PATH },
@@ -194,6 +198,8 @@ export default function ArViewerPage() {
           </Reveal>
         </div>
       </section>
+
+      <PageVideo path={PATH} />
 
       <section className="section pt-0">
         <div className="container-x">

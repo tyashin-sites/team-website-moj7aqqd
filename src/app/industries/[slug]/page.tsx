@@ -31,6 +31,8 @@ import { ProofCard } from '@/components/signature/ProofCard';
 import { SectionIndex } from '@/components/SectionIndex';
 import { HeroArt } from '@/components/HeroArt';
 import { JsonLd } from '@/components/JsonLd';
+import { PageVideo } from '@/components/PageVideo';
+import { getPageVideo, videoObjectLd } from '@/lib/page-videos';
 import { pageMetadata } from '@/lib/seo';
 import { ORG_ID } from '@/lib/schema';
 import { calendlyHref } from '@/lib/calendly';
@@ -137,9 +139,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     .map((slug) => INDUSTRIES.find((i) => i.slug === slug))
     .filter((x): x is Industry => Boolean(x));
 
+  const pageVideo = getPageVideo(`/industries/${ind.slug}`);
+
   return (
     <>
-      <JsonLd nodes={[serviceLd, faqLd, breadcrumbLd]} />
+      <JsonLd nodes={[serviceLd, faqLd, ...(pageVideo ? [videoObjectLd(pageVideo)] : []), breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">
@@ -189,8 +193,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
+      <PageVideo path={`/industries/${ind.slug}`} />
+
       <SectionIndex
         items={[
+          ...(pageVideo ? [{ id: 'video', label: 'Video' }] : []),
           { id: 'how-it-works', label: 'How it works' },
           { id: 'impact', label: 'The impact' },
           { id: 'faq', label: 'FAQ' },
