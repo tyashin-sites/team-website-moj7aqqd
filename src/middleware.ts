@@ -1,5 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { BLACK_FRIDAY_COPY } from '@/content/black-friday';
+import {
+  BLACK_FRIDAY_EXPIRED_REDIRECT,
+  blackFridayState,
+  isBlackFridayPath,
+} from '@/lib/black-friday';
 
 /**
  * ─────────────────────────────────────────────────────────────────────────────
@@ -83,10 +89,53 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
+  const isProduction = host === PRODUCTION_HOST;
+  const isPreviewHost =
+    !isProduction && PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix));
+
+  // Temporary campaign page: gate and expiry are decided HERE, per request,
+  // so it goes live and takes itself down without a redeploy
+  // (src/lib/black-friday.ts).
+  if (isBlackFridayPath(request.nextUrl.pathname)) {
+    const state = blackFridayState({
+      now: Date.now(),
+      isPreviewHost,
+      hasCopy: BLACK_FRIDAY_COPY !== null,
+    });
+    if (state === 'expired') {
+      // The visitor must stay on the host they used: under Tyashin dispatch
+      // the request URL carries the workers.dev host, the real one is forwarded.
+      const url = request.nextUrl.clone();
+      url.pathname = BLACK_FRIDAY_EXPIRED_REDIRECT;
+      url.search = '';
+      const visitorHost =
+        request.headers.get('x-forwarded-host') ?? request.headers.get('host');
+      if (visitorHost) {
+        url.port = '';
+        url.host = visitorHost;
+        url.protocol = /^(localhost|127\.0\.0\.1)(:|$)/.test(visitorHost) ? 'http:' : 'https:';
+      }
+      const res = NextResponse.redirect(url, 302);
+      res.headers.set('Cache-Control', 'no-store');
+      res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+      return res;
+    }
+    if (state === 'hidden') {
+      // No such route → the site's own 404 page and status.
+      const res = NextResponse.rewrite(new URL('/__gated/black-friday', request.url));
+      res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+      return res;
+    }
+  }
+
   const response = NextResponse.next();
   response.headers.set('Content-Security-Policy-Report-Only', CSP_REPORT_ONLY);
-  const isProduction = host === PRODUCTION_HOST;
-  if (!isProduction && PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix))) {
+  if (isBlackFridayPath(request.nextUrl.pathname)) {
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    response.headers.set('Cache-Control', 'private, no-store');
+    return response;
+  }
+  if (isPreviewHost) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow');
   }
   return response;

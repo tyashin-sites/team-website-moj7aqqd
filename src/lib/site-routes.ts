@@ -23,6 +23,8 @@ import { GLOSSARY_SLUGS } from "@/lib/glossary";
  * EXCLUDED on purpose (not indexable — do not add them here):
  *  - `/gallery` — component gallery, `robots: { index: false }` + robots.txt
  *    Disallow. It is not part of the public site.
+ *  - `/black-friday` — temporary campaign page (16–25 Nov 2026), `noindex,
+ *    nofollow`, reached only from campaign posts and emails. Never list it.
  *  - `/blog/[slug]` — blog POSTS are platform-owned data and belong in the
  *    platform's own content sitemap, NOT this page sitemap. `/blog` (the
  *    index) is platform-served too and the platform's content sitemap lists
