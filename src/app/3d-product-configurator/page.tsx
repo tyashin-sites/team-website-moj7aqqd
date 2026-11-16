@@ -109,6 +109,14 @@ const FAQS = [
     a: 'One. Pick the SKU with the most options and the most hesitation around it, prove the lift on that product page, then batch the rest. Starting with the whole catalogue is the most common way these projects stall.',
   },
   {
+    q: 'How does a browser 3D product configurator work, and why do some load slowly?',
+    a: 'The product is a GLB model that the browser draws with WebGL, and each option swaps a material or a part on that model. Slow configurators ship uncompressed geometry and full-size textures. Thridify compresses geometry with Draco and textures with KTX2, loads the model progressively, and has a lite mode for older phones.',
+  },
+  {
+    q: 'Can I build a 3D configurator without a developer?',
+    a: 'Yes. In Thridify you set up the model, its options and materials in a no-code editor, publish, and then add it to the product page with the Shopify or WooCommerce plugin or a pasted embed. A developer is only needed if you want to wire it into a custom checkout.',
+  },
+  {
     q: 'How much does a 3D product configurator cost?',
     a: 'It depends on catalogue size, product complexity, how many variants each product carries and which experiences you switch on. The cost drivers are broken down in full on the 3D configurator cost guide, and an exact figure is scoped on a short call.',
   },

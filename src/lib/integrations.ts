@@ -697,11 +697,19 @@ export const INTEGRATIONS: Integration[] = [
     ],
     faqs: [
       {
+        q: "What is the best 3D product configurator for Magento?",
+        a: "Judge it on three things: it maps to Magento configurable products by ID, it loads quickly on a phone, and it includes AR that opens without an app. Thridify does all three through an embed on the product template, so there is no Magento extension to keep compatible with each Adobe Commerce upgrade.",
+      },
+      {
+        q: "Which 3D modelling software integrates with Magento?",
+        a: "Modelling tools such as Blender, 3ds Max and SolidWorks do not plug into Magento directly. They export a GLB or glTF file, and a viewer on the product page displays it. Thridify takes those files, or models built by its own 3D team, adds the materials and options, and serves them on Adobe Commerce (Magento) product pages.",
+      },
+      {
         q: "Does Thridify work with Adobe Commerce and Magento?",
         a: "Yes. Adobe Commerce is the current name for Magento. Thridify adds a 3D configurator, 360° viewer and app-free AR to Adobe Commerce (Magento) product pages via a lightweight embed — no re-platforming.",
       },
       {
-        q: "How do I add a 3D product configurator to Adobe Commerce?",
+        q: "How do I add a 3D product configurator to my Magento (Adobe Commerce) store?",
         a: "Publish the experience in Thridify, then paste the embed on your Adobe Commerce (Magento) product template and map it to the product or variant by ID. The JS SDK renders it live.",
       },
       {
