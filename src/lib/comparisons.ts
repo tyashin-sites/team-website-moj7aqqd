@@ -73,6 +73,10 @@ export const COMPETITORS: Competitor[] = [
     ],
     faqs: [
       {
+        q: 'Is Threekit or Thridify the better fit for furniture and manufacturing brands?',
+        a: 'Both handle configurable furniture and industrial products. Threekit suits large enterprises that already run CRM and CPQ tooling and have a team for the integration. Thridify suits small and mid-size brands that want a no-code setup, AR without an app, and a modelling service that builds the 3D assets.',
+      },
+      {
         q: 'Is Thridify a good Threekit alternative?',
         a: 'Yes, for custom-product brands that want no-code setup and a done-for-you 3D modelling service rather than an enterprise integration project. Threekit remains a strong choice for large enterprises already invested in CRM/CPQ tooling.',
       },

@@ -164,6 +164,14 @@ export const INDUSTRIES: Industry[] = [
     showGuntierQuote: false,
     faqs: [
       {
+        q: 'What is the best 3D product configurator for furniture?',
+        a: 'Compare them on four things: fabric and finish swaps that look true to the swatch, AR that opens without an app, models light enough to load on a phone, and options that map to your store variants. Thridify is built around those four for sofas, beds, tables and storage.',
+      },
+      {
+        q: 'Who develops 3D fabric and finish configurators for furniture and home goods?',
+        a: 'Thridify does. One 3D model carries every fabric, leather and wood finish as a swappable material, so a sofa in 40 fabrics is one asset with 40 materials. Each material maps to a store variant, and shoppers switch between them on the product page or in AR.',
+      },
+      {
         q: 'Can shoppers see furniture in their room without an app?',
         a: 'Yes. Thridify’s AR viewer runs in the browser on any modern smartphone — no app download. Buyers place the piece at true scale from your product page in one tap.',
       },
@@ -316,6 +324,10 @@ export const INDUSTRIES: Industry[] = [
     showGuntierQuote: true,
     faqs: [
       {
+        q: 'What software creates window and door configurators?',
+        a: 'A door or window configurator needs profile, finish, hardware and glazing options on one 3D model, plus a way to check the result against a real wall. Thridify builds these without code and embeds them on a manufacturer or dealer site, with app-free AR for the facade check.',
+      },
+      {
         q: 'Can customers configure custom doors and windows online?',
         a: 'Yes. Thridify’s configurator lets buyers set profile, finish, hardware and glazing in real-time 3D with live pricing — covering bespoke combinations a flat catalogue can’t.',
       },
@@ -465,6 +477,10 @@ export const INDUSTRIES: Industry[] = [
     ],
     showGuntierQuote: false,
     faqs: [
+      {
+        q: 'Which 3D configurators suit industrial machinery sales?',
+        a: 'Machinery needs more than colour swaps: internals and motion shown in 3D, each machine variant configurable, and a way to check the footprint on the buyer’s own floor. Thridify does these in the browser, so a sales engineer can send a link instead of a CAD file.',
+      },
       {
         q: 'Can I show machinery internals and motion in 3D?',
         a: 'Yes. A 3D product viewer lets buyers spin equipment, expose internal assemblies and see motion — detail a static datasheet or PDF can’t convey.',
