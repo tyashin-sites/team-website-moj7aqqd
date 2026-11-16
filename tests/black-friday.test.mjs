@@ -59,3 +59,16 @@ test('booking link carries the campaign tags', () => {
   assert.equal(u.searchParams.get('utm_medium'), 'campaign-page');
   assert.equal(u.searchParams.get('utm_campaign'), 'black-friday-2026');
 });
+
+test('copy: present, no prices, no countdown or scarcity, no Shopify block', async () => {
+  const { BLACK_FRIDAY_COPY } = await import('../src/content/black-friday.ts');
+  assert.ok(BLACK_FRIDAY_COPY);
+  const text = JSON.stringify(BLACK_FRIDAY_COPY);
+  assert.doesNotMatch(text, /[$€£₹]|\b(USD|CAD|INR|EUR)\b/);
+  assert.doesNotMatch(text, /\b(left|remaining|hurry|countdown|spots?)\b/i);
+  assert.doesNotMatch(text, /shopify/i);
+  assert.deepEqual(
+    BLACK_FRIDAY_COPY.sections.map((s) => s.heading),
+    ['What you get', 'The offer', 'How it works', 'The details'],
+  );
+});
