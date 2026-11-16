@@ -25,11 +25,19 @@ export type GlossaryTerm = {
   related: string[];
   /** Deep links into the site where the concept is used. */
   seeAlso?: { label: string; href: string }[];
+  /**
+   * Set when a dedicated page owns this term. The term stays in the glossary
+   * index, but it has no /glossary/<slug> page of its own: links go straight to
+   * that page and next.config 301s the old glossary URL there. Used so one
+   * query is not split between a glossary entry and its money page.
+   */
+  redirectTo?: string;
 };
 
 export const GLOSSARY: GlossaryTerm[] = [
   {
     slug: '3d-product-configurator',
+    redirectTo: '/3d-product-configurator',
     term: '3D product configurator',
     aka: ['product configurator', 'visual configurator'],
     short:
@@ -363,7 +371,13 @@ export const GLOSSARY: GlossaryTerm[] = [
   },
 ];
 
-export const GLOSSARY_SLUGS = GLOSSARY.map((g) => g.slug);
+/** Terms that have their own /glossary/<slug> page (static params + sitemap). */
+export const GLOSSARY_SLUGS = GLOSSARY.filter((g) => !g.redirectTo).map((g) => g.slug);
+
+/** Where a term lives: its glossary page, or the dedicated page that owns it. */
+export function termHref(t: GlossaryTerm): string {
+  return t.redirectTo ?? `/glossary/${t.slug}`;
+}
 
 export function getTerm(slug: string): GlossaryTerm | undefined {
   return GLOSSARY.find((g) => g.slug === slug);

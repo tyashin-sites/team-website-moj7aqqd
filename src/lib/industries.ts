@@ -99,6 +99,8 @@ export type Industry = {
   /** Show the real Guntier proof quote on this page? (honest mapping only) */
   showGuntierQuote: boolean;
   faqs: Faq[];
+  /** Optional long-form section for verticals whose head term needs depth. */
+  guide?: { eyebrow: string; heading: string; intro: string; sections: { heading: string; body: string }[] };
   /** 2–3 related industry slugs for internal linking. */
   related: string[];
 };
@@ -162,6 +164,34 @@ export const INDUSTRIES: Industry[] = [
       { metric: 'photography', context: 'One 3D asset renders every fabric and angle — no reshoot per variant.' },
     ],
     showGuntierQuote: false,
+    guide: {
+      eyebrow: 'Furniture configurator guide',
+      heading: 'What a 3D furniture configurator has to handle, piece by piece.',
+      intro:
+        'Furniture is the hardest category to configure well, because one product can vary in fabric, frame, size and layout at once. These are the cases to test any tool against.',
+      sections: [
+        {
+          heading: 'Sofas and sectionals',
+          body: 'A 3D sofa configurator has two jobs. The first is upholstery: every fabric and leather in the range has to sit on the same model as a swappable material, with weave and sheen close enough to the swatch that the buyer trusts it. The second is layout: seats, chaises and corner units are modules the buyer adds or removes, and the price follows each change.',
+        },
+        {
+          heading: 'Beds, tables and chairs',
+          body: 'These vary less in layout and more in finish. Wood tone, leg style, headboard fabric and tabletop material are the options that matter, and each one maps to a variant in the store so the cart always holds the build on screen.',
+        },
+        {
+          heading: 'Wardrobes and storage',
+          body: 'Storage is modular by nature: carcass, shutters, handles and internal fittings. The configurator shows the finish on the full unit rather than on a sample chip, which is the point where most buyers of laminates and veneers get stuck.',
+        },
+        {
+          heading: 'The room, not only the product',
+          body: 'Whatever the piece, the buyer’s real question is whether it suits their room. App-free AR answers it for one product at true scale, and a room visualizer places the configured piece alongside others in a styled space.',
+        },
+        {
+          heading: 'Where to start',
+          body: 'Start with one product: the one with the most options and the most hesitation around it. Prove it on that product page, then batch the rest of the range.',
+        },
+      ],
+    },
     faqs: [
       {
         q: 'What is the best 3D product configurator for furniture?',

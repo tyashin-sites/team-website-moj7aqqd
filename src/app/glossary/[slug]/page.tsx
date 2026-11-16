@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
-import { GLOSSARY, GLOSSARY_SLUGS, getTerm } from '@/lib/glossary';
+import { GLOSSARY, GLOSSARY_SLUGS, getTerm, termHref } from '@/lib/glossary';
 import { calendlyHref } from '@/lib/calendly';
 import { getGlossaryDepth } from '@/lib/glossary-depth';
 
@@ -18,7 +18,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const t = getTerm(slug);
-  if (!t) return {};
+  if (!t || t.redirectTo) return {};
   return pageMetadata({
     title: `What is ${t.term}? — Definition`,
     description: t.short,
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function GlossaryTermPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const t = getTerm(slug);
-  if (!t) notFound();
+  if (!t || t.redirectTo) notFound();
   const related = t.related.map(getTerm).filter((x): x is NonNullable<typeof x> => Boolean(x));
   const path = `/glossary/${t.slug}`;
   const depth = getGlossaryDepth(t.slug);
@@ -142,7 +142,7 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ s
               <ul className="mt-4 divide-y divide-foreground/10">
                 {related.map((r) => (
                   <li key={r.slug} className="py-3">
-                    <Link href={`/glossary/${r.slug}`} className="font-semibold hover:text-primary transition-colors">{r.term}</Link>
+                    <Link href={termHref(r)} className="font-semibold hover:text-primary transition-colors">{r.term}</Link>
                     <p className="mt-1 text-sm text-foreground/60 line-clamp-2">{r.short}</p>
                   </li>
                 ))}

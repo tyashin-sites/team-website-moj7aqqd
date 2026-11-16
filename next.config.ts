@@ -48,6 +48,13 @@ const nextConfig = {
     return [
       // --- Core pages (clean 1:1 to existing routes) ---
       { source: "/about-us", destination: "/about", statusCode: 301 },
+      // 2026-11-15: GSC showed the head term "3d product configurator" split
+      // across five URLs. The glossary entry folds into the page that owns it.
+      {
+        source: "/glossary/3d-product-configurator",
+        destination: "/3d-product-configurator",
+        statusCode: 301,
+      },
       { source: "/home", destination: "/", statusCode: 301 },
       // The App Store rejects listing URLs containing "Shopify" (2026-10-26).
       { source: "/shopify-privacy", destination: "/app-privacy", statusCode: 301 },

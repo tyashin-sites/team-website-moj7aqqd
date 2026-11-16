@@ -4,7 +4,7 @@ import { pageMetadata, siteUrl } from '@/lib/seo';
 import { breadcrumbLd, webPageLd, type LdNode } from '@/lib/knowledge-graph';
 import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/Reveal';
-import { GLOSSARY } from '@/lib/glossary';
+import { GLOSSARY, termHref } from '@/lib/glossary';
 
 /**
  * /glossary — the 3D & AR commerce vocabulary, one quotable definition per
@@ -33,10 +33,10 @@ export default function GlossaryIndex() {
     name: 'Thridify 3D & AR Commerce Glossary',
     hasDefinedTerm: GLOSSARY.map((g) => ({
       '@type': 'DefinedTerm',
-      '@id': `${siteUrl(`/glossary/${g.slug}`)}#term`,
+      '@id': `${siteUrl(termHref(g))}#term`,
       name: g.term,
       description: g.short,
-      url: siteUrl(`/glossary/${g.slug}`),
+      url: siteUrl(termHref(g)),
     })),
   };
   return (
@@ -79,7 +79,7 @@ export default function GlossaryIndex() {
         <div className="container-x grid grid-cols-1 md:grid-cols-2 gap-5">
           {GLOSSARY.map((g, i) => (
             <Reveal key={g.slug} delay={Math.min(i, 8) * 0.04}>
-              <Link href={`/glossary/${g.slug}`} className="group card p-7 h-full flex flex-col">
+              <Link href={termHref(g)} className="group card p-7 h-full flex flex-col">
                 <h2 className="font-heading text-xl font-semibold tracking-tight">{g.term}</h2>
                 <p className="mt-3 text-foreground/70 leading-relaxed">{g.short}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
