@@ -12,8 +12,22 @@
 export const THRIDIFY_ACCOUNT_ID = '9778c64430db8927b214b554a5819391'; // hello@thridify.com
 export const THRIDIFY_VIEWER_URL = 'https://viewer.thridify.com';
 
+/** Showcase accounts (CEO, 2026-11-15): public demos, videos and page embeds
+ *  use the experiences built to showcase standard in these accounts, not the
+ *  older store samples. Account ids are public identifiers (they are in every
+ *  model URL). */
+export const ACCOUNT_MOVABLE_FURNITURE = 'ba821df5e38769800893b524e86f01be'; // movablefurniture@thridify.com: sofa configurators
+export const ACCOUNT_FIXED_FURNITURE = '9bf923043d31e17975a130e25ac74c6c'; // fixedfurniture@thridify.com: Atelier kitchens
+
 /** Curated preview IDs, one per demonstrated capability / vertical. */
 export const EXP = {
+  // --- showcase experiences (see SHOWCASE accounts above) ---
+  arloSofa: 'q2zws7', // Arlo Curved Sofa: fabrics, sizes, legs, cushions (movablefurniture)
+  deringLounger: 'c-tyth', // Dering Lounger: arm side, base, seat, fabrics (movablefurniture)
+  veronaSofa: 'txop68', // Verona Leather Sofa: leathers, sizes, arms, base (movablefurniture)
+  napaKitchen: '$z6_bw', // Napa Courtyard Kitchen: looks, door style, hood, larder animation (fixedfurniture)
+  flaconBottle: 'hz98_g', // Flacon Atelier perfume bottle studio (hello)
+  // --- older store samples (kept for the verticals with no showcase experience yet) ---
   modernSofa: 'k5h0f_', // Store Modern Sofa (5 finishes) — flagship configure + AR
   bicycle: '8_-uco', // Store Bicycle — detailed 360° viewer
   loungeChair: '_z8ksj', // Lounge chair — clean viewer / AR
@@ -32,6 +46,11 @@ export const EXP = {
 /** The <thridify-view> viewer requires the product id (pid); preview-id alone
  *  throws "Product ID is required". Map every embedded preview id → its pid. */
 export const PID_BY_PREVIEW: Record<string, string> = {
+  'q2zws7': 'OPAA-ARLO',
+  'c-tyth': 'OPAA-DERING',
+  'txop68': 'OPAA-VERONA',
+  '$z6_bw': 'ATL-NAPA',
+  'hz98_g': 'FLACON-ATELIER',
   'k5h0f_': 'StoreModernSofa',
   '8_-uco': '51',
   '_z8ksj': 'loungechair',
@@ -65,10 +84,29 @@ export const PLACEHOLDER_POSTER = '/models/sheen-chair-poster.webp';
  *  posters where known, local placeholder otherwise (see PLACEHOLDER_POSTER —
  *  swap in each experience's own poster as the URLs become available). */
 export const POSTER_BY_PREVIEW: Record<string, string> = {
+  // Showcase experiences: frames captured from the live viewer (public/posters).
+  'q2zws7': '/posters/arlo-curved-sofa.jpg',
+  'c-tyth': '/posters/dering-lounger.jpg',
+  'txop68': '/posters/verona-leather-sofa.jpg',
+  '$z6_bw': '/posters/napa-courtyard-kitchen.jpg',
+  'hz98_g': '/posters/flacon-perfume-bottle.jpg',
   // Lounge chair — the experience's own published poster (its flat photo).
   '_z8ksj':
     'https://models.thridify.com/9778c64430db8927b214b554a5819391/b3042c32-0807-4f67-861a-7a4c9d12cdb1/poster/1hfll6ityj1-Lounge%20chair-poster.png',
 };
+
+/** Preview id → owning account, for experiences that live outside the site's
+ *  connected account. Anything not listed resolves to THRIDIFY_ACCOUNT_ID. */
+export const ACCOUNT_BY_PREVIEW: Record<string, string> = {
+  'q2zws7': ACCOUNT_MOVABLE_FURNITURE,
+  'c-tyth': ACCOUNT_MOVABLE_FURNITURE,
+  'txop68': ACCOUNT_MOVABLE_FURNITURE,
+  '$z6_bw': ACCOUNT_FIXED_FURNITURE,
+};
+
+export function accountFor(previewId: string): string {
+  return ACCOUNT_BY_PREVIEW[previewId] ?? THRIDIFY_ACCOUNT_ID;
+}
 
 /** Resolve the poster source for a placement, falling back to the placeholder. */
 export function posterFor(previewId: string): string {
@@ -86,8 +124,8 @@ export const DEFAULT_VARIANT_BY_PREVIEW: Record<string, string> = {
 
 /** Industry slug → live experience preview id (undefined = keep placeholder). */
 export const INDUSTRY_EXPERIENCE: Record<string, string | undefined> = {
-  furniture: EXP.modernSofa,
-  'modular-kitchens': EXP.modularKitchen,
+  furniture: EXP.deringLounger,
+  'modular-kitchens': EXP.napaKitchen,
   'doors-and-windows': EXP.door,
   'prefab-structures': EXP.realisticRoom,
   'industrial-machinery': EXP.robot, // RobotExpressive — automation/robotics stand-in

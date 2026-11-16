@@ -14,9 +14,9 @@ import { EXP } from '@/lib/thridify';
 
 // Home product trio → a distinct live Thridify experience per capability.
 const TRIO_EXPERIENCE: Record<string, string> = {
-  viewer: EXP.bicycle,
-  configurator: EXP.nasherLuggage,
-  ar: EXP.loungeChair,
+  viewer: EXP.flaconBottle,
+  configurator: EXP.deringLounger,
+  ar: EXP.veronaSofa,
 };
 import { BeforeAfter } from '@/components/signature/BeforeAfter';
 import { PipelineStrip } from '@/components/signature/PipelineStrip';
@@ -96,7 +96,7 @@ export default function HomePage() {
                 mobile shows the poster instantly and the SDK governor keeps just
                 ~1 live context — Instant would auto-downgrade to Ready here
                 anyway (Experience Modes §3). */}
-            <HeroObject experiencePreviewId={EXP.modernSofa} experienceMode="ready" />
+            <HeroObject experiencePreviewId={EXP.arloSofa} experienceMode="ready" />
             {/* After the single live showcase, invite visitors to browse the
                 full Thridify demo storefront (every product live in 3D/AR). */}
             <div className="mt-6 text-center">

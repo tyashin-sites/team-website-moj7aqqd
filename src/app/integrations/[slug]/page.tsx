@@ -40,6 +40,8 @@ import { EXP } from "@/lib/thridify";
 import { SectionIndex } from "@/components/SectionIndex";
 import { HeroArt } from "@/components/HeroArt";
 import { JsonLd } from "@/components/JsonLd";
+import { PageVideo } from "@/components/PageVideo";
+import { getPageVideo, videoObjectLd } from "@/lib/page-videos";
 import { pageMetadata } from "@/lib/seo";
 import { ORG_ID } from "@/lib/schema";
 import { calendlyHref } from '@/lib/calendly';
@@ -173,9 +175,11 @@ export default async function IntegrationPage({
     .map((s) => INDUSTRIES.find((i) => i.slug === s))
     .filter((x): x is Industry => Boolean(x));
 
+  const pageVideo = getPageVideo(`/integrations/${it.slug}`);
+
   return (
     <>
-      <JsonLd nodes={[serviceLd, faqLd, breadcrumbLd]} />
+      <JsonLd nodes={[serviceLd, faqLd, ...(pageVideo ? [videoObjectLd(pageVideo)] : []), breadcrumbLd]} />
 
       {/* Breadcrumb (visible) */}
       <nav aria-label="Breadcrumb" className="container-x pt-8">
@@ -235,14 +239,17 @@ export default async function IntegrationPage({
               aspect="aspect-[4/3]"
               modelLabel={`${it.name} product`}
               priority
-              experiencePreviewId={EXP.modernSofa}
+              experiencePreviewId={EXP.arloSofa}
             />
           </div>
         </div>
       </section>
 
+      <PageVideo path={`/integrations/${it.slug}`} />
+
       <SectionIndex
         items={[
+          ...(pageVideo ? [{ id: "video", label: "Video" }] : []),
           { id: "how-it-integrates", label: "How it integrates" },
           ...(guide ? [{ id: "install-guide", label: "Install guide" }] : []),
           { id: "what-you-get", label: "What you get" },

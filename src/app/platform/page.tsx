@@ -25,7 +25,7 @@ import {
 import { EXP } from "@/lib/thridify";
 
 // Platform Experience-pillar deep-dives → one live experience per capability.
-const PILLAR_EXPERIENCE: Record<string, string> = { viewer: EXP.baxterLounge, configurator: EXP.diningTable, ar: EXP.armChair };
+const PILLAR_EXPERIENCE: Record<string, string> = { viewer: EXP.flaconBottle, configurator: EXP.arloSofa, ar: EXP.veronaSofa };
 import { CTABand } from "@/components/signature/CTABand";
 import { PILLARS, getPillar, topFeatures, type Pillar } from "@/lib/features";
 import { pageMetadata } from "@/lib/seo";
@@ -224,7 +224,7 @@ export default function PlatformPage() {
           {/* HERO DEMO (§8 Platform hero, DEMO-FIRST §6a) — a live interactive
               viewer, poster-first + activate-on-interaction. */}
           <div className="mt-14 max-w-2xl mx-auto reveal">
-            <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" priority experiencePreviewId={EXP.modernSofa} />
+            <CapabilityDemo mode="viewer" aspect="aspect-[16/10]" priority experiencePreviewId={EXP.napaKitchen} />
           </div>
         </div>
       </section>

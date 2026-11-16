@@ -14,10 +14,10 @@
 import { useEffect } from 'react';
 import type React from 'react';
 import {
-  THRIDIFY_ACCOUNT_ID,
   THRIDIFY_VIEWER_URL,
   PID_BY_PREVIEW,
   DEFAULT_VARIANT_BY_PREVIEW,
+  accountFor,
   posterFor,
   type ThridifyMode,
 } from '@/lib/thridify';
@@ -51,7 +51,7 @@ function ensureViewerScript() {
 
 export function ThridifyExperience({
   previewId,
-  accountId = THRIDIFY_ACCOUNT_ID,
+  accountId,
   variantId,
   label = 'product',
   className = '',
@@ -85,6 +85,8 @@ export function ThridifyExperience({
   // The viewer requires the product id (pid); preview-id alone throws
   // "Product ID is required". Pass both (pid resolves the experience).
   const productId = PID_BY_PREVIEW[previewId];
+  // Showcase experiences live in their own accounts (lib/thridify.ts).
+  const account = accountId ?? accountFor(previewId);
   // Open on the default variant when none is specified (e.g. Store Modern Sofa
   // → Single Seater Chair instead of the full multi-seat model).
   const variant = variantId ?? DEFAULT_VARIANT_BY_PREVIEW[previewId];
@@ -94,7 +96,7 @@ export function ThridifyExperience({
 
   return (
     <thridify-view
-      account-id={accountId}
+      account-id={account}
       {...(productId ? { 'product-id': productId } : {})}
       preview-id={previewId}
       {...(variant ? { 'variant-id': variant } : {})}

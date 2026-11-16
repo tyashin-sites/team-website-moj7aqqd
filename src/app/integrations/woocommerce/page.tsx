@@ -212,7 +212,7 @@ export default function WooCommercePluginPage() {
               aspect="aspect-[4/3]"
               modelLabel="WooCommerce product"
               priority
-              experiencePreviewId={EXP.modernSofa}
+              experiencePreviewId={EXP.veronaSofa}
             />
           </div>
         </div>
