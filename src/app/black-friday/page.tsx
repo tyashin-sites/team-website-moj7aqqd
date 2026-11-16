@@ -36,7 +36,8 @@ export function generateMetadata(): Metadata {
     title: copy.metaTitle,
     description: copy.metaDescription,
     path: BLACK_FRIDAY_PATH,
-    extra: { robots: ROBOTS },
+    // The tab title is part of the supplied copy: no " | Thridify" suffix.
+    extra: { robots: ROBOTS, title: { absolute: copy.metaTitle } },
   });
 }
 
