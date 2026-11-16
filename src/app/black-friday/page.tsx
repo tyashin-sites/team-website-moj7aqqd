@@ -96,6 +96,13 @@ export default function BlackFridayPage() {
                       ))}
                     </ul>
                   )}
+                  {s.steps && (
+                    <ol className="list-decimal pl-5 space-y-2">
+                      {s.steps.map((step) => (
+                        <li key={step}>{step}</li>
+                      ))}
+                    </ol>
+                  )}
                 </div>
               </section>
             ))}
