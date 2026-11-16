@@ -25,7 +25,7 @@ import { calendlyHref } from '@/lib/calendly';
 
 const PATH = '/3d-product-configurator';
 const CALENDLY = calendlyHref('3d-product-configurator');
-const UPDATED = '2026-09-19';
+const UPDATED = '2026-11-15';
 
 /** What the thing actually does, in the order a buyer evaluates it. */
 const CAPABILITIES = [
@@ -248,6 +248,46 @@ export default function ConfiguratorPage() {
               text="On WooCommerce? The configurator syncs with your variations."
             />
           </Reveal>
+        </div>
+      </section>
+
+      <section id="what-is" className="section pt-0 scroll-mt-20">
+        <div className="container-x">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Definition</p>
+            <h2 className="tt-2">What is a 3D product configurator?</h2>
+            <p className="mt-6 lead font-medium text-foreground">
+              A 3D product configurator lets a shopper change a product’s options (colour,
+              material, size, parts) on an interactive 3D model and see the result and the price
+              straight away.
+            </p>
+            <div className="mt-6 space-y-5 text-foreground/75 leading-relaxed">
+              <p>
+                The product page shows a live 3D model in place of a photo gallery. Every option
+                the brand sells is a control the buyer can change, and the model updates as they
+                do. Each configuration has a price, maps to a variant in the store, and can go to
+                the sales team as a quotation.
+              </p>
+              <p>
+                It matters most where a photo per combination is impossible: furniture, kitchens,
+                doors and windows, luggage, lighting. For the longer explanation, read{' '}
+                <Link
+                  href="/blog/what-is-a-3d-product-configurator-a-complete-guide-for-modern-e-commerce-brands"
+                  className="text-primary underline underline-offset-4"
+                >
+                  the complete guide to 3D product configurators
+                </Link>
+                , or{' '}
+                <Link
+                  href="/blog/build-a-3d-product-configurator-step-by-step-guide"
+                  className="text-primary underline underline-offset-4"
+                >
+                  how to build one step by step
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

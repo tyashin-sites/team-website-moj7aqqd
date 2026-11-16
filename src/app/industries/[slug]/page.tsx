@@ -229,6 +229,27 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
+      {/* GUIDE — optional long-form depth for the vertical's head term */}
+      {ind.guide ? (
+        <section id="guide" className="section bg-surface scroll-mt-20">
+          <div className="container-x grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4">
+              <p className="eyebrow">{ind.guide.eyebrow}</p>
+              <h2 className="tt-2">{ind.guide.heading}</h2>
+              <p className="mt-4 text-foreground/70 leading-relaxed">{ind.guide.intro}</p>
+            </div>
+            <div className="lg:col-span-8 divide-y divide-foreground/10 border-t border-foreground/10">
+              {ind.guide.sections.map((g) => (
+                <div key={g.heading} className="py-5">
+                  <h3 className="font-heading text-lg font-semibold tracking-tight">{g.heading}</h3>
+                  <p className="mt-2 text-foreground/70 leading-relaxed max-w-2xl">{g.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* OUTCOMES — canonical metric set ONLY (§7.2), industry-framed */}
       <section id="impact" className="section on-dark bg-ink text-paper scroll-mt-20">
         <div className="container-x">
