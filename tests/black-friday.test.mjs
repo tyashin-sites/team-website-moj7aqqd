@@ -72,3 +72,54 @@ test('copy: present, no prices, no countdown or scarcity, no Shopify block', asy
     ['What you get', 'The offer', 'How it works', 'The details'],
   );
 });
+
+// ── Redesign (issue 54): layout labels stay tied to the source copy ─────────
+
+test('layout: hero splits the intro sentence without changing a word', async () => {
+  const { BLACK_FRIDAY_COPY, BLACK_FRIDAY_LAYOUT: L } = await import('../src/content/black-friday.ts');
+  assert.equal(`${L.hero.offerLine} ${L.hero.subLine}`, BLACK_FRIDAY_COPY.intro[0]);
+  assert.equal(L.hero.label, BLACK_FRIDAY_COPY.headline);
+});
+
+test('layout: one card per offer bullet, same term and saving, 5 years first', async () => {
+  const { BLACK_FRIDAY_COPY, BLACK_FRIDAY_LAYOUT: L } = await import('../src/content/black-friday.ts');
+  const bullets = BLACK_FRIDAY_COPY.sections.find((s) => s.heading === 'The offer').bullets;
+  assert.equal(L.offerCards.length, bullets.length);
+  bullets.forEach((bullet, i) => {
+    const [, years, saving] = bullet.match(/^(\d+) years: (\d+%) off modelling$/);
+    assert.equal(L.offerCards[i].saving, saving);
+    assert.equal(L.offerCards[i].term, `${years}-year plan, paid upfront`);
+    assert.equal(L.offerCards[i].label, 'off 3D modelling');
+  });
+  assert.deepEqual(L.offerCards.map((c) => c.term[0]), ['5', '3', '2']);
+  // Only the 5-year card is accented, and it is the only one at 100%.
+  assert.deepEqual(L.offerCards.map((c) => Boolean(c.accent)), [true, false, false]);
+  assert.equal(L.offerCards.filter((c) => c.saving === '100%').length, 1);
+});
+
+test('layout: a tag for every step, and the same rules as the copy', async () => {
+  const { BLACK_FRIDAY_COPY, BLACK_FRIDAY_LAYOUT: L } = await import('../src/content/black-friday.ts');
+  const steps = BLACK_FRIDAY_COPY.sections.find((s) => s.heading === 'How it works').steps;
+  assert.equal(L.stepTags.length, steps.length);
+  assert.equal(L.whatYouGet.length, 3);
+  const text = JSON.stringify(L);
+  assert.doesNotMatch(text, /[$€£₹]|\b(USD|CAD|INR|EUR)\b/);
+  assert.doesNotMatch(text, /\b(left|remaining|hurry|countdown|spots?)\b/i);
+  assert.doesNotMatch(text, /shopify/i);
+});
+
+test('page: three booking buttons share the campaign link; viewer is the Arlo sofa, deferred', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const page = await readFile(new URL('../src/app/black-friday/page.tsx', import.meta.url), 'utf8');
+  assert.equal(page.match(/<BookCallButton /g).length, 3);
+  assert.equal(page.match(/BLACK_FRIDAY_CALENDLY_URL\}/g).length, 1);
+  assert.match(page, /previewId=\{EXP\.arloSofa\}/);
+  assert.match(page, /<DeferredExperience/);
+  assert.match(page, /export const dynamic = 'force-dynamic'/);
+  assert.match(page, /index: false/);
+  const lib = await readFile(new URL('../src/lib/thridify.ts', import.meta.url), 'utf8');
+  assert.match(lib, /arloSofa: 'q2zws7'/);
+  assert.match(lib, /'q2zws7': 'OPAA-ARLO'/);
+  assert.match(lib, /'q2zws7': ACCOUNT_MOVABLE_FURNITURE/);
+  assert.match(lib, /ACCOUNT_MOVABLE_FURNITURE = 'ba821df5e38769800893b524e86f01be'/);
+});
