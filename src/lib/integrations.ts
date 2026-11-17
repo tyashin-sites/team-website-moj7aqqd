@@ -25,12 +25,14 @@
  */
 
 import type { DemoMode } from "@/components/signature/CapabilityDemo";
-
-/** Live BigCommerce demo store: a BigCommerce sandbox running the Thridify app
- *  (aapastech/bigcommerce-app), products matched by SKU to the prod demo catalogue. */
-export const BIGCOMMERCE_DEMO_STORE_URL = "https://bigcommerce.thridify.com";
 import { CANONICAL_METRICS, type IndustryMetricKey } from "@/lib/industries";
 import type { PillarId } from "@/lib/features";
+
+/** Live BigCommerce demo store: a launched BigCommerce store running the
+ *  production Thridify app (aapastech/bigcommerce-app), products matched by SKU
+ *  to the prod demo catalogue. Switch to https://bigcommerce.thridify.com once
+ *  that domain is attached to the store in the BigCommerce control panel. */
+export const BIGCOMMERCE_DEMO_STORE_URL = "https://thridify-demo.mybigcommerce.com";
 
 export { CANONICAL_METRICS };
 export type IntegrationMetricKey = IndustryMetricKey;
