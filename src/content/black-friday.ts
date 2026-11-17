@@ -75,3 +75,48 @@ export const BLACK_FRIDAY_COPY: BlackFridayCopy | null = {
     },
   ],
 };
+
+/**
+ * Presentation labels for the redesigned page (aapastech/tyashin-platform
+ * issue 54). The copy above stays the word-for-word source; these are the
+ * short labels the requester supplied for the new layout, and nothing else.
+ * Add no words here that the requester did not write.
+ *
+ * `offerLine` + ' ' + `subLine` is the intro sentence above, split so the
+ * offer can be the headline (tests/black-friday.test.mjs holds them equal).
+ */
+export type BlackFridayOfferCard = {
+  /** Big numeral. */
+  saving: string;
+  label: string;
+  term: string;
+  /** The one card that carries the accent colour. */
+  accent?: boolean;
+};
+
+export const BLACK_FRIDAY_LAYOUT = {
+  cta: 'Book a 30-minute call',
+  hero: {
+    label: 'Black Friday at Thridify',
+    offerLine: 'Up to 100% off 3D modelling',
+    subLine: 'when you sign a multi-year Thridify plan by 25 November 2026.',
+    /** Static text. Never a timer. */
+    closes: 'Offer closes 25 November 2026',
+    viewerCaption: 'Drag to turn it. Tap a fabric to change it. This is what your shoppers get.',
+  },
+  whatYouGet: [
+    '3D on your product pages',
+    'Finishes that change on the model',
+    "AR in the shopper's own room",
+  ],
+  /** Longest term first. Mirrors the "The offer" bullets above. */
+  offerCards: [
+    { saving: '100%', label: 'off 3D modelling', term: '5-year plan, paid upfront', accent: true },
+    { saving: '50%', label: 'off 3D modelling', term: '3-year plan, paid upfront' },
+    { saving: '20%', label: 'off 3D modelling', term: '2-year plan, paid upfront' },
+  ] as BlackFridayOfferCard[],
+  offerNote: 'The saving applies to your first 50 products. Products beyond 50 get 20% off.',
+  /** One tag per "How it works" step, same order. */
+  stepTags: ['This week', 'By 25 November', 'December to January'],
+  closingLine: 'Sign this month. Live in 3D in January.',
+} as const;
