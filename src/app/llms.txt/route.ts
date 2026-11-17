@@ -21,6 +21,7 @@ import {
   WOO_FEATURES,
   WOO_INDUSTRIES,
 } from '@/lib/woocommerce-plugin';
+import { BIGCOMMERCE_DEMO_STORE_URL } from '@/lib/integrations';
 
 /**
  * /llms.txt — a machine-first, declarative summary of Thridify for LLMs and
@@ -71,6 +72,7 @@ ${industryList}
 Thridify runs on the store you already have — via a plugin or a lightweight embed, no re-platforming. ${INTEGRATIONS.length} supported integrations: ${integrationNames}. Custom storefronts use the JS SDK and API.
 Index: ${SITE_URL}/integrations
 ${integrationList}
+Live demo stores running Thridify: WooCommerce ${WOO_DEMO_STORE_URL}, BigCommerce ${BIGCOMMERCE_DEMO_STORE_URL}.
 
 ## Shopify app
 ${SHOPIFY_APP_SUMMARY}

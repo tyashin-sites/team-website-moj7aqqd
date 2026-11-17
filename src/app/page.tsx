@@ -11,6 +11,8 @@ import { CapabilityDemo, type DemoMode } from '@/components/signature/Capability
 import { HeroObject } from '@/components/signature/HeroObject';
 import { HeroMotion } from '@/components/motion/HeroMotion';
 import { EXP } from '@/lib/thridify';
+import { WOO_DEMO_STORE_URL } from '@/lib/woocommerce-plugin';
+import { BIGCOMMERCE_DEMO_STORE_URL } from '@/lib/integrations';
 
 // Home product trio → a distinct live Thridify experience per capability.
 const TRIO_EXPERIENCE: Record<string, string> = {
@@ -108,6 +110,27 @@ export default function HomePage() {
               >
                 Explore the full demo store →
               </a>
+              <p className="mt-3 text-sm text-foreground/70">
+                Or see Thridify on a real{' '}
+                <a
+                  href={WOO_DEMO_STORE_URL}
+                  target="_blank"
+                  rel="noopener"
+                  className="font-semibold text-primary underline underline-offset-4"
+                >
+                  WooCommerce store
+                </a>{' '}
+                or{' '}
+                <a
+                  href={BIGCOMMERCE_DEMO_STORE_URL}
+                  target="_blank"
+                  rel="noopener"
+                  className="font-semibold text-primary underline underline-offset-4"
+                >
+                  BigCommerce store
+                </a>
+                .
+              </p>
             </div>
           </div>
         </div>
