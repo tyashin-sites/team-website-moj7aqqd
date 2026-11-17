@@ -227,9 +227,20 @@ export default async function IntegrationPage({
               >
                 Book a Demo
               </a>
-              <Link href="/#demo" className="btn btn-ghost">
-                Try the live demo
-              </Link>
+              {it.demoStore ? (
+                <a
+                  href={it.demoStore.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="btn btn-ghost"
+                >
+                  {it.demoStore.label} →
+                </a>
+              ) : (
+                <Link href="/#demo" className="btn btn-ghost">
+                  Try the live demo
+                </Link>
+              )}
             </div>
           </div>
           <div className="relative">
@@ -276,6 +287,19 @@ export default async function IntegrationPage({
               <Plug className="w-4 h-4" strokeWidth={1.75} aria-hidden />
               {it.installLabel}
             </p>
+            {it.demoStore && (
+              <p className="mt-4 text-base">
+                See it on a real {it.name} store:{" "}
+                <a
+                  href={it.demoStore.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="font-semibold text-primary underline underline-offset-4"
+                >
+                  {it.demoStore.url.replace(/^https?:\/\//, "")}
+                </a>
+              </p>
+            )}
           </div>
           <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {it.steps.map((s, idx) => (

@@ -28,6 +28,12 @@ import type { DemoMode } from "@/components/signature/CapabilityDemo";
 import { CANONICAL_METRICS, type IndustryMetricKey } from "@/lib/industries";
 import type { PillarId } from "@/lib/features";
 
+/** Live BigCommerce demo store: a launched BigCommerce store running the
+ *  production Thridify app (aapastech/bigcommerce-app), products matched by SKU
+ *  to the prod demo catalogue. Switch to https://bigcommerce.thridify.com once
+ *  that domain is attached to the store in the BigCommerce control panel. */
+export const BIGCOMMERCE_DEMO_STORE_URL = "https://thridify-demo.mybigcommerce.com";
+
 export { CANONICAL_METRICS };
 export type IntegrationMetricKey = IndustryMetricKey;
 
@@ -134,6 +140,10 @@ export type Integration = {
   relatedIndustries: string[];
   /** Optional deep, platform-specific content (Shopify today). */
   rich?: IntegrationRich;
+  /** Optional live store on this platform running Thridify (replaces the
+   *  generic "Try the live demo" hero link and adds a line under the install
+   *  label). Only for stores that exist and are public. */
+  demoStore?: { url: string; label: string };
 };
 
 // Reusable capability framings (kept per-page distinct where it matters).
@@ -514,6 +524,10 @@ export const INTEGRATIONS: Integration[] = [
   {
     slug: "bigcommerce",
     name: "BigCommerce",
+    demoStore: {
+      url: BIGCOMMERCE_DEMO_STORE_URL,
+      label: "Live BigCommerce demo store",
+    },
     group: "embed",
     icon: "bigcommerce",
     heroDemo: "configurator",
@@ -537,7 +551,7 @@ export const INTEGRATIONS: Integration[] = [
     tagline:
       "A 3D configurator, 360° viewer and web AR on your BigCommerce product pages.",
     integrationIntro:
-      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. Add it to a BigCommerce product page with a lightweight embed on your product template; the Thridify JS SDK renders the published experience and matches each product and variant by ID. AR runs in the browser — no app for your shoppers.",
+      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. Add it to a BigCommerce product page with a lightweight embed on your product template; the Thridify JS SDK renders the published experience and matches each product and variant by ID. AR runs in the browser — no app for your shoppers. A Thridify app for BigCommerce, which matches products by SKU and adds the viewer without editing your theme, is coming to the App Marketplace; ask us to set it up on your store before then.",
     installLabel:
       "Install: lightweight embed on your BigCommerce product template",
     steps: [
