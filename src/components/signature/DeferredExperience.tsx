@@ -11,21 +11,32 @@
  * paint. No layout shift: the viewer fills the already-sized box.
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ThridifyExperience } from '@/components/signature/ThridifyExperience';
+import { restoreAuthoredFieldOfView } from '@/lib/thridify-fit';
 
 export function DeferredExperience({
   previewId,
   label,
   className = '',
+  fitAuthoredView = false,
 }: {
   previewId: string;
   /** Short noun for the accessible label, e.g. "sofa". */
   label: string;
   /** Sizing for the reserved box (aspect ratio, max height, radius, border). */
   className?: string;
+  /** Let the experience's authored field of view apply, so a wide product is
+   *  framed whole on first paint (see src/lib/thridify-fit.ts). */
+  fitAuthoredView?: boolean;
 }) {
   const [mounted, setMounted] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!mounted || !fitAuthoredView || !boxRef.current) return;
+    return restoreAuthoredFieldOfView(boxRef.current);
+  }, [mounted, fitAuthoredView]);
 
   useEffect(() => {
     let raf1 = 0;
@@ -53,7 +64,7 @@ export function DeferredExperience({
   }, []);
 
   return (
-    <div className={`relative overflow-hidden ${className}`} data-print="hide">
+    <div ref={boxRef} className={`relative overflow-hidden ${className}`} data-print="hide">
       {/* Neutral placeholder: stays underneath; the viewer paints over it. */}
       <div
         aria-hidden

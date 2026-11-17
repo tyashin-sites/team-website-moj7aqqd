@@ -115,6 +115,8 @@ test('page: three booking buttons share the campaign link; viewer is the Arlo so
   assert.equal(page.match(/BLACK_FRIDAY_CALENDLY_URL\}/g).length, 1);
   assert.match(page, /previewId=\{EXP\.arloSofa\}/);
   assert.match(page, /<DeferredExperience/);
+  assert.match(page, /fitAuthoredView/);
+  assert.doesNotMatch(page, /aspect-square/);
   assert.match(page, /export const dynamic = 'force-dynamic'/);
   assert.match(page, /index: false/);
   const lib = await readFile(new URL('../src/lib/thridify.ts', import.meta.url), 'utf8');
@@ -122,4 +124,42 @@ test('page: three booking buttons share the campaign link; viewer is the Arlo so
   assert.match(lib, /'q2zws7': 'OPAA-ARLO'/);
   assert.match(lib, /'q2zws7': ACCOUNT_MOVABLE_FURNITURE/);
   assert.match(lib, /ACCOUNT_MOVABLE_FURNITURE = 'ba821df5e38769800893b524e86f01be'/);
+});
+
+// ── Follow-up (issue 54): whole sofa in frame; site-wide buttons on the page ─
+
+test('viewer fit: restores only an authored field of view the limit narrowed', async () => {
+  const { authoredFovToRestore } = await import('../src/lib/thridify-fit.ts');
+  assert.equal(authoredFovToRestore('45deg', 30), 45);
+  assert.equal(authoredFovToRestore('45deg', 29.999999999999996), 45);
+  // Nothing to do: limit already allows it, or there is no authored number.
+  assert.equal(authoredFovToRestore('45deg', 45), null);
+  assert.equal(authoredFovToRestore('30deg', 30), null);
+  assert.equal(authoredFovToRestore('auto', 30), null);
+  assert.equal(authoredFovToRestore(null, 30), null);
+  assert.equal(authoredFovToRestore('', 30), null);
+  assert.equal(authoredFovToRestore('45deg', NaN), null);
+  // Never a camera of our own making: junk and extreme values are ignored.
+  assert.equal(authoredFovToRestore('170deg', 30), null);
+  assert.equal(authoredFovToRestore('0.8rad', 30), null);
+  assert.equal(authoredFovToRestore('-45deg', 30), null);
+});
+
+test('site-wide booking buttons carry the campaign link and label on the page only', async () => {
+  const { blackFridayCta, BLACK_FRIDAY_CTA_LABEL } = await import('../src/lib/black-friday.ts');
+  const { BLACK_FRIDAY_LAYOUT } = await import('../src/content/black-friday.ts');
+  assert.equal(BLACK_FRIDAY_CTA_LABEL, BLACK_FRIDAY_LAYOUT.cta);
+  assert.deepEqual(blackFridayCta('/black-friday'), {
+    href: BLACK_FRIDAY_CALENDLY_URL,
+    label: 'Book a 30-minute call',
+  });
+  assert.deepEqual(blackFridayCta('/black-friday/'), blackFridayCta('/black-friday'));
+  for (const path of ['/', '/contact', '/blog/black-friday', '/black-friday-2027', '', null, undefined]) {
+    assert.equal(blackFridayCta(path), null);
+  }
+  const { readFile } = await import('node:fs/promises');
+  for (const file of ['MobileCtaBar.tsx', 'HeaderCta.tsx', 'MobileNav.tsx']) {
+    const src = await readFile(new URL(`../src/components/${file}`, import.meta.url), 'utf8');
+    assert.match(src, /blackFridayCta\(usePathname\(\)\)/, file);
+  }
 });

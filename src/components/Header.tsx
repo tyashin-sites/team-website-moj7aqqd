@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getBrandKit } from '@/lib/brand-kit';
 import { headerContent } from '@/lib/content';
 import { MobileNav } from './MobileNav';
+import { HeaderCta } from './HeaderCta';
 import { HeaderFX } from './motion/HeaderFX';
 
 export async function Header() {
@@ -52,14 +53,7 @@ export async function Header() {
         </nav>
 
         <div className="flex items-center gap-3 shrink-0">
-          <a
-            href={cta.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex btn btn-primary"
-          >
-            {cta.label}
-          </a>
+          <HeaderCta href={cta.href} label={cta.label} />
           <MobileNav nav={nav} ctaText={cta.label} ctaHref={cta.href} />
         </div>
       </div>

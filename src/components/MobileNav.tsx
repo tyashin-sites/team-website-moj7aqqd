@@ -23,6 +23,8 @@
 
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
+import { usePathname } from 'next/navigation';
+import { blackFridayCta } from '@/lib/black-friday';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { gsap, useGSAP, reduced } from '@/components/motion/gsap';
@@ -31,6 +33,8 @@ interface NavItem { label: string; href: string }
 
 export function MobileNav({ nav, ctaText, ctaHref }: { nav: NavItem[]; ctaText: string; ctaHref: string }) {
   const [open, setOpen] = useState(false);
+  // Campaign page: same button, campaign link and label.
+  const campaign = blackFridayCta(usePathname());
   const [mounted, setMounted] = useState(false);
   const [closing, setClosing] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -143,13 +147,13 @@ export function MobileNav({ nav, ctaText, ctaHref }: { nav: NavItem[]; ctaText: 
           <div data-nav-tail className="hairline mb-6" aria-hidden />
           <a
             data-nav-tail
-            href={ctaHref}
+            href={campaign?.href ?? ctaHref}
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}
             className="btn btn-primary w-full justify-center py-4 text-base"
           >
-            {ctaText}
+            {campaign?.label ?? ctaText}
           </a>
           <p data-nav-tail className="mt-4 text-center text-xs text-muted-dark">
             No code. No app. No friction.
