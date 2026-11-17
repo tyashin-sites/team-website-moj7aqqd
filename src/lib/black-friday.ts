@@ -40,6 +40,19 @@ export const BLACK_FRIDAY_SHOW_SHOPIFY_LINK = false;
 export const BLACK_FRIDAY_CALENDLY_URL =
   'https://calendly.com/hello-thridify/30min?utm_source=thridify&utm_medium=campaign-page&utm_campaign=black-friday-2026';
 
+/** Same words as the page's own buttons (src/content/black-friday.ts `cta`). */
+export const BLACK_FRIDAY_CTA_LABEL = 'Book a 30-minute call';
+
+/**
+ * The site-wide booking buttons (header, mobile menu, sticky phone bar) on
+ * the campaign page: same button, campaign link and label, so a call booked
+ * from any of them is counted against the campaign. Null on every other path.
+ */
+export function blackFridayCta(pathname: string | null | undefined): { href: string; label: string } | null {
+  if (!pathname || !isBlackFridayPath(pathname)) return null;
+  return { href: BLACK_FRIDAY_CALENDLY_URL, label: BLACK_FRIDAY_CTA_LABEL };
+}
+
 export type BlackFridayState = 'expired' | 'hidden' | 'live';
 
 export function isBlackFridayPath(pathname: string): boolean {

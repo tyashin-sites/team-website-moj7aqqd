@@ -107,13 +107,15 @@ export default function BlackFridayPage() {
               )}
             </div>
             <figure className="m-0">
-              {/* Reserved box: square, capped at ~55% of a phone's height. */}
+              {/* Reserved box: wider than tall (a touch on phones, 4:3 from md), so the whole sofa is in frame
+                  before anyone touches it; capped at ~55% of a phone's height. */}
               <DeferredExperience
                 previewId={EXP.arloSofa}
                 label="sofa"
-                className="mx-auto aspect-square w-full max-h-[55svh] max-w-[55svh] rounded-lg border border-paper/15 bg-paper/[0.04] md:max-h-[560px] md:max-w-[560px]"
+                fitAuthoredView
+                className="mx-auto aspect-[11/10] w-full max-h-[55svh] md:aspect-[4/3] rounded-lg border border-paper/15 bg-paper/[0.04] md:max-h-[560px] md:max-w-[640px]"
               />
-              <figcaption className="mx-auto mt-3 max-w-[560px] text-center text-sm text-muted-dark">
+              <figcaption className="mx-auto mt-3 max-w-[640px] text-center text-sm text-muted-dark">
                 {L.hero.viewerCaption}
               </figcaption>
             </figure>

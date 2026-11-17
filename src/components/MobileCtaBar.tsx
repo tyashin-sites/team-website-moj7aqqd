@@ -8,12 +8,16 @@
  */
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { calendlyHref } from '@/lib/calendly';
+import { blackFridayCta } from '@/lib/black-friday';
 
 const CALENDLY_URL = calendlyHref('mobile-cta-bar');
 
 export function MobileCtaBar() {
   const [show, setShow] = useState(false);
+  // Campaign page: same bar, campaign link and label.
+  const campaign = blackFridayCta(usePathname());
 
   useEffect(() => {
     const onScroll = () => {
@@ -47,13 +51,13 @@ export function MobileCtaBar() {
     >
       <div className="bg-ink/95 backdrop-blur border-t border-paper/15 px-4 py-3">
         <a
-          href={CALENDLY_URL}
+          href={campaign?.href ?? CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={show ? 0 : -1}
           className="btn btn-primary w-full justify-center py-3.5 text-base"
         >
-          Book a Demo
+          {campaign?.label ?? 'Book a Demo'}
         </a>
       </div>
     </div>
