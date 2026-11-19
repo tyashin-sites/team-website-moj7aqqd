@@ -40,17 +40,41 @@ export const BLACK_FRIDAY_SHOW_SHOPIFY_LINK = false;
 export const BLACK_FRIDAY_CALENDLY_URL =
   'https://calendly.com/hello-thridify/30min?utm_source=thridify&utm_medium=campaign-page&utm_campaign=black-friday-2026';
 
+/**
+ * What the "Book a 30-minute call" buttons link to. A short path on this site
+ * that src/middleware.ts answers with a 302 to BLACK_FRIDAY_CALENDLY_URL, so
+ * every click is a request the site sees and can be counted per day
+ * (aapastech/tyashin-platform issue 64: the page-visits report with
+ * `path=/go/black-friday-call&count=redirects`). The visitor lands on the same
+ * Calendly page with the same tags as before.
+ */
+export const BLACK_FRIDAY_CALL_PATH = '/go/black-friday-call';
+
+export function isBlackFridayCallPath(pathname: string): boolean {
+  return pathname === BLACK_FRIDAY_CALL_PATH || pathname === `${BLACK_FRIDAY_CALL_PATH}/`;
+}
+
+/**
+ * The button href, carrying the `utm_source` the visitor arrived with (when
+ * known) so clicks can be split by source like the page views. Only the
+ * counter reads it: the redirect target never changes.
+ */
+export function blackFridayCallHref(utmSource?: string | null): string {
+  const source = (utmSource ?? '').trim().toLowerCase().replace(/[^a-z0-9._-]/g, '').slice(0, 64);
+  return source ? `${BLACK_FRIDAY_CALL_PATH}?utm_source=${source}` : BLACK_FRIDAY_CALL_PATH;
+}
+
 /** Same words as the page's own buttons (src/content/black-friday.ts `cta`). */
 export const BLACK_FRIDAY_CTA_LABEL = 'Book a 30-minute call';
 
 /**
  * The site-wide booking buttons (header, mobile menu, sticky phone bar) on
- * the campaign page: same button, campaign link and label, so a call booked
- * from any of them is counted against the campaign. Null on every other path.
+ * the campaign page: same button, campaign link and label, so a click on any
+ * of them is counted and a call booked from it is credited to the campaign. Null on every other path.
  */
 export function blackFridayCta(pathname: string | null | undefined): { href: string; label: string } | null {
   if (!pathname || !isBlackFridayPath(pathname)) return null;
-  return { href: BLACK_FRIDAY_CALENDLY_URL, label: BLACK_FRIDAY_CTA_LABEL };
+  return { href: BLACK_FRIDAY_CALL_PATH, label: BLACK_FRIDAY_CTA_LABEL };
 }
 
 export type BlackFridayState = 'expired' | 'hidden' | 'live';

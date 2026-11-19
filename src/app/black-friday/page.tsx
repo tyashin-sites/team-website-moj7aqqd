@@ -6,7 +6,7 @@ import { BLACK_FRIDAY_COPY, BLACK_FRIDAY_LAYOUT } from '@/content/black-friday';
 import { DeferredExperience } from '@/components/signature/DeferredExperience';
 import { EXP } from '@/lib/thridify';
 import {
-  BLACK_FRIDAY_CALENDLY_URL,
+  BLACK_FRIDAY_CALL_PATH,
   BLACK_FRIDAY_PATH,
   BLACK_FRIDAY_SHOW_SHOPIFY_LINK,
 } from '@/lib/black-friday';
@@ -51,9 +51,9 @@ export function generateMetadata(): Metadata {
 function BookCallButton({ className = '' }: { className?: string }) {
   return (
     <a
-      href={BLACK_FRIDAY_CALENDLY_URL}
+      href={BLACK_FRIDAY_CALL_PATH}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="nofollow noopener noreferrer"
       className={`btn btn-accent ${className}`}
     >
       {BLACK_FRIDAY_LAYOUT.cta}

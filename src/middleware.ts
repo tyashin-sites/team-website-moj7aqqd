@@ -2,8 +2,10 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { BLACK_FRIDAY_COPY } from '@/content/black-friday';
 import {
+  BLACK_FRIDAY_CALENDLY_URL,
   BLACK_FRIDAY_EXPIRED_REDIRECT,
   blackFridayState,
+  isBlackFridayCallPath,
   isBlackFridayPath,
 } from '@/lib/black-friday';
 
@@ -92,6 +94,16 @@ export function middleware(request: NextRequest) {
   const isProduction = host === PRODUCTION_HOST;
   const isPreviewHost =
     !isProduction && PREVIEW_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix));
+
+  // The campaign's booking buttons go through this path so each click is a
+  // request that can be counted (src/lib/black-friday.ts). Always the same
+  // Calendly page and tags; never cached, or repeat clicks would go uncounted.
+  if (isBlackFridayCallPath(request.nextUrl.pathname)) {
+    const res = NextResponse.redirect(BLACK_FRIDAY_CALENDLY_URL, 302);
+    res.headers.set('Cache-Control', 'no-store');
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return res;
+  }
 
   // Temporary campaign page: gate and expiry are decided HERE, per request,
   // so it goes live and takes itself down without a redeploy

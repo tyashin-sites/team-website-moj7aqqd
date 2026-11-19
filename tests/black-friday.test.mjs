@@ -3,7 +3,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   BLACK_FRIDAY_CALENDLY_URL,
+  BLACK_FRIDAY_CALL_PATH,
   BLACK_FRIDAY_EXPIRES_AT,
+  blackFridayCallHref,
+  blackFridayCta,
+  isBlackFridayCallPath,
   blackFridayState,
   isBlackFridayPath,
 } from '../src/lib/black-friday.ts';
@@ -60,6 +64,32 @@ test('booking link carries the campaign tags', () => {
   assert.equal(u.searchParams.get('utm_campaign'), 'black-friday-2026');
 });
 
+test('booking buttons go through the counted link, on the campaign page only', () => {
+  assert.equal(BLACK_FRIDAY_CALL_PATH, '/go/black-friday-call');
+  assert.equal(blackFridayCta('/black-friday')?.href, BLACK_FRIDAY_CALL_PATH);
+  assert.equal(blackFridayCta('/contact'), null);
+  assert.ok(isBlackFridayCallPath('/go/black-friday-call'));
+  assert.ok(isBlackFridayCallPath('/go/black-friday-call/'));
+  assert.ok(!isBlackFridayCallPath('/go/black-friday'));
+  assert.ok(!isBlackFridayCallPath('/go/black-friday-call/x'));
+});
+
+test('counted link carries only a clean utm_source', () => {
+  assert.equal(blackFridayCallHref(), '/go/black-friday-call');
+  assert.equal(blackFridayCallHref(''), '/go/black-friday-call');
+  assert.equal(blackFridayCallHref('LinkedIn'), '/go/black-friday-call?utm_source=linkedin');
+  assert.equal(blackFridayCallHref('x&next=//evil.example'), '/go/black-friday-call?utm_source=xnextevil.example');
+});
+
+test('page and middleware: buttons use the counted link, which redirects to Calendly', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const page = await readFile(new URL('../src/app/black-friday/page.tsx', import.meta.url), 'utf8');
+  assert.match(page, /href=\{BLACK_FRIDAY_CALL_PATH\}/);
+  assert.doesNotMatch(page, /BLACK_FRIDAY_CALENDLY_URL/);
+  const mw = await readFile(new URL('../src/middleware.ts', import.meta.url), 'utf8');
+  assert.match(mw, /isBlackFridayCallPath\(request\.nextUrl\.pathname\)[\s\S]{0,120}NextResponse\.redirect\(BLACK_FRIDAY_CALENDLY_URL, 302\)/);
+});
+
 test('copy: present, no prices, no countdown or scarcity, no Shopify block', async () => {
   const { BLACK_FRIDAY_COPY } = await import('../src/content/black-friday.ts');
   assert.ok(BLACK_FRIDAY_COPY);
@@ -112,7 +142,7 @@ test('page: three booking buttons share the campaign link; viewer is the Arlo so
   const { readFile } = await import('node:fs/promises');
   const page = await readFile(new URL('../src/app/black-friday/page.tsx', import.meta.url), 'utf8');
   assert.equal(page.match(/<BookCallButton /g).length, 3);
-  assert.equal(page.match(/BLACK_FRIDAY_CALENDLY_URL\}/g).length, 1);
+  assert.equal(page.match(/BLACK_FRIDAY_CALL_PATH\}/g).length, 1);
   assert.match(page, /previewId=\{EXP\.arloSofa\}/);
   assert.match(page, /<DeferredExperience/);
   assert.match(page, /fitAuthoredView/);
@@ -150,7 +180,7 @@ test('site-wide booking buttons carry the campaign link and label on the page on
   const { BLACK_FRIDAY_LAYOUT } = await import('../src/content/black-friday.ts');
   assert.equal(BLACK_FRIDAY_CTA_LABEL, BLACK_FRIDAY_LAYOUT.cta);
   assert.deepEqual(blackFridayCta('/black-friday'), {
-    href: BLACK_FRIDAY_CALENDLY_URL,
+    href: BLACK_FRIDAY_CALL_PATH,
     label: 'Book a 30-minute call',
   });
   assert.deepEqual(blackFridayCta('/black-friday/'), blackFridayCta('/black-friday'));
