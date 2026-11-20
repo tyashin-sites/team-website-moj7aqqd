@@ -8,11 +8,12 @@ import {
   PMCA_DOCUMENT,
   PMCA_EFFECTIVE_DATE,
   PMCA_VERSION,
+  PEL_VERSION,
   PML_VERSION,
 } from '@/content/legal/pmca';
 
-// The Public Material Contribution Agreement (PMCA) and the user licence for
-// public materials (PML). Brands accept the PMCA version shown here when they
+// The Public Material Contribution Agreement (PMCA), the user licence for
+// public materials (PML) and the Approved Experiences schedule (PEL). Brands accept the PMCA version shown here when they
 // submit materials in the Thridify app, which links to this page. The text is
 // generated from the approved draft (src/content/legal/pmca.ts).
 
@@ -21,7 +22,7 @@ const CANONICAL = '/legal/public-material-contribution-agreement';
 export const metadata = pageMetadata({
   title: 'Public Material Contribution Agreement',
   description:
-    'The agreement brands accept when they publish materials to the Thridify Public Material Library, and the licence under which every Thridify account may use them.',
+    'The agreement brands and creators accept when they publish materials or 3D experiences to the Thridify public libraries, and the licences under which every Thridify account may use them.',
   path: CANONICAL,
   image: '/og/default.png',
   ogTitle: 'Public Material Contribution Agreement — Thridify',
@@ -77,7 +78,7 @@ export default function PublicMaterialContributionAgreementPage() {
     <>
       <JsonLd nodes={[breadcrumbLd]} />
       <LegalDocument
-        eyebrow={`Legal · ${PMCA_VERSION} / ${PML_VERSION}`}
+        eyebrow={`Legal · ${PMCA_VERSION} / ${PML_VERSION} / ${PEL_VERSION}`}
         title="Public Material Contribution Agreement"
         breadcrumbLabel="Material Contribution Agreement"
         effectiveDate={PMCA_EFFECTIVE_DATE}
