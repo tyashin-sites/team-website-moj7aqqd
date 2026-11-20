@@ -1,12 +1,16 @@
 // GENERATED from THRIDIFY-PUBLIC-MATERIAL-CONTRIBUTION-AGREEMENT-DRAFT.md (v0.2,
-// approved 2026-10-19): Part A (PMCA) and Part B (PML-1.0) only; the draft
+// approved 2026-10-19): Part A (PMCA), Part B (PML-1.0) and Part C (PEL-1.0) only; the draft
 // banner and notes for counsel are excluded. Edit the source and regenerate,
 // and bump the version labels for any change in meaning (accepted versions are
 // recorded per submission).
 // PMCA-1.1 (2 November 2026): clause 11.1 names the controller of contributors'
 // personal data by region (India, EU and UK, everywhere else). It is a
 // clarification: PMCA-1.0 acceptances stay valid and nobody has to accept again.
-// Keep PMCA_VERSION equal to the app's CONTRIBUTION_AGREEMENT_VERSION.
+// PEL-1.0 (20 November 2026): Part C adds the Approved Experiences schedule
+// for the Public Experience Library. Experience submissions record PEL-1.0;
+// material acceptances (PMCA-1.1) are unaffected.
+// Keep PMCA_VERSION equal to the app's CONTRIBUTION_AGREEMENT_VERSION and
+// PEL_VERSION equal to thridify-be PEL_LICENCE_VERSION.
 
 export type TLegalBlock = { type: 'p'; text: string } | { type: 'ul'; items: string[] };
 export type TLegalSection = { title: string; blocks: TLegalBlock[] };
@@ -14,6 +18,9 @@ export type TLegalPart = { title: string; sections: TLegalSection[] };
 
 export const PMCA_VERSION = 'PMCA-1.1';
 export const PML_VERSION = 'PML-1.0';
+/** Part C, the Approved Experiences schedule (Public Experience Library). */
+export const PEL_VERSION = 'PEL-1.0';
+export const PEL_EFFECTIVE_DATE = '20 November 2026';
 export const PMCA_EFFECTIVE_DATE = '2 November 2026';
 
 export const PMCA_DOCUMENT: TLegalPart[] = [
@@ -428,6 +435,172 @@ export const PMCA_DOCUMENT: TLegalPart[] = [
           {
             "type": "p",
             "text": "Part A clauses 13.1 and 13.2 apply."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "PART C — SCHEDULE: APPROVED EXPERIENCES (PEL-1.0)",
+    "sections": [
+      {
+        "title": "About this schedule",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "This schedule applies when you submit a 3D product experience to Thridify's Public Experience Library. It adds to Part A. Where this schedule and Part A differ about experiences, this schedule wins. You accept it separately, by typing your name when you submit an experience, and the Platform records that acceptance with the submission under version **PEL-1.0**. Clause 3.4 of Part A applies to that acceptance."
+          }
+        ]
+      },
+      {
+        "title": "C-1 Definitions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "C-1.1 **\"Contributed Experience\"** means each 3D product experience you submit, with everything in it: 3D models and meshes in any format, textures, materials and maps, variants, options and configuration rules, hotspots and their text and links, lighting, camera, backdrop and scene settings, thumbnails and posters, and names, descriptions, categories and other metadata."
+          },
+          {
+            "type": "p",
+            "text": "C-1.2 **\"Approved Experience\"** means a Contributed Experience that Aapastech has approved for the Public Experience Library. Each approval, and the version it created, is recorded in the Platform's audit log."
+          },
+          {
+            "type": "p",
+            "text": "C-1.3 **\"Snapshot\"** means the frozen copy of a Contributed Experience that the Platform makes at the moment you submit it. Aapastech reviews and publishes the Snapshot, not the working product in your account."
+          },
+          {
+            "type": "p",
+            "text": "C-1.4 **\"Import\"** means a User's own copy of an Approved Experience, made in that User's account."
+          },
+          {
+            "type": "p",
+            "text": "C-1.5 **\"Public Experience Library\"** means the collection of Approved Experiences that Aapastech makes available to Users under clause C-6."
+          }
+        ]
+      },
+      {
+        "title": "C-2 How Part A applies to experiences",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Part A applies to Contributed Experiences and Approved Experiences as if they were Contributed Materials and Approved Materials, with these changes:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "(a) **Processed Forms** (clause 1.5) also include optimised, compressed or simplified models, conversions to other formats (including USDZ for AR), lower-detail versions, still renders, turntables and videos, and AI-generated lifestyle images made from the experience. AI-generated images are labelled as such wherever the Platform requires.",
+              "(b) **Use by Users** (clause 3.1(d)): Users may import Approved Experiences into their accounts, and use, change and publish their Imports, as clause C-6 allows.",
+              "(c) **Showing your work** (clause 3.1(f)): Aapastech may also show Approved Experiences, renders of them and your library's public profile (name, bio, website and picture) on creator pages, in the Public Experience Library, and to new Users choosing experiences when they sign up.",
+              "(d) **Your own marks** (clause 5.3): your own Brand Assets may appear where they are part of the product you depict, such as a badge on a chair. Third-party marks, logos and artwork may not appear anywhere in the experience.",
+              "(e) **Physical products** (clause 6) applies in full. Importing or publishing an experience gives no one any right to make, sell or copy the product it shows."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "C-3 Snapshots and versions",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "C-3.1 Once you submit, later changes to your working product do not change the Snapshot. To update an Approved Experience, submit it again. If Aapastech approves the new Snapshot, it becomes the next version and the previous version is retired."
+          },
+          {
+            "type": "p",
+            "text": "C-3.2 If a Snapshot is rejected, or you withdraw it before it is approved, Aapastech deletes it."
+          }
+        ]
+      },
+      {
+        "title": "C-4 Imports are independent copies",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "C-4.1 Each Import is a separate copy that the User controls in their own account. If an Approved Experience is retired or removed under clause 8 of Part A, nobody can import it any more, but Imports already made are not changed or deleted and the licence in clause C-6 continues for them. Aapastech has no duty to recall Imports."
+          },
+          {
+            "type": "p",
+            "text": "C-4.2 This is why the licence in clause 3.1 of Part A cannot be revoked for experiences either: a User's live product page would break if it could."
+          }
+        ]
+      },
+      {
+        "title": "C-5 What you also confirm",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "In addition to clause 7 of Part A, you confirm, on the date you submit and again on the date each experience is approved, that:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "C-5.1 you hold the rights in every part of the experience, including models and textures made for you by employees or contractors, and including any third-party models, textures or environment images, whose licence allows everything this Agreement permits (assets licensed for editorial use only, or without a right to redistribute, may not be included);",
+              "C-5.2 hotspot text and links are accurate and lawful, and no link leads to unlawful or harmful content. Aapastech may remove any link;",
+              "C-5.3 the experience contains no hidden content, scripts, tracking code or anything designed to collect data from people who view it."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "C-6 Licence to Users (Thridify Public Experience Licence, PEL-1.0)",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "C-6.1 **Grant.** Aapastech grants each User a non-exclusive, worldwide, royalty-free licence to import Approved Experiences and to use, copy, display, change, adapt and publish their Imports, for commercial or non-commercial purposes. The licence covers the User's own commerce and marketing: product pages, online stores, marketplaces, configurators, AR and 3D viewers, renders, images, video, social media and advertising, including through the Platform's embeds, plugins and exports. It is perpetual, subject to clause C-6.6, and can be transferred only together with the User's business."
+          },
+          {
+            "type": "p",
+            "text": "C-6.2 **Changes.** A User may change anything in their Import: names, prices, SKUs, descriptions, variants, materials, hotspots, scenes and files. Files the User adds remain the User's. The parts that came from the Contributed Experience remain covered by this licence."
+          },
+          {
+            "type": "p",
+            "text": "C-6.3 **What Users must not do.** Users must not:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "(1) sell, license, give away or distribute the model files, textures or the experience **on their own**, for example as downloads, asset packs, listings on 3D-model marketplaces, or in any form that substitutes for the Public Experience Library. Reselling the model files by themselves is never allowed;",
+              "(2) use an Import to train or evaluate machine-learning models for a product that competes with the Platform or offers 3D assets;",
+              "(3) claim to have created the original experience;",
+              "(4) present a product as made, sold or endorsed by the contributor when it is not. A User who uses an Import to show a product that is not the contributor's must remove the contributor's names, marks and SKUs from it;",
+              "(5) use an Import to show shoppers a product the User does not actually offer, or in any other unlawful, defamatory, obscene or misleading way."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "C-6.4 **Physical products excluded.** This licence covers digital depiction only. It gives no right to make, sell or copy any physical product, design, pattern or finish."
+          },
+          {
+            "type": "p",
+            "text": "C-6.5 **No warranty.** Approved Experiences are provided \"as is\", with no warranty, including about non-infringement, dimensions, accuracy of names, SKUs, prices or specifications, or colour fidelity. Users must check that an Import matches any real product they sell. Part A clause 9 applies to Users in the same way."
+          },
+          {
+            "type": "p",
+            "text": "C-6.6 **Ending the licence.** Aapastech may end this licence for a User who breaches clause C-6.3. That User must then unpublish and delete the Imports concerned."
+          },
+          {
+            "type": "p",
+            "text": "C-6.7 **Indemnity and law.** Each User indemnifies Aapastech against claims arising from that User's breach of this licence. Part A clauses 13.1 and 13.2 apply."
+          }
+        ]
+      },
+      {
+        "title": "C-7 Order, featured and sponsored placement",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "C-7.1 Aapastech decides how the Public Experience Library is ordered and which experiences are featured. You have no right to any position."
+          },
+          {
+            "type": "p",
+            "text": "C-7.2 Aapastech may later offer paid sponsored placement under a separate written agreement. Nothing in this schedule obliges you to buy placement or Aapastech to provide it. Sponsored items will always be labelled as sponsored."
+          }
+        ]
+      },
+      {
+        "title": "C-8 Changes to this schedule",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "A new version of this schedule applies only to experiences submitted after you accept it. Snapshots and Imports made under an earlier version stay under that version."
           }
         ]
       }
