@@ -541,31 +541,31 @@ export const INTEGRATIONS: Integration[] = [
     ],
     seoTitle: "3D Product Configurator for BigCommerce",
     seoDescription:
-      "Add a 3D product configurator, 360° viewer and app-free AR to your BigCommerce store. Thridify embeds on your product template with a lightweight snippet — no re-platforming.",
+      "Add a 3D product configurator, 360° viewer and app-free AR to your BigCommerce store with the Thridify app. Products match by SKU, and your theme stays as it is.",
     hero: {
       eyebrow: "BigCommerce Integration",
       h1: "3D Product Configurator for BigCommerce",
       subtitle:
-        "Let BigCommerce shoppers configure options in 3D, spin products and view them in their room with app-free AR — added with a lightweight embed.",
+        "Let BigCommerce shoppers configure options in 3D, spin products and view them in their room with app-free AR, added by the Thridify app without theme edits.",
     },
     tagline:
       "A 3D configurator, 360° viewer and web AR on your BigCommerce product pages.",
     integrationIntro:
-      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. Add it to a BigCommerce product page with a lightweight embed on your product template; the Thridify JS SDK renders the published experience and matches each product and variant by ID. AR runs in the browser — no app for your shoppers. A Thridify app for BigCommerce, which matches products by SKU and adds the viewer without editing your theme, is coming to the App Marketplace; ask us to set it up on your store before then.",
+      "Build your configurator, 360° viewer and AR experience once in Thridify and publish it. The Thridify 3D & AR Product Viewer app for BigCommerce connects your store to your Thridify account, reads your catalog and shows 3D on every product whose SKU, URL slug, product ID or name matches a published experience. It adds one script through Script Manager, so your theme stays as it is, and removes it when you uninstall. AR runs in the browser, so shoppers install nothing. Its App Marketplace listing is on the way; until it is live, email contact@thridify.com and we will set Thridify up on your store. Headless storefronts use the Thridify JS SDK instead.",
     installLabel:
-      "Install: lightweight embed on your BigCommerce product template",
+      "Install: Thridify 3D & AR Product Viewer app (App Marketplace listing coming soon)",
     steps: [
       {
         heading: "Publish an experience in Thridify",
-        body: "Create the 3D configurator, 360° viewer or AR experience for your product and publish it — each gets a stable ID.",
+        body: "Create the 3D configurator, 360° viewer or AR experience for your product and publish it with the product's SKU as its product ID.",
       },
       {
-        heading: "Embed it on your BigCommerce product",
-        body: "Paste the Thridify embed into your product template and map it to the BigCommerce product or variant by ID.",
+        heading: "Install the app and connect",
+        body: "Open the Thridify app from Apps in your control panel, sign in to Thridify and click Connect. Products match by SKU, URL slug, product ID or name.",
       },
       {
         heading: "Shoppers configure, spin and place in AR",
-        body: "The JS SDK renders the live experience — customers configure options and view the item in their room, app-free.",
+        body: "A 3D icon, button or inline 3D tab appears on the product page. Customers configure options and view the item in their room, app-free.",
       },
     ],
     helpsIntro:
@@ -574,7 +574,7 @@ export const INTEGRATIONS: Integration[] = [
       {
         capability: "configurator",
         heading: "A 3D configurator for BigCommerce",
-        body: "Shoppers swap finishes and options in real time with live pricing, mapped to your BigCommerce variants.",
+        body: "Shoppers swap finishes and options in real time and see the price as they go. One configurable model carries every option.",
       },
       {
         capability: "ar",
@@ -607,19 +607,27 @@ export const INTEGRATIONS: Integration[] = [
     faqs: [
       {
         q: "Does Thridify work with BigCommerce?",
-        a: "Yes. Thridify adds a 3D configurator, 360° viewer and app-free AR to BigCommerce product pages via a lightweight embed — no re-platforming.",
+        a: "Yes. The Thridify app adds a 3D configurator, 360° viewer and app-free AR to BigCommerce product pages and 3D icons to category cards, with no theme edits.",
       },
       {
-        q: "How do I add a 3D configurator to BigCommerce?",
-        a: "Publish the experience in Thridify, then paste the embed on your product template and map it to the product or variant by ID. The JS SDK renders it live.",
+        q: "How do I install the Thridify app on BigCommerce?",
+        a: "Install Thridify 3D & AR Product Viewer from the App Marketplace and open it from Apps in your control panel. Sign in to Thridify (or create an account) and click Connect: Thridify reads your catalog, installs its storefront script and lists which products show 3D. Publish an experience in Thridify with the product's SKU as its product ID and it appears on your storefront within a minute. On the app's Storefront page you choose icon, button or inline display, its position, the button text and whether category cards show a 3D icon. Uninstalling removes the script.",
+      },
+      {
+        q: "Is the app on the BigCommerce App Marketplace yet?",
+        a: "Not yet: the listing is on the way. Until it is live, email contact@thridify.com and we will set Thridify up on your store. You can see the app working now on our live BigCommerce demo store.",
+      },
+      {
+        q: "Which BigCommerce storefronts does the app support?",
+        a: "Stencil storefronts, including Multi Storefront: the app installs one script per storefront channel, each with its own placement settings. Headless storefronts use the Thridify JS SDK.",
+      },
+      {
+        q: "What if a product's price is hidden in my store?",
+        a: "The 3D viewer hides its price too, so a product set to show no price, such as Price on request, never shows one in 3D.",
       },
       {
         q: "Do my customers need an app for AR?",
         a: "No. AR runs in the browser on any modern smartphone, so BigCommerce shoppers place products in their room in one tap — no app download.",
-      },
-      {
-        q: "Can each BigCommerce variant map to a configuration?",
-        a: "Yes. One configurable model carries every option as swappable materials and maps to your BigCommerce variants by ID.",
       },
     ],
     related: ["shopify", "wix", "custom-integration"],
