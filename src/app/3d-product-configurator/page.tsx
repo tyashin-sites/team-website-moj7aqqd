@@ -22,7 +22,7 @@ import { calendlyHref } from '@/lib/calendly';
  *
  * Content rules: canonical metrics only (no invented figures), no pricing
  * (Rule 19 — scoped on the call), and the only free offers named anywhere are
- * the 15-day trial and the 30-minute demo (Rule 23).
+ * the Free plan and the 30-minute demo (Rule 23).
  */
 
 const PATH = '/3d-product-configurator';
@@ -125,7 +125,7 @@ const FAQS = [
   },
   {
     q: 'What does Thridify offer free?',
-    a: 'Two things: a 15-day free trial of the platform, and a 30-minute demo call tailored to your industry, run on Thridify’s existing live experiences.',
+    a: 'Two things: a Free plan with no time limit (sign up at admin.thridify.com, pick ready-made 3D experiences and go live, no card needed), and a 30-minute demo call tailored to your industry, run on Thridify’s existing live experiences.',
   },
 ];
 

@@ -61,6 +61,7 @@ Thridify is built and operated by ${LEGAL_NAME}. Led by Shikha Gupta, Co-Founder
 Five products, one no-code layer:
 - 3D 360° Viewer — interactive, rotatable product views on any product page.
 - 3D Configurator — real-time configuration with live pricing.
+- Free plan: sign up at https://admin.thridify.com/signup, no time limit and no card. Start from ready-made 3D experiences, upgrade from inside Thridify when you need more products or views. Prices are shown in your own currency.
 - AR Viewer — app-free augmented reality; shoppers view products in their room from the browser, no app to install.
 - 3D Modelling Service — human-delivered, done-for-you: Thridify models your catalog into photoreal, AR-ready assets (glTF/GLB/USDZ). Thridify does NOT do automated content generation.
 - Analytics — engagement and conversion insight on 3D/AR interactions.

@@ -132,8 +132,8 @@ export default function FaqPage() {
             See it answered live, on products like yours.
           </h2>
           <p className="mt-5 text-paper/70 max-w-xl mx-auto">
-            A free 30-minute demo built around your industry — and a 15-day
-            free trial of the platform when you're ready.
+            A free 30-minute demo built around your industry, and a Free plan
+            you can start on the same day.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a

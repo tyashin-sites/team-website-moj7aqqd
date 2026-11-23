@@ -76,4 +76,4 @@ It is a page where the second, third and fourth items in the basket get sold. Th
 
 ## See it
 
-The [room visualizer page](https://thridify.com/room-visualizer) shows the shopper flow with real captures, and the [Shop the Look page](https://thridify.com/shop-the-look) explains how curated looks are published. A 30-minute demo built around your category runs on Thridify's existing live catalogue, and the 15-day free trial of the platform starts from the same call.
+The [room visualizer page](https://thridify.com/room-visualizer) shows the shopper flow with real captures, and the [Shop the Look page](https://thridify.com/shop-the-look) explains how curated looks are published. A 30-minute demo built around your category runs on Thridify's existing live catalogue, and you can start on the Free plan the same day.

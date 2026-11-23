@@ -73,4 +73,4 @@ Three more checks, for whoever is buying the planner rather than using it.
 
 ## Running the test
 
-Ask for your own products to be loaded, or use the configurable ones already in the vendor's live catalogue, and work through the seven checks in order. Scale first, because if it fails nothing else matters. A 30-minute demo on Thridify's existing live looks is enough to run all seven, and the 15-day free trial of the platform is where you run them on your own catalogue.
+Ask for your own products to be loaded, or use the configurable ones already in the vendor's live catalogue, and work through the seven checks in order. Scale first, because if it fails nothing else matters. A 30-minute demo on Thridify's existing live looks is enough to run all seven, and Thridify's Free plan is where you run them on your own catalogue.

@@ -7,7 +7,7 @@
  * RULES baked in (do not undo when editing):
  *  - No-Faking: every claim here is live/true; metrics are the canonical set.
  *  - No pricing figures anywhere — pricing routes to the demo call.
- *  - The ONLY free offers ever named: the 15-day platform trial and the
+ *  - The ONLY free offers ever named: the Free plan and the
  *    30-minute demo call. Never free modelling / pilots / samples, and demos
  *    are "built around your industry", never "on your own product".
  *  - Team privacy: Shikha Gupta (Co-Founder & CEO) is the only named person.
@@ -58,14 +58,14 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
       {
         id: "free-trial",
-        q: "Is there a free trial?",
-        a: "Yes. Thridify offers a 15-day free trial of the platform, and the 30-minute demo call is free too. Book the demo and the team will set up your trial.",
+        q: "Is there a free plan?",
+        a: "Yes. Thridify has a Free plan with no time limit: sign up at admin.thridify.com, pick ready-made 3D experiences to start from, and add your own products. No card is needed. When you need more products or views, you upgrade from inside Thridify. The 30-minute demo call is free too.",
         links: [{ label: "Book a demo", href: CALENDLY_URL }],
       },
       {
         id: "after-contact-form",
         q: "What happens after I fill the contact form?",
-        a: "The regional team (North America or India) replies within one business day and offers a demo call tailored to your industry. On the call they look at what you sell, show live experiences for products like yours, set up your 15-day free trial and scope any modelling you need.",
+        a: "The regional team (North America or India) replies within one business day and offers a demo call tailored to your industry. On the call they look at what you sell, show live experiences for products like yours, help you set up your free account and scope any modelling you need.",
         links: [{ label: "Contact", href: "/contact" }],
       },
       {
@@ -304,7 +304,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         id: "whats-free",
         q: "What does Thridify offer for free?",
-        a: "Two things: a 15-day free trial of the platform, and a 30-minute demo call tailored to your industry, run on Thridify's existing live experiences.",
+        a: "Two things: a Free plan with no time limit (sign up at admin.thridify.com, pick ready-made 3D experiences and go live, no card needed), and a 30-minute demo call tailored to your industry, run on Thridify's existing live experiences.",
         links: [{ label: "Book a demo", href: CALENDLY_URL }],
       },
       {
