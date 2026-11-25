@@ -1,5 +1,5 @@
 /**
- * CSP violation sink for the WCR-011 Report-Only soak (see src/middleware.ts).
+ * CSP violation sink for the WCR-011 Report-Only soak (see src/lib/csp.ts).
  *
  * Browsers POST either `application/csp-report` ({"csp-report": {...}}) or a
  * Reporting-API array. We log one compact line per violation: the directive,
