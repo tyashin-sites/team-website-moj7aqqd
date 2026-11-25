@@ -90,7 +90,7 @@ export const PLACEHOLDER_POSTER = '/models/sheen-chair-poster.webp';
 export const POSTER_BY_PREVIEW: Record<string, string> = {
   // Showcase experiences: frames captured from the live viewer (public/posters).
   'q2zws7': '/posters/arlo-curved-sofa.jpg',
-  'c-tyth': '/posters/dering-lounger.jpg',
+  'c-tyth': '/posters/dering-lounger-still.jpg', // clean render at the viewer's default orbit, no UI (tyashin-platform#105)
   'txop68': '/posters/verona-leather-sofa.jpg',
   '$z6_bw': '/posters/napa-courtyard-kitchen.jpg',
   'hz98_g': '/posters/flacon-perfume-bottle.jpg',

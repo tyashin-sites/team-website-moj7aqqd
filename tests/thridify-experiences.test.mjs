@@ -19,7 +19,7 @@ test('the deleted hello@ Lounge chair (_z8ksj) is not embedded anywhere', () => 
 
 test('the before/after placement uses a showcase experience', () => {
   assert.equal(accountFor(EXP.deringLounger), 'ba821df5e38769800893b524e86f01be');
-  assert.equal(POSTER_BY_PREVIEW[EXP.deringLounger], '/posters/dering-lounger.jpg');
+  assert.equal(POSTER_BY_PREVIEW[EXP.deringLounger], '/posters/dering-lounger-still.jpg');
 });
 
 test('every curated experience is published', { skip: !process.env.THRIDIFY_LIVE_CHECK }, async () => {
@@ -35,4 +35,12 @@ test('every curated experience is published', { skip: !process.env.THRIDIFY_LIVE
     if (res.status !== 200) missing.push(`poster ${id} -> ${res.status} ${src}`);
   }
   assert.deepEqual(missing, []);
+});
+
+test('every local poster file exists', async () => {
+  const { existsSync } = await import('node:fs');
+  for (const [id, src] of Object.entries(POSTER_BY_PREVIEW)) {
+    if (!src.startsWith('/')) continue;
+    assert.ok(existsSync(new URL(`../public${src}`, import.meta.url)), `${id} poster missing: ${src}`);
+  }
 });

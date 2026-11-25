@@ -50,7 +50,7 @@ export function BeforeAfter() {
             alt="Flat product photo of a lounger — one fixed angle, no interaction"
             width={640}
             height={480}
-            className="w-full h-full object-contain grayscale-[0.35] opacity-90"
+            className="w-full h-full object-cover grayscale-[0.35] opacity-90"
           />
         </div>
         <ul className="mt-4 flex flex-wrap gap-2">
