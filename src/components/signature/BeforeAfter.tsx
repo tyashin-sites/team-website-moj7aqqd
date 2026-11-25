@@ -11,10 +11,12 @@
  * It must read as "same product, two experiences" — comparing the
  * EXPERIENCE, not two different graphics.
  *
- * Both sides are the SAME real Thridify experience (Lounge chair, from the
- * connected hello@thridify.com account): LEFT is that experience's own poster
- * photo (the flat still), RIGHT is the live interactive experience — a true
- * apples-to-apples "flat vs 3D of the identical product".
+ * Both sides are the SAME real Thridify experience (Dering Lounger, from the
+ * movablefurniture@ showcase account): LEFT is a still of that experience (the
+ * flat photo), RIGHT is the live interactive experience — a true
+ * apples-to-apples "flat vs 3D of the identical product". (Until 2026-11-25
+ * this was the hello@ Lounge chair, which was deleted in the admin;
+ * aapastech/tyashin-platform#105.)
  */
 
 import { CapabilityDemo } from '@/components/signature/CapabilityDemo';
@@ -23,10 +25,11 @@ import { EXP, posterFor } from '@/lib/thridify';
 const PAINS = ['Returns from guesswork', 'Quote delays', 'Photoshoot costs'];
 const GAINS = ['Buyers see exactly what ships', 'Instant quotes', 'One 3D asset, every angle'];
 
-// The Lounge chair experience's own published poster (its flat photo) — same
-// source the SDK handoff uses for the live 3D on the right (single-sourced from
-// lib/thridify's POSTER_BY_PREVIEW).
-const POSTER_SRC = posterFor(EXP.loungeChair);
+// The experience's poster (a still from the live viewer) — same source the SDK
+// handoff uses for the live 3D on the right (single-sourced from lib/thridify's
+// POSTER_BY_PREVIEW).
+const BEFORE_AFTER_EXPERIENCE = EXP.deringLounger;
+const POSTER_SRC = posterFor(BEFORE_AFTER_EXPERIENCE);
 
 export function BeforeAfter() {
   return (
@@ -44,7 +47,7 @@ export function BeforeAfter() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={POSTER_SRC}
-            alt="Flat product photo of a lounge chair — one fixed angle, no interaction"
+            alt="Flat product photo of a lounger — one fixed angle, no interaction"
             width={640}
             height={480}
             className="w-full h-full object-contain grayscale-[0.35] opacity-90"
@@ -69,7 +72,7 @@ export function BeforeAfter() {
         </div>
         {/* The section's focal "aha" — a single live experience → `ready` so it
             pre-warms and feels instant on scroll (Experience Modes §3). */}
-        <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" experiencePreviewId={EXP.loungeChair} experienceMode="ready" modelLabel="lounge chair" />
+        <CapabilityDemo mode="viewer" aspect="aspect-[4/3]" experiencePreviewId={BEFORE_AFTER_EXPERIENCE} experienceMode="ready" modelLabel="Dering lounger" />
         <ul className="mt-4 flex flex-wrap gap-2">
           {GAINS.map((t) => (
             <li

@@ -19,7 +19,13 @@ export const THRIDIFY_VIEWER_URL = 'https://viewer.thridify.com';
 export const ACCOUNT_MOVABLE_FURNITURE = 'ba821df5e38769800893b524e86f01be'; // movablefurniture@thridify.com: sofa configurators
 export const ACCOUNT_FIXED_FURNITURE = '9bf923043d31e17975a130e25ac74c6c'; // fixedfurniture@thridify.com: Atelier kitchens
 
-/** Curated preview IDs, one per demonstrated capability / vertical. */
+/** Curated preview IDs, one per demonstrated capability / vertical.
+ *  Every id here must be a live, published experience: an embed of a deleted
+ *  one shows "You are not authorized to access this product" and 404s its
+ *  config and poster. The hello@ "Lounge chair" (_z8ksj) was deleted in the
+ *  admin on 2026-11-23 and was replaced by the Dering Lounger (issue
+ *  aapastech/tyashin-platform#105); `npm test` with THRIDIFY_LIVE_CHECK=1
+ *  checks every id against models.thridify.com. */
 export const EXP = {
   // --- showcase experiences (see SHOWCASE accounts above) ---
   arloSofa: 'q2zws7', // Arlo Curved Sofa: fabrics, sizes, legs, cushions (movablefurniture)
@@ -30,7 +36,6 @@ export const EXP = {
   // --- older store samples (kept for the verticals with no showcase experience yet) ---
   modernSofa: 'k5h0f_', // Store Modern Sofa (5 finishes) — flagship configure + AR
   bicycle: '8_-uco', // Store Bicycle — detailed 360° viewer
-  loungeChair: '_z8ksj', // Lounge chair — clean viewer / AR
   diningTable: 'jthf23', // Store Dining Table (5 variants) — configurator
   armChair: 'lb724x', // Store Arm chair — AR
   baxterLounge: '$_xy-3', // Store Baxter Lounge Chair — viewer
@@ -53,7 +58,6 @@ export const PID_BY_PREVIEW: Record<string, string> = {
   'hz98_g': 'FLACON-ATELIER',
   'k5h0f_': 'StoreModernSofa',
   '8_-uco': '51',
-  '_z8ksj': 'loungechair',
   'jthf23': 'DiningTable',
   'lb724x': 'StoreArmchair',
   '$_xy-3': '105',
@@ -90,9 +94,6 @@ export const POSTER_BY_PREVIEW: Record<string, string> = {
   'txop68': '/posters/verona-leather-sofa.jpg',
   '$z6_bw': '/posters/napa-courtyard-kitchen.jpg',
   'hz98_g': '/posters/flacon-perfume-bottle.jpg',
-  // Lounge chair — the experience's own published poster (its flat photo).
-  '_z8ksj':
-    'https://models.thridify.com/9778c64430db8927b214b554a5819391/b3042c32-0807-4f67-861a-7a4c9d12cdb1/poster/1hfll6ityj1-Lounge%20chair-poster.png',
 };
 
 /** Preview id → owning account, for experiences that live outside the site's
