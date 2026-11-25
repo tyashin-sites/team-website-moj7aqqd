@@ -41,7 +41,7 @@ const FAQS = [
   },
   {
     q: 'What is free?',
-    a: 'Two things: a 15-day free trial of the platform, and a 30-minute demo call tailored to your industry, run on Thridify’s existing live experiences.',
+    a: 'Two things: a Free plan with no time limit (sign up at admin.thridify.com, pick ready-made 3D experiences and go live, no card needed), and a 30-minute demo call tailored to your industry, run on Thridify’s existing live experiences.',
   },
   {
     q: 'How do I keep the cost down?',
@@ -148,7 +148,7 @@ export default function CostGuide() {
             <p><strong>Getting started</strong>: website integration, creation of your first experiences and hand-over to your team.</p>
             <p><strong>3D Modelling Service</strong>: per product, scoped on your references and complexity; delivered as glTF/GLB/USDZ you own outright.</p>
             <p><strong>Managed services (optional)</strong>: Thridify creates new experiences and makes changes for you instead of your team using the Studio.</p>
-            <p><strong>Always free</strong>: the 15-day platform trial and the 30-minute industry demo.</p>
+            <p><strong>Always free</strong>: the Free plan, with no time limit, and the 30-minute industry demo.</p>
             <p className="text-sm text-foreground/60">Exact figures are confirmed on the scoping call, because the drivers above change them materially from one catalogue to the next.</p>
           </div>
         </div>

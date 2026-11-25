@@ -20,7 +20,7 @@ import { calendlyHref } from '@/lib/calendly';
  *
  * Content rules: only shipped capabilities are described as shipped (see
  * docs/ROOM-VISUALIZER-GTM.md §1 for the not-yet list); canonical metrics
- * only; no pricing (Rule 19); the only free offers are the 15-day trial and
+ * only; no pricing (Rule 19); the only free offers are the Free plan and
  * the 30-minute demo (Rule 23). All imagery is real captures (RoomCapture).
  */
 
@@ -132,7 +132,7 @@ const FAQS = [
   },
   {
     q: 'What does Thridify offer free?',
-    a: 'Two things: a 15-day free trial of the platform, and a 30-minute demo call tailored to your industry, run on Thridify’s existing live experiences.',
+    a: 'Two things: a Free plan with no time limit (sign up at admin.thridify.com, pick ready-made 3D experiences and go live, no card needed), and a 30-minute demo call tailored to your industry, run on Thridify’s existing live experiences.',
   },
 ];
 
@@ -527,8 +527,8 @@ export default function RoomVisualizerPage() {
             Thirty minutes, on a room built from the products you actually sell.
           </h2>
           <p className="mt-4 text-paper/70 max-w-xl mx-auto">
-            The demo runs on Thridify’s existing live looks. The 15-day free trial of the platform
-            starts from the same call.
+            The demo runs on Thridify’s existing live looks. You can start on the Free plan the
+            same day.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-primary">

@@ -1,6 +1,6 @@
 # Room Visualizer + Shop the Look — Go-to-market strategy
 
-Written 2026-10-11 from the thridify-fe `src/modules/roomVisualizer` history (v11.6 → v11.12.2, Sept 28 – Oct 10 2026) and the live dev surfaces. Governs the website pages and blog posts added in the same commit. Golden rules applied throughout: No-Faking (only shipped capabilities are described as shipped; only canonical metrics are quoted), Rule 19 (no pricing), Rule 23 (the only free things are the 15-day trial and the 30-minute demo), Rule 26 (links in first comment on social), Rule 27 (no geography pitch).
+Written 2026-10-11 from the thridify-fe `src/modules/roomVisualizer` history (v11.6 → v11.12.2, Sept 28 – Oct 10 2026) and the live dev surfaces. Governs the website pages and blog posts added in the same commit. Golden rules applied throughout: No-Faking (only shipped capabilities are described as shipped; only canonical metrics are quoted), Rule 19 (no pricing), Rule 23 (the only free things are the Free plan and the 30-minute demo), Rule 26 (links in first comment on social), Rule 27 (no geography pitch).
 
 ## 1. What we actually built (the facts the marketing must not outrun)
 

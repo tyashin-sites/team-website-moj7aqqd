@@ -59,4 +59,4 @@ A shopper cannot save and share their own version of a look from the hosted page
 
 ## Next step
 
-The [room visualizer page](https://thridify.com/room-visualizer) shows the shopper side with real captures. If you want to see it on your own category, a 30-minute demo runs on Thridify's existing live looks, and the 15-day free trial of the platform starts from that call.
+The [room visualizer page](https://thridify.com/room-visualizer) shows the shopper side with real captures. If you want to see it on your own category, a 30-minute demo runs on Thridify's existing live looks, and you can start on the Free plan the same day.

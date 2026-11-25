@@ -117,7 +117,7 @@ const FAQS = [
   },
   {
     q: 'What does Thridify offer free?',
-    a: 'Two things: a 15-day free trial of the platform, and a 30-minute demo call tailored to your industry, run on Thridify’s existing live looks.',
+    a: 'Two things: a Free plan with no time limit (sign up at admin.thridify.com, pick ready-made 3D experiences and go live, no card needed), and a 30-minute demo call tailored to your industry, run on Thridify’s existing live looks.',
   },
 ];
 
@@ -428,7 +428,7 @@ export default function ShopTheLookPage() {
         <div className="container-x section relative text-center">
           <p className="eyebrow eyebrow-center">See a curated look on your category</p>
           <h2 className="tt-1 mt-4 max-w-2xl mx-auto">
-            Thirty minutes, on Thridify’s live looks. Then fifteen days on your own catalogue.
+            Thirty minutes, on Thridify’s live looks. Then start free on your own catalogue.
           </h2>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-primary">

@@ -11,7 +11,7 @@
  *     here until they ship in the plugin.
  *   - No Thridify plan prices or plan names on thridify.com. Say "free plugin on
  *     WordPress.org; a Thridify account is required, you can create one while
- *     connecting". The only free offers named are the 15-day trial and the demo.
+ *     connecting". The only free offers named are the Free plan and the demo.
  */
 
 export const WOO_PLUGIN_URL = 'https://wordpress.org/plugins/thridify/';
